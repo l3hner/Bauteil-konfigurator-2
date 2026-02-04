@@ -44,12 +44,14 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`✅ Lehner Konfigurator läuft auf http://localhost:${PORT}`);
-  
-  // Auto-open browser
-  const open = require('child_process').exec;
-  open(`xdg-open http://localhost:${PORT}`, (err) => {
-    if (err) {
-      console.log('Bitte öffnen Sie http://localhost:' + PORT + ' in Ihrem Browser');
-    }
-  });
+
+  // Auto-open browser (nur lokal, nicht auf Render/Production)
+  if (process.env.NODE_ENV !== 'production') {
+    const open = require('child_process').exec;
+    open(`xdg-open http://localhost:${PORT}`, (err) => {
+      if (err) {
+        console.log('Bitte öffnen Sie http://localhost:' + PORT + ' in Ihrem Browser');
+      }
+    });
+  }
 });
