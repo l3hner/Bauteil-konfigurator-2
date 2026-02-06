@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
 
   const walls = catalogService.getWalls();
   const innerwalls = catalogService.getInnerwalls();
+  const decken = catalogService.getDecken();
   const windows = catalogService.getWindows();
   const tiles = catalogService.getTiles();
   const haustypen = catalogService.getHaustypen();
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
   console.log('[Route /] Catalog loaded:');
   console.log('  - walls:', walls.length);
   console.log('  - innerwalls:', innerwalls.length);
+  console.log('  - decken:', decken.length);
   console.log('  - windows:', windows.length);
   console.log('  - tiles:', tiles.length);
   console.log('  - haustypen:', haustypen.length);
@@ -23,6 +25,7 @@ router.get('/', (req, res) => {
   const catalog = {
     walls,
     innerwalls,
+    decken,
     windows,
     tiles,
     haustypen,
@@ -30,8 +33,6 @@ router.get('/', (req, res) => {
   };
 
   console.log('[Route /] catalog object keys:', Object.keys(catalog));
-  console.log('[Route /] catalog.innerwalls exists:', !!catalog.innerwalls);
-  console.log('[Route /] catalog.innerwalls length:', catalog.innerwalls ? catalog.innerwalls.length : 'undefined');
 
   res.render('index', { catalog });
 });
