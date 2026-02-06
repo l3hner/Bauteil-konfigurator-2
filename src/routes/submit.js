@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
     // Build submission object
     const submission = {
       // Bauherr data
+      bauherr_anrede: formData.bauherr_anrede,
       bauherr_vorname: formData.bauherr_vorname,
       bauherr_nachname: formData.bauherr_nachname,
       bauherr_email: formData.bauherr_email,
@@ -31,6 +32,7 @@ router.post('/', async (req, res) => {
       // Building components
       wall: formData.wall,
       innerwall: formData.innerwall,
+      decke: formData.decke,
       window: formData.window,
       tiles: formData.tiles,
       heizung: formData.heizung,

@@ -281,19 +281,20 @@ function updateProgress() {
         2: () => document.querySelector('input[name="kfw_standard"]:checked'),
         3: () => document.querySelector('input[name="wall"]:checked'),
         4: () => document.querySelector('input[name="innerwall"]:checked'),
-        5: () => document.querySelector('input[name="haustyp"]:checked'),
-        6: () => document.querySelector('input[name="window"]:checked'),
-        7: () => document.querySelector('input[name="tiles"]:checked'),
-        8: () => document.querySelector('input[name="heizung"]:checked'),
-        9: () => document.querySelector('input[name="lueftung"]:checked'),
-        10: () => document.getElementById('personenanzahl')?.value,
-        11: () => document.querySelector('input[name="grundstueck"]:checked'),
-        12: () => true, // Optional - always complete
-        13: () => true  // Optional - always complete
+        5: () => document.querySelector('input[name="decke"]:checked'),
+        6: () => document.querySelector('input[name="haustyp"]:checked'),
+        7: () => document.querySelector('input[name="window"]:checked'),
+        8: () => document.querySelector('input[name="tiles"]:checked'),
+        9: () => document.querySelector('input[name="heizung"]:checked'),
+        10: () => document.querySelector('input[name="lueftung"]:checked'),
+        11: () => document.getElementById('personenanzahl')?.value,
+        12: () => document.querySelector('input[name="grundstueck"]:checked'),
+        13: () => true, // Optional - always complete
+        14: () => true  // Optional - always complete
     };
 
     let completedSteps = 0;
-    const totalSteps = 13;
+    const totalSteps = 14;
 
     // Update step indicators
     Object.entries(sections).forEach(([step, check]) => {
@@ -310,7 +311,7 @@ function updateProgress() {
     });
 
     // Find first incomplete step and mark as active
-    for (let i = 1; i <= 11; i++) {
+    for (let i = 1; i <= 12; i++) {
         if (!sections[i]()) {
             const stepEl = document.querySelector(`.progress-step[data-step="${i}"]`);
             if (stepEl) {

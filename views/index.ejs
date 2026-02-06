@@ -105,6 +105,18 @@
 
                     <div class="form-row">
                         <div class="form-group">
+                            <label for="bauherr_anrede">Anrede *</label>
+                            <select id="bauherr_anrede" name="bauherr_anrede" required>
+                                <option value="">Bitte wählen</option>
+                                <option value="Herr">Herr</option>
+                                <option value="Frau">Frau</option>
+                                <option value="Familie">Familie</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
                             <label for="bauherr_vorname">Vorname *</label>
                             <input type="text" id="bauherr_vorname" name="bauherr_vorname" required>
                             <span class="valid-indicator">&#10003;</span>
@@ -430,7 +442,7 @@
         </main>
 
         <footer class="footer">
-            <p>&copy; 2026 Lehner Haus GmbH & Co. KG. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2026 Lehner Haus GmbH. Alle Rechte vorbehalten.</p>
         </footer>
     </div>
 

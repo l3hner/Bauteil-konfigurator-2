@@ -8,9 +8,10 @@
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
-        "Gipsfaserplatte für höchste Stabilität und Tragfähigkeit",
-        "Diffusionsoffener Wandaufbau mit 3-lagigem Außenputz",
-        "Massivholz-Rahmenkonstruktion aus KVH (Vollholz)"
+        "F90 Brandschutz – 90 Min. Feuerwiderstand als Standard",
+        "Holzfaserdämmplatten auf der Außenseite für optimalen Hitzeschutz",
+        "Diffusionsoffener Wandaufbau – feuchteregulierend, schimmelfrei",
+        "Gipsfaser-Innenbeplankung – höchste Stabilität und Tragfähigkeit"
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
@@ -25,7 +26,6 @@
         "uValue": "0,149 W/(m²K)",
         "wallThickness": "270 mm",
         "insulation": "160 mm WLG 035 + 80 mm Holzfaser WLG 042",
-        "position": "Pos. 11.165",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
       },
@@ -39,7 +39,7 @@
         "Höchster Brandschutz durch mineralische Platte",
         "QDF-zertifizierte Qualität mit RAL-Gütezeichen"
       ],
-      "comparisonNotes": "❗ KRITISCHE FRAGEN für Mitbewerber:\n\n1. 'Welchen EXAKTEN U-Wert hat Ihre Außenwand?' (Bei uns: 0,149 W/(m²K) - deutlich unter KfW-Anforderung)\n\n2. 'Ist die Innenbeplankung Fermacell, Gipskarton oder OSB?' (OSB = KEIN Brandschutz F90, nur 15-20kg Tragkraft statt 60kg bei Fermacell)\n\n3. 'Ist der Wandaufbau diffusionsoffen?' (Dampfsperren können bei Beschädigung zu Schimmel führen - diffusionsoffene Konstruktion ist baubiologisch besser)\n\n4. 'Erreichen Sie F90 Brandschutz als Standard?' (90 Min. Feuerwiderstand - nicht bei OSB-Beplankung!)\n\n5. 'Welche Dämmung verwenden Sie?' (Mineralwolle ist brandsicher A1, PU-Schaum setzt bei Brand toxische Gase frei)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen exakten U-Wert hat die Außenwand? (Lehner Haus: 0,149 W/(m²K))\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte mit F90 Brandschutz und 60 kg Tragkraft)\n\n3. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – baubiologisch optimale Feuchteregulierung)\n\n4. Wird F90 Brandschutz als Standard erreicht? (Lehner Haus: 90 Min. Feuerwiderstand serienmäßig)\n\n5. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)",
       "filePath": "assets/variants/walls/climativ-fermacell.png",
       "technicalDrawing": "assets/variants/walls/climativ-fermacell-technical.png"
     },
@@ -51,9 +51,10 @@
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
-        "Holzwerkstoffplatte für natürliches Raumklima",
-        "Diffusionsoffener Wandaufbau mit 3-lagigem Außenputz",
-        "Massivholz-Rahmenkonstruktion aus KVH (Vollholz)"
+        "ESB-Innenbeplankung – wohngesund, emissionsarm, aus regionalem Fichtenholz",
+        "F90 Brandschutz – 90 Min. Feuerwiderstand als Standard",
+        "Holzfaserdämmplatten auf der Außenseite für optimalen Hitzeschutz",
+        "Diffusionsoffener Wandaufbau – feuchteregulierend, schimmelfrei"
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
@@ -68,7 +69,6 @@
         "uValue": "0,149 W/(m²K)",
         "wallThickness": "270 mm",
         "insulation": "160 mm WLG 035 + 80 mm Holzfaser WLG 042",
-        "position": "Pos. 11.160",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
       },
@@ -78,11 +78,11 @@
       "advantages": [
         "ESB-Platten aus frischem Fichtenholz (max. 150km Transportweg)",
         "Wohngesund zertifiziert – keine bedenklichen Emissionen",
-        "Höhere Diffusionsoffenheit als OSB (weniger Schimmelrisiko)",
+        "Hohe Diffusionsoffenheit für natürliche Feuchteregulierung",
         "Bewährtes CLIMA-tiv System zu attraktivem Preis",
         "Ausgezeichnete Wärmedämmung mit U-Wert 0,149"
       ],
-      "comparisonNotes": "❗ KRITISCHE FRAGEN für Mitbewerber:\n\n1. 'Verwenden Sie ESB oder OSB?' (Die meisten nutzen billigeres OSB aus Industrierestholz)\n\n2. 'Ist Ihre Holzwerkstoffplatte wohngesund zertifiziert?' (ESB hat 25% geringere Quellung und deutlich niedrigere VOC-Emissionen als OSB)\n\n3. 'Wie ist der U-Wert der Außenwand?' (Manche Anbieter erreichen angegebene Werte nur mit Tricks bei der Messung)\n\n4. 'Ist der Wandaufbau diffusionsoffen oder mit Dampfsperre?' (Diffusionsoffener Aufbau ist baubiologisch besser)\n\n5. 'Woher stammt das Holz?' (Bei uns max. 150km Transportweg - nachhaltig und regional)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB – wohngesund zertifiziert, aus regionalem Fichtenholz)\n\n2. Ist die Holzwerkstoffplatte emissionsgeprüft? (Lehner Haus: ESB mit niedrigen VOC-Emissionen und 25 % geringerer Quellung)\n\n3. Wie ist der exakte U-Wert der Außenwand? (Lehner Haus: 0,149 W/(m²K))\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)\n\n5. Woher stammt das Holz? (Lehner Haus: max. 150 km Transportweg – nachhaltig und regional)",
       "filePath": "assets/variants/walls/climativ-esb.png",
       "technicalDrawing": "assets/variants/walls/climativ-esb-technical.png"
     },
@@ -94,9 +94,10 @@
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
-        "Gipsfaserplatte für höchste Stabilität und Tragfähigkeit",
-        "Diffusionsoffener Wandaufbau mit 3-lagigem Außenputz",
-        "Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz)"
+        "F90 Brandschutz – 90 Min. Feuerwiderstand als Standard",
+        "Holzfaserdämmplatten auf der Außenseite für optimalen Hitzeschutz",
+        "Diffusionsoffener Wandaufbau – feuchteregulierend, schimmelfrei",
+        "Gipsfaser-Innenbeplankung – höchste Stabilität und Tragfähigkeit"
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
@@ -111,7 +112,6 @@
         "uValue": "0,129 W/(m²K)",
         "wallThickness": "350 mm",
         "insulation": "240 mm WLG 035 + 80 mm Holzfaser WLG 042",
-        "position": "Pos. 11.245",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
       },
@@ -125,7 +125,7 @@
         "Optimale Basis für hochwertige Innenwandgestaltung",
         "Höchste Förderfähigkeit durch übererfüllte Standards"
       ],
-      "comparisonNotes": "❗ KfW 40 ist NICHT gleich KfW 40! KRITISCHE FRAGEN:\n\n1. 'Welchen EXAKTEN U-Wert hat die Außenwand?' (Viele erreichen nur knapp 0,28 - wir liegen bei 0,129 W/(m²K)!)\n\n2. 'Wird die Dämmung vollflächig eingebracht?' (Installationsebenen unterbrechen oft die Dämmung und verschlechtern den U-Wert)\n\n3. 'Wie dick ist die Dämmung?' (200mm Mineralwolle PLUS 80mm Fassadendämmung = 280mm gesamt)\n\n4. 'Welche Innenbeplankung?' (Fermacell = F90 Brandschutz + 60kg Tragkraft; OSB = kein F90, nur 15-20kg)\n\n5. 'Ist der Wandaufbau diffusionsoffen?' (Ja = gut; Dampfsperre = Schimmelrisiko bei Beschädigung)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen exakten U-Wert hat die Außenwand? (Lehner Haus: 0,129 W/(m²K) – deutlich besser als KfW-Anforderung)\n\n2. Wird die Dämmung vollflächig eingebracht? (Lehner Haus: 240 mm Mineralwolle plus 80 mm Holzfaserdämmplatte = 320 mm gesamt)\n\n3. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte mit F90 Brandschutz und 60 kg Tragkraft)\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – optimale Feuchteregulierung ohne Dampfsperre)\n\n5. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)",
       "filePath": "assets/variants/walls/climativ-plus-fermacell.png",
       "technicalDrawing": "assets/variants/walls/climativ-plus-fermacell-technical.png"
     },
@@ -137,9 +137,10 @@
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
-        "Holzwerkstoffplatte für natürliches Raumklima",
-        "Diffusionsoffener Wandaufbau mit 3-lagigem Außenputz",
-        "Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz)"
+        "ESB-Innenbeplankung – wohngesund, emissionsarm, aus regionalem Fichtenholz",
+        "F90 Brandschutz – 90 Min. Feuerwiderstand als Standard",
+        "Holzfaserdämmplatten auf der Außenseite für optimalen Hitzeschutz",
+        "Diffusionsoffener Wandaufbau – feuchteregulierend, schimmelfrei"
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
@@ -154,7 +155,6 @@
         "uValue": "0,129 W/(m²K)",
         "wallThickness": "350 mm",
         "insulation": "240 mm WLG 035 + 80 mm Holzfaser WLG 042",
-        "position": "Pos. 11.240",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
       },
@@ -168,7 +168,7 @@
         "Optimales Preis-Leistungs-Verhältnis im KfW 40 Segment",
         "Diffusionsoffene Konstruktion minimiert Feuchteprobleme"
       ],
-      "comparisonNotes": "❗ Der wirtschaftliche Weg zu KfW 40! Aber VORSICHT vor Billig-Anbietern:\n\n1. 'Wie dick ist die Dämmung wirklich?' (Bei uns: 200mm Mineralwolle PLUS 80mm Dämmfassade = 280mm gesamt)\n\n2. 'Welcher Dämmstoff wird verwendet?' (PU-Schaum erreicht ähnliche U-Werte mit weniger Dicke, setzt aber bei Brand toxische Gase frei - Mineralwolle ist brandsicher A1)\n\n3. 'Verwenden Sie ESB oder OSB?' (ESB = wohngesund zertifiziert, niedrige VOC-Emissionen; OSB = Industrierestholz, riecht oft Jahre)\n\n4. 'Welchen U-Wert garantieren Sie schriftlich?' (Manche rechnen U-Werte schön oder erreichen sie nur unter Idealbedingungen)\n\n5. 'Ist die Konstruktion diffusionsoffen?' (Ja = baubiologisch besser; Dampfsperre = Schimmelrisiko)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Wie dick ist die Dämmung? (Lehner Haus: 240 mm Mineralwolle plus 80 mm Holzfaserdämmplatte = 320 mm gesamt)\n\n2. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)\n\n3. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB – wohngesund zertifiziert, aus regionalem Fichtenholz)\n\n4. Wird der U-Wert schriftlich garantiert? (Lehner Haus: 0,129 W/(m²K) – nachweislich geprüft)\n\n5. Ist die Konstruktion diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)",
       "filePath": "assets/variants/walls/climativ-plus-esb.png",
       "technicalDrawing": "assets/variants/walls/climativ-plus-esb-technical.png"
     }
@@ -205,13 +205,13 @@
         { "position": "Pos. 15.390", "description": "Material nur liefern und mit Kran heben (Einbau bauseits)" }
       ],
       "advantages": [
-        "Schallschutz BASIS+ Standard: 'Keine oder nur kaum wahrnehmbaren Geräusche'",
+        "Optimierter Schallschutz – kaum wahrnehmbare Geräusche zwischen den Räumen",
         "Fermacell bietet 60 kg Auszugslast pro Befestigung",
         "Feuchtraumgeeignet ohne zusätzliche Behandlung",
         "Optimale Kombination aus Robustheit und Verarbeitungsfreundlichkeit",
         "A2-Brandschutzklasse (nicht brennbar)"
       ],
-      "comparisonNotes": "❗ Schallschutz ist im Fertighaus oft der SCHWACHPUNKT! KRITISCHE FRAGEN:\n\n1. 'Welchen Schallschutz haben Ihre Innenwände IN DER PRAXIS?' (BASIS = nur 47-49 dB, BASIS+ = 52-55 dB - DAS ist der Unterschied!)\n\n2. 'Sind die Wände beidseitig beplankt?' (Einseitige Beplankung oder nur Gipskarton erreicht keine guten Schallschutzwerte)\n\n3. 'Wie dick ist der Gipskarton im Bad?' (Standard 1,25 cm reicht oft nicht für schwere Fliesen - wir verbauen 2,5 cm)\n\n4. 'Wie werden Anschlüsse ausgeführt?' (Schallbrücken entstehen oft an Decken- und Wandanschlüssen)\n\n5. 'Besteht die Wand aus ALLEN Materialien oder nur Platten ohne Ständerwerk-Details?' (Qualität liegt im Detail!)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Sind die Innenwände doppelt beplankt? (Lehner Haus: ja – für optimalen Schallschutz und Stabilität)\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte – robust, feuchtraumgeeignet, A2 Brandschutz)\n\n3. Welche Tragkraft bieten die Wände? (Lehner Haus: 60 kg Auszugslast pro Befestigung)\n\n4. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk, Beplankung und Dichtungen)\n\n5. Welcher Schallschutz wird erreicht? (Lehner Haus: konkrete dB-Werte, nicht nur Schätzungen)",
       "filePath": "assets/variants/innenwalls/fermacell-gipskarton.png",
       "technicalDrawing": "assets/variants/innenwalls/fermacell-gipskarton-technical.png"
     },
@@ -246,13 +246,13 @@
         { "position": "Pos. 15.390", "description": "Material nur liefern und mit Kran heben (Einbau bauseits)" }
       ],
       "advantages": [
-        "Wirtschaftliche Lösung mit solidem Schallschutz BASIS",
+        "Wirtschaftliche Lösung mit solidem Schallschutz",
         "ESB-Platten für wohngesundes Raumklima",
         "Gute Befestigungsmöglichkeiten für normale Lasten",
         "Bewährte Materialkombination",
         "Schnelle Verarbeitung auf der Baustelle"
       ],
-      "comparisonNotes": "❗ Die wirtschaftliche Variante für nicht-sensible Bereiche. WICHTIG:\n\n1. 'Verwenden Sie ESB oder OSB?' (Lehner Haus = ESB; die meisten Anbieter = billiges OSB)\n\n2. 'Warum ist ESB besser?' (25% geringere Quellung, keine VOC-Emissionen, kein OSB-Geruch der jahrelang bleibt)\n\n3. 'Welcher Schallschutz wird erreicht?' (BASIS = 47-49 dB für Hauswirtschaft/Flure ok; für Schlafzimmer empfehlen wir BASIS+ mit 52-55 dB)\n\n4. 'Sind alle Materialien enthalten?' (Manche Anbieter rechnen nur Platten, vergessen Ständerwerk und Dichtungen)\n\n5. 'Riecht OSB noch nach Jahren?' (JA! ESB ist geruchsneutral und wohngesund zertifiziert)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird bei den Innenwänden verwendet? (Lehner Haus: ESB – wohngesund zertifiziert, geruchsneutral)\n\n2. Welcher Schallschutz wird erreicht? (Lehner Haus: konkrete dB-Werte auf Nachfrage)\n\n3. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk, Beplankung und Dichtungen)\n\n4. Ist die ESB-Platte emissionsgeprüft? (Lehner Haus: niedrige VOC-Emissionen, 25 % geringere Quellung)\n\n5. Wird die Innenwand doppelt beplankt? (Lehner Haus: ja – ESB plus Gipsbauplatte für optimale Stabilität)",
       "filePath": "assets/variants/innenwalls/esb-gipskarton.png",
       "technicalDrawing": "assets/variants/innenwalls/esb-gipskarton-technical.png"
     }
@@ -266,29 +266,28 @@
       "premiumFeatures": [
         "RC2-Beschlagstechnik serienmäßig - Pilzkopfverriegelung für Einbruchschutz",
         "Ug-Wert 0,5 W/(m²K) - Passivhaus-tauglich",
-        "Warme Kante mit Edelstahl - keine Wärmebrücken"
+        "Ug-Wert 0,5 W/(m²K) mit 3-fach Verglasung serienmäßig"
       ],
       "layers": [
         { "name": "6-Kammer-Kunststoffprofil", "value": "80 mm Bautiefe" },
         { "name": "3-fach Wärmeschutzverglasung", "value": "Ug 0,5" },
-        { "name": "Warme Kante (Edelstahl)", "value": "" },
         { "name": "RC2-Beschlagstechnik", "value": "" },
         { "name": "Pilzkopfverriegelung umlaufend", "value": "" }
       ],
       "technicalDetails": {
         "ugValue": "0,5 W/(m²K)",
         "profile": "6-Kammer-System, 80mm Bautiefe",
-        "glazing": "3-fach Verglasung mit Warmer Kante",
+        "glazing": "3-fach Verglasung",
         "securityFeatures": "RC2-Beschlagstechnik, Pilzkopfverriegelung an allen Fenstern"
       },
       "advantages": [
         "3-fach Verglasung mit Ug-Wert 0,5 – Passivhaus-tauglich",
         "6-Kammer-Profil für maximale Dämmung",
-        "Warme Kante (Edelstahl) statt Aluminium-Abstandhalter",
+        "Edelstahl-Abstandhalter für beste Dämmwerte",
         "Pilzkopfverriegelung für Einbruchschutz RC2",
         "Pflegeleicht und langlebig"
       ],
-      "comparisonNotes": "❗ NICHT alle Kunststofffenster sind gleich! KRITISCHE FRAGEN:\n\n1. 'Welchen Ug-Wert haben die Fenster?' (Billige Fenster: 1,0 oder schlechter; Lehner Haus: 0,5 W/(m²K) Standard)\n\n2. 'Ist es 2-fach oder 3-fach Verglasung?' (2-fach ist veraltet und erreicht keine guten U-Werte mehr)\n\n3. 'Wie viele Kammern hat das Profil?' (3-5 Kammern = einfach; 6 Kammern = Premium mit bester Dämmung)\n\n4. 'Warme Kante - aus Edelstahl oder Aluminium?' (Aluminium ist eine Wärmebrücke! Edelstahl = warm)\n\n5. 'Ist RC2-Sicherheitstechnik serienmäßig?' (Pilzkopfverriegelung schützt vor Einbruch - bei uns Standard, andere Aufpreis)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert haben die Fenster? (Lehner Haus: 0,5 W/(m²K) serienmäßig)\n\n2. 3-fach oder 2-fach Verglasung? (Lehner Haus: 3-fach Verglasung als Standard)\n\n3. Wie viele Kammern hat das Profil? (Lehner Haus: 6-Kammer-Profil mit 80 mm Bautiefe)\n\n4. Ist RC2-Sicherheitstechnik serienmäßig? (Lehner Haus: ja – Pilzkopfverriegelung an allen Fenstern)\n\n5. Welcher Abstandhalter wird verwendet? (Lehner Haus: Edelstahl für optimale Dämmwerte)",
       "filePath": "assets/variants/windows/kunststoff.png",
       "technicalDrawing": "assets/variants/windows/kunststoff-technical.png"
     },
@@ -306,14 +305,13 @@
         { "name": "Aluminium-Außenschale", "value": "mind. 1,5 mm" },
         { "name": "Dreischicht-Leimholz innen", "value": "" },
         { "name": "3-fach Wärmeschutzverglasung", "value": "Ug 0,5" },
-        { "name": "Warme Kante (Edelstahl)", "value": "" },
         { "name": "RC2-Beschlagstechnik", "value": "" },
         { "name": "Pilzkopfverriegelung umlaufend", "value": "" }
       ],
       "technicalDetails": {
         "ugValue": "0,5 W/(m²K)",
         "profile": "Dreischicht-Leimholz innen, pulverbeschichtetes Aluminium außen (mind. 1,5mm)",
-        "glazing": "3-fach Verglasung mit Warmer Kante",
+        "glazing": "3-fach Verglasung",
         "securityFeatures": "RC2-Beschlagstechnik, Pilzkopfverriegelung"
       },
       "advantages": [
@@ -346,7 +344,6 @@
         "material": "Gebrannter Ton, durchgefärbt",
         "lifespan": "80-100 Jahre",
         "weight": "ab 4t Gesamtdachgewicht bei typischem Einfamilienhaus",
-        "fireRating": "A² Brandschutz Euroklasse - nicht brennbar",
         "surface": "Premium Surface für lange Lebensdauer und dauerhaften Glanz"
       },
       "advantages": [
@@ -376,8 +373,7 @@
       "technicalDetails": {
         "material": "Hochdruckbeton, oberflächenbeschichtet",
         "lifespan": "30-40 Jahre",
-        "weight": "ca. 43 kg/m²",
-        "fireRating": "B Brandschutz - schwer entflammbar"
+        "weight": "ca. 43 kg/m²"
       },
       "advantages": [
         "Attraktives Preis-Leistungs-Verhältnis",
@@ -404,7 +400,7 @@
         "Großzügige, offene Raumgestaltung möglich",
         "Ideale Grundlage für Smart-Home-Integration"
       ],
-      "filePath": "assets/variants/haustypen/bungalow.png"
+      "filePath": "assets/variants/haustypen/bungalow/"
     },
     {
       "id": "stadtvilla",
@@ -418,7 +414,7 @@
         "Flexibel für verschiedene Lebensmodelle",
         "Wertstabil durch klassische Bauform"
       ],
-      "filePath": "assets/variants/haustypen/stadtvilla.png"
+      "filePath": "assets/variants/haustypen/stadtvilla/"
     },
     {
       "id": "familienhaus",
@@ -432,7 +428,7 @@
         "Flexible Nutzungsmöglichkeiten unterm Dach",
         "Niedriger Energiebedarf durch kompakte Bauform"
       ],
-      "filePath": "assets/variants/haustypen/familienhaus.png"
+      "filePath": "assets/variants/haustypen/familienhaus/"
     },
     {
       "id": "doppelhaus",
@@ -446,7 +442,7 @@
         "Gemeinschaft mit garantierter Privatsphäre",
         "Geringere Heizkosten durch gemeinsame Wand"
       ],
-      "filePath": "assets/variants/haustypen/doppelhaus.png"
+      "filePath": "assets/variants/haustypen/doppelhaus/"
     },
     {
       "id": "reihenhaus",
@@ -460,7 +456,7 @@
         "Urbanes Wohnen mit eigenem Garten",
         "Ideal für Baugemeinschaften"
       ],
-      "filePath": "assets/variants/haustypen/reihenhaus.png"
+      "filePath": "assets/variants/haustypen/reihenhaus/"
     },
     {
       "id": "mehrfamilienhaus",
@@ -474,7 +470,7 @@
         "Langfristige Wertstabilität als Kapitalanlage",
         "KfW-Förderung pro Wohneinheit möglich"
       ],
-      "filePath": "assets/variants/haustypen/mehrfamilienhaus.png"
+      "filePath": "assets/variants/haustypen/mehrfamilienhaus/"
     }
   ],
   "heizung": [
@@ -580,7 +576,6 @@
       "description": "Vollwertiges Lüftungssystem mit zentralem Gerät und Kanalnetz. Bis zu 95% Wärmerückgewinnung. Die Premium-Lösung für höchsten Wohnkomfort.",
       "layers": [
         { "name": "Zentrales Lüftungsgerät", "value": "im Technikraum" },
-        { "name": "Kanalnetz (Stahlrohre)", "value": "verzinkt" },
         { "name": "Wärmerückgewinnung", "value": "bis 95%" },
         { "name": "F7 Pollenfilter", "value": "Standard" },
         { "name": "Automatische Feuchteregulierung", "value": "" }
@@ -598,7 +593,7 @@
         "Gerät im Technikraum – Wohnräume völlig geräuschfrei",
         "Automatische Feuchteregulierung gegen Schimmel"
       ],
-      "comparisonNotes": "❗ Die KÖNIGSKLASSE der Wohnraumlüftung! Für KfW 40 fast immer notwendig. KRITISCH:\n\n1. 'Aus welchem Material sind die Lüftungskanäle?' (Lehner Haus: verzinkte Stahlrohre oder antibakterielle Kunststoffrohre; VIELE ANDERE: billige Flexschläuche = Keimsammler!)\n\n2. 'Wie werden die Kanäle gereinigt?' (Stahlrohre: professionell reinigbar; Flexschläuche: praktisch nicht reinigbar, nach 10-15 Jahren hygienisches Problem)\n\n3. 'Welche Wärmerückgewinnung?' (95% = Spitze; billige nur 80-85%)\n\n4. 'Welcher Filter?' (F7 = Pollenfilter für Allergiker; einfache haben nur G3/G4 = grober Staub)\n\n5. 'Wo steht das Gerät?' (Im Technikraum = geräuschfrei in Wohnräumen; im Keller = Schallübertragung?)\n\n6. 'Wie ist die Wartung?' (Professionelle Reinigung alle 3-5 Jahre empfohlen)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Wärmerückgewinnung wird erreicht? (Lehner Haus: bis 95 %)\n\n2. Welcher Filter ist verbaut? (Lehner Haus: F7 Pollenfilter – ideal für Allergiker)\n\n3. Wo steht das Lüftungsgerät? (Lehner Haus: im Technikraum – Wohnräume völlig geräuschfrei)\n\n4. Wie viel Energie wird eingespart? (Lehner Haus: ca. 2.500 kWh pro Jahr)\n\n5. Ist automatische Feuchteregulierung enthalten? (Lehner Haus: ja – Schimmelprävention serienmäßig)",
       "filePath": "assets/variants/lueftung/zentral.png",
       "technicalDrawing": "assets/variants/lueftung/zentral-technical.png"
     }
@@ -607,17 +602,17 @@
     {
       "id": "holzbalkendecke",
       "name": "Holzbalkendecke",
-      "description": "Holzbalkendecke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Wärmedämmung.",
+      "description": "Holzbalkendecke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
       "constructionType": "Holzbalkendecke",
       "premiumFeatures": [
         "Deckenbalken nach statischer Berechnung (Vollholz)",
-        "160 mm Wärmedämmung für optimalen Schallschutz",
+        "160 mm Mineralwolledämmung für optimalen Schallschutz",
         "Verkleidung mit Gipsbauplatten"
       ],
       "layers": [
         { "name": "Holzwerkstoffplatte", "value": "22,0 mm" },
         { "name": "Deckenbalken (Vollholz h = 240 mm)", "value": "240,0 mm" },
-        { "name": "Wärmedämmung", "value": "160,0 mm" },
+        { "name": "Mineralwolledämmung", "value": "160,0 mm" },
         { "name": "Unterkonstruktion", "value": "21,0 mm" },
         { "name": "Sperrbahn / Rieselschutz", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
