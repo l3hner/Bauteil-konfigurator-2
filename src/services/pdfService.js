@@ -199,71 +199,54 @@ class PdfService {
   }
 
   drawTitlePage(doc, submission) {
-    // Hero-Hintergrundbild (falls vorhanden)
-    const heroImagePath = path.join(this.assetsDir, 'hero-background.jpg');
+    // Weißer oberer Bereich für Logo
+    // Dunkelgrüner Bereich ab unterhalb des Logos
+    const splitY = 280;
+    doc.rect(0, splitY, 595, 842 - splitY).fill(this.colors.primary);
 
-    if (fs.existsSync(heroImagePath)) {
-      try {
-        doc.image(heroImagePath, 0, 0, { width: 595, height: 842 });
-        // Semi-transparent overlay für Lesbarkeit
-        doc.rect(0, 0, 595, 842).fillOpacity(0.65).fill(this.colors.primary);
-        doc.fillOpacity(1); // Reset
-      } catch (e) {
-        console.warn('[PDF] Hero-Bild konnte nicht geladen werden, verwende Fallback');
-        doc.rect(0, 0, 595, 842).fill(this.colors.primary);
-      }
-    } else {
-      // Fallback: Dunkelgrüner Hintergrund mit Gradient-Effekt (simuliert)
-      doc.rect(0, 0, 595, 842).fill(this.colors.primary);
-      doc.rect(0, 0, 595, 300).fillOpacity(0.15).fill(this.colors.gold);
-      doc.fillOpacity(1);
-    }
-
-    // Lehner Haus Logo (zentriert oben)
+    // Lehner Haus Logo (zentriert oben auf weißem Hintergrund)
     const logoPath = path.join(__dirname, '../../Logo/LehnerLogo_schwaebischgut [Konvertiert].png');
     if (fs.existsSync(logoPath)) {
       try {
-        doc.image(logoPath, 197.5, 120, { width: 200 });
+        doc.image(logoPath, 147.5, 60, { width: 300 });
       } catch (e) {
         console.warn('[PDF] Logo konnte nicht geladen werden');
-        // Fallback: Text-Logo
-        doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.white);
-        doc.text('LEHNER HAUS', 0, 180, { width: 595, align: 'center' });
-        doc.font('Helvetica').fontSize(18).fillColor('#e0e0e0');
-        doc.text('schwäbisch gut', 0, 235, { width: 595, align: 'center' });
+        doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
+        doc.text('LEHNER HAUS', 0, 100, { width: 595, align: 'center' });
+        doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
+        doc.text('schwäbisch gut', 0, 155, { width: 595, align: 'center' });
       }
     } else {
-      // Fallback: Text-Logo
-      doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.white);
-      doc.text('LEHNER HAUS', 0, 180, { width: 595, align: 'center' });
-      doc.font('Helvetica').fontSize(18).fillColor('#e0e0e0');
-      doc.text('schwäbisch gut', 0, 235, { width: 595, align: 'center' });
+      doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
+      doc.text('LEHNER HAUS', 0, 100, { width: 595, align: 'center' });
+      doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
+      doc.text('schwäbisch gut', 0, 155, { width: 595, align: 'center' });
     }
 
-    // Goldene Trennlinie
-    doc.moveTo(200, 355).lineTo(395, 355).lineWidth(2).strokeColor(this.colors.gold).stroke();
+    // Goldene Trennlinie am Übergang
+    doc.moveTo(150, splitY).lineTo(445, splitY).lineWidth(2).strokeColor(this.colors.gold).stroke();
 
     // Untertitel
     doc.font('Helvetica-Bold').fontSize(28).fillColor(this.colors.white);
-    doc.text('Ihre persönliche', 0, 390, { width: 595, align: 'center' });
+    doc.text('Ihre persönliche', 0, splitY + 50, { width: 595, align: 'center' });
 
     doc.fontSize(34).fillColor(this.colors.gold);
-    doc.text('Leistungsbeschreibung', 0, 425, { width: 595, align: 'center' });
+    doc.text('Leistungsbeschreibung', 0, splitY + 85, { width: 595, align: 'center' });
 
     // Bauherr-Name (prominent)
     const anrede = submission.bauherr_anrede || 'Familie';
     doc.font('Helvetica-Bold').fontSize(22).fillColor(this.colors.white);
-    doc.text(`${anrede} ${submission.bauherr_nachname}`, 0, 510, { width: 595, align: 'center' });
+    doc.text(`${anrede} ${submission.bauherr_nachname}`, 0, splitY + 170, { width: 595, align: 'center' });
 
     // Datum & Referenz
     const dateStr = new Date(submission.timestamp).toLocaleDateString('de-DE', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
     doc.font('Helvetica').fontSize(11).fillColor('#cccccc');
-    doc.text(`Erstellt am ${dateStr}`, 0, 570, { width: 595, align: 'center' });
+    doc.text(`Erstellt am ${dateStr}`, 0, splitY + 230, { width: 595, align: 'center' });
 
     doc.fontSize(9).fillColor('#999999');
-    doc.text(`Referenz: ${submission.id}`, 0, 590, { width: 595, align: 'center' });
+    doc.text(`Referenz: ${submission.id}`, 0, splitY + 250, { width: 595, align: 'center' });
 
     // Footer Titelseite
     doc.rect(0, 770, 595, 2).fill(this.colors.gold);
