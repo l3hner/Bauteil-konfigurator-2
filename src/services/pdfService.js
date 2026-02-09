@@ -205,18 +205,20 @@ class PdfService {
     doc.rect(0, splitY, 595, 842 - splitY).fill(this.colors.primary);
 
     // Lehner Haus Logo (zentriert oben auf weißem Hintergrund)
-    const logoPath = path.join(__dirname, '../../Logo/LehnerLogo_schwaebischgut [Konvertiert].png');
+    const logoPath = path.resolve(__dirname, '..', '..', 'Logo', 'LehnerLogo_schwaebischgut.jpg');
+    console.log('[PDF] Logo-Pfad:', logoPath, '| Existiert:', fs.existsSync(logoPath));
     if (fs.existsSync(logoPath)) {
       try {
-        doc.image(logoPath, 147.5, 60, { width: 300 });
+        doc.image(logoPath, 172.5, 40, { width: 250 });
       } catch (e) {
-        console.warn('[PDF] Logo konnte nicht geladen werden');
+        console.error('[PDF] Logo konnte nicht geladen werden:', e.message);
         doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
         doc.text('LEHNER HAUS', 0, 100, { width: 595, align: 'center' });
         doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
         doc.text('schwäbisch gut', 0, 155, { width: 595, align: 'center' });
       }
     } else {
+      console.warn('[PDF] Logo-Datei nicht gefunden:', logoPath);
       doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
       doc.text('LEHNER HAUS', 0, 100, { width: 595, align: 'center' });
       doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
