@@ -4,7 +4,7 @@
       "id": "climativ-gf",
       "name": "CLIMA-tiv (GF)",
       "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "CLIMA-tiv Außenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion aus KVH (Vollholz 80/160) mit diffusionsoffenem Außenputz. Wandstärke: 270 mm.",
+      "description": "CLIMA-tiv Außenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion aus KVH (Vollholz 80/160) mit diffusionsoffenem Außenputz. Wandstärke: 265 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
@@ -16,15 +16,14 @@
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion KVH", "value": "160,0 mm" },
-        { "name": "Wärmedämmung WLG 035", "value": "160,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung WLG 035)", "value": "160,0 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
-        "uValue": "0,149 W/(m²K)",
-        "wallThickness": "270 mm",
+        "uValue": "0,17 W/(m²K)",
+        "wallThickness": "265 mm",
         "insulation": "160 mm WLG 035 + 80 mm Holzfaser WLG 042",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
@@ -39,7 +38,7 @@
         "Höchster Brandschutz durch mineralische Platte",
         "QDF-zertifizierte Qualität mit RAL-Gütezeichen"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen exakten U-Wert hat die Außenwand? (Lehner Haus: 0,149 W/(m²K))\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte mit F90 Brandschutz und 60 kg Tragkraft)\n\n3. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – baubiologisch optimale Feuchteregulierung)\n\n4. Wird F90 Brandschutz als Standard erreicht? (Lehner Haus: 90 Min. Feuerwiderstand serienmäßig)\n\n5. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen exakten U-Wert hat die Außenwand? (Lehner Haus: 0,17 W/(m²K))\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte mit F90 Brandschutz und 60 kg Tragkraft)\n\n3. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – baubiologisch optimale Feuchteregulierung)\n\n4. Wird F90 Brandschutz als Standard erreicht? (Lehner Haus: 90 Min. Feuerwiderstand serienmäßig)\n\n5. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)",
       "filePath": "assets/variants/walls/climativ-fermacell.png",
       "technicalDrawing": "assets/variants/walls/climativ-fermacell-technical.png"
     },
@@ -47,7 +46,7 @@
       "id": "climativ",
       "name": "CLIMA-tiv",
       "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "CLIMA-tiv Außenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion aus KVH (Vollholz 80/160) mit diffusionsoffenem Außenputz. Wandstärke: 270 mm.",
+      "description": "CLIMA-tiv Außenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion aus KVH (Vollholz 80/160) mit diffusionsoffenem Außenputz. Wandstärke: 265 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
@@ -59,15 +58,14 @@
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion KVH", "value": "160,0 mm" },
-        { "name": "Wärmedämmung WLG 035", "value": "160,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung WLG 035)", "value": "160,0 mm" },
         { "name": "ESB plus Holzwerkstoffplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
-        "uValue": "0,149 W/(m²K)",
-        "wallThickness": "270 mm",
+        "uValue": "0,17 W/(m²K)",
+        "wallThickness": "265 mm",
         "insulation": "160 mm WLG 035 + 80 mm Holzfaser WLG 042",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
@@ -80,9 +78,9 @@
         "Wohngesund zertifiziert (Blauer Engel) – keine bedenklichen Emissionen",
         "Diffusionsoffen für natürliche Feuchteregulierung",
         "Empfohlen von der DGNB (Deutsche Gesellschaft für Nachhaltiges Bauen)",
-        "Ausgezeichnete Wärmedämmung mit U-Wert 0,149"
+        "Ausgezeichnete Wärmedämmung mit U-Wert 0,17"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB plus – Blauer Engel zertifiziert, empfohlen von der DGNB)\n\n2. Ist die Holzwerkstoffplatte emissionsgeprüft? (Lehner Haus: ESB mit niedrigen VOC-Emissionen und 25 % geringerer Quellung)\n\n3. Wie ist der exakte U-Wert der Außenwand? (Lehner Haus: 0,149 W/(m²K))\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)\n\n5. Woher stammt das Holz? (Lehner Haus: max. 150 km Transportweg – nachhaltig und regional)\n\n6. Wieviel Wohnraum verschenken Sie bei dickeren Bauteilen? Schlechtere Werte im Wärmedurchlass und Schallschutz führen automatisch zu stärker dimensionierten Bauteilen. Das kostet Sie wertvollen Wohnraum.",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB plus – Blauer Engel zertifiziert, empfohlen von der DGNB)\n\n2. Ist die Holzwerkstoffplatte emissionsgeprüft? (Lehner Haus: ESB mit niedrigen VOC-Emissionen und 25 % geringerer Quellung)\n\n3. Wie ist der exakte U-Wert der Außenwand? (Lehner Haus: 0,17 W/(m²K))\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)\n\n5. Woher stammt das Holz? (Lehner Haus: max. 150 km Transportweg – nachhaltig und regional)\n\n6. Wieviel Wohnraum verschenken Sie bei dickeren Bauteilen? Schlechtere Werte im Wärmedurchlass und Schallschutz führen automatisch zu stärker dimensionierten Bauteilen. Das kostet Sie wertvollen Wohnraum.",
       "filePath": "assets/variants/walls/climativ-esb.png",
       "technicalDrawing": "assets/variants/walls/climativ-esb-technical.png"
     },
@@ -90,7 +88,7 @@
       "id": "climativ-plus-gf",
       "name": "CLIMA-tiv plus (GF)",
       "kfwCompatible": ["KFW40"],
-      "description": "CLIMA-tiv plus Außenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 350 mm.",
+      "description": "CLIMA-tiv plus Außenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 345 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
@@ -102,15 +100,14 @@
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion LSH", "value": "240,0 mm" },
-        { "name": "Wärmedämmung WLG 035", "value": "240,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung WLG 035)", "value": "240,0 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
         "uValue": "0,129 W/(m²K)",
-        "wallThickness": "350 mm",
+        "wallThickness": "345 mm",
         "insulation": "240 mm WLG 035 + 80 mm Holzfaser WLG 042",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
@@ -133,7 +130,7 @@
       "id": "climativ-plus",
       "name": "CLIMA-tiv plus",
       "kfwCompatible": ["KFW40"],
-      "description": "CLIMA-tiv plus Außenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 350 mm.",
+      "description": "CLIMA-tiv plus Außenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 345 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
       "constructionType": "diffusionsoffen",
       "premiumFeatures": [
@@ -145,15 +142,14 @@
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion LSH", "value": "240,0 mm" },
-        { "name": "Wärmedämmung WLG 035", "value": "240,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung WLG 035)", "value": "240,0 mm" },
         { "name": "ESB plus Holzwerkstoffplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
         "uValue": "0,129 W/(m²K)",
-        "wallThickness": "350 mm",
+        "wallThickness": "345 mm",
         "insulation": "240 mm WLG 035 + 80 mm Holzfaser WLG 042",
         "fireRating": "F90",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
@@ -189,12 +185,12 @@
         { "name": "Gipsbauplatte", "value": "12,5 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
         { "name": "Massivholz-Rahmenkonstruktion", "value": "80,0 mm" },
-        { "name": "Wärme-/Schalldämmung WLG 040", "value": "40,0 mm" },
+        { "name": "Dämmung WLG 040", "value": "40,0 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
-        "soundInsulation": "Schallschutz optimiert",
+        "soundInsulation": "beidseitig doppelt beplankt",
         "wallThickness": "130 mm",
         "position": "Pos. 15.030",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
@@ -230,12 +226,12 @@
         { "name": "Gipsbauplatte", "value": "12,5 mm" },
         { "name": "Holzwerkstoffplatte", "value": "12,5 mm" },
         { "name": "Massivholz-Rahmenkonstruktion", "value": "80,0 mm" },
-        { "name": "Wärme-/Schalldämmung WLG 040", "value": "40,0 mm" },
+        { "name": "Dämmung WLG 040", "value": "40,0 mm" },
         { "name": "Holzwerkstoffplatte", "value": "12,5 mm" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
-        "soundInsulation": "Schallschutz optimiert",
+        "soundInsulation": "beidseitig doppelt beplankt",
         "wallThickness": "130 mm",
         "position": "Pos. 15.020",
         "rawHeight": "2,60 m / 2,68 m / 2,76 m"
@@ -271,11 +267,10 @@
       "layers": [
         { "name": "6-Kammer-Kunststoffprofil", "value": "80 mm Bautiefe" },
         { "name": "3-fach Wärmeschutzverglasung", "value": "Ug 0,5" },
-        { "name": "RC2-Beschlagstechnik", "value": "" },
-        { "name": "Pilzkopfverriegelung umlaufend", "value": "" }
+        { "name": "Pilzkopfverriegelung für Einbruchschutz", "value": "" }
       ],
       "technicalDetails": {
-        "ugValue": "0,5 W/(m²K)",
+        "ugValue": "0,77 W/(m²K)",
         "profile": "6-Kammer-System, 80mm Bautiefe",
         "glazing": "3-fach Verglasung",
         "securityFeatures": "RC2-Beschlagstechnik, Pilzkopfverriegelung an allen Fenstern"
@@ -305,8 +300,7 @@
         { "name": "Aluminium-Außenschale", "value": "mind. 1,5 mm" },
         { "name": "Dreischicht-Leimholz innen", "value": "" },
         { "name": "3-fach Wärmeschutzverglasung", "value": "Ug 0,5" },
-        { "name": "RC2-Beschlagstechnik", "value": "" },
-        { "name": "Pilzkopfverriegelung umlaufend", "value": "" }
+        { "name": "Pilzkopfverriegelung für Einbruchschutz", "value": "" }
       ],
       "technicalDetails": {
         "ugValue": "0,5 W/(m²K)",
@@ -344,7 +338,6 @@
       ],
       "technicalDetails": {
         "material": "Gebrannter Ton, durchgefärbt",
-        "lifespan": "80-100 Jahre",
         "weight": "ab 4t Gesamtdachgewicht bei typischem Einfamilienhaus",
         "surface": "Durchfärbung für lange Lebensdauer und dauerhaften Glanz"
       },
@@ -374,7 +367,6 @@
       ],
       "technicalDetails": {
         "material": "Hochdruckbeton, oberflächenbeschichtet",
-        "lifespan": "30-40 Jahre",
         "weight": "ca. 43 kg/m²"
       },
       "advantages": [
@@ -483,11 +475,11 @@
         { "name": "Luft-Wasser-Wärmepumpe Außeneinheit", "value": "" },
         { "name": "Inneneinheit mit Regelung", "value": "" },
         { "name": "Kältemittel R290 (Propan)", "value": "natürlich" },
-        { "name": "Energiemanagement sensoCOMFORT", "value": "" },
         { "name": "Fußbodenheizung komplett", "value": "" }
       ],
       "technicalDetails": {
         "scop": "bis 5,0",
+        "jaz": "auf Anfrage",
         "refrigerant": "R290 (Propan) – natürlich, klimafreundlich",
         "noise": "ab 35 dB(A) – flüsterleise"
       },
@@ -495,7 +487,6 @@
         "SCOP bis 5,0 – Marktführer bei der Effizienz",
         "Natürliches Kältemittel R290 – zukunftssicher",
         "Ab 35 dB(A) – kaum hörbar im Betrieb",
-        "Integriertes Energiemanagement mit sensoCOMFORT",
         "Service-Netzwerk mit über 3.000 Partnerbetrieben"
       ],
       "comparisonNotes": "Bei Wärmepumpen entscheidet die EFFIZIENZ über Ihre Stromkosten für die nächsten 20 Jahre!\n\n1. 'Welchen SCOP hat die Wärmepumpe?' (SCOP = Seasonal Coefficient of Performance; 5,0 = aus 1 kWh Strom werden 5 kWh Wärme; Billige: nur 3,5 = 40% MEHR Stromkosten!)\n\n2. 'Welches Kältemittel wird verwendet?' (R290 = natürlich, zukunftssicher; R410A/R32 = werden langfristig verboten und teurer)\n\n3. 'Wie laut ist die Wärmepumpe?' (35 dB(A) = flüsterleise; billige >45 dB = deutlich hörbar)\n\n4. 'Wer plant und installiert die Anlage?' (Zertifizierte Fachbetriebe = richtige Auslegung)\n\n5. Kühlfunktion anderer Hersteller: Viele Wettbewerber werben mit aktiver Kühlung. Die Nachteile: höherer Stromverbrauch, Kondensationsgefahr an kalten Flächen, zusätzlicher Wartungsaufwand. Bei Lehner Haus haben wir an weniger als 20 Tagen im Jahr Übertemperatur – und das nur stundenweise. Unsere Holzfaser-Dämmung bietet eine ausgezeichnete Phasenverschiebung und damit optimalen sommerlichen Wärmeschutz.",
@@ -515,6 +506,7 @@
       ],
       "technicalDetails": {
         "scop": "bis 4,7",
+        "jaz": "auf Anfrage",
         "refrigerant": "R290 (Propan) – natürlich, klimafreundlich",
         "noise": "ab 36 dB(A)"
       },
@@ -602,9 +594,9 @@
   "decken": [
     {
       "id": "holzbalkendecke",
-      "name": "Holzbalkendecke",
-      "description": "Holzbalkendecke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
-      "constructionType": "Holzbalkendecke",
+      "name": "Lehner Decke",
+      "description": "Lehner Decke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
+      "constructionType": "Lehner Decke",
       "premiumFeatures": [
         "Deckenbalken nach statischer Berechnung (Vollholz)",
         "160 mm Mineralwolledämmung für optimalen Schallschutz",
@@ -613,14 +605,13 @@
       "layers": [
         { "name": "Holzwerkstoffplatte", "value": "22,0 mm" },
         { "name": "Deckenbalken (Vollholz h = 240 mm)", "value": "240,0 mm" },
-        { "name": "Knauf Insulation Glaswolle (ECOSE, formaldehydfrei)", "value": "160,0 mm" },
+        { "name": "Knauf Insulation Glaswolle (ECOSE, formaldehydfrei)", "value": "" },
         { "name": "Unterkonstruktion", "value": "21,0 mm" },
         { "name": "Sperrbahn / Rieselschutz", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
         "construction": "Holzbalken nach statischer Berechnung",
-        "soundInsulation": "Trittschall optimiert",
         "loadCapacity": "Nach statischer Berechnung",
         "position": "Pos. 20.120 / 20.140",
         "cladding": "Pos. 23.125 / 23.140"

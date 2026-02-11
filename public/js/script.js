@@ -278,11 +278,11 @@ function updateProgress() {
             const nachname = document.getElementById('bauherr_nachname')?.value?.trim();
             return vorname && nachname;
         },
-        2: () => document.querySelector('input[name="kfw_standard"]:checked'),
-        3: () => document.querySelector('input[name="wall"]:checked'),
-        4: () => document.querySelector('input[name="innerwall"]:checked'),
-        5: () => document.querySelector('input[name="decke"]:checked'),
-        6: () => document.querySelector('input[name="haustyp"]:checked'),
+        2: () => document.querySelector('input[name="haustyp"]:checked'),
+        3: () => document.querySelector('input[name="kfw_standard"]:checked'),
+        4: () => document.querySelector('input[name="wall"]:checked'),
+        5: () => document.querySelector('input[name="innerwall"]:checked'),
+        6: () => document.querySelector('input[name="decke"]:checked'),
         7: () => document.querySelector('input[name="window"]:checked'),
         8: () => document.querySelector('input[name="tiles"]:checked'),
         9: () => document.querySelector('input[name="heizung"]:checked'),

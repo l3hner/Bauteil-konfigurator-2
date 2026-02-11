@@ -126,20 +126,20 @@ class PdfService {
     }
 
     const components = [
-      { title: 'Außenwandsystem', data: catalogService.getVariantById('walls', submission.wall), chapter: '5.1' },
-      { title: 'Innenwandsystem', data: innerwallData, chapter: '5.2' },
-      { title: 'Deckensystem', data: catalogService.getVariantById('decken', submission.decke), chapter: '5.3' },
-      { title: 'Fenstersystem', data: catalogService.getVariantById('windows', submission.window), chapter: '5.4' },
-      { title: 'Dacheindeckung', data: catalogService.getVariantById('tiles', submission.tiles), chapter: '5.5' },
-      { title: 'Ihr Haustyp', data: catalogService.getVariantById('haustypen', submission.haustyp), chapter: '6.1', isHaustyp: true },
-      { title: 'Heizungssystem', data: catalogService.getVariantById('heizung', submission.heizung), chapter: '7.1' }
+      { title: 'Ihr Haustyp', data: catalogService.getVariantById('haustypen', submission.haustyp), chapter: '5.1', isHaustyp: true },
+      { title: 'Außenwandsystem', data: catalogService.getVariantById('walls', submission.wall), chapter: '5.2' },
+      { title: 'Innenwandsystem', data: innerwallData, chapter: '5.3' },
+      { title: 'Deckensystem', data: catalogService.getVariantById('decken', submission.decke), chapter: '5.4' },
+      { title: 'Fenstersystem', data: catalogService.getVariantById('windows', submission.window), chapter: '5.5' },
+      { title: 'Dacheindeckung', data: catalogService.getVariantById('tiles', submission.tiles), chapter: '5.6' },
+      { title: 'Heizungssystem', data: catalogService.getVariantById('heizung', submission.heizung), chapter: '6.1' }
     ];
 
     // Lüftung hinzufügen wenn gewählt
     if (submission.lueftung && submission.lueftung !== 'keine') {
       const lueftung = catalogService.getVariantById('lueftung', submission.lueftung);
       if (lueftung && lueftung.id !== 'keine') {
-        components.push({ title: 'Lüftungssystem', data: lueftung, chapter: '7.2' });
+        components.push({ title: 'Lüftungssystem', data: lueftung, chapter: '6.2' });
       }
     }
 
@@ -200,11 +200,11 @@ class PdfService {
       this.drawFooter(doc, pageNum);
     }
 
-    // Abschluss-Seite mit Bedarfsanalyse
+    // Abschluss-Seite: Kontakt + QR-Codes
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Ihre nächsten Schritte');
-    await this.drawFinalContent(doc, submission);
+    this.drawHeader(doc, 'Kontakt');
+    await this.drawContactPage(doc, submission);
     this.drawFooter(doc, pageNum);
 
     doc.end();
@@ -216,63 +216,58 @@ class PdfService {
   }
 
   drawTitlePage(doc, submission) {
-    // Weißer oberer Bereich für Logo
-    // Dunkelgrüner Bereich ab unterhalb des Logos
-    const splitY = 280;
+    // Ruhiges, hochwertiges Deckblatt: viel Weißraum oben, dezenter grüner Bereich unten
+    const splitY = 420;
     doc.rect(0, splitY, 595, 842 - splitY).fill(this.colors.primary);
 
-    // Lehner Haus Logo (zentriert oben auf weißem Hintergrund)
+    // Lehner Haus Logo (zentriert im Weißraum)
     const logoPath = path.resolve(__dirname, '..', '..', 'Logo', 'LehnerLogo_schwaebischgut.jpg');
     console.log('[PDF] Logo-Pfad:', logoPath, '| Existiert:', fs.existsSync(logoPath));
     if (fs.existsSync(logoPath)) {
       try {
-        doc.image(logoPath, 172.5, 40, { width: 250 });
+        doc.image(logoPath, 172.5, 100, { width: 250 });
       } catch (e) {
         console.error('[PDF] Logo konnte nicht geladen werden:', e.message);
         doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
-        doc.text('LEHNER HAUS', 0, 100, { width: 595, align: 'center' });
+        doc.text('LEHNER HAUS', 0, 140, { width: 595, align: 'center' });
         doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
-        doc.text('schwäbisch gut', 0, 155, { width: 595, align: 'center' });
+        doc.text('schwäbisch gut', 0, 195, { width: 595, align: 'center' });
       }
     } else {
       console.warn('[PDF] Logo-Datei nicht gefunden:', logoPath);
       doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
-      doc.text('LEHNER HAUS', 0, 100, { width: 595, align: 'center' });
+      doc.text('LEHNER HAUS', 0, 140, { width: 595, align: 'center' });
       doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
-      doc.text('schwäbisch gut', 0, 155, { width: 595, align: 'center' });
+      doc.text('schwäbisch gut', 0, 195, { width: 595, align: 'center' });
     }
 
-    // Goldene Trennlinie am Übergang
-    doc.moveTo(150, splitY).lineTo(445, splitY).lineWidth(2).strokeColor(this.colors.gold).stroke();
+    // Dezente goldene Trennlinie
+    doc.moveTo(180, splitY).lineTo(415, splitY).lineWidth(1.5).strokeColor(this.colors.gold).stroke();
 
-    // Untertitel
-    doc.font('Helvetica-Bold').fontSize(28).fillColor(this.colors.white);
-    doc.text('Ihre persönliche', 0, splitY + 50, { width: 595, align: 'center' });
+    // Untertitel im grünen Bereich
+    doc.font('Helvetica-Bold').fontSize(26).fillColor(this.colors.white);
+    doc.text('Ihre persönliche', 0, splitY + 35, { width: 595, align: 'center' });
 
-    doc.fontSize(34).fillColor(this.colors.gold);
-    doc.text('Leistungsbeschreibung', 0, splitY + 85, { width: 595, align: 'center' });
+    doc.fontSize(32).fillColor(this.colors.gold);
+    doc.text('Leistungsbeschreibung', 0, splitY + 68, { width: 595, align: 'center' });
 
-    // Bauherr-Name (prominent)
+    // Bauherr-Name
     const anrede = submission.bauherr_anrede || 'Familie';
-    doc.font('Helvetica-Bold').fontSize(22).fillColor(this.colors.white);
-    doc.text(`${anrede} ${submission.bauherr_nachname}`, 0, splitY + 170, { width: 595, align: 'center' });
+    doc.font('Helvetica-Bold').fontSize(20).fillColor(this.colors.white);
+    doc.text(`${anrede} ${submission.bauherr_nachname}`, 0, splitY + 140, { width: 595, align: 'center' });
 
-    // Datum & Referenz
+    // Datum
     const dateStr = new Date(submission.timestamp).toLocaleDateString('de-DE', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
-    doc.font('Helvetica').fontSize(11).fillColor('#cccccc');
-    doc.text(`Erstellt am ${dateStr}`, 0, splitY + 230, { width: 595, align: 'center' });
-
-    // Referenz-ID entfernt (nicht kundenrelevant)
+    doc.font('Helvetica').fontSize(10).fillColor('#cccccc');
+    doc.text(`Erstellt am ${dateStr}`, 0, splitY + 175, { width: 595, align: 'center' });
 
     // Footer Titelseite
-    doc.rect(0, 770, 595, 2).fill(this.colors.gold);
+    doc.rect(0, 790, 595, 1.5).fill(this.colors.gold);
 
-    doc.font('Helvetica').fontSize(9).fillColor('#cccccc');
-    doc.text('Lehner Haus GmbH', 0, 785, { width: 595, align: 'center' });
-    doc.fontSize(8);
-    doc.text('Ihr Partner für individuelles Bauen seit über 60 Jahren', 0, 800, { width: 595, align: 'center' });
+    doc.font('Helvetica').fontSize(8).fillColor('#999999');
+    doc.text('Lehner Haus GmbH · Ihr Partner für individuelles Bauen seit über 60 Jahren', 0, 802, { width: 595, align: 'center' });
   }
 
   drawHeader(doc, title) {
@@ -382,7 +377,7 @@ class PdfService {
     y += 30;
 
     const vorteile = [
-      { nr: '1', title: 'F90 Brandschutz', desc: '90 Min. Feuerwiderstand, objektiv geprüft' },
+      { nr: '1', title: 'F90 Brandschutz', desc: 'Außenwände mit 90-minütigem Feuerwiderstand von außen' },
       { nr: '2', title: 'Diffusionsoffen', desc: 'Kontrollierte Feuchteregulierung, kein Schimmelrisiko' },
       { nr: '3', title: 'Kostensicherheit', desc: 'Klare Leistungen, definierte Qualitäten – keine „ab-Preise"' },
       { nr: '4', title: 'Familienunternehmen', desc: 'In dritter Generation – über 60 Jahre Erfahrung im Holzbau' },
@@ -448,7 +443,7 @@ class PdfService {
 
     const keyFacts = [
       ['Bauherr', `${submission.bauherr_vorname} ${submission.bauherr_nachname}`],
-      ['Haustyp', haustyp?.name || '-'],
+      ['Haustyp', (haustyp?.name || '-').toUpperCase()],
       ['Energiestandard', kfw],
       ['Personenzahl', `${submission.personenanzahl} Personen`],
       ['Grundstück', this.getGrundstueckText(submission.grundstueck)]
@@ -486,10 +481,10 @@ class PdfService {
     const components = [
       ['Außenwand', wall?.name, wall?.technicalDetails?.uValue],
       ['Innenwand', innerwall?.name, innerwall?.technicalDetails?.soundInsulation],
-      ['Decke', decke?.name, decke?.technicalDetails?.soundInsulation],
+      ['Decke', decke?.name, ''],
       ['Fenster', windowData?.name, windowData?.technicalDetails?.ugValue],
-      ['Dach', tiles?.name, tiles?.technicalDetails?.lifespan],
-      ['Heizung', heizung?.name, heizung?.technicalDetails?.refrigerant]
+      ['Dach', tiles?.name, ''],
+      ['Heizung', heizung?.name, heizung?.technicalDetails?.jaz ? 'JAZ ' + heizung.technicalDetails.jaz : '']
     ];
 
     if (lueftung && lueftung.id !== 'keine') {
@@ -547,12 +542,10 @@ class PdfService {
     const planungItems = [
       'Feste kompetente Ansprechpartner',
       'Vor-Ort Bemusterung',
-      'Statische Berechnungen',
       'Bauleitung',
       'Energieberater (EnEV)',
       'Energieausweis',
-      'KfW-Bestätigung',
-      'Lebenszyklusanalyse (LCA)'
+      'KfW-Bestätigung'
     ];
 
     doc.font('Helvetica').fontSize(7.5).fillColor(this.colors.text);
@@ -573,12 +566,12 @@ class PdfService {
       'Transport',
       'Geschlossene Gebäudehülle',
       'Außenputz',
-      'Zwischendecke',
+      'Decke',
       'Innenwände geschlossen',
       'Dach mit Eindeckung',
       'Dachüberstände gestrichen',
       '3-fach verglaste Fenster nach Wahl',
-      'Haustür (3-fach-Verrieg.)',
+      'Haustür (Dreifachverriegelung)',
       'Alu-Außenfensterbänke',
       'Dachrinnen & Fallrohre (Titanzink)'
     ];
@@ -598,8 +591,7 @@ class PdfService {
     let y3 = y + 30;
     const ausbauItems = [
       'Estrich mit Fußbodenheizung',
-      'Raumthermostate',
-      'Elektr. Alu-Rollläden',
+      'Alu-Rollläden',
       'Zählerschrank',
       'Blower-Door-Test',
       'Komplette Elektroinstallation'
@@ -612,7 +604,7 @@ class PdfService {
 
     // Innenausbau
     ausbauItems.push(
-      'Fliesen (Bäder/WC)',
+      'Fliesen',
       'Marken Sanitärobjekte',
       'Vinyl/Laminat (Wohnräume)',
       'Spachteln & Schleifen',
@@ -688,7 +680,7 @@ class PdfService {
       ['Bauherr:', `${submission.bauherr_vorname} ${submission.bauherr_nachname}`],
       ['E-Mail:', submission.bauherr_email || '-'],
       ['Telefon:', submission.bauherr_telefon || '-'],
-      ['Haustyp:', haustyp?.name || '-'],
+      ['Haustyp:', (haustyp?.name || '-').toUpperCase()],
       ['Energiestandard:', kfw],
       ['Personenanzahl:', `${submission.personenanzahl} Personen`],
       ['Grundstück:', this.getGrundstueckText(submission.grundstueck)]
@@ -1078,7 +1070,7 @@ class PdfService {
       items.push({ label: 'Wärmedämmwert (U)', value: td.uValue, highlight: true });
     }
     if (td.ugValue) {
-      items.push({ label: 'Glaswert (Ug)', value: td.ugValue, highlight: true });
+      items.push({ label: 'U-Wert Fenster', value: td.ugValue, highlight: true });
     }
     if (td.fireRating) {
       items.push({ label: 'Feuerwiderstandsklasse', value: td.fireRating.includes('F90') ? 'min. (R)EI 90' : td.fireRating });
@@ -1116,18 +1108,23 @@ class PdfService {
 
       if (imgFile && fs.existsSync(imgFile)) {
         try {
-          doc.image(imgFile, imgX, 95, { fit: [imgWidth, imgHeight] });
+          // Clipping für gleiche Höhe bei allen Bildern
+          doc.save();
+          doc.rect(imgX, 95, imgWidth, imgHeight).clip();
+          doc.image(imgFile, imgX, 95, { fit: [imgWidth, imgHeight], align: 'center', valign: 'center' });
+          doc.restore();
         } catch (e) {
+          doc.restore();
           this.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
         }
       } else {
         this.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
       }
-    }
 
-    // "Beispielbilder" Label unter den Bildern
-    doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
-    doc.text('Beispielbilder', 0, 95 + imgHeight + 5, { width: 595, align: 'center' });
+      // "Beispielbilder" unter jedes einzelne Bild
+      doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
+      doc.text('Beispielbilder', imgX, 95 + imgHeight + 3, { width: imgWidth, align: 'center' });
+    }
 
     let y = 95 + imgHeight + 20;
 
@@ -1369,6 +1366,46 @@ class PdfService {
     await this.drawQRCode(doc, 340, y, 'tel:+497321096700', 'Anrufen');
   }
 
+  async drawContactPage(doc, submission) {
+    let y = 120;
+
+    // Kontakt-Box
+    doc.roundedRect(60, y, 475, 90, 8).fill(this.colors.primary);
+    doc.rect(530, y + 10, 4, 70).fill(this.colors.gold);
+
+    if (submission.berater_name) {
+      doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.white);
+      doc.text('Ihr Ansprechpartner', 80, y + 12, { lineBreak: false });
+
+      doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+      doc.text(submission.berater_name, 80, y + 35, { lineBreak: false });
+      if (submission.berater_telefon) {
+        doc.text(`Telefon: ${submission.berater_telefon}`, 80, y + 50, { lineBreak: false });
+      }
+      if (submission.berater_email) {
+        doc.text(`E-Mail: ${submission.berater_email}`, 80, y + 65, { lineBreak: false });
+      }
+    } else {
+      doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.white);
+      doc.text('Ihr Ansprechpartner', 80, y + 12, { lineBreak: false });
+
+      doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+      doc.text('Lehner Haus GmbH', 80, y + 35, { lineBreak: false });
+      doc.text('Telefon: 07321 96700', 80, y + 50, { lineBreak: false });
+      doc.text('E-Mail: info@lehner-haus.de', 80, y + 65, { lineBreak: false });
+    }
+
+    // QR-Codes
+    y += 120;
+    doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.primary);
+    doc.text('Schnellzugriff:', 80, y, { lineBreak: false });
+
+    y += 20;
+    await this.drawQRCode(doc, 100, y, 'https://www.lehner-haus.de', 'Website besuchen');
+    await this.drawQRCode(doc, 220, y, 'mailto:info@lehner-haus.de', 'E-Mail senden');
+    await this.drawQRCode(doc, 340, y, 'tel:+497321096700', 'Anrufen');
+  }
+
   drawComparisonChecklist(doc, submission) {
     let y = 95;
 
@@ -1376,12 +1413,6 @@ class PdfService {
     doc.text('Nutzen Sie diese Checkliste, um unterschiedliche Hersteller objektiv zu vergleichen:', 80, y, { lineBreak: false });
 
     y += 25;
-
-    // Dynamisches Fenster-Profil je nach Auswahl
-    const isHolzAlu = submission && submission.window === 'holz-alu';
-    const fensterProfilText = isHolzAlu
-      ? 'Dreischicht-Leimholz mit Aluminium-Außenschale? Lehner Haus: Standard.'
-      : '6-Kammer-Profil mit 80 mm Bautiefe? Lehner Haus: Standard.';
 
     // Dynamischer U-Wert Text mit Wandtyp-Bezeichnung
     const wall = submission ? catalogService.getVariantById('walls', submission.wall) : null;
@@ -1394,9 +1425,7 @@ class PdfService {
       ['Holzwerkstoffe', 'Wird ESB verwendet? ESB plus ist Blauer Engel zertifiziert, emissionsarm und empfohlen von der DGNB.'],
       ['U-Wert Außenwand', uWertText],
       ['Dämmstärke', 'Wie viele mm Mineralwolle? Lehner Haus: bis 240 mm plus 80 mm Holzfaserdämmplatte.'],
-      ['Schallschutz', 'Werden konkrete dB-Werte genannt? Lehner Haus gibt messbare Werte an.'],
       ['Fenster Ug-Wert', '3-fach Verglasung mit Ug 0,5 W/(m²K)? Lehner Haus: serienmäßig.'],
-      ['Fenster Profil', fensterProfilText],
       ['Kältemittel', 'Natürliches Kältemittel R290? Lehner Haus: ja – zukunftssicher.'],
       ['Diffusionsoffen', 'Ist der Wandaufbau diffusionsoffen? Lehner Haus: ja – baubiologisch optimal.'],
       ['Qualitätszertifikat', 'QDF-Zertifizierung und RAL-Gütezeichen vorhanden? Lehner Haus: ja.'],

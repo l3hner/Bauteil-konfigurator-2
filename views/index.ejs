@@ -39,23 +39,23 @@
                     </div>
                     <div class="progress-step" data-step="2">
                         <div class="progress-step-indicator">2</div>
-                        <span class="progress-step-label">Energie</span>
+                        <span class="progress-step-label">Haus</span>
                     </div>
                     <div class="progress-step" data-step="3">
                         <div class="progress-step-indicator">3</div>
-                        <span class="progress-step-label">Wand</span>
+                        <span class="progress-step-label">Energie</span>
                     </div>
                     <div class="progress-step" data-step="4">
                         <div class="progress-step-indicator">4</div>
-                        <span class="progress-step-label">Innen</span>
+                        <span class="progress-step-label">Wand</span>
                     </div>
                     <div class="progress-step" data-step="5">
                         <div class="progress-step-indicator">5</div>
-                        <span class="progress-step-label">Decke</span>
+                        <span class="progress-step-label">Innen</span>
                     </div>
                     <div class="progress-step" data-step="6">
                         <div class="progress-step-indicator">6</div>
-                        <span class="progress-step-label">Haus</span>
+                        <span class="progress-step-label">Decke</span>
                     </div>
                     <div class="progress-step" data-step="7">
                         <div class="progress-step-indicator">7</div>
@@ -148,9 +148,30 @@
                     </div>
                 </section>
 
-                <!-- Energiestandard -->
+                <!-- Haustyp -->
                 <section class="form-section" id="section-2">
-                    <h3 class="section-title">2. Energiestandard</h3>
+                    <h3 class="section-title">2. Haustyp</h3>
+
+                    <div class="radio-group">
+                        <% catalog.haustypen.forEach(haustyp => { %>
+                        <label class="radio-card">
+                            <input type="radio" name="haustyp" value="<%= haustyp.id %>" required onchange="updateProgress();">
+                            <div class="radio-content">
+                                <h4><%= haustyp.name %></h4>
+                                <p><%= haustyp.description %></p>
+                                <small><%= haustyp.details %></small>
+                            </div>
+                            <span class="checkmark">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </label>
+                        <% }); %>
+                    </div>
+                </section>
+
+                <!-- Energiestandard -->
+                <section class="form-section" id="section-3">
+                    <h3 class="section-title">3. Energiestandard</h3>
 
                     <div class="radio-group">
                         <label class="radio-card">
@@ -178,8 +199,8 @@
                 </section>
 
                 <!-- Aussenwand -->
-                <section class="form-section" id="section-3">
-                    <h3 class="section-title">3. Aussenwandsystem</h3>
+                <section class="form-section" id="section-4">
+                    <h3 class="section-title">4. Aussenwandsystem</h3>
                     <p class="section-description">Wahlen Sie Ihr Wandsystem basierend auf dem Energiestandard</p>
 
                     <div id="wall-options" class="radio-group">
@@ -188,8 +209,8 @@
                 </section>
 
                 <!-- Innenwand -->
-                <section class="form-section" id="section-4">
-                    <h3 class="section-title">4. Innenwandsystem</h3>
+                <section class="form-section" id="section-5">
+                    <h3 class="section-title">5. Innenwandsystem</h3>
 
                     <div class="radio-group">
                         <% if (catalog && catalog.innerwalls) { catalog.innerwalls.forEach(innerwall => { %>
@@ -208,8 +229,8 @@
                 </section>
 
                 <!-- Decke -->
-                <section class="form-section" id="section-5">
-                    <h3 class="section-title">5. Deckensystem</h3>
+                <section class="form-section" id="section-6">
+                    <h3 class="section-title">6. Deckensystem</h3>
 
                     <div class="radio-group">
                         <% if (catalog && catalog.decken) { catalog.decken.forEach(decke => { %>
@@ -224,27 +245,6 @@
                             </span>
                         </label>
                         <% }); } %>
-                    </div>
-                </section>
-
-                <!-- Haustyp -->
-                <section class="form-section" id="section-6">
-                    <h3 class="section-title">6. Haustyp</h3>
-
-                    <div class="radio-group">
-                        <% catalog.haustypen.forEach(haustyp => { %>
-                        <label class="radio-card">
-                            <input type="radio" name="haustyp" value="<%= haustyp.id %>" required onchange="updateProgress();">
-                            <div class="radio-content">
-                                <h4><%= haustyp.name %></h4>
-                                <p><%= haustyp.description %></p>
-                                <small><%= haustyp.details %></small>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); %>
                     </div>
                 </section>
 
