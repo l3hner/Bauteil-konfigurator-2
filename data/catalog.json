@@ -15,7 +15,7 @@
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
-        { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
+        { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
         { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung WLG 035)", "value": "160,0 mm" },
         { "name": "ESB plus Holzwerkstoffplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
@@ -32,13 +32,13 @@
         { "position": "Pos. 11.169", "description": "160 mm Holzfaser - Jutedämmung WLS 039" }
       ],
       "advantages": [
-        "ESB plus Platten aus frischem Fichtenholz (max. 150km Transportweg)",
+        "ESB plus Platten aus frischem Fichtenholz",
         "Wohngesund zertifiziert (Blauer Engel) – keine bedenklichen Emissionen",
         "Diffusionsoffen für natürliche Feuchteregulierung",
-        "Empfohlen von der DGNB (Deutsche Gesellschaft für Nachhaltiges Bauen)",
+        "Die ESB-Plus-Platte wird von der DGNB empfohlen",
         "Ausgezeichnete Wärmedämmung mit U-Wert 0,17"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB plus – Blauer Engel zertifiziert, empfohlen von der DGNB)\n\n2. Ist die Holzwerkstoffplatte emissionsgeprüft? (Lehner Haus: ESB mit niedrigen VOC-Emissionen und 25 % geringerer Quellung)\n\n3. Wie ist der exakte U-Wert der Außenwand? (Lehner Haus: 0,17 W/(m²K))\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)\n\n5. Woher stammt das Holz? (Lehner Haus: max. 150 km Transportweg – nachhaltig und regional)\n\n6. Wieviel Wohnraum verschenken Sie bei dickeren Bauteilen? Schlechtere Werte im Wärmedurchlass und Schallschutz führen automatisch zu stärker dimensionierten Bauteilen. Das kostet Sie wertvollen Wohnraum.",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB plus – Blauer Engel zertifiziert, empfohlen von der DGNB)\n\n2. Ist die Holzwerkstoffplatte emissionsgeprüft? (Lehner Haus: ESB mit niedrigen VOC-Emissionen und 25 % geringerer Quellung)\n\n3. Wie ist der exakte U-Wert der Außenwand? (Lehner Haus: 0,17 W/(m²K))\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)\n\n5. Wieviel Wohnraum verschenken Sie bei dickeren Bauteilen? Schlechtere Werte im Wärmedurchlass und Schallschutz führen automatisch zu stärker dimensionierten Bauteilen. Das kostet Sie wertvollen Wohnraum.",
       "filePath": "assets/variants/walls/climativ-esb.png",
       "technicalDrawing": "assets/variants/walls/climativ-esb-technical.png"
     },
@@ -57,7 +57,7 @@
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
-        { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
+        { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
         { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung WLG 035)", "value": "160,0 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
@@ -99,7 +99,7 @@
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
-        { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
+        { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
         { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung WLG 035)", "value": "240,0 mm" },
         { "name": "ESB plus Holzwerkstoffplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
@@ -141,7 +141,7 @@
       ],
       "layers": [
         { "name": "3-lagiger Außenputz", "value": "" },
-        { "name": "Holzfaser-Wärme-Dämmplatten WLG 042", "value": "80,0 mm" },
+        { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
         { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung WLG 035)", "value": "240,0 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
         { "name": "Dampfbremse", "value": "" },
@@ -178,7 +178,7 @@
       "bathroomSuitable": true,
       "premiumFeatures": [
         "Gipsfaserplatte für höchste Stabilität und Feuchtraumeignung",
-        "Beidseitige Beplankung für optimalen Schallschutz",
+        "Beidseitige Beplankung für optimale Stabilität",
         "Massivholz-Rahmenkonstruktion (Vollholz 80/80)"
       ],
       "layers": [
@@ -201,13 +201,12 @@
         { "position": "Pos. 15.390", "description": "Material nur liefern und mit Kran heben (Einbau bauseits)" }
       ],
       "advantages": [
-        "Optimierter Schallschutz – kaum wahrnehmbare Geräusche zwischen den Räumen",
         "Fermacell bietet 60 kg Auszugslast pro Befestigung",
         "Feuchtraumgeeignet ohne zusätzliche Behandlung",
         "Optimale Kombination aus Robustheit und Verarbeitungsfreundlichkeit",
         "A2-Brandschutzklasse (nicht brennbar)"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Sind die Innenwände doppelt beplankt? (Lehner Haus: ja – für optimalen Schallschutz und Stabilität)\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte – robust, feuchtraumgeeignet, A2 Brandschutz)\n\n3. Welche Tragkraft bieten die Wände? (Lehner Haus: 60 kg Auszugslast pro Befestigung)\n\n4. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk, Beplankung und Dichtungen)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Sind die Innenwände doppelt beplankt? (Lehner Haus: ja – für optimale Stabilität)\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte – robust, feuchtraumgeeignet, A2 Brandschutz)\n\n3. Welche Tragkraft bieten die Wände? (Lehner Haus: 60 kg Auszugslast pro Befestigung)\n\n4. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk und vollständige Beplankung)",
       "filePath": "assets/variants/innenwalls/fermacell-gipskarton.png",
       "technicalDrawing": "assets/variants/innenwalls/fermacell-gipskarton-technical.png"
     },
@@ -219,7 +218,7 @@
       "bathroomSuitable": false,
       "premiumFeatures": [
         "Holzwerkstoffplatte für natürliches Raumklima",
-        "Beidseitige Beplankung für optimalen Schallschutz",
+        "Beidseitige Beplankung für optimale Stabilität",
         "Massivholz-Rahmenkonstruktion (Vollholz 80/80)"
       ],
       "layers": [
@@ -242,13 +241,13 @@
         { "position": "Pos. 15.390", "description": "Material nur liefern und mit Kran heben (Einbau bauseits)" }
       ],
       "advantages": [
-        "Wirtschaftliche Lösung mit solidem Schallschutz",
+        "Wirtschaftliche Lösung mit bewährter Qualität",
         "ESB-Platten für wohngesundes Raumklima",
         "Gute Befestigungsmöglichkeiten für normale Lasten",
         "Bewährte Materialkombination",
         "Schnelle Verarbeitung auf der Baustelle"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird bei den Innenwänden verwendet? (Lehner Haus: ESB – wohngesund zertifiziert, geruchsneutral)\n\n2. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk, Beplankung und Dichtungen)\n\n3. Ist die ESB-Platte emissionsgeprüft? (Lehner Haus: niedrige VOC-Emissionen, 25 % geringere Quellung)\n\n4. Wird die Innenwand doppelt beplankt? (Lehner Haus: ja – ESB plus Gipsbauplatte für optimale Stabilität)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird bei den Innenwänden verwendet? (Lehner Haus: ESB – wohngesund zertifiziert, geruchsneutral)\n\n2. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk und vollständige Beplankung)\n\n3. Ist die ESB-Platte emissionsgeprüft? (Lehner Haus: niedrige VOC-Emissionen, 25 % geringere Quellung)\n\n4. Wird die Innenwand doppelt beplankt? (Lehner Haus: ja – ESB plus Gipsbauplatte für optimale Stabilität)",
       "filePath": "assets/variants/innenwalls/esb-gipskarton.png",
       "technicalDrawing": "assets/variants/innenwalls/esb-gipskarton-technical.png"
     }
@@ -260,8 +259,7 @@
       "description": "Hochwertige Kunststofffenster mit 3-fach Verglasung und 6-Kammer-Profil. Ug-Wert 0,5 W/(m²K) für beste Wärmedämmung. RC2-Beschlagstechnik serienmäßig.",
       "securityClass": "RC2",
       "premiumFeatures": [
-        "RC2-Beschlagstechnik serienmäßig - Pilzkopfverriegelung für Einbruchschutz",
-        "Ug-Wert 0,5 W/(m²K) - Passivhaus-tauglich",
+        "Ug-Wert 0,5 W/(m²K)",
         "Ug-Wert 0,5 W/(m²K) mit 3-fach Verglasung serienmäßig"
       ],
       "layers": [
@@ -276,12 +274,12 @@
         "securityFeatures": "RC2-Beschlagstechnik, Pilzkopfverriegelung an allen Fenstern"
       },
       "advantages": [
-        "3-fach Verglasung mit Ug-Wert 0,5 – Passivhaus-tauglich",
+        "3-fach Verglasung mit Ug-Wert 0,5",
         "6-Kammer-Profil für maximale Dämmung",
-        "Pilzkopfverriegelung für Einbruchschutz RC2",
+        "Tipps zur Verriegelung für Einbruchschutz in Anlehnung an RC2",
         "Pflegeleicht und langlebig"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert haben die Fenster? (Lehner Haus: 0,5 W/(m²K) serienmäßig)\n\n2. 3-fach oder 2-fach Verglasung? (Lehner Haus: 3-fach Verglasung als Standard)\n\n3. Wie viele Kammern hat das Profil? (Lehner Haus: 6-Kammer-Profil mit 80 mm Bautiefe)\n\n4. Ist RC2-Sicherheitstechnik serienmäßig? (Lehner Haus: ja – Pilzkopfverriegelung an allen Fenstern)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert haben die Fenster? (Lehner Haus: 0,5 W/(m²K) serienmäßig)\n\n2. 3-fach oder 2-fach Verglasung? (Lehner Haus: 3-fach Verglasung als Standard)\n\n3. Wie viele Kammern hat das Profil? (Lehner Haus: 6-Kammer-Profil mit 80 mm Bautiefe)",
       "filePath": "assets/variants/windows/kunststoff.png",
       "technicalDrawing": "assets/variants/windows/kunststoff-technical.png"
     },
@@ -291,7 +289,6 @@
       "description": "Premium-Fenster mit Echtholz-Innenseite und witterungsbeständiger Aluminium-Außenschale. Ug-Wert 0,5 W/(m²K). RC2-Beschlagstechnik serienmäßig.",
       "securityClass": "RC2",
       "premiumFeatures": [
-        "RC2-Beschlagstechnik serienmäßig - höchste Sicherheit",
         "Dreischicht-Leimholz innen - keine Furniere",
         "Wartungsfreie Aluminium-Außenschale - kein Streichen nötig"
       ],
@@ -316,7 +313,7 @@
         "Höhere Maßhaltigkeit bei Schiebetüren – kein Klemmen durch thermische Ausdehnung",
         "Optimale Dichtigkeit auch ab Fensterbreiten von 2 Metern"
       ],
-      "comparisonNotes": "❗ Holz-Alu ist die PREMIUM-Wahl! Aber Vorsicht vor Billig-Angeboten:\n\n1. 'Ist es Dreischicht-Leimholz oder nur Furnier?' (Furnier = günstig aber kann sich ablösen; Massivholz = langlebig)\n\n2. 'Wie dick ist die Aluminium-Außenschale?' (Minimum 1,5mm; dünnere Schalen verziehen sich)\n\n3. 'Deutsche Markenqualität oder Import?' (Fernost-Fenster haben oft nach 5-10 Jahren Verzug und Undichtigkeit)\n\n4. 'Wie viele Jahre Garantie?' (Bei uns 10 Jahre auf deutsche Markenqualität)\n\n5. 'Welcher Ug-Wert?' (Manche Holz-Alu haben nur 0,7-0,9; wir bieten 0,5 W/(m²K))\n\n6. 'RC2-Sicherheit serienmäßig?' (Bei uns ja; andere nehmen Aufpreis)",
+      "comparisonNotes": "❗ Holz-Alu ist die PREMIUM-Wahl! Aber Vorsicht vor Billig-Angeboten:\n\n1. 'Ist es Dreischicht-Leimholz oder nur Furnier?' (Furnier = günstig aber kann sich ablösen; Massivholz = langlebig)\n\n2. 'Wie dick ist die Aluminium-Außenschale?' (Minimum 1,5mm; dünnere Schalen verziehen sich)\n\n3. 'Deutsche Markenqualität oder Import?' (Fernost-Fenster haben oft nach 5-10 Jahren Verzug und Undichtigkeit)\n\n4. 'Wie viele Jahre Garantie?' (Bei uns 10 Jahre auf deutsche Markenqualität)\n\n5. 'Welcher Ug-Wert?' (Manche Holz-Alu haben nur 0,7-0,9; wir bieten 0,5 W/(m²K))",
       "filePath": "assets/variants/windows/holz-alu.png",
       "technicalDrawing": "assets/variants/windows/holz-alu-technical.png"
     }
@@ -332,8 +329,7 @@
         { "name": "Betondachsteine, in Standardfarben", "value": "" },
         { "name": "Dachlattung", "value": "" },
         { "name": "Konterlattung", "value": "" },
-        { "name": "Diffusionsoffene Schalungsbahn", "value": "" },
-        { "name": "Dachkonstruktion (zimmermannsm. abgeb.)", "value": "" }
+        { "name": "Diffusionsoffene Schalungsbahn", "value": "" }
       ],
       "technicalDetails": {
         "material": "Hochdruckbeton, oberflächenbeschichtet",
@@ -344,7 +340,7 @@
         "Große Farbauswahl möglich",
         "Bewährtes Material millionenfach verbaut"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Welche Farbauswahl ist verfügbar?'\n\n2. 'Welche Oberflächenbeschichtung wird verwendet?'\n\n3. 'Ist das Dach sturmsicher montiert?'",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Welche Farbauswahl ist verfügbar?'\n\n2. 'Welche Oberflächenbeschichtung wird verwendet?'",
       "filePath": "assets/variants/tiles/beton.png",
       "technicalDrawing": "assets/variants/tiles/beton-technical.png"
     },
@@ -358,8 +354,7 @@
         { "name": "Tondachziegel, in Standardfarben", "value": "" },
         { "name": "Dachlattung", "value": "" },
         { "name": "Konterlattung", "value": "" },
-        { "name": "Diffusionsoffene Schalungsbahn", "value": "" },
-        { "name": "Dachkonstruktion (zimmermannsm. abgeb.)", "value": "" }
+        { "name": "Diffusionsoffene Schalungsbahn", "value": "" }
       ],
       "technicalDetails": {
         "material": "Gebrannter Ton, durchgefärbt",
@@ -590,18 +585,17 @@
   "decken": [
     {
       "id": "holzbalkendecke",
-      "name": "Lehner Decke",
-      "description": "Lehner Decke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
-      "constructionType": "Lehner Decke",
+      "name": "Lehm-Decke",
+      "description": "Lehm-Decke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
+      "constructionType": "Lehm-Decke",
       "premiumFeatures": [
-        "Deckenbalken nach statischer Berechnung (Vollholz)",
-        "160 mm Mineralwolledämmung für optimalen Schallschutz",
+        "160 mm Mineralwolledämmung im Gefach",
         "Verkleidung mit Gipsbauplatten"
       ],
       "layers": [
         { "name": "Holzwerkstoffplatte", "value": "22,0 mm" },
         { "name": "Deckenbalken (Vollholz h = 240 mm)", "value": "240,0 mm" },
-        { "name": "Knauf Insulation Glaswolle (ECOSE, formaldehydfrei)", "value": "" },
+        { "name": "Knauf Insulation (ECOSE, formaldehydfrei)", "value": "160,0 mm im Gefach" },
         { "name": "Unterkonstruktion", "value": "21,0 mm" },
         { "name": "Sperrbahn / Rieselschutz", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
@@ -620,11 +614,10 @@
       "advantages": [
         "Bewährte Lehner Haus Konstruktion seit Jahrzehnten",
         "Optimales Preis-Leistungs-Verhältnis",
-        "Exzellenter Schallschutz zwischen den Geschossen",
         "Natürlicher Baustoff Holz – nachhaltig und wohngesund",
         "Flexible Installationsführung möglich"
       ],
-      "comparisonNotes": "❗ Die Decke ist entscheidend für Schallschutz und Wohnkomfort! KRITISCHE FRAGEN:\n\n1. 'Wie dick ist die Dämmung in der Decke?' (Mehr Dämmung = besserer Schall- und Wärmeschutz)\n\n2. 'Ist die Decke diffusionsoffen?' (Wichtig für Feuchteregulierung und Vermeidung von Schimmel)\n\n3. 'Wo werden Installationen geführt?' (Gute Planung = keine nachträglichen Probleme)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Wie dick ist die Dämmung in der Decke?'\n\n2. 'Ist die Decke diffusionsoffen?' (Wichtig für Feuchteregulierung und Vermeidung von Schimmel)\n\n3. 'Wo werden Installationen geführt?' (Gute Planung = keine nachträglichen Probleme)",
       "filePath": "assets/variants/decken/lehner-decke.png",
       "technicalDrawing": "assets/variants/decken/lehner-decke-technical.png"
     },

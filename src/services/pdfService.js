@@ -261,7 +261,7 @@ class PdfService {
       year: 'numeric', month: 'long', day: 'numeric'
     });
     doc.font('Helvetica').fontSize(10).fillColor('#cccccc');
-    doc.text(`Erstellt am ${dateStr}`, 0, splitY + 175, { width: 595, align: 'center' });
+    doc.text(dateStr, 0, splitY + 175, { width: 595, align: 'center' });
 
     // Footer Titelseite
     doc.rect(0, 790, 595, 1.5).fill(this.colors.gold);
@@ -352,13 +352,13 @@ class PdfService {
     y += 15;
 
     // Kernbotschaft Box
-    doc.roundedRect(60, y, 475, 65, 8).fill(this.colors.primary);
+    doc.roundedRect(60, y, 475, 85, 8).fill(this.colors.primary);
 
     doc.font('Helvetica-Bold').fontSize(12).fillColor(this.colors.white);
-    doc.text('Vertrauen Sie auf geprüfte Qualität', 80, y + 12, { lineBreak: false });
+    doc.text('Vertrauen Sie auf geprüfte Qualität', 80, y + 15, { lineBreak: false });
 
     doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
-    doc.text('Die QDF-Zertifizierung ist Ihr Qualitätsversprechen: Jedes Lehner Haus wird nach höchsten Standards geplant, produziert und errichtet. Das RAL-Gütezeichen bestätigt diese Qualität unabhängig.', 80, y + 30, { width: 420, lineGap: 1 });
+    doc.text('Die QDF-Zertifizierung ist Ihr Qualitätsversprechen: Jedes Lehner Haus wird nach höchsten Standards geplant, produziert und errichtet. Das RAL-Gütezeichen bestätigt diese Qualität unabhängig.', 80, y + 38, { width: 415, lineGap: 2 });
 
     y += 85;
 
@@ -443,7 +443,7 @@ class PdfService {
 
     const keyFacts = [
       ['Bauherr', `${submission.bauherr_vorname} ${submission.bauherr_nachname}`],
-      ['Haustyp', (haustyp?.name || '-').toUpperCase()],
+      ['Haustyp', haustyp?.name || '-'],
       ['Energiestandard', kfw],
       ['Personenzahl', `${submission.personenanzahl} Personen`],
       ['Grundstück', this.getGrundstueckText(submission.grundstueck)]
@@ -479,10 +479,10 @@ class PdfService {
     const lueftung = catalogService.getVariantById('lueftung', submission.lueftung);
 
     const components = [
-      ['Außenwand', wall?.name, wall?.technicalDetails?.uValue],
+      ['Außenwand', wall?.name, wall?.technicalDetails?.uValue ? 'U-Wert: ' + wall.technicalDetails.uValue : ''],
       ['Innenwand', innerwall?.name, innerwall?.technicalDetails?.soundInsulation],
       ['Decke', decke?.name, ''],
-      ['Fenster', windowData?.name, windowData?.technicalDetails?.ugValue],
+      ['Fenster', windowData?.name, windowData?.technicalDetails?.ugValue ? 'U-Wert: ' + windowData.technicalDetails.ugValue : ''],
       ['Dach', tiles?.name, ''],
       ['Heizung', heizung?.name, heizung?.technicalDetails?.jaz ? 'JAZ ' + heizung.technicalDetails.jaz : '']
     ];
@@ -572,6 +572,7 @@ class PdfService {
       'Dachüberstände gestrichen',
       '3-fach verglaste Fenster nach Wahl',
       'Haustür (Dreifachverriegelung)',
+      'Alu-Rollläden',
       'Alu-Außenfensterbänke',
       'Dachrinnen & Fallrohre (Titanzink)'
     ];
@@ -591,10 +592,8 @@ class PdfService {
     let y3 = y + 30;
     const ausbauItems = [
       'Estrich mit Fußbodenheizung',
-      'Alu-Rollläden',
-      'Zählerschrank',
       'Blower-Door-Test',
-      'Komplette Elektroinstallation'
+      'Komplette Elektroinstallation inkl. Zählerschrank'
     ];
 
     // Lüftung nur wenn gewählt
@@ -605,11 +604,11 @@ class PdfService {
     // Innenausbau
     ausbauItems.push(
       'Fliesen',
-      'Marken Sanitärobjekte',
-      'Vinyl/Laminat (Wohnräume)',
-      'Spachteln & Schleifen',
-      'Malern (weiß)',
-      'Innentüren'
+      'Sanitärobjekte von Markenherstellern',
+      'Laminat oder Parkett',
+      'Malerarbeiten (weiß streichen)',
+      'Innentüren',
+      'Sanitärinstallation'
     );
 
     doc.font('Helvetica').fontSize(7.5);
@@ -680,7 +679,7 @@ class PdfService {
       ['Bauherr:', `${submission.bauherr_vorname} ${submission.bauherr_nachname}`],
       ['E-Mail:', submission.bauherr_email || '-'],
       ['Telefon:', submission.bauherr_telefon || '-'],
-      ['Haustyp:', (haustyp?.name || '-').toUpperCase()],
+      ['Haustyp:', haustyp?.name || '-'],
       ['Energiestandard:', kfw],
       ['Personenanzahl:', `${submission.personenanzahl} Personen`],
       ['Grundstück:', this.getGrundstueckText(submission.grundstueck)]
@@ -769,13 +768,13 @@ class PdfService {
       ['Budgetoptimierte Grundrisse', 'Optimale Raumaufteilung für jedes Budget'],
       ['Individuelle Ausbaustufen', 'Flexible Ausstattungsoptionen nach Ihren Wünschen'],
       ['Wohngesunde Materialien', 'ESB-Platten statt OSB – zertifiziert emissionsarm'],
-      ['Premium-Ausstattung', 'Vaillant & Viessmann Wärmepumpen, Villeroy & Boch Sanitär'],
-      ['Kompletter Innenausbau', 'Elektrik, Sanitär, Fußböden – alles aus einer Hand'],
+      ['Premium-Ausstattung', 'Vaillant & Viessmann Wärmepumpen, Markenhersteller im Sanitärbereich, wie z. B. Laufen, Villeroy & Boch oder gleichwertig'],
+      ['Kompletter Innenausbau', 'Elektroinstallation, Sanitärinstallation und Bodenbeläge – alles aus einer Hand'],
       ['Persönliche Projektbetreuung', 'Ihr Ansprechpartner von Planung bis Schlüsselübergabe'],
       ['Zugeschnittene Hausempfehlungen', 'Individuelle Beratung passend zu Ihren Bedürfnissen'],
       ['Festpreis-Garantie', 'Keine versteckten Kosten, keine bösen Überraschungen'],
       ['Kosten- und Terminsicherheit', 'Verbindliche Termine und transparente Kosten'],
-      ['Nachhaltige Wertbeständigkeit', 'Langlebige Materialien für dauerhaften Wert'],
+      ['Nachhaltige Wertbeständigkeit', '40 Jahre Garantie auf die statische Grundkonstruktion des Lehner Hauses.'],
       ['Qualitätssicherung', 'QDF-zertifiziert mit RAL-Gütezeichen und Eigenüberwachung']
     ];
 
@@ -808,9 +807,13 @@ class PdfService {
     doc.text(`${chapterNum} ${categoryTitle.toUpperCase()}`, marginLeft, y);
     y += 18;
 
-    // Komponenten-Name und kurze Beschreibung
+    // Komponenten-Name und kurze Beschreibung (keine Wiederholung des Systemnamens)
     doc.font('Helvetica').fontSize(9).fillColor(this.colors.text);
-    const shortDesc = component.description ? component.description.split('.')[0] + '.' : '';
+    let shortDesc = component.description ? component.description.split('.')[0] + '.' : '';
+    // Systemname aus Beschreibung entfernen falls bereits als Titel angezeigt
+    if (shortDesc && component.name) {
+      shortDesc = shortDesc.replace(new RegExp('^' + component.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'i'), '');
+    }
     doc.text(`${component.name}${shortDesc ? ' – ' + shortDesc : ''}`, marginLeft, y, { width: contentWidth });
     y += 25;
 
@@ -867,10 +870,18 @@ class PdfService {
         });
       }
       rightY += 15;
+      // Kleiner Absatz nach Massivholzrahmenkonstruktion (Layout-Entzerrung)
+      if (item.name && item.name.toLowerCase().includes('massivholz') && item.name.toLowerCase().includes('rahmenkonstruktion')) {
+        rightY += 8;
+      }
     });
 
-    // Gesamtstärke als Summe berechnen und anzeigen
+    // Gesamtstärke als Summe berechnen (Dämmung nicht einrechnen)
     const totalThickness = aufbauItems.reduce((sum, item) => {
+      const nameLower = (item.name || '').toLowerCase();
+      if (nameLower.includes('dämmung') || nameLower.includes('insulation') || nameLower.includes('glaswolle')) {
+        return sum;
+      }
       const match = (item.value || '').match(/([\d,]+)\s*mm/);
       if (match) {
         return sum + parseFloat(match[1].replace(',', '.'));
@@ -896,11 +907,6 @@ class PdfService {
     doc.moveTo(rightColX, rightY).lineTo(rightColX + rightColWidth, rightY)
        .strokeColor(this.colors.secondary).lineWidth(0.5).stroke();
     rightY += 10;
-
-    doc.font('Helvetica-Bold').fontSize(9).fillColor(this.colors.primary);
-    doc.text('Qualitätsmerkmal', rightColX, rightY, { lineBreak: false });
-    doc.text('Wert', rightColX + rightColWidth - 80, rightY, { width: 80, align: 'right', lineBreak: false });
-    rightY += 16;
 
     const qualityItems = this.extractQualityItems(component, categoryTitle);
 
@@ -1083,7 +1089,7 @@ class PdfService {
       items.push({ label: 'Feuerwiderstandsklasse', value: td.fireRating.includes('F90') ? 'min. (R)EI 90' : td.fireRating });
     }
     if (td.soundInsulation) {
-      items.push({ label: 'Schallschutz', value: td.soundInsulation });
+      items.push({ label: `Qualitätsmerkmal: ${td.soundInsulation}`, value: '' });
     }
     // SCOP wird nicht mehr angezeigt
     if (td.heatRecovery) {
@@ -1128,16 +1134,16 @@ class PdfService {
         this.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
       }
 
-      // "Beispielbilder" unter jedes einzelne Bild
+      // "Beispielbilder" als echte Bildunterschrift direkt unter dem Bild
       doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
-      doc.text('Beispielbilder', imgX, 95 + imgHeight + 3, { width: imgWidth, align: 'center' });
+      doc.text('Beispielbilder', imgX, 95 + imgHeight + 2, { width: imgWidth, align: 'center' });
     }
 
-    let y = 95 + imgHeight + 20;
+    let y = 95 + imgHeight + 14;
 
     // Haustyp-Name
     doc.font('Helvetica-Bold').fontSize(22).fillColor(this.colors.primary);
-    doc.text(component.name.toUpperCase(), marginLeft, y, { width: contentWidth });
+    doc.text(component.name, marginLeft, y, { width: contentWidth });
 
     y += 35;
 
@@ -1169,16 +1175,19 @@ class PdfService {
     }
 
     // === Lehner Haus Qualitäts-Badge ===
-    if (y < 720) {
-      doc.roundedRect(marginLeft, y, contentWidth, 55, 6).fill(this.colors.goldLight);
-      doc.rect(marginLeft, y, 4, 55).fill(this.colors.gold);
+    if (y < 700) {
+      doc.roundedRect(marginLeft, y, contentWidth, 80, 6).fill(this.colors.goldLight);
+      doc.rect(marginLeft, y, 4, 80).fill(this.colors.gold);
 
       doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.primary);
       doc.text('100% individuelle Grundrissgestaltung', marginLeft + 15, y + 10);
 
       doc.font('Helvetica').fontSize(9).fillColor(this.colors.text);
-      doc.text('Bei Lehner Haus sind Sie nicht an Katalog-Grundrisse gebunden. Ihr Traumhaus wird nach Ihren Wünschen geplant – schwäbisch gut seit über 60 Jahren.',
-        marginLeft + 15, y + 28, { width: contentWidth - 30, lineGap: 1 });
+      doc.text('Bei Lehner Haus sind Sie nicht an Kataloggrundrisse gebunden.', marginLeft + 15, y + 28, { width: contentWidth - 30 });
+
+      doc.font('Helvetica').fontSize(9).fillColor(this.colors.text);
+      doc.text('Ihr Traumhaus wird nach Ihren Wünschen geplant.', marginLeft + 15, y + 48, { width: contentWidth - 30 });
+      doc.text('Schwäbisch gut seit über 60 Jahren.', marginLeft + 15, y + 60, { width: contentWidth - 30 });
     }
   }
 
@@ -1430,7 +1439,7 @@ class PdfService {
       ['Doppelte Beplankung', 'Werden die Wände beidseitig doppelt beplankt? Lehner Haus: ja – für Stabilität und Schallschutz.'],
       ['Holzwerkstoffe', 'Wird ESB verwendet? ESB plus ist Blauer Engel zertifiziert, emissionsarm und empfohlen von der DGNB.'],
       ['U-Wert Außenwand', uWertText],
-      ['Dämmstärke', 'Wie viele mm Mineralwolle? Lehner Haus: bis 240 mm plus 80 mm Holzfaserdämmplatte.'],
+      ['Dämmstärke', 'Lehner Haus: bis zu 240 mm Mineralwolldämmung zzgl. 80 mm Holzfaserdämmplatte in der Außenwandkonstruktion.'],
       ['Fenster Ug-Wert', '3-fach Verglasung mit Ug 0,5 W/(m²K)? Lehner Haus: serienmäßig.'],
       ['Kältemittel', 'Natürliches Kältemittel R290? Lehner Haus: ja – zukunftssicher.'],
       ['Diffusionsoffen', 'Ist der Wandaufbau diffusionsoffen? Lehner Haus: ja – baubiologisch optimal.'],
