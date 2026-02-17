@@ -585,9 +585,9 @@
   "decken": [
     {
       "id": "holzbalkendecke",
-      "name": "Lehm-Decke",
-      "description": "Lehm-Decke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
-      "constructionType": "Lehm-Decke",
+      "name": "Lehner Decke",
+      "description": "Lehner Decke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
+      "constructionType": "Lehner Decke",
       "premiumFeatures": [
         "160 mm Mineralwolledämmung im Gefach",
         "Verkleidung mit Gipsbauplatten"
