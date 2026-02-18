@@ -61,12 +61,12 @@ Plans:
   2. Jede Komponentenseite folgt der Reihenfolge: großes Produktbild oben, dann emotionale Überschrift, dann Vorteils-Bullets, dann technische Details — kein Text kommt vor dem Bild
   3. Ein Executive Summary One-Pager mit allen Key Facts (Haustyp, Wandsystem, KfW-Standard, Heizung, Lüftung, Dach, Treppe) ist in der PDF enthalten
   4. Lehner Haus Corporate Colors (#003366, #C8102E) und eine einheitliche Typographie prägen das gesamte Dokument konsistent
-**Plans**: TBD
+**Plans**: 3 plans (2 waves)
 
 Plans:
-- [ ] 03-01: Emotionale Titelseite redesignen (Hero-Bild-Support, Kundenname, Branding, benutzerdefinierte Schrift für Überschriften)
-- [ ] 03-02: Komponentenseiten-Template nach neuer visueller Hierarchie umbauen (großes Bild → Überschrift → Vorteile → Specs)
-- [ ] 03-03: Executive Summary One-Pager implementieren mit allen konfigurierten Key Facts
+- [ ] 03-01-PLAN.md — Design-Foundation + emotionale Titelseite: Corporate Colors (#003366/#C8102E) in layout.js, Montserrat-Font, Hero-Bild des gewaehlten Haustyps mit Gradient-Overlay
+- [ ] 03-02-PLAN.md — Komponentenseiten (componentPage + haustypPage) nach visueller Hierarchie umbauen: grosses Bild oben, Ueberschrift, Vorteile, Specs
+- [ ] 03-03-PLAN.md — Executive Summary One-Pager: 3x3 Grid mit allen 9 Kategorien, Bauherr-Daten, technische Highlights
 
 ### Phase 4: PDF Inhalte und Bugs
 **Goal**: Alle konfigurierten Daten erscheinen korrekt in der PDF, Marketing-Texte sind verkaufsstark formuliert, und die Dateigröße bleibt unter 5 MB
