@@ -5,33 +5,34 @@
 See: .planning/PROJECT.md (updated 2026-02-17)
 
 **Core value:** Fachberater erstellen in wenigen Minuten eine personalisierte, visuell überzeugende Leistungsbeschreibung, die den Kunden begeistert und zum Vertragsabschluss führt.
-**Current focus:** Phase 1 — Catalog Expansion
+**Current focus:** Phase 2 — PDF Architektur
 
 ## Current Position
 
-Phase: 1 of 5 (Catalog Expansion)
-Plan: 3 of 3 completed in current phase
-Status: Phase 1 complete
-Last activity: 2026-02-18 — Completed 01-02 form-to-PDF integration plan
+Phase: 2 of 5 (PDF Architektur)
+Plan: 1 of 3 completed in current phase
+Status: In progress
+Last activity: 2026-02-18 — Completed 02-01 layout extraction plan
 
-Progress: [██████░░░░] 20%
+Progress: [██████░░░░] 27%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 3.3 min
-- Total execution time: 0.17 hours
+- Total plans completed: 4
+- Average duration: 3.8 min
+- Total execution time: 0.25 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-catalog-expansion | 3 | 10 min | 3.3 min |
+| 02-pdf-architektur | 1 | 5 min | 5.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (5 min), 01-03 (2 min), 01-01 (3 min)
-- Trend: Starting
+- Last 5 plans: 02-01 (5 min), 01-02 (5 min), 01-03 (2 min), 01-01 (3 min)
+- Trend: Stable
 
 *Updated after each plan completion*
 
@@ -51,6 +52,8 @@ Recent decisions affecting current work:
 - [01-02]: Dachform before Dacheindeckung, Treppen after — logical roof grouping in form
 - [01-02]: Treppensystem PDF page uses same conditional skip as Lueftung — consistent behavior for 'keine'
 - [01-02]: All dach/treppe lookups use optional chaining — safe for old submissions without these fields
+- [02-01]: layout.js exports flat module (not class) — simpler consumption for page modules
+- [02-01]: hasCustomFonts remains on PdfService instance — mutable state, not a design constant
 - [01-01]: Roof forms are KfW-neutral — all 4 entries compatible with KFW55 and KFW40
 - [01-01]: Treppen 'keine' entry valid for all KfW standards — bungalow choice
 - [01-01]: Dach/treppe validation uses optional pattern — null/undefined allowed for backward compat
@@ -68,5 +71,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 01-02-PLAN.md (form-to-PDF integration). Phase 1 all plans complete.
+Stopped at: Completed 02-01-PLAN.md (layout extraction). Phase 2 plan 1 of 3 complete.
 Resume file: None
