@@ -260,109 +260,6 @@ body {
 }
 
 /* ============================================
-   PROGRESS INDICATOR - Sticky Header
-   ============================================ */
-.progress-container {
-    position: sticky;
-    top: 0;
-    z-index: 90;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 16px 0;
-    box-shadow: var(--shadow-sm);
-}
-
-.progress-inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-}
-
-.progress-bar-wrapper {
-    height: 6px;
-    background: var(--gray-200);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    margin-bottom: 12px;
-}
-
-.progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-700) 0%, var(--primary-500) 50%, var(--gold-500) 100%);
-    border-radius: var(--radius-full);
-    transition: width var(--transition-slow);
-    width: 0%;
-}
-
-.progress-steps {
-    display: flex;
-    justify-content: space-between;
-    gap: 4px;
-}
-
-.progress-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    min-width: 44px;
-    max-width: 90px;
-}
-
-.progress-step-indicator {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--gray-200);
-    border: 2px solid var(--gray-300);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--text-sm);
-    font-weight: var(--font-semibold);
-    color: var(--gray-500);
-    transition: all var(--transition-fast);
-    margin-bottom: 4px;
-}
-
-.progress-step.active .progress-step-indicator {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-    box-shadow: var(--glow-primary);
-}
-
-.progress-step.completed .progress-step-indicator {
-    background: var(--gold-500);
-    border-color: var(--gold-500);
-    color: white;
-}
-
-.progress-step.completed .progress-step-indicator::after {
-    content: '\2713';
-    font-size: 14px;
-}
-
-.progress-step-label {
-    font-size: 10px;
-    color: var(--gray-500);
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    transition: color var(--transition-fast);
-}
-
-.progress-step.active .progress-step-label,
-.progress-step.completed .progress-step-label {
-    color: var(--primary-color);
-    font-weight: var(--font-medium);
-}
-
-/* ============================================
    MAIN CONTENT
    ============================================ */
 .main-content {
@@ -1171,62 +1068,6 @@ body {
 }
 
 /* ============================================
-   WIZARD NAVIGATION
-   ============================================ */
-.wizard-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 0;
-    margin-top: 32px;
-    border-top: 1px solid var(--border-color);
-}
-
-.wizard-btn {
-    min-height: 48px;
-    min-width: 140px;
-    padding: 14px 32px;
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
-    font-family: var(--font-family);
-    border: none;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.wizard-btn--next {
-    background: var(--primary-color);
-    color: white;
-}
-
-.wizard-btn--next:hover {
-    background: var(--primary-800);
-    box-shadow: var(--shadow-md);
-}
-
-.wizard-btn--next:active {
-    transform: scale(0.98);
-}
-
-.wizard-btn--back {
-    background: var(--gray-100);
-    color: var(--gray-700);
-}
-
-.wizard-btn--back:hover {
-    background: var(--gray-200);
-}
-
-.wizard-step-info {
-    font-size: var(--text-sm);
-    color: var(--text-gray);
-    font-weight: var(--font-medium);
-}
-
-/* ============================================
    PRODUCT IMAGE CARDS
    ============================================ */
 .radio-card--with-image {
@@ -1274,37 +1115,6 @@ body {
     padding: 0;
 }
 
-/* ============================================
-   WIZARD FIELD ERRORS
-   ============================================ */
-.wizard-field-error {
-    display: block;
-    color: var(--error-500);
-    font-size: var(--text-sm);
-    margin-top: 8px;
-    padding: 6px 12px;
-    background: var(--error-50);
-    border-left: 3px solid var(--error-500);
-    border-radius: var(--radius-sm);
-    animation: fadeIn var(--transition-fast);
-}
-
-.radio-group .wizard-field-error {
-    margin-top: 12px;
-    margin-bottom: 0;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================================
-   WIZARD SUBMIT SECTION
-   ============================================ */
-#wizard-submit-section {
-    padding: 24px 0;
-}
 
 /* ============================================
    RESPONSIVE DESIGN - 5 Breakpoints
@@ -1345,20 +1155,6 @@ body {
     .intro-text {
         font-size: var(--text-base);
         margin-bottom: 32px;
-    }
-
-    .progress-container {
-        padding: 12px 0;
-    }
-
-    .progress-step-label {
-        display: none;
-    }
-
-    .progress-step-indicator {
-        width: 20px;
-        height: 20px;
-        font-size: 9px;
     }
 
     .form-row {
@@ -1407,27 +1203,8 @@ body {
         gap: 16px;
     }
 
-    /* Wizard: small phone image cards */
     .radio-card--with-image .radio-card-image {
         height: 120px;
-    }
-
-    /* Wizard: small phone nav */
-    .wizard-nav {
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .wizard-btn {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .wizard-step-info {
-        order: -1;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 4px;
     }
 }
 
@@ -1455,29 +1232,6 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .progress-step-label {
-        font-size: 8px;
-    }
-
-    /* Wizard: tablet portrait nav */
-    .wizard-nav {
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .wizard-btn {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .wizard-step-info {
-        order: -1;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 4px;
-    }
-
-    /* Wizard: tablet portrait image cards */
     .radio-card--with-image .radio-card-image {
         height: 140px;
     }
@@ -1489,18 +1243,8 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .progress-step-label {
-        font-size: 9px;
-    }
-
-    /* Wizard: tablet landscape image cards */
     .radio-card--with-image .radio-card-image {
         height: 140px;
-    }
-
-    .wizard-btn {
-        min-width: 120px;
-        padding: 12px 24px;
     }
 }
 
@@ -1510,7 +1254,6 @@ body {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
-    /* Wizard: large tablet image cards */
     .radio-card--with-image .radio-card-image {
         height: 160px;
     }
@@ -1537,7 +1280,6 @@ body {
 @media print {
     .header,
     .footer,
-    .progress-container,
     .btn-submit,
     .toast-container {
         display: none !important;
@@ -1579,9 +1321,6 @@ body {
         transition-duration: 0.01ms !important;
     }
 
-    .progress-bar-fill {
-        transition: none;
-    }
 }
 
 /* Focus Visible for Keyboard Navigation */

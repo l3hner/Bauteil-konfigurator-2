@@ -41,7 +41,7 @@ class ToastNotification {
                 <div class="toast-title">${titles[type]}</div>
                 <div class="toast-message">${message}</div>
             </div>
-            <button class="toast-close" aria-label="Schliessen">
+            <button class="toast-close" aria-label="Schließen">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
@@ -102,13 +102,13 @@ const wallOptions = {
             id: 'climativ',
             name: 'CLIMA-tiv',
             description: 'Mit Holzwerkstoffplatte - 270 mm Wandstärke',
-            filePath: 'assets/variants/walls/climativ-esb.png'
+            filePath: 'assets/variants/walls/climativ-esb-technical.png'
         },
         {
             id: 'climativ-gf',
             name: 'CLIMA-tiv (GF)',
             description: 'Mit Gipsfaserplatte - 270 mm Wandstärke',
-            filePath: 'assets/variants/walls/climativ-fermacell.png'
+            filePath: 'assets/variants/walls/climativ-fermacell-technical.png'
         }
     ],
     KFW40: [
@@ -116,41 +116,41 @@ const wallOptions = {
             id: 'climativ-plus',
             name: 'CLIMA-tiv plus',
             description: 'Mit Holzwerkstoffplatte - 350 mm Wandstärke',
-            filePath: 'assets/variants/walls/climativ-plus-esb.png'
+            filePath: 'assets/variants/walls/climativ-plus-esb-technical.png'
         },
         {
             id: 'climativ-plus-gf',
             name: 'CLIMA-tiv plus (GF)',
             description: 'Mit Gipsfaserplatte - 350 mm Wandstärke',
-            filePath: 'assets/variants/walls/climativ-plus-fermacell.png'
+            filePath: 'assets/variants/walls/climativ-plus-fermacell-technical.png'
         }
     ]
 };
 
 // ============================================
-// LUFTUNG OPTIONS DATA
+// LÜFTUNG OPTIONS DATA
 // ============================================
 const lueftungOptions = {
     KFW55: [
         {
             id: 'keine',
-            name: 'Keine Luftungsanlage',
-            description: 'Naturliche Luftung uber Fenster (bei KfW 55 ausreichend)',
+            name: 'Keine Lüftungsanlage',
+            description: 'Natürliche Lüftung über Fenster (bei KfW 55 ausreichend)',
             filePath: null
         }
     ],
     KFW40: [
         {
             id: 'dezentral',
-            name: 'Dezentrale Luftung',
-            description: 'Einzelraumluftung mit Warmeruckgewinnung',
-            filePath: 'assets/variants/lueftung/dezentral.png'
+            name: 'Dezentrale Lüftung',
+            description: 'Einzelraumlüftung mit Wärmerückgewinnung',
+            filePath: 'assets/variants/lueftung/dezentral-technical.png'
         },
         {
             id: 'zentral',
-            name: 'Zentrale Luftungsanlage',
-            description: 'Komfort-Luftung mit zentraler Steuerung',
-            filePath: 'assets/variants/lueftung/zentral.png'
+            name: 'Zentrale Lüftungsanlage',
+            description: 'Komfort-Lüftung mit zentraler Steuerung',
+            filePath: 'assets/variants/lueftung/zentral-technical.png'
         }
     ]
 };
@@ -172,7 +172,7 @@ function updateWallOptions() {
     const wallOptionsContainer = document.getElementById('wall-options');
 
     if (!selectedKfw) {
-        wallOptionsContainer.innerHTML = '<p class="info-message">Bitte wahlen Sie zuerst einen Energiestandard aus.</p>';
+        wallOptionsContainer.innerHTML = '<p class="info-message">Bitte wählen Sie zuerst einen Energiestandard aus.</p>';
         return;
     }
 
@@ -182,7 +182,7 @@ function updateWallOptions() {
     walls.forEach(wall => {
         html += `
             <label class="radio-card${wall.filePath ? ' radio-card--with-image' : ''}">
-                <input type="radio" name="wall" value="${wall.id}" onchange="handleRadioSelect(this); updateProgress(); if(typeof WizardState !== 'undefined') WizardState.save();">
+                <input type="radio" name="wall" value="${wall.id}" onchange="handleRadioSelect(this); updateProgress(); ">
                 ${wall.filePath ? `<div class="radio-card-image"><img src="/${wall.filePath}" alt="${wall.name}" loading="lazy"></div>` : ''}
                 <div class="radio-content">
                     <h4>${wall.name}</h4>
@@ -199,7 +199,7 @@ function updateWallOptions() {
 }
 
 // ============================================
-// UPDATE LUFTUNG OPTIONS
+// UPDATE LÜFTUNG OPTIONS
 // ============================================
 function updateLueftungOptions() {
     const kfwRadios = document.getElementsByName('kfw_standard');
@@ -215,7 +215,7 @@ function updateLueftungOptions() {
     const lueftungOptionsContainer = document.getElementById('lueftung-options');
 
     if (!selectedKfw) {
-        lueftungOptionsContainer.innerHTML = '<p class="info-message">Bitte wahlen Sie zuerst einen Energiestandard aus.</p>';
+        lueftungOptionsContainer.innerHTML = '<p class="info-message">Bitte wählen Sie zuerst einen Energiestandard aus.</p>';
         return;
     }
 
@@ -225,7 +225,7 @@ function updateLueftungOptions() {
     lueftungen.forEach(lueftung => {
         html += `
             <label class="radio-card${lueftung.filePath ? ' radio-card--with-image' : ''}">
-                <input type="radio" name="lueftung" value="${lueftung.id}" onchange="handleRadioSelect(this); updateProgress(); if(typeof WizardState !== 'undefined') WizardState.save();">
+                <input type="radio" name="lueftung" value="${lueftung.id}" onchange="handleRadioSelect(this); updateProgress(); ">
                 ${lueftung.filePath ? `<div class="radio-card-image"><img src="/${lueftung.filePath}" alt="${lueftung.name}" loading="lazy"></div>` : ''}
                 <div class="radio-content">
                     <h4>${lueftung.name}</h4>
@@ -392,7 +392,7 @@ function validateField(field) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(field.value)) {
             isValid = false;
-            errorText = 'Bitte geben Sie eine gultige E-Mail-Adresse ein.';
+            errorText = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
         }
     }
     // Phone validation
@@ -400,7 +400,7 @@ function validateField(field) {
         const phoneRegex = /^[\d\s\-\+\(\)\/]+$/;
         if (!phoneRegex.test(field.value) || field.value.replace(/\D/g, '').length < 6) {
             isValid = false;
-            errorText = 'Bitte geben Sie eine gultige Telefonnummer ein.';
+            errorText = 'Bitte geben Sie eine gültige Telefonnummer ein.';
         }
     }
 
@@ -490,7 +490,7 @@ function initFormValidation() {
 
             if (!kfwSelected) {
                 e.preventDefault();
-                toast.error('Bitte wahlen Sie einen Energiestandard aus.');
+                toast.error('Bitte wählen Sie einen Energiestandard aus.');
                 document.getElementById('section-2')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return false;
             }
@@ -507,7 +507,7 @@ function initFormValidation() {
 
             if (!allValid) {
                 e.preventDefault();
-                toast.error('Bitte fullen Sie alle erforderlichen Felder aus.');
+                toast.error('Bitte füllen Sie alle erforderlichen Felder aus.');
                 return false;
             }
 
@@ -593,10 +593,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initRadioCards();
     initInlineValidation();
     initFormValidation();
-    updateProgress();
-
-    // Initialize wizard (defined in wizard.js)
-    if (typeof initWizard === 'function') {
-        initWizard();
-    }
 });

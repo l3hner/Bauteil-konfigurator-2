@@ -26,88 +26,9 @@
             </div>
         </header>
 
-        <!-- Progress Indicator -->
-        <div class="progress-container">
-            <div class="progress-inner">
-                <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" id="progress-bar"></div>
-                </div>
-                <div class="progress-steps">
-                    <div class="progress-step" data-step="1">
-                        <div class="progress-step-indicator">1</div>
-                        <span class="progress-step-label">Kontakt</span>
-                    </div>
-                    <div class="progress-step" data-step="2">
-                        <div class="progress-step-indicator">2</div>
-                        <span class="progress-step-label">Haus</span>
-                    </div>
-                    <div class="progress-step" data-step="3">
-                        <div class="progress-step-indicator">3</div>
-                        <span class="progress-step-label">Energie</span>
-                    </div>
-                    <div class="progress-step" data-step="4">
-                        <div class="progress-step-indicator">4</div>
-                        <span class="progress-step-label">Wand</span>
-                    </div>
-                    <div class="progress-step" data-step="5">
-                        <div class="progress-step-indicator">5</div>
-                        <span class="progress-step-label">Innen</span>
-                    </div>
-                    <div class="progress-step" data-step="6">
-                        <div class="progress-step-indicator">6</div>
-                        <span class="progress-step-label">Decke</span>
-                    </div>
-                    <div class="progress-step" data-step="7">
-                        <div class="progress-step-indicator">7</div>
-                        <span class="progress-step-label">Fenster</span>
-                    </div>
-                    <div class="progress-step" data-step="8">
-                        <div class="progress-step-indicator">8</div>
-                        <span class="progress-step-label">Dachform</span>
-                    </div>
-                    <div class="progress-step" data-step="9">
-                        <div class="progress-step-indicator">9</div>
-                        <span class="progress-step-label">Dach</span>
-                    </div>
-                    <div class="progress-step" data-step="10">
-                        <div class="progress-step-indicator">10</div>
-                        <span class="progress-step-label">Treppe</span>
-                    </div>
-                    <div class="progress-step" data-step="11">
-                        <div class="progress-step-indicator">11</div>
-                        <span class="progress-step-label">Heizung</span>
-                    </div>
-                    <div class="progress-step" data-step="12">
-                        <div class="progress-step-indicator">12</div>
-                        <span class="progress-step-label">Luft</span>
-                    </div>
-                    <div class="progress-step" data-step="13">
-                        <div class="progress-step-indicator">13</div>
-                        <span class="progress-step-label">Personen</span>
-                    </div>
-                    <div class="progress-step" data-step="14">
-                        <div class="progress-step-indicator">14</div>
-                        <span class="progress-step-label">Grundst.</span>
-                    </div>
-                    <div class="progress-step" data-step="15">
-                        <div class="progress-step-indicator">15</div>
-                        <span class="progress-step-label">Raume</span>
-                    </div>
-                    <div class="progress-step" data-step="16">
-                        <div class="progress-step-indicator">16</div>
-                        <span class="progress-step-label">Eigen</span>
-                    </div>
-                    <div class="progress-step" data-step="17">
-                        <div class="progress-step-indicator">17</div>
-                        <span class="progress-step-label">Berater</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <main class="main-content">
-            <h2 class="page-title">Ihre personliche Leistungsbeschreibung</h2>
-            <p class="intro-text">Gestalten Sie Ihr Traumhaus - wir erstellen Ihnen eine massgeschneiderte Leistungsbeschreibung</p>
+            <h2 class="page-title">Ihre persönliche Leistungsbeschreibung</h2>
+            <p class="intro-text">Gestalten Sie Ihr Traumhaus - wir erstellen Ihnen eine maßgeschneiderte Leistungsbeschreibung</p>
 
             <form id="konfigurator-form" action="/submit" method="POST">
 
@@ -195,7 +116,7 @@
                             <input type="radio" name="kfw_standard" value="KFW55" required onchange="updateWallOptions(); updateLueftungOptions(); updateProgress();">
                             <div class="radio-content">
                                 <h4>KfW 55</h4>
-                                <p>Effizienzhaus 55 - Attraktive Forderung mit bewahrter Technik</p>
+                                <p>Effizienzhaus 55 - Attraktive Förderung mit bewährter Technik</p>
                             </div>
                             <span class="checkmark">
                                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -206,7 +127,7 @@
                             <input type="radio" name="kfw_standard" value="KFW40" onchange="updateWallOptions(); updateLueftungOptions(); updateProgress();">
                             <div class="radio-content">
                                 <h4>KfW 40</h4>
-                                <p>Effizienzhaus 40 - Hochste Energieeffizienz fur maximale Forderung</p>
+                                <p>Effizienzhaus 40 - Höchste Energieeffizienz für maximale Förderung</p>
                             </div>
                             <span class="checkmark">
                                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -218,10 +139,10 @@
                 <!-- Aussenwand -->
                 <section class="form-section" id="section-4" data-wizard-step="4">
                     <h3 class="section-title">4. Aussenwandsystem</h3>
-                    <p class="section-description">Wahlen Sie Ihr Wandsystem basierend auf dem Energiestandard</p>
+                    <p class="section-description">Wählen Sie Ihr Wandsystem basierend auf dem Energiestandard</p>
 
                     <div id="wall-options" class="radio-group">
-                        <p class="info-message">Bitte wahlen Sie zuerst einen Energiestandard aus.</p>
+                        <p class="info-message">Bitte wählen Sie zuerst einen Energiestandard aus.</p>
                     </div>
                 </section>
 
@@ -300,9 +221,9 @@
                     </div>
                 </section>
 
-                <!-- Dachform -->
+                <!-- Dachaufbau -->
                 <section class="form-section" id="section-8" data-wizard-step="8">
-                    <h3 class="section-title">8. Dachform</h3>
+                    <h3 class="section-title">8. Dachaufbau</h3>
 
                     <div class="radio-group">
                         <% catalog.daecher.forEach(dach => { %>
@@ -400,13 +321,13 @@
                     </div>
                 </section>
 
-                <!-- Luftung -->
+                <!-- Lüftung -->
                 <section class="form-section" id="section-12" data-wizard-step="12">
-                    <h3 class="section-title">12. Luftungssystem</h3>
-                    <p class="section-description">Die Luftungsoptionen richten sich nach Ihrem gewahlten Energiestandard</p>
+                    <h3 class="section-title">12. Lüftungssystem</h3>
+                    <p class="section-description">Die Lüftungsoptionen richten sich nach Ihrem gewählten Energiestandard</p>
 
                     <div id="lueftung-options" class="radio-group">
-                        <p class="info-message">Bitte wahlen Sie zuerst einen Energiestandard aus.</p>
+                        <p class="info-message">Bitte wählen Sie zuerst einen Energiestandard aus.</p>
                     </div>
                 </section>
 
@@ -417,7 +338,7 @@
                     <div class="form-group">
                         <label for="personenanzahl">Wie viele Personen ziehen ein? *</label>
                         <select id="personenanzahl" name="personenanzahl" required onchange="updateProgress();">
-                            <option value="">Bitte wahlen</option>
+                            <option value="">Bitte wählen</option>
                             <option value="1">1 Person</option>
                             <option value="2">2 Personen</option>
                             <option value="3">3 Personen</option>
@@ -432,16 +353,16 @@
                     </div>
                 </section>
 
-                <!-- Grundstuck -->
+                <!-- Grundstück -->
                 <section class="form-section" id="section-14" data-wizard-step="14">
-                    <h3 class="section-title">14. Grundstucksstatus</h3>
+                    <h3 class="section-title">14. Grundstücksstatus</h3>
 
                     <div class="radio-group">
                         <label class="radio-card">
                             <input type="radio" name="grundstueck" value="vorhanden" onchange="updateProgress();">
                             <div class="radio-content">
                                 <h4>Vorhanden</h4>
-                                <p>Ich besitze bereits ein Grundstuck</p>
+                                <p>Ich besitze bereits ein Grundstück</p>
                             </div>
                             <span class="checkmark">
                                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -452,7 +373,7 @@
                             <input type="radio" name="grundstueck" value="in_aussicht" onchange="updateProgress();">
                             <div class="radio-content">
                                 <h4>In Aussicht</h4>
-                                <p>Ein Grundstuck ist in Aussicht</p>
+                                <p>Ein Grundstück ist in Aussicht</p>
                             </div>
                             <span class="checkmark">
                                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -463,7 +384,7 @@
                             <input type="radio" name="grundstueck" value="suche" onchange="updateProgress();">
                             <div class="radio-content">
                                 <h4>Auf der Suche</h4>
-                                <p>Ich suche noch nach einem Grundstuck</p>
+                                <p>Ich suche noch nach einem Grundstück</p>
                             </div>
                             <span class="checkmark">
                                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -475,7 +396,7 @@
                 <!-- Raumplanung -->
                 <section class="form-section" id="section-15" data-wizard-step="15">
                     <h3 class="section-title">15. Raumplanung</h3>
-                    <p class="section-description">Welche Raume wunschen Sie sich in Ihrem Haus?</p>
+                    <p class="section-description">Welche Räume wünschen Sie sich in Ihrem Haus?</p>
 
                     <div class="rooms-container">
                         <div class="room-section">
@@ -483,10 +404,10 @@
                             <div id="eg-rooms">
                                 <div class="room-item">
                                     <input type="text" name="eg_rooms" placeholder="z.B. Wohnzimmer" class="room-name">
-                                    <input type="text" name="eg_details" placeholder="Besondere Wunsche" class="room-details">
+                                    <input type="text" name="eg_details" placeholder="Besondere Wünsche" class="room-details">
                                 </div>
                             </div>
-                            <button type="button" onclick="addRoom('eg')" class="btn-add">+ Raum hinzufugen</button>
+                            <button type="button" onclick="addRoom('eg')" class="btn-add">+ Raum hinzufügen</button>
                         </div>
 
                         <div class="room-section">
@@ -494,10 +415,10 @@
                             <div id="og-rooms">
                                 <div class="room-item">
                                     <input type="text" name="og_rooms" placeholder="z.B. Schlafzimmer" class="room-name">
-                                    <input type="text" name="og_details" placeholder="Besondere Wunsche" class="room-details">
+                                    <input type="text" name="og_details" placeholder="Besondere Wünsche" class="room-details">
                                 </div>
                             </div>
-                            <button type="button" onclick="addRoom('og')" class="btn-add">+ Raum hinzufugen</button>
+                            <button type="button" onclick="addRoom('og')" class="btn-add">+ Raum hinzufügen</button>
                         </div>
 
                         <div class="room-section">
@@ -505,10 +426,10 @@
                             <div id="ug-rooms">
                                 <div class="room-item">
                                     <input type="text" name="ug_rooms" placeholder="z.B. Keller" class="room-name">
-                                    <input type="text" name="ug_details" placeholder="Besondere Wunsche" class="room-details">
+                                    <input type="text" name="ug_details" placeholder="Besondere Wünsche" class="room-details">
                                 </div>
                             </div>
-                            <button type="button" onclick="addRoom('ug')" class="btn-add">+ Raum hinzufugen</button>
+                            <button type="button" onclick="addRoom('ug')" class="btn-add">+ Raum hinzufügen</button>
                         </div>
                     </div>
                 </section>
@@ -516,14 +437,14 @@
                 <!-- Eigenleistungen -->
                 <section class="form-section" id="section-16" data-wizard-step="16">
                     <h3 class="section-title">16. Geplante Eigenleistungen</h3>
-                    <p class="section-description">Welche Arbeiten mochten Sie selbst durchfuhren?</p>
+                    <p class="section-description">Welche Arbeiten möchten Sie selbst durchführen?</p>
 
                     <div id="eigenleistungen-container">
                         <div class="eigenleistung-item">
                             <input type="text" name="eigenleistungen" placeholder="z.B. Malerarbeiten" class="eigenleistung-input">
                         </div>
                     </div>
-                    <button type="button" onclick="addEigenleistung()" class="btn-add">+ Eigenleistung hinzufugen</button>
+                    <button type="button" onclick="addEigenleistung()" class="btn-add">+ Eigenleistung hinzufügen</button>
                 </section>
 
                 <section class="form-section" id="section-17" data-wizard-step="17">
@@ -567,8 +488,6 @@
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="/js/wizardState.js"></script>
-    <script src="/js/wizard.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>
