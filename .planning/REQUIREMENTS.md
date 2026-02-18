@@ -78,8 +78,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| KAT-01 | Phase 1 | Pending |
-| KAT-02 | Phase 1 | Pending |
+| KAT-01 | Phase 1 | Complete |
+| KAT-02 | Phase 1 | Complete |
 | TECH-01 | Phase 2 | Pending |
 | TECH-02 | Phase 2 | Pending |
 | PDF-01 | Phase 3 | Pending |

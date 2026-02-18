@@ -12,7 +12,7 @@ Das bestehende Konfigurator-Tool wird von einem funktionierenden Grundzustand au
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Catalog Expansion** - Neue Katalogkategorien Dächer und Treppen mit Daten, Validierung und Migrations-Skript
+- [x] **Phase 1: Catalog Expansion** - Neue Katalogkategorien Dächer und Treppen mit Daten, Validierung und Migrations-Skript ✓ (2026-02-18)
 - [ ] **Phase 2: PDF Architektur** - pdfService.js in modulare Einzelseiten-Module zerlegen + Image-Pipeline mit sharp einrichten
 - [ ] **Phase 3: PDF Design** - Emotionale Titelseite, visuell überzeugende Komponentenseiten und Executive Summary One-Pager
 - [ ] **Phase 4: PDF Inhalte und Bugs** - Eigenleistungen-Bug schließen, Raumplanung reparieren, Marketing-Texte einpflegen, Dateigröße unter 5 MB bringen
@@ -108,7 +108,7 @@ Phases 1 → 2 → 3 → 4 execute sequentially (each depends on prior). Phase 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Catalog Expansion | 0/3 | Not started | - |
+| 1. Catalog Expansion | 3/3 | ✓ Complete | 2026-02-18 |
 | 2. PDF Architektur | 0/3 | Not started | - |
 | 3. PDF Design | 0/3 | Not started | - |
 | 4. PDF Inhalte und Bugs | 0/3 | Not started | - |
