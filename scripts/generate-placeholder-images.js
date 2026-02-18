@@ -11,7 +11,9 @@ const COLORS = {
   tiles: { r: 204, g: 102, b: 0 },
   haustypen: { r: 51, g: 153, b: 102 },
   heizung: { r: 204, g: 51, b: 51 },
-  lueftung: { r: 153, g: 102, b: 204 }
+  lueftung: { r: 153, g: 102, b: 204 },
+  daecher: { r: 102, g: 51, b: 0 },
+  treppen: { r: 153, g: 51, b: 102 }
 };
 
 async function createPlaceholderImage(filePath, label, isTechnical = false) {

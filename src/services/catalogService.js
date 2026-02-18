@@ -16,7 +16,9 @@ class CatalogService {
       return {
         walls: [],
         innerwalls: [],
+        daecher: [],
         decken: [],
+        treppen: [],
         windows: [],
         tiles: [],
         haustypen: [],
@@ -40,8 +42,16 @@ class CatalogService {
     return this.catalog.innerwalls || [];
   }
 
+  getDaecher() {
+    return this.catalog.daecher || [];
+  }
+
   getDecken() {
     return this.catalog.decken || [];
+  }
+
+  getTreppen() {
+    return this.catalog.treppen || [];
   }
 
   getWindows() {
@@ -124,6 +134,16 @@ class CatalogService {
     // Validate lueftung
     if (selection.lueftung && !this.getVariantById('lueftung', selection.lueftung)) {
       errors.push('Ungültige Lüftungsauswahl');
+    }
+
+    // Validate dach selection
+    if (selection.dach && !this.getVariantById('daecher', selection.dach)) {
+      errors.push('Ungültige Dachauswahl');
+    }
+
+    // Validate treppe selection
+    if (selection.treppe && !this.getVariantById('treppen', selection.treppe)) {
+      errors.push('Ungültige Treppenauswahl');
     }
 
     return {
