@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-17)
 
 **Core value:** Fachberater erstellen in wenigen Minuten eine personalisierte, visuell überzeugende Leistungsbeschreibung, die den Kunden begeistert und zum Vertragsabschluss führt.
-**Current focus:** Phase 4 in progress — PDF Inhalte und Bugs
+**Current focus:** Phase 4 complete — ready for Phase 5 (Wizard)
 
 ## Current Position
 
 Phase: 4 of 5 (PDF Inhalte und Bugs)
-Plan: 2 of 3 completed in current phase
-Status: Executing Phase 4
-Last activity: 2026-02-18 — Completed 04-03 image compression tuning (alpha flattening)
+Plan: 3 of 3 completed in current phase
+Status: Phase 4 complete
+Last activity: 2026-02-18 — Completed 04-02 emotional hook catalog enrichment
 
-Progress: [██████████████░] 80%
+Progress: [████████████████░] 87%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
+- Total plans completed: 12
 - Average duration: 3.3 min
-- Total execution time: 0.60 hours
+- Total execution time: 0.68 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [██████████████░] 80%
 | 01-catalog-expansion | 3 | 10 min | 3.3 min |
 | 02-pdf-architektur | 3 | 14 min | 4.7 min |
 | 03-pdf-design | 3 | 8 min | 2.7 min |
-| 04-pdf-inhalte-und-bugs | 2 | 4 min | 2.0 min |
+| 04-pdf-inhalte-und-bugs | 3 | 9 min | 3.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-03 (2 min), 04-01 (2 min), 03-03 (2 min), 03-02 (2 min), 03-01 (4 min)
+- Last 5 plans: 04-02 (5 min), 04-03 (2 min), 04-01 (2 min), 03-03 (2 min), 03-02 (2 min)
 - Trend: Accelerating
 
 *Updated after each plan completion*
@@ -86,6 +86,9 @@ Recent decisions affecting current work:
 - [04-03]: Flatten all alpha channels to white -- no image needs transparency in the PDF (all on white pages)
 - [04-03]: maxWidth=600 (was 800) provides 1.26x oversampling at 72 DPI -- sufficient for A4 print quality
 - [04-03]: JPEG quality stays at 75 -- measured full PDF at 0.27 MB, far under 5 MB target
+- [04-02]: emotionalHook placed after name, before description in catalog schema for consistent field ordering
+- [04-02]: componentPage fallback: emotionalHook -> description.split('.')[0], name-stripping regex only on description fallback
+- [04-02]: haustypPage fallback chain: emotionalHook -> details -> description -> empty string
 
 ### Pending Todos
 
@@ -100,5 +103,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 04-03-PLAN.md (image compression tuning). Phase 4 plan 2 of 3 done.
+Stopped at: Completed 04-02-PLAN.md (emotional hook catalog enrichment). Phase 4 fully complete. Ready for Phase 5.
 Resume file: None
