@@ -78,27 +78,27 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PDF-01 | — | Pending |
-| PDF-02 | — | Pending |
-| PDF-03 | — | Pending |
-| INH-01 | — | Pending |
-| INH-02 | — | Pending |
-| INH-03 | — | Pending |
-| INH-04 | — | Pending |
-| WIZ-01 | — | Pending |
-| WIZ-02 | — | Pending |
-| WIZ-03 | — | Pending |
-| WIZ-04 | — | Pending |
-| KAT-01 | — | Pending |
-| KAT-02 | — | Pending |
-| TECH-01 | — | Pending |
-| TECH-02 | — | Pending |
+| KAT-01 | Phase 1 | Pending |
+| KAT-02 | Phase 1 | Pending |
+| TECH-01 | Phase 2 | Pending |
+| TECH-02 | Phase 2 | Pending |
+| PDF-01 | Phase 3 | Pending |
+| PDF-02 | Phase 3 | Pending |
+| PDF-03 | Phase 3 | Pending |
+| INH-01 | Phase 4 | Pending |
+| INH-02 | Phase 4 | Pending |
+| INH-03 | Phase 4 | Pending |
+| INH-04 | Phase 4 | Pending |
+| WIZ-01 | Phase 5 | Pending |
+| WIZ-02 | Phase 5 | Pending |
+| WIZ-03 | Phase 5 | Pending |
+| WIZ-04 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 15 total
-- Mapped to phases: 0
-- Unmapped: 15 ⚠️
+- Mapped to phases: 15
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-18*
-*Last updated: 2026-02-18 after initial definition*
+*Last updated: 2026-02-18 after roadmap creation — all 15 requirements mapped*
