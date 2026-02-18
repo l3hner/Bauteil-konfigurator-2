@@ -3,57 +3,13 @@ const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode');
 const catalogService = require('./catalogService');
+const layout = require('./pdf/layout');
 
 class PdfService {
   constructor() {
     this.outputDir = path.join(__dirname, '../../output');
     this.assetsDir = path.join(__dirname, '../../assets');
-
-    // Premium Color Palette
-    this.colors = {
-      primary: '#06402b',
-      primaryDark: '#042e1f',
-      primaryLight: '#267e61',
-      secondary: '#b1a699',
-      secondaryLight: '#f5f3ef',
-      gold: '#D4AF37',
-      goldDark: '#b8922e',
-      goldLight: '#faf8f0',
-      text: '#1d1d1b',
-      textLight: '#333333',
-      textMuted: '#666666',
-      gray: '#999999',
-      grayLight: '#f5f5f5',
-      white: '#FFFFFF',
-      error: '#cc0000',
-      errorLight: '#fff5f5'
-    };
-
-    // Design System: Typography & Layout
-    // Custom fonts mit Fallback auf Helvetica
     this.hasCustomFonts = false;
-
-    this.typography = {
-      hero: { font: 'Helvetica-Bold', size: 48, lineHeight: 1.1 },
-      h1: { font: 'Helvetica-Bold', size: 20, lineHeight: 1.2 },
-      h2: { font: 'Helvetica-Bold', size: 14, lineHeight: 1.3 },
-      h3: { font: 'Helvetica-Bold', size: 12, lineHeight: 1.4 },
-      body: { font: 'Helvetica', size: 10, lineHeight: 1.5 },
-      small: { font: 'Helvetica', size: 8, lineHeight: 1.4 },
-      caption: { font: 'Helvetica', size: 7, lineHeight: 1.3 }
-    };
-
-    this.layout = {
-      pageWidth: 595,
-      pageHeight: 842,
-      marginLeft: 60,
-      marginRight: 60,
-      marginTop: 80,
-      marginBottom: 60,
-      contentWidth: 475, // pageWidth - marginLeft - marginRight
-      gridGap: 15,
-      sectionGap: 25
-    };
   }
 
   async ensureOutputDir() {
@@ -86,37 +42,37 @@ class PdfService {
     // Seite 2: QDF-Zertifizierung (NEU)
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'QDF-Zertifizierte Qualität');
+    layout.drawHeader(doc, 'QDF-Zertifizierte Qualität');
     this.drawQDFCertificationPage(doc);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     // Seite 3: Executive Summary (Key Facts auf 1 Seite)
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Ihre Konfiguration auf einen Blick');
+    layout.drawHeader(doc, 'Ihre Konfiguration auf einen Blick');
     this.drawExecutiveSummary(doc, submission);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     // Seite 4: Leistungsübersicht (Kompakt auf einer Seite)
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Ihre Leistungen im Überblick');
+    layout.drawHeader(doc, 'Ihre Leistungen im Überblick');
     this.drawLeistungsuebersicht(doc, submission);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     // Seite 5: Ihre 7 Qualitätsvorteile
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Ihre 7 Qualitätsvorteile');
+    layout.drawHeader(doc, 'Ihre 7 Qualitätsvorteile');
     this.drawQualityAdvantagesPage(doc);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     // Seite 5: Service
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Unser Service für Sie');
+    layout.drawHeader(doc, 'Unser Service für Sie');
     this.drawServiceContent(doc);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     // Komponenten-Seiten mit ELK-Style Kapitel-Nummerierung
     const innerwallData = catalogService.getVariantById('innerwalls', submission.innerwall);
@@ -157,7 +113,7 @@ class PdfService {
         console.log(`[PDF] Adding page ${pageNum + 1}: ${comp.title} (${comp.chapter})`);
         doc.addPage();
         pageNum++;
-        this.drawHeader(doc, comp.title);
+        layout.drawHeader(doc, comp.title);
 
         // Spezielle Seite für Haustyp (Flyer-Stil)
         if (comp.isHaustyp) {
@@ -166,7 +122,7 @@ class PdfService {
           this.drawComponentContent(doc, comp.data, comp.title, comp.chapter);
         }
 
-        this.drawFooter(doc, pageNum);
+        layout.drawFooter(doc, pageNum);
       } else {
         console.log(`[PDF] SKIPPED: ${comp.title} - no data`);
       }
@@ -180,41 +136,41 @@ class PdfService {
     if (hasRooms) {
       doc.addPage();
       pageNum++;
-      this.drawHeader(doc, 'Ihre Raumplanung');
+      layout.drawHeader(doc, 'Ihre Raumplanung');
       this.drawFloorPlanPage(doc, submission);
-      this.drawFooter(doc, pageNum);
+      layout.drawFooter(doc, pageNum);
     }
 
     // Qualitäts-Checkliste Seite
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Ihre Checkliste für den Anbietervergleich');
+    layout.drawHeader(doc, 'Ihre Checkliste für den Anbietervergleich');
     this.drawComparisonChecklist(doc, submission);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     // Glossar-Seite
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Glossar – Fachbegriffe erklärt');
+    layout.drawHeader(doc, 'Glossar – Fachbegriffe erklärt');
     this.drawGlossaryPage(doc);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     // Fachberater-Seite (wenn ausgefüllt)
     const hasBerater = submission.berater_name || submission.berater_freitext;
     if (hasBerater) {
       doc.addPage();
       pageNum++;
-      this.drawHeader(doc, 'Ihr persönlicher Fachberater');
+      layout.drawHeader(doc, 'Ihr persönlicher Fachberater');
       this.drawBeraterPage(doc, submission);
-      this.drawFooter(doc, pageNum);
+      layout.drawFooter(doc, pageNum);
     }
 
     // Abschluss-Seite: Kontakt + QR-Codes
     doc.addPage();
     pageNum++;
-    this.drawHeader(doc, 'Kontakt');
+    layout.drawHeader(doc, 'Kontakt');
     await this.drawContactPage(doc, submission);
-    this.drawFooter(doc, pageNum);
+    layout.drawFooter(doc, pageNum);
 
     doc.end();
 
@@ -227,7 +183,7 @@ class PdfService {
   drawTitlePage(doc, submission) {
     // Ruhiges, hochwertiges Deckblatt: viel Weißraum oben, dezenter grüner Bereich unten
     const splitY = 420;
-    doc.rect(0, splitY, 595, 842 - splitY).fill(this.colors.primary);
+    doc.rect(0, splitY, 595, 842 - splitY).fill(layout.colors.primary);
 
     // Lehner Haus Logo (zentriert im Weißraum)
     const logoPath = path.resolve(__dirname, '..', '..', 'Logo', 'LehnerLogo_schwaebischgut.jpg');
@@ -237,32 +193,32 @@ class PdfService {
         doc.image(logoPath, 172.5, 100, { width: 250 });
       } catch (e) {
         console.error('[PDF] Logo konnte nicht geladen werden:', e.message);
-        doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
+        doc.font(layout.typography.hero.font).fontSize(layout.typography.hero.size).fillColor(layout.colors.primary);
         doc.text('LEHNER HAUS', 0, 140, { width: 595, align: 'center' });
-        doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
+        doc.font('Helvetica').fontSize(18).fillColor(layout.colors.textMuted);
         doc.text('schwäbisch gut', 0, 195, { width: 595, align: 'center' });
       }
     } else {
       console.warn('[PDF] Logo-Datei nicht gefunden:', logoPath);
-      doc.font(this.typography.hero.font).fontSize(this.typography.hero.size).fillColor(this.colors.primary);
+      doc.font(layout.typography.hero.font).fontSize(layout.typography.hero.size).fillColor(layout.colors.primary);
       doc.text('LEHNER HAUS', 0, 140, { width: 595, align: 'center' });
-      doc.font('Helvetica').fontSize(18).fillColor(this.colors.textMuted);
+      doc.font('Helvetica').fontSize(18).fillColor(layout.colors.textMuted);
       doc.text('schwäbisch gut', 0, 195, { width: 595, align: 'center' });
     }
 
     // Dezente goldene Trennlinie
-    doc.moveTo(180, splitY).lineTo(415, splitY).lineWidth(1.5).strokeColor(this.colors.gold).stroke();
+    doc.moveTo(180, splitY).lineTo(415, splitY).lineWidth(1.5).strokeColor(layout.colors.gold).stroke();
 
     // Untertitel im grünen Bereich
-    doc.font('Helvetica-Bold').fontSize(26).fillColor(this.colors.white);
+    doc.font('Helvetica-Bold').fontSize(26).fillColor(layout.colors.white);
     doc.text('Ihre persönliche', 0, splitY + 35, { width: 595, align: 'center' });
 
-    doc.fontSize(32).fillColor(this.colors.gold);
+    doc.fontSize(32).fillColor(layout.colors.gold);
     doc.text('Leistungsbeschreibung', 0, splitY + 68, { width: 595, align: 'center' });
 
     // Bauherr-Name
     const anrede = submission.bauherr_anrede || 'Familie';
-    doc.font('Helvetica-Bold').fontSize(20).fillColor(this.colors.white);
+    doc.font('Helvetica-Bold').fontSize(20).fillColor(layout.colors.white);
     doc.text(`${anrede} ${submission.bauherr_nachname}`, 0, splitY + 140, { width: 595, align: 'center' });
 
     // Datum
@@ -273,37 +229,10 @@ class PdfService {
     doc.text(dateStr, 0, splitY + 175, { width: 595, align: 'center' });
 
     // Footer Titelseite
-    doc.rect(0, 790, 595, 1.5).fill(this.colors.gold);
+    doc.rect(0, 790, 595, 1.5).fill(layout.colors.gold);
 
     doc.font('Helvetica').fontSize(8).fillColor('#999999');
     doc.text('Lehner Haus GmbH · Ihr Partner für individuelles Bauen seit über 60 Jahren', 0, 802, { width: 595, align: 'center' });
-  }
-
-  drawHeader(doc, title) {
-    // Gold accent line
-    doc.rect(50, 35, 4, 30).fill(this.colors.gold);
-
-    doc.font('Helvetica-Bold').fontSize(20).fillColor(this.colors.primary);
-    doc.text(title, 62, 40, { lineBreak: false });
-
-    doc.moveTo(50, 75).lineTo(545, 75).strokeColor(this.colors.secondary).lineWidth(1).stroke();
-  }
-
-  drawFooter(doc, pageNum) {
-    // Goldene Trennlinie
-    doc.moveTo(50, 800).lineTo(545, 800).lineWidth(0.5).strokeColor(this.colors.gold).stroke();
-
-    // Links: Website
-    doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
-    doc.text('www.lehner-haus.de', 50, 810, { lineBreak: false });
-
-    // Mitte: Firmenname
-    doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
-    doc.text('Lehner Haus GmbH', 0, 810, { width: 595, align: 'center' });
-
-    // Rechts: Seitenzahl
-    doc.font('Helvetica-Bold').fontSize(8).fillColor(this.colors.primary);
-    doc.text(`Seite ${pageNum}`, 495, 810, { width: 50, align: 'right' });
   }
 
   // NEU: QDF-Zertifizierung Seite
@@ -311,26 +240,26 @@ class PdfService {
     let y = 95;
 
     // Gold highlight box
-    doc.roundedRect(60, y, 475, 70, 8).fill(this.colors.goldLight);
-    doc.roundedRect(60, y, 475, 70, 8).stroke(this.colors.gold);
+    doc.roundedRect(60, y, 475, 70, 8).fill(layout.colors.goldLight);
+    doc.roundedRect(60, y, 475, 70, 8).stroke(layout.colors.gold);
 
-    doc.font('Helvetica-Bold').fontSize(14).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(14).fillColor(layout.colors.primary);
     doc.text('QDF-Qualitätszertifikat 2026', 80, y + 15, { lineBreak: false });
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.textLight);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.textLight);
     doc.text('Lehner Haus ist Mitglied der Qualitätsgemeinschaft Deutscher Fertigbau (QDF)', 80, y + 35, { width: 430 });
     doc.text('und trägt das RAL-Gütezeichen für geprüfte Qualität.', 80, y + 48, { width: 430 });
 
     y += 95;
 
     // Intro
-    doc.font('Helvetica').fontSize(11).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(11).fillColor(layout.colors.text);
     doc.text('Die QDF-Zertifizierung garantiert höchste Qualitätsstandards in Planung, Produktion und Ausführung. Als zertifiziertes Mitglied unterliegt Lehner Haus regelmäßigen Prüfungen durch unabhängige Institute.', 80, y, { width: 435, lineGap: 2 });
 
     y += 55;
 
     // 5 QDF-Vorteile
-    doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(13).fillColor(layout.colors.primary);
     doc.text('Ihre Vorteile durch QDF-Zertifizierung:', 80, y, { lineBreak: false });
 
     y += 28;
@@ -345,14 +274,14 @@ class PdfService {
 
     qdfVorteile.forEach(([title, desc]) => {
       // Gold checkmark circle
-      doc.circle(90, y + 7, 8).fill(this.colors.gold);
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.white);
+      doc.circle(90, y + 7, 8).fill(layout.colors.gold);
+      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
       doc.text('✓', 86, y + 3, { lineBreak: false });
 
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);
       doc.text(title, 108, y, { lineBreak: false });
 
-      doc.font('Helvetica').fontSize(9).fillColor(this.colors.textLight);
+      doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textLight);
       doc.text(desc, 108, y + 13, { width: 420, lineGap: 1 });
 
       y += 42;
@@ -361,18 +290,18 @@ class PdfService {
     y += 15;
 
     // Kernbotschaft Box
-    doc.roundedRect(60, y, 475, 85, 8).fill(this.colors.primary);
+    doc.roundedRect(60, y, 475, 85, 8).fill(layout.colors.primary);
 
-    doc.font('Helvetica-Bold').fontSize(12).fillColor(this.colors.white);
+    doc.font('Helvetica-Bold').fontSize(12).fillColor(layout.colors.white);
     doc.text('Vertrauen Sie auf geprüfte Qualität', 80, y + 15, { lineBreak: false });
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
     doc.text('Die QDF-Zertifizierung ist Ihr Qualitätsversprechen: Jedes Lehner Haus wird nach höchsten Standards geplant, produziert und errichtet. Das RAL-Gütezeichen bestätigt diese Qualität unabhängig.', 80, y + 38, { width: 415, lineGap: 2 });
 
     y += 85;
 
     // Zertifikatsnummer
-    doc.font('Helvetica').fontSize(9).fillColor(this.colors.textMuted);
+    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textMuted);
     doc.text('QDF-Mitgliedsnummer: DE-QDF-2026-LH | RAL-Gütezeichen: RAL-GZ 422', 80, y, { lineBreak: false });
   }
 
@@ -380,7 +309,7 @@ class PdfService {
   drawQualityAdvantagesPage(doc) {
     let y = 95;
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
     doc.text('Bei Lehner Haus erhalten Sie Premium-Qualität in jedem Detail:', 80, y, { width: 435 });
 
     y += 30;
@@ -410,40 +339,40 @@ class PdfService {
       // Card Background
       doc.roundedRect(cx, cy, cardWidth, cardHeight, 8).fill('#f9f9f9');
       doc.roundedRect(cx, cy, cardWidth, cardHeight, 8)
-         .strokeColor(this.colors.gold).lineWidth(1).stroke();
+         .strokeColor(layout.colors.gold).lineWidth(1).stroke();
 
       // Nummer-Badge (links oben)
-      doc.circle(cx + 15, cy + 15, 12).fill(this.colors.gold);
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.white);
+      doc.circle(cx + 15, cy + 15, 12).fill(layout.colors.gold);
+      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
       doc.text(vorteil.nr, cx + 10, cy + 9, { width: 10, align: 'center' });
 
       // Titel (keine Icons mehr)
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);
       doc.text(vorteil.title, cx + 8, cy + 45, { width: cardWidth - 16, align: 'center' });
 
       // Beschreibung
-      doc.font('Helvetica').fontSize(7.5).fillColor(this.colors.textLight);
+      doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.textLight);
       doc.text(vorteil.desc, cx + 8, cy + 65, { width: cardWidth - 16, align: 'center', lineGap: 0.8 });
     });
 
     y += Math.ceil(vorteile.length / cardsPerRow) * (cardHeight + gap) + 15;
 
     // Callout Box
-    doc.roundedRect(60, y, 475, 50, 8).fill(this.colors.primaryDark);
+    doc.roundedRect(60, y, 475, 50, 8).fill(layout.colors.primaryDark);
 
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.gold);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.gold);
     doc.text('Fragen Sie bei anderen Anbietern gezielt nach diesen Punkten!', 80, y + 12, { lineBreak: false });
 
-    doc.font('Helvetica').fontSize(8).fillColor(this.colors.white);
+    doc.font('Helvetica').fontSize(8).fillColor(layout.colors.white);
     doc.text('Nicht alle diese Leistungen sind branchenüblich. Bei Lehner Haus sind sie Standard.', 80, y + 30, { lineBreak: false });
   }
 
   drawExecutiveSummary(doc, submission) {
     let y = 100;
-    const { marginLeft, contentWidth } = this.layout;
+    const { marginLeft, contentWidth } = layout.layout;
 
     // Key Facts Table
-    doc.font(this.typography.h2.font).fontSize(this.typography.h2.size).fillColor(this.colors.primary);
+    doc.font(layout.typography.h2.font).fontSize(layout.typography.h2.size).fillColor(layout.colors.primary);
     doc.text('Ihre Hausdaten', marginLeft, y);
     y += 30;
 
@@ -455,7 +384,7 @@ class PdfService {
       ['Haustyp', haustyp?.name || '-'],
       ['Energiestandard', kfw],
       ['Personenzahl', `${submission.personenanzahl} Personen`],
-      ['Grundstück', this.getGrundstueckText(submission.grundstueck)]
+      ['Grundstück', layout.getGrundstueckText(submission.grundstueck)]
     ];
 
     // Draw table
@@ -463,19 +392,19 @@ class PdfService {
     keyFacts.forEach(([label, value]) => {
       // Alternating background
       if (keyFacts.indexOf([label, value]) % 2 === 0) {
-        doc.rect(marginLeft, y - 3, contentWidth, rowHeight).fill(this.colors.grayLight);
+        doc.rect(marginLeft, y - 3, contentWidth, rowHeight).fill(layout.colors.grayLight);
       }
 
-      doc.font(this.typography.body.font).fontSize(this.typography.body.size).fillColor(this.colors.text);
+      doc.font(layout.typography.body.font).fontSize(layout.typography.body.size).fillColor(layout.colors.text);
       doc.text(label, marginLeft + 10, y, { width: 150, lineBreak: false });
-      doc.font(this.typography.body.font).fillColor(this.colors.textLight);
+      doc.font(layout.typography.body.font).fillColor(layout.colors.textLight);
       doc.text(value, marginLeft + 170, y, { width: contentWidth - 180, lineBreak: false });
       y += rowHeight;
     });
 
     // Components Summary
-    y += this.layout.sectionGap;
-    doc.font(this.typography.h2.font).fontSize(this.typography.h2.size).fillColor(this.colors.primary);
+    y += layout.layout.sectionGap;
+    doc.font(layout.typography.h2.font).fontSize(layout.typography.h2.size).fillColor(layout.colors.primary);
     doc.text('Gewählte Komponenten', marginLeft, y);
     y += 25;
 
@@ -509,14 +438,14 @@ class PdfService {
 
     components.forEach(([label, name, spec]) => {
       if (components.indexOf([label, name, spec]) % 2 === 1) {
-        doc.rect(marginLeft, y - 3, contentWidth, rowHeight).fill(this.colors.grayLight);
+        doc.rect(marginLeft, y - 3, contentWidth, rowHeight).fill(layout.colors.grayLight);
       }
 
-      doc.font(this.typography.body.font).fontSize(this.typography.body.size).fillColor(this.colors.textMuted);
+      doc.font(layout.typography.body.font).fontSize(layout.typography.body.size).fillColor(layout.colors.textMuted);
       doc.text(label, marginLeft + 10, y, { width: 100, lineBreak: false });
-      doc.fillColor(this.colors.text);
+      doc.fillColor(layout.colors.text);
       doc.text(name || '-', marginLeft + 120, y, { width: 220, lineBreak: false });
-      doc.font(this.typography.small.font).fontSize(this.typography.small.size).fillColor(this.colors.gold);
+      doc.font(layout.typography.small.font).fontSize(layout.typography.small.size).fillColor(layout.colors.gold);
       doc.text(spec || '', marginLeft + 350, y, { width: contentWidth - 360, align: 'right' });
       y += rowHeight;
     });
@@ -527,7 +456,7 @@ class PdfService {
   // NEU: Kompakte Leistungsübersicht auf einer Seite
   drawLeistungsuebersicht(doc, submission) {
     let y = 95;
-    const { marginLeft, contentWidth } = this.layout;
+    const { marginLeft, contentWidth } = layout.layout;
 
     // Dynamische Werte aus Submission
     const windowData = catalogService.getVariantById('windows', submission.window);
@@ -550,8 +479,8 @@ class PdfService {
     const col3X = marginLeft + 2 * (colWidth + colGap);
 
     // === SPALTE 1: PLANUNG ===
-    doc.roundedRect(col1X, y, colWidth, 22, 4).fill(this.colors.primary);
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.white);
+    doc.roundedRect(col1X, y, colWidth, 22, 4).fill(layout.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
     doc.text('Planung & Service', col1X + 8, y + 6);
 
     let y1 = y + 30;
@@ -564,16 +493,16 @@ class PdfService {
       'KfW-Bestätigung'
     ];
 
-    doc.font('Helvetica').fontSize(7.5).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.text);
     planungItems.forEach(item => {
-      doc.fillColor(this.colors.gold).text('•', col1X + 3, y1, { lineBreak: false });
-      doc.fillColor(this.colors.text).text(item, col1X + 12, y1, { width: colWidth - 15 });
+      doc.fillColor(layout.colors.gold).text('•', col1X + 3, y1, { lineBreak: false });
+      doc.fillColor(layout.colors.text).text(item, col1X + 12, y1, { width: colWidth - 15 });
       y1 += 11;
     });
 
     // === SPALTE 2: ROHBAU ===
-    doc.roundedRect(col2X, y, colWidth, 22, 4).fill(this.colors.primary);
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.white);
+    doc.roundedRect(col2X, y, colWidth, 22, 4).fill(layout.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
     doc.text('Rohbau', col2X + 8, y + 6);
 
     let y2 = y + 30;
@@ -595,14 +524,14 @@ class PdfService {
 
     doc.font('Helvetica').fontSize(7.5);
     rohbauItems.forEach(item => {
-      doc.fillColor(this.colors.gold).text('•', col2X + 3, y2, { lineBreak: false });
-      doc.fillColor(this.colors.text).text(item, col2X + 12, y2, { width: colWidth - 15 });
+      doc.fillColor(layout.colors.gold).text('•', col2X + 3, y2, { lineBreak: false });
+      doc.fillColor(layout.colors.text).text(item, col2X + 12, y2, { width: colWidth - 15 });
       y2 += 11;
     });
 
     // === SPALTE 3: AUSBAU ===
-    doc.roundedRect(col3X, y, colWidth, 22, 4).fill(this.colors.primary);
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.white);
+    doc.roundedRect(col3X, y, colWidth, 22, 4).fill(layout.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
     doc.text('Bezugsfertiger Ausbau', col3X + 8, y + 6);
 
     let y3 = y + 30;
@@ -629,8 +558,8 @@ class PdfService {
 
     doc.font('Helvetica').fontSize(7.5);
     ausbauItems.forEach(item => {
-      doc.fillColor(this.colors.gold).text('•', col3X + 3, y3, { lineBreak: false });
-      doc.fillColor(this.colors.text).text(item, col3X + 12, y3, { width: colWidth - 15 });
+      doc.fillColor(layout.colors.gold).text('•', col3X + 3, y3, { lineBreak: false });
+      doc.fillColor(layout.colors.text).text(item, col3X + 12, y3, { width: colWidth - 15 });
       y3 += 11;
     });
 
@@ -638,10 +567,10 @@ class PdfService {
     const maxY = Math.max(y1, y2, y3) + 15;
 
     // === HIGHLIGHT BOX: Gewählte Komponenten ===
-    doc.roundedRect(marginLeft, maxY, contentWidth, 100, 8).fill(this.colors.goldLight);
-    doc.rect(marginLeft, maxY, 4, 100).fill(this.colors.gold);
+    doc.roundedRect(marginLeft, maxY, contentWidth, 100, 8).fill(layout.colors.goldLight);
+    doc.rect(marginLeft, maxY, 4, 100).fill(layout.colors.gold);
 
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);
     doc.text('Ihre zusätzlich gewählten Ausstattungsmerkmale:', marginLeft + 15, maxY + 10);
 
     const wall = catalogService.getVariantById('walls', submission.wall);
@@ -663,7 +592,7 @@ class PdfService {
       hasLueftung ? `Lüftung: ${lueftungText}` : null
     ].filter(Boolean);
 
-    doc.font('Helvetica').fontSize(8).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(8).fillColor(layout.colors.text);
     let hx = marginLeft + 15;
     let hy = maxY + 28;
     const colHalfWidth = contentWidth / 2 - 20;
@@ -673,18 +602,18 @@ class PdfService {
       const xPos = isRightCol ? marginLeft + contentWidth / 2 : marginLeft + 15;
       const yPos = isRightCol ? maxY + 28 + (i - Math.ceil(highlights.length / 2)) * 13 : maxY + 28 + i * 13;
 
-      doc.fillColor(this.colors.gold).text('✓', xPos, yPos, { lineBreak: false });
-      doc.fillColor(this.colors.text).text(h, xPos + 12, yPos, { width: colHalfWidth });
+      doc.fillColor(layout.colors.gold).text('✓', xPos, yPos, { lineBreak: false });
+      doc.fillColor(layout.colors.text).text(h, xPos + 12, yPos, { width: colHalfWidth });
     });
 
     // === FOOTER BOX ===
     const footerY = maxY + 115;
-    doc.roundedRect(marginLeft, footerY, contentWidth, 40, 6).fill(this.colors.primary);
+    doc.roundedRect(marginLeft, footerY, contentWidth, 40, 6).fill(layout.colors.primary);
 
-    doc.font('Helvetica-Bold').fontSize(9).fillColor(this.colors.white);
+    doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.white);
     doc.text('Alle Leistungen inklusive - keine versteckten Kosten!', marginLeft + 15, footerY + 10);
 
-    doc.font('Helvetica').fontSize(8).fillColor(this.colors.white);
+    doc.font('Helvetica').fontSize(8).fillColor(layout.colors.white);
     doc.text('Festpreis-Garantie von Lehner Haus: Ihr Preis steht von Anfang an fest.', marginLeft + 15, footerY + 24);
   }
 
@@ -702,20 +631,20 @@ class PdfService {
       ['Haustyp:', haustyp?.name || '-'],
       ['Energiestandard:', kfw],
       ['Personenanzahl:', `${submission.personenanzahl} Personen`],
-      ['Grundstück:', this.getGrundstueckText(submission.grundstueck)]
+      ['Grundstück:', layout.getGrundstueckText(submission.grundstueck)]
     ];
 
     lines.forEach(([label, value]) => {
-      doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
       doc.text(label, 80, y, { lineBreak: false });
-      doc.font('Helvetica').fillColor(this.colors.textLight);
+      doc.font('Helvetica').fillColor(layout.colors.textLight);
       doc.text(value, 250, y, { lineBreak: false });
       y += 22;
     });
 
     // Komponenten-Liste
     y += 25;
-    doc.font('Helvetica-Bold').fontSize(12).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(12).fillColor(layout.colors.primary);
     doc.text('Ihre Komponenten:', 80, y, { lineBreak: false });
     y += 22;
 
@@ -749,12 +678,12 @@ class PdfService {
       componentsList.push({ label: 'Lüftung', data: lueftung });
     }
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.textLight);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.textLight);
     componentsList.forEach(({ label, data }) => {
       if (data) {
-        doc.font('Helvetica-Bold').fillColor(this.colors.primary);
+        doc.font('Helvetica-Bold').fillColor(layout.colors.primary);
         doc.text(`${label}:`, 90, y, { continued: true });
-        doc.font('Helvetica').fillColor(this.colors.textLight);
+        doc.font('Helvetica').fillColor(layout.colors.textLight);
         doc.text(` ${data.name}`, { lineBreak: false });
         y += 18;
       }
@@ -762,13 +691,13 @@ class PdfService {
 
     // Vorteile-Box with gold accent
     y += 30;
-    doc.roundedRect(60, y, 475, 110, 8).fill(this.colors.goldLight);
-    doc.rect(60, y, 4, 110).fill(this.colors.gold);
+    doc.roundedRect(60, y, 475, 110, 8).fill(layout.colors.goldLight);
+    doc.rect(60, y, 4, 110).fill(layout.colors.gold);
 
-    doc.font('Helvetica-Bold').fontSize(12).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(12).fillColor(layout.colors.primary);
     doc.text('Ihre Vorteile mit Lehner Haus', 80, y + 15, { lineBreak: false });
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
     const vorteile = [
       'Festpreis-Garantie ohne versteckte Kosten',
       'Persönliche Betreuung bis zum Einzug',
@@ -778,15 +707,15 @@ class PdfService {
     ];
 
     vorteile.forEach((v, i) => {
-      doc.fillColor(this.colors.gold).text('✓', 80, y + 38 + (i * 14), { lineBreak: false });
-      doc.fillColor(this.colors.text).text(v, 95, y + 38 + (i * 14), { lineBreak: false });
+      doc.fillColor(layout.colors.gold).text('✓', 80, y + 38 + (i * 14), { lineBreak: false });
+      doc.fillColor(layout.colors.text).text(v, 95, y + 38 + (i * 14), { lineBreak: false });
     });
   }
 
   drawServiceContent(doc) {
     let y = 100;
 
-    doc.font('Helvetica').fontSize(11).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(11).fillColor(layout.colors.text);
     doc.text('Bei Lehner Haus erhalten Sie alles aus einer Hand – schwäbisch gut seit über 60 Jahren.', 80, y, { lineBreak: false });
 
     y = 130;
@@ -807,19 +736,19 @@ class PdfService {
     ];
 
     services.forEach(([title, text]) => {
-      doc.font('Helvetica-Bold').fontSize(9).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
       doc.text(title, 80, y, { lineBreak: false });
-      doc.font('Helvetica').fontSize(8).fillColor(this.colors.text);
+      doc.font('Helvetica').fontSize(8).fillColor(layout.colors.text);
       doc.text(text, 80, y + 11, { lineBreak: false });
       y += 28;
     });
 
     // Highlight-Box
     y += 15;
-    doc.roundedRect(60, y, 475, 55, 8).fill(this.colors.primary);
-    doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.white);
+    doc.roundedRect(60, y, 475, 55, 8).fill(layout.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.white);
     doc.text('Seit 3 Generationen vertrauen uns über 5.000 Baufamilien.', 80, y + 12, { lineBreak: false });
-    doc.font('Helvetica').fontSize(9).fillColor(this.colors.white);
+    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.white);
     doc.text('QDF-zertifiziert | RAL-Gütezeichen | Mitglied im BDF', 80, y + 32, { lineBreak: false });
   }
 
@@ -831,12 +760,12 @@ class PdfService {
 
     // === KAPITEL-HEADER mit Nummerierung ===
     const chapterNum = chapterNumber || '5.1';
-    doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
     doc.text(`${chapterNum} ${categoryTitle.toUpperCase()}`, marginLeft, y);
     y += 18;
 
     // Komponenten-Name und kurze Beschreibung (keine Wiederholung des Systemnamens)
-    doc.font('Helvetica').fontSize(9).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
     let shortDesc = component.description ? component.description.split('.')[0] + '.' : '';
     // Systemname aus Beschreibung entfernen falls bereits als Titel angezeigt
     if (shortDesc && component.name) {
@@ -863,10 +792,10 @@ class PdfService {
       try {
         doc.image(imgPath, marginLeft, y, { fit: [imgWidth, imgHeight] });
       } catch (e) {
-        this.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
+        layout.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
       }
     } else {
-      this.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
+      layout.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
     }
 
     // === AUFBAU-LISTE (rechte Spalte) - ELK Style ===
@@ -876,23 +805,23 @@ class PdfService {
     const aufbauHeader = categoryTitle.includes('Decke')
       ? 'Aufbau von oben nach unten'
       : 'Aufbau von außen nach innen';
-    doc.font('Helvetica-Bold').fontSize(9).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
     doc.text(aufbauHeader, rightColX, rightY);
     rightY += 4;
     doc.moveTo(rightColX, rightY + 8).lineTo(rightColX + 130, rightY + 8)
-       .strokeColor(this.colors.secondary).lineWidth(0.5).stroke();
+       .strokeColor(layout.colors.secondary).lineWidth(0.5).stroke();
     rightY += 16;
 
     // Aufbau-Schichten aus component.layers oder technicalDetails extrahieren
-    const aufbauItems = this.extractAufbauItems(component, categoryTitle);
+    const aufbauItems = layout.extractAufbauItems(component, categoryTitle);
 
     doc.font('Helvetica').fontSize(8);
     aufbauItems.forEach(item => {
-      doc.font('Helvetica-Bold').fillColor(this.colors.text).text('·', rightColX, rightY, { lineBreak: false });
-      doc.font('Helvetica').fillColor(this.colors.text);
+      doc.font('Helvetica-Bold').fillColor(layout.colors.text).text('·', rightColX, rightY, { lineBreak: false });
+      doc.font('Helvetica').fillColor(layout.colors.text);
       doc.text(item.name, rightColX + 8, rightY, { width: rightColWidth - 70, lineBreak: false });
       if (item.value) {
-        doc.font('Helvetica-Bold').fillColor(this.colors.primary);
+        doc.font('Helvetica-Bold').fillColor(layout.colors.primary);
         doc.text(item.value, rightColX + rightColWidth - 65, rightY, {
           width: 60, align: 'right', lineBreak: false
         });
@@ -920,9 +849,9 @@ class PdfService {
     if (totalThickness > 0) {
       rightY += 4;
       doc.moveTo(rightColX, rightY).lineTo(rightColX + rightColWidth, rightY)
-         .strokeColor(this.colors.gold).lineWidth(0.8).stroke();
+         .strokeColor(layout.colors.gold).lineWidth(0.8).stroke();
       rightY += 6;
-      doc.font('Helvetica-Bold').fontSize(8).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.primary);
       doc.text('Gesamtstärke', rightColX + 8, rightY, { width: rightColWidth - 70, lineBreak: false });
       doc.text(`${totalThickness.toFixed(1).replace('.', ',')} mm`, rightColX + rightColWidth - 65, rightY, {
         width: 60, align: 'right', lineBreak: false
@@ -933,18 +862,18 @@ class PdfService {
     // === QUALITÄTSMERKMALE TABELLE ===
     rightY += 12;
     doc.moveTo(rightColX, rightY).lineTo(rightColX + rightColWidth, rightY)
-       .strokeColor(this.colors.secondary).lineWidth(0.5).stroke();
+       .strokeColor(layout.colors.secondary).lineWidth(0.5).stroke();
     rightY += 10;
 
-    const qualityItems = this.extractQualityItems(component, categoryTitle);
+    const qualityItems = layout.extractQualityItems(component, categoryTitle);
 
     doc.font('Helvetica').fontSize(8);
     qualityItems.forEach(item => {
-      doc.fillColor(this.colors.text).text(item.label, rightColX, rightY, { lineBreak: false });
+      doc.fillColor(layout.colors.text).text(item.label, rightColX, rightY, { lineBreak: false });
       if (item.highlight) {
-        doc.font('Helvetica-Bold').fillColor(this.colors.gold);
+        doc.font('Helvetica-Bold').fillColor(layout.colors.gold);
       } else {
-        doc.font('Helvetica').fillColor(this.colors.primary);
+        doc.font('Helvetica').fillColor(layout.colors.primary);
       }
       doc.text(item.value, rightColX + rightColWidth - 100, rightY, { width: 100, align: 'right', lineBreak: false });
       doc.font('Helvetica');
@@ -972,10 +901,10 @@ class PdfService {
       const totalFeatHeight = maxRowHeights.reduce((a, b) => a + b, 0);
       const boxHeight = 26 + totalFeatHeight + 6;
 
-      doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 4).fill(this.colors.goldLight);
-      doc.rect(marginLeft, y, 3, boxHeight).fill(this.colors.gold);
+      doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 4).fill(layout.colors.goldLight);
+      doc.rect(marginLeft, y, 3, boxHeight).fill(layout.colors.gold);
 
-      doc.font('Helvetica-Bold').fontSize(9).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
       doc.text('Ihre Vorteile bei Lehner Haus:', marginLeft + 12, y + 8);
 
       let featY = y + 26;
@@ -984,9 +913,9 @@ class PdfService {
         const colX = idx % 2 === 0 ? marginLeft + 12 : marginLeft + 12 + featColWidth;
         const rowY = featY + maxRowHeights.slice(0, row).reduce((a, b) => a + b, 0);
 
-        doc.font('Helvetica').fontSize(7.5).fillColor(this.colors.gold);
+        doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.gold);
         doc.text('✓', colX, rowY, { lineBreak: false });
-        doc.fillColor(this.colors.text);
+        doc.fillColor(layout.colors.text);
         doc.text(feature, colX + 10, rowY, { width: featColWidth - 25 });
       });
 
@@ -995,7 +924,7 @@ class PdfService {
 
     // === VORTEILE-LISTE (kompakt) ===
     if (component.advantages && component.advantages.length > 0 && y < 610) {
-      doc.font('Helvetica-Bold').fontSize(9).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
       doc.text('Weitere Vorteile:', marginLeft, y);
       y += 16;
 
@@ -1005,9 +934,9 @@ class PdfService {
         const colX = idx % 2 === 0 ? marginLeft : marginLeft + advColWidth;
         const rowY = y + Math.floor(idx / 2) * (14 + advGap);
 
-        doc.font('Helvetica').fontSize(7.5).fillColor(this.colors.gold);
+        doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.gold);
         doc.text('•', colX, rowY, { lineBreak: false });
-        doc.fillColor(this.colors.textLight);
+        doc.fillColor(layout.colors.textLight);
         doc.text(adv, colX + 8, rowY, { width: advColWidth - 15 });
       });
 
@@ -1020,10 +949,10 @@ class PdfService {
       const boxHeight = Math.min(remainingHeight, 130);
 
       doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 4)
-         .strokeColor(this.colors.gold).lineWidth(1.5).stroke();
+         .strokeColor(layout.colors.gold).lineWidth(1.5).stroke();
       doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 4).fill('#fffef5');
 
-      doc.font('Helvetica-Bold').fontSize(8).fillColor(this.colors.gold);
+      doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.gold);
       doc.text('Tipp für den Anbietervergleich:', marginLeft + 10, y + 10);
 
       // Relevante Tipps extrahieren
@@ -1033,7 +962,7 @@ class PdfService {
         .map(line => line.replace(/❗|KRITISCHE FRAGEN.*:/g, '').trim())
         .filter(line => line.length > 0);
 
-      doc.font('Helvetica').fontSize(7.5).fillColor(this.colors.text);
+      doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.text);
       let tipY = y + 26;
       const maxTipY = y + boxHeight - 12;
       const tipWidth = contentWidth - 20;
@@ -1044,91 +973,6 @@ class PdfService {
         tipY += textHeight + 6;
       });
     }
-  }
-
-  // Hilfsmethode: Aufbau-Schichten extrahieren (ELK-Style)
-  extractAufbauItems(component, categoryTitle) {
-    // Wenn component.layers definiert ist, diese direkt verwenden (ELK-Style)
-    if (component.layers && component.layers.length > 0) {
-      return component.layers.map(layer => ({
-        name: layer.name,
-        value: layer.value || '',
-        note: layer.note || ''
-      }));
-    }
-
-    // Fallback: Aus technicalDetails extrahieren
-    const items = [];
-    const td = component.technicalDetails || {};
-
-    // Je nach Kategorie unterschiedliche Aufbau-Struktur
-    if (categoryTitle.includes('Außenwand') || categoryTitle.includes('wand')) {
-      if (td.insulation) items.push({ name: 'Wärmedämmung', value: td.insulation.match(/\d+\s*mm/)?.[0] || td.insulation });
-      if (td.wallThickness) items.push({ name: 'Wandstärke gesamt', value: td.wallThickness });
-      if (td.fireRating) items.push({ name: 'Brandschutz', value: td.fireRating.split(' ')[0] });
-      if (component.constructionType) items.push({ name: 'Bauweise', value: component.constructionType });
-    } else if (categoryTitle.includes('Innenwand')) {
-      if (td.wallThickness) items.push({ name: 'Wandstärke', value: td.wallThickness });
-      if (td.soundInsulation) items.push({ name: 'Schallschutz', value: td.soundInsulation });
-      if (td.plasterThickness) items.push({ name: 'Beplankung', value: td.plasterThickness });
-    } else if (categoryTitle.includes('Decke')) {
-      if (td.construction) items.push({ name: 'Konstruktion', value: '' });
-      if (td.soundInsulation) items.push({ name: 'Trittschall', value: td.soundInsulation });
-    } else if (categoryTitle.includes('Fenster')) {
-      if (td.glazing) items.push({ name: 'Verglasung', value: '' });
-      if (td.profile) items.push({ name: 'Profil', value: '' });
-      if (td.securityFeatures) items.push({ name: 'Sicherheit', value: 'RC2' });
-    } else if (categoryTitle.includes('Dach')) {
-      if (td.material) items.push({ name: 'Material', value: td.material });
-      if (td.surface) items.push({ name: 'Oberfläche', value: td.surface });
-      if (td.weight) items.push({ name: 'Gewicht', value: td.weight });
-    } else if (categoryTitle.includes('Heizung')) {
-      if (td.refrigerant) items.push({ name: 'Kältemittel', value: td.refrigerant.split(' ')[0] });
-      if (td.noise) items.push({ name: 'Schallpegel', value: td.noise });
-    } else if (categoryTitle.includes('Lüftung')) {
-      if (td.heatRecovery) items.push({ name: 'Wärmerückgewinnung', value: td.heatRecovery });
-      if (td.filters) items.push({ name: 'Filter', value: td.filters });
-      if (td.energySaving) items.push({ name: 'Energieeinsparung', value: td.energySaving });
-    }
-
-    // Fallback: Alle technischen Details hinzufügen wenn Liste leer
-    if (items.length === 0 && td) {
-      Object.entries(td).slice(0, 5).forEach(([key, value]) => {
-        items.push({ name: key, value: String(value).substring(0, 30) });
-      });
-    }
-
-    return items;
-  }
-
-  // Hilfsmethode: Qualitätsmerkmale extrahieren
-  extractQualityItems(component, categoryTitle) {
-    const items = [];
-    const td = component.technicalDetails || {};
-
-    // Hauptqualitätsmerkmale je nach Kategorie
-    if (td.uValue) {
-      items.push({ label: 'Wärmedämmwert (U)', value: td.uValue, highlight: true });
-    }
-    if (td.ugValue) {
-      items.push({ label: 'U-Wert Fenster', value: td.ugValue, highlight: true });
-    }
-    if (td.fireRating) {
-      items.push({ label: 'Feuerwiderstandsklasse', value: td.fireRating.includes('F90') ? 'min. (R)EI 90' : td.fireRating });
-    }
-    if (td.soundInsulation) {
-      items.push({ label: `Qualitätsmerkmal: ${td.soundInsulation}`, value: '' });
-    }
-    // SCOP wird nicht mehr angezeigt
-    if (td.heatRecovery) {
-      items.push({ label: 'Wärmerückgewinnung', value: td.heatRecovery, highlight: true });
-    }
-    if (td.lifespan) {
-      items.push({ label: 'Lebensdauer', value: td.lifespan });
-    }
-    // Position wird nicht mehr angezeigt
-
-    return items.slice(0, 4); // Max 4 Qualitätsmerkmale
   }
 
   // Spezielle Haustyp-Seite im Flyer-Stil
@@ -1156,27 +1000,27 @@ class PdfService {
           doc.restore();
         } catch (e) {
           doc.restore();
-          this.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
+          layout.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
         }
       } else {
-        this.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
+        layout.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
       }
 
       // "Beispielbilder" als echte Bildunterschrift direkt unter dem Bild
-      doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
+      doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
       doc.text('Beispielbilder', imgX, 95 + imgHeight + 2, { width: imgWidth, align: 'center' });
     }
 
     let y = 95 + imgHeight + 14;
 
     // Haustyp-Name
-    doc.font('Helvetica-Bold').fontSize(22).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(22).fillColor(layout.colors.primary);
     doc.text(component.name, marginLeft, y, { width: contentWidth });
 
     y += 35;
 
     // === Beschreibung ===
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
     const desc = component.details || component.description || '';
     doc.text(desc, marginLeft, y, { width: contentWidth, lineGap: 2 });
 
@@ -1184,7 +1028,7 @@ class PdfService {
 
     // === Vorteile Grid (2 Spalten) ===
     if (component.advantages && component.advantages.length > 0) {
-      doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
       doc.text('Ihre Vorteile mit diesem Haustyp:', marginLeft, y);
       y += 20;
 
@@ -1193,9 +1037,9 @@ class PdfService {
         const colX = idx % 2 === 0 ? marginLeft : marginLeft + colWidth;
         const rowY = y + Math.floor(idx / 2) * 18;
 
-        doc.font('Helvetica').fontSize(9).fillColor(this.colors.gold);
+        doc.font('Helvetica').fontSize(9).fillColor(layout.colors.gold);
         doc.text('✓', colX, rowY, { lineBreak: false });
-        doc.fillColor(this.colors.text);
+        doc.fillColor(layout.colors.text);
         doc.text(adv, colX + 12, rowY, { width: colWidth - 20 });
       });
 
@@ -1204,16 +1048,16 @@ class PdfService {
 
     // === Lehner Haus Qualitäts-Badge ===
     if (y < 700) {
-      doc.roundedRect(marginLeft, y, contentWidth, 80, 6).fill(this.colors.goldLight);
-      doc.rect(marginLeft, y, 4, 80).fill(this.colors.gold);
+      doc.roundedRect(marginLeft, y, contentWidth, 80, 6).fill(layout.colors.goldLight);
+      doc.rect(marginLeft, y, 4, 80).fill(layout.colors.gold);
 
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);
       doc.text('100% individuelle Grundrissgestaltung', marginLeft + 15, y + 10);
 
-      doc.font('Helvetica').fontSize(9).fillColor(this.colors.text);
+      doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
       doc.text('Bei Lehner Haus sind Sie nicht an Kataloggrundrisse gebunden.', marginLeft + 15, y + 28, { width: contentWidth - 30 });
 
-      doc.font('Helvetica').fontSize(9).fillColor(this.colors.text);
+      doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
       doc.text('Ihr Traumhaus wird nach Ihren Wünschen geplant.', marginLeft + 15, y + 48, { width: contentWidth - 30 });
       doc.text('Schwäbisch gut seit über 60 Jahren.', marginLeft + 15, y + 60, { width: contentWidth - 30 });
     }
@@ -1225,7 +1069,7 @@ class PdfService {
     const barHeight = 12;
     const maxU = 0.50; // Skala bis 0,5 W/(m²K)
 
-    doc.font('Helvetica-Bold').fontSize(8).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.primary);
     doc.text('U-Wert-Vergleich:', x, y, { lineBreak: false });
     y += 14;
 
@@ -1233,16 +1077,16 @@ class PdfService {
     const uValueNum = parseFloat(uValue.toString().replace(',', '.'));
     const yourBar = Math.min(1, uValueNum / maxU) * chartWidth;
 
-    doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
+    doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
     doc.text(`Ihr Wert: ${uValue}`, x + 5, y + 2, { lineBreak: false });
 
-    doc.rect(x + 5, y + 12, yourBar, barHeight).fill(this.colors.gold);
-    doc.font('Helvetica-Bold').fontSize(7).fillColor(this.colors.gold);
+    doc.rect(x + 5, y + 12, yourBar, barHeight).fill(layout.colors.gold);
+    doc.font('Helvetica-Bold').fontSize(7).fillColor(layout.colors.gold);
     doc.text('★ Exzellent', x + 10 + yourBar, y + 14, { lineBreak: false });
 
     // Standard (0,24)
     y += 22;
-    doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
+    doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
     doc.text('Standard: 0,24', x + 5, y + 2, { lineBreak: false });
     const stdBar = (0.24 / maxU) * chartWidth;
     doc.rect(x + 5, y + 12, stdBar, barHeight).fill('#95a5a6');
@@ -1274,21 +1118,21 @@ class PdfService {
     const scopAngle = Math.PI * Math.min(1, scopNum / 6);
     doc.arc(centerX, centerY, radius, Math.PI, Math.PI + scopAngle, false)
        .lineWidth(8)
-       .strokeColor(this.colors.gold)
+       .strokeColor(layout.colors.gold)
        .stroke();
     doc.restore();
 
     // SCOP-Wert in der Mitte
-    doc.font('Helvetica-Bold').fontSize(16).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(16).fillColor(layout.colors.primary);
     doc.text(`SCOP ${scop}`, centerX - 28, centerY - 8, { width: 56, align: 'center' });
 
     // Sterne
     const stars = '★'.repeat(Math.min(5, Math.round(scopNum)));
-    doc.fontSize(10).fillColor(this.colors.gold);
+    doc.fontSize(10).fillColor(layout.colors.gold);
     doc.text(stars, centerX - 28, centerY + 10, { width: 56, align: 'center' });
 
     // Label
-    doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
+    doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
     doc.text('Energieeffizienz: Exzellent', centerX - 45, centerY + 30, { width: 90, align: 'center' });
 
     return y + 110;
@@ -1301,19 +1145,19 @@ class PdfService {
       const qrDataUrl = await QRCode.toDataURL(url, {
         width: 100,
         margin: 1,
-        color: { dark: this.colors.primary, light: '#ffffff' }
+        color: { dark: layout.colors.primary, light: '#ffffff' }
       });
 
       // Als Bild einbetten
       doc.image(qrDataUrl, x, y, { width: 80, height: 80 });
 
       // Label
-      doc.font('Helvetica').fontSize(7).fillColor(this.colors.textMuted);
+      doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
       doc.text(label, x, y + 85, { width: 80, align: 'center' });
     } catch (e) {
       console.error('[PDF] QR-Code Fehler:', e);
       // Fallback: Link als Text
-      doc.font('Helvetica').fontSize(7).fillColor(this.colors.textLight);
+      doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textLight);
       doc.text(url, x, y, { width: 80 });
     }
   }
@@ -1321,11 +1165,11 @@ class PdfService {
   async drawFinalContent(doc, submission) {
     let y = 100;
 
-    doc.font('Helvetica').fontSize(11).fillColor(this.colors.textLight);
+    doc.font('Helvetica').fontSize(11).fillColor(layout.colors.textLight);
     doc.text('Vielen Dank für Ihr Interesse an Lehner Haus.', 80, y, { lineBreak: false });
 
     y += 35;
-    doc.font('Helvetica-Bold').fontSize(12).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(12).fillColor(layout.colors.primary);
     doc.text('So geht es weiter:', 80, y, { lineBreak: false });
 
     y += 25;
@@ -1336,7 +1180,7 @@ class PdfService {
       'Erstellung Ihres Angebots'
     ];
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.textLight);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.textLight);
     steps.forEach((step, i) => {
       doc.text(`${i + 1}. ${step}`, 90, y, { lineBreak: false });
       y += 18;
@@ -1344,13 +1188,13 @@ class PdfService {
 
     // NEU: Bedarfsanalyse-Box
     y += 25;
-    doc.roundedRect(60, y, 475, 100, 8).fill(this.colors.goldLight);
-    doc.rect(60, y, 4, 100).fill(this.colors.gold);
+    doc.roundedRect(60, y, 475, 100, 8).fill(layout.colors.goldLight);
+    doc.rect(60, y, 4, 100).fill(layout.colors.gold);
 
-    doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(13).fillColor(layout.colors.primary);
     doc.text('Ihr nächster Schritt: Persönliche Bedarfsanalyse', 80, y + 12, { lineBreak: false });
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
     doc.text('In einem persönlichen Gespräch erfassen wir gemeinsam:', 80, y + 32, { lineBreak: false });
 
     const bedarfsItems = [
@@ -1361,20 +1205,20 @@ class PdfService {
     ];
 
     bedarfsItems.forEach((item, i) => {
-      doc.fillColor(this.colors.gold).text('•', 90, y + 48 + (i * 12), { lineBreak: false });
-      doc.fillColor(this.colors.text).text(item, 100, y + 48 + (i * 12), { lineBreak: false });
+      doc.fillColor(layout.colors.gold).text('•', 90, y + 48 + (i * 12), { lineBreak: false });
+      doc.fillColor(layout.colors.text).text(item, 100, y + 48 + (i * 12), { lineBreak: false });
     });
 
     // Kontakt-Box (Berater oder Standard)
     y += 125;
-    doc.roundedRect(60, y, 475, 90, 8).fill(this.colors.primary);
-    doc.rect(530, y + 10, 4, 70).fill(this.colors.gold);
+    doc.roundedRect(60, y, 475, 90, 8).fill(layout.colors.primary);
+    doc.rect(530, y + 10, 4, 70).fill(layout.colors.gold);
 
     if (submission.berater_name) {
-      doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.white);
+      doc.font('Helvetica-Bold').fontSize(13).fillColor(layout.colors.white);
       doc.text('Ihr Ansprechpartner', 80, y + 12, { lineBreak: false });
 
-      doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
       doc.text(submission.berater_name, 80, y + 35, { lineBreak: false });
       if (submission.berater_telefon) {
         doc.text(`Telefon: ${submission.berater_telefon}`, 80, y + 50, { lineBreak: false });
@@ -1383,10 +1227,10 @@ class PdfService {
         doc.text(`E-Mail: ${submission.berater_email}`, 80, y + 65, { lineBreak: false });
       }
     } else {
-      doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.white);
+      doc.font('Helvetica-Bold').fontSize(13).fillColor(layout.colors.white);
       doc.text('Ihr Ansprechpartner', 80, y + 12, { lineBreak: false });
 
-      doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
       doc.text('Lehner Haus GmbH', 80, y + 35, { lineBreak: false });
       doc.text('Telefon: 07321 96700', 80, y + 50, { lineBreak: false });
       doc.text('E-Mail: info@lehner-haus.de', 80, y + 65, { lineBreak: false });
@@ -1394,7 +1238,7 @@ class PdfService {
 
     // QR-Codes (3 nebeneinander)
     y += 110;
-    doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
     doc.text('Schnellzugriff:', 80, y, { lineBreak: false });
 
     y += 20;
@@ -1413,14 +1257,14 @@ class PdfService {
     let y = 120;
 
     // Kontakt-Box
-    doc.roundedRect(60, y, 475, 90, 8).fill(this.colors.primary);
-    doc.rect(530, y + 10, 4, 70).fill(this.colors.gold);
+    doc.roundedRect(60, y, 475, 90, 8).fill(layout.colors.primary);
+    doc.rect(530, y + 10, 4, 70).fill(layout.colors.gold);
 
     if (submission.berater_name) {
-      doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.white);
+      doc.font('Helvetica-Bold').fontSize(13).fillColor(layout.colors.white);
       doc.text('Ihr Ansprechpartner', 80, y + 12, { lineBreak: false });
 
-      doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
       doc.text(submission.berater_name, 80, y + 35, { lineBreak: false });
       if (submission.berater_telefon) {
         doc.text(`Telefon: ${submission.berater_telefon}`, 80, y + 50, { lineBreak: false });
@@ -1429,10 +1273,10 @@ class PdfService {
         doc.text(`E-Mail: ${submission.berater_email}`, 80, y + 65, { lineBreak: false });
       }
     } else {
-      doc.font('Helvetica-Bold').fontSize(13).fillColor(this.colors.white);
+      doc.font('Helvetica-Bold').fontSize(13).fillColor(layout.colors.white);
       doc.text('Ihr Ansprechpartner', 80, y + 12, { lineBreak: false });
 
-      doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
       doc.text('Lehner Haus GmbH', 80, y + 35, { lineBreak: false });
       doc.text('Telefon: 07321 96700', 80, y + 50, { lineBreak: false });
       doc.text('E-Mail: info@lehner-haus.de', 80, y + 65, { lineBreak: false });
@@ -1440,7 +1284,7 @@ class PdfService {
 
     // QR-Codes
     y += 120;
-    doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.primary);
+    doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
     doc.text('Schnellzugriff:', 80, y, { lineBreak: false });
 
     y += 20;
@@ -1452,7 +1296,7 @@ class PdfService {
   drawComparisonChecklist(doc, submission) {
     let y = 95;
 
-    doc.font('Helvetica').fontSize(10).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
     doc.text('Nutzen Sie diese Checkliste, um unterschiedliche Hersteller objektiv zu vergleichen:', 80, y, { lineBreak: false });
 
     y += 25;
@@ -1478,12 +1322,12 @@ class PdfService {
     doc.font('Helvetica').fontSize(9);
     checklistItems.forEach(([topic, question], i) => {
       // Checkbox with gold border
-      doc.rect(80, y, 10, 10).strokeColor(this.colors.gold).lineWidth(1.5).stroke();
+      doc.rect(80, y, 10, 10).strokeColor(layout.colors.gold).lineWidth(1.5).stroke();
 
-      doc.font('Helvetica-Bold').fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fillColor(layout.colors.primary);
       doc.text(topic + ':', 95, y, { lineBreak: false });
 
-      doc.font('Helvetica').fillColor(this.colors.text);
+      doc.font('Helvetica').fillColor(layout.colors.text);
       doc.text(question, 200, y, { width: 340, lineGap: 1 });
 
       y += 22;
@@ -1491,13 +1335,13 @@ class PdfService {
 
     // Warnhinweis-Box
     y += 10;
-    doc.roundedRect(60, y, 475, 80, 8).fill(this.colors.errorLight);
-    doc.rect(60, y, 4, 80).fill(this.colors.error);
+    doc.roundedRect(60, y, 475, 80, 8).fill(layout.colors.errorLight);
+    doc.rect(60, y, 4, 80).fill(layout.colors.error);
 
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.error);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.error);
     doc.text('Vorsicht bei diesen Warnsignalen:', 80, y + 10, { lineBreak: false });
 
-    doc.font('Helvetica').fontSize(8).fillColor(this.colors.text);
+    doc.font('Helvetica').fontSize(8).fillColor(layout.colors.text);
     const warnings = [
       '• Extrem niedriger Preis ohne nachvollziehbare Kalkulation',
       '• Keine konkreten Antworten auf technische Fragen',
@@ -1510,12 +1354,12 @@ class PdfService {
 
     // Lehner Haus Box
     y += 85;
-    doc.roundedRect(60, y, 475, 45, 8).fill(this.colors.primary);
-    doc.rect(530, y, 4, 45).fill(this.colors.gold);
+    doc.roundedRect(60, y, 475, 45, 8).fill(layout.colors.primary);
+    doc.rect(530, y, 4, 45).fill(layout.colors.gold);
 
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.white);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
     doc.text('Bei Lehner Haus können Sie jeden dieser Punkte mit "Ja" beantworten.', 80, y + 12, { lineBreak: false });
-    doc.font('Helvetica').fontSize(9).fillColor(this.colors.white);
+    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.white);
     doc.text('Überzeugen Sie sich selbst: Besuchen Sie uns im Musterhaus!', 80, y + 28, { lineBreak: false });
   }
 
@@ -1526,20 +1370,20 @@ class PdfService {
 
     // Berater-Kontaktbox
     if (submission.berater_name) {
-      doc.roundedRect(marginLeft, y, contentWidth, 80, 8).fill(this.colors.primary);
-      doc.rect(marginLeft + contentWidth - 4, y, 4, 80).fill(this.colors.gold);
+      doc.roundedRect(marginLeft, y, contentWidth, 80, 8).fill(layout.colors.primary);
+      doc.rect(marginLeft + contentWidth - 4, y, 4, 80).fill(layout.colors.gold);
 
-      doc.font('Helvetica-Bold').fontSize(14).fillColor(this.colors.white);
+      doc.font('Helvetica-Bold').fontSize(14).fillColor(layout.colors.white);
       doc.text(submission.berater_name, marginLeft + 20, y + 15);
 
       let contactY = y + 38;
       if (submission.berater_telefon) {
-        doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+        doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
         doc.text(`Telefon: ${submission.berater_telefon}`, marginLeft + 20, contactY);
         contactY += 16;
       }
       if (submission.berater_email) {
-        doc.font('Helvetica').fontSize(10).fillColor(this.colors.white);
+        doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
         doc.text(`E-Mail: ${submission.berater_email}`, marginLeft + 20, contactY);
       }
 
@@ -1549,21 +1393,21 @@ class PdfService {
     // Freitext
     if (submission.berater_freitext) {
       const cleanFreitext = submission.berater_freitext.replace(/\r/g, '');
-      doc.roundedRect(marginLeft, y, contentWidth, 0, 6).fill(this.colors.goldLight);
-      doc.rect(marginLeft, y, 4, 0).fill(this.colors.gold);
+      doc.roundedRect(marginLeft, y, contentWidth, 0, 6).fill(layout.colors.goldLight);
+      doc.rect(marginLeft, y, 4, 0).fill(layout.colors.gold);
 
       // Höhe dynamisch berechnen
       doc.font('Helvetica').fontSize(10);
       const textHeight = doc.heightOfString(cleanFreitext, { width: contentWidth - 40 });
       const boxHeight = textHeight + 40;
 
-      doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 6).fill(this.colors.goldLight);
-      doc.rect(marginLeft, y, 4, boxHeight).fill(this.colors.gold);
+      doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 6).fill(layout.colors.goldLight);
+      doc.rect(marginLeft, y, 4, boxHeight).fill(layout.colors.gold);
 
-      doc.font('Helvetica-Bold').fontSize(11).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
       doc.text('Persönliche Nachricht:', marginLeft + 15, y + 12);
 
-      doc.font('Helvetica').fontSize(10).fillColor(this.colors.text);
+      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
       doc.text(cleanFreitext, marginLeft + 15, y + 30, { width: contentWidth - 30, lineGap: 2 });
     }
   }
@@ -1573,7 +1417,7 @@ class PdfService {
     const marginLeft = 60;
     const contentWidth = 475;
 
-    doc.font('Helvetica').fontSize(9).fillColor(this.colors.textMuted);
+    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textMuted);
     doc.text('Die wichtigsten Fachbegriffe aus Ihrer Leistungsbeschreibung im Überblick:', marginLeft, y, { width: contentWidth });
     y += 25;
 
@@ -1607,16 +1451,11 @@ class PdfService {
       const x = marginLeft + col * (colWidth + 16);
       const rowY = y + row * 38;
 
-      doc.font('Helvetica-Bold').fontSize(8).fillColor(this.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.primary);
       doc.text(item[0], x, rowY, { width: colWidth });
-      doc.font('Helvetica').fontSize(7).fillColor(this.colors.text);
+      doc.font('Helvetica').fontSize(7).fillColor(layout.colors.text);
       doc.text(item[1], x, rowY + 10, { width: colWidth, lineGap: 0.5 });
     });
-  }
-
-  getGrundstueckText(status) {
-    const map = { 'vorhanden': 'vorhanden', 'in_aussicht': 'in Aussicht', 'suche': 'auf der Suche' };
-    return map[status] || status || '-';
   }
 
   drawFloorPlanPage(doc, submission) {
@@ -1632,7 +1471,7 @@ class PdfService {
     ].filter(floor => floor.rooms.length > 0);
 
     if (floors.length === 0) {
-      doc.font('Helvetica').fontSize(10).fillColor(this.colors.textMuted);
+      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.textMuted);
       doc.text('Keine Räume definiert', marginLeft, y);
       return;
     }
@@ -1641,8 +1480,8 @@ class PdfService {
       if (floorIdx > 0) y += 25;
 
       // Geschoss-Header
-      doc.roundedRect(marginLeft, y, contentWidth, 28, 4).fill(this.colors.primary);
-      doc.font('Helvetica-Bold').fontSize(12).fillColor(this.colors.white);
+      doc.roundedRect(marginLeft, y, contentWidth, 28, 4).fill(layout.colors.primary);
+      doc.font('Helvetica-Bold').fontSize(12).fillColor(layout.colors.white);
       doc.text(floor.name, marginLeft + 15, y + 8);
       y += 40;
 
@@ -1650,13 +1489,13 @@ class PdfService {
       floor.rooms.forEach((room, idx) => {
         const roomName = room.name || `Raum ${idx + 1}`;
 
-        doc.font('Helvetica').fontSize(10).fillColor(this.colors.gold);
+        doc.font('Helvetica').fontSize(10).fillColor(layout.colors.gold);
         doc.text('•', marginLeft + 10, y, { lineBreak: false });
-        doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.text);
+        doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.text);
         doc.text(roomName, marginLeft + 22, y, { lineBreak: false });
         if (room.details) {
           const nameWidth = doc.widthOfString(roomName, { font: 'Helvetica-Bold', fontSize: 10 });
-          doc.font('Helvetica').fontSize(10).fillColor(this.colors.textLight);
+          doc.font('Helvetica').fontSize(10).fillColor(layout.colors.textLight);
           doc.text(` \u2013 ${room.details}`, marginLeft + 22 + nameWidth, y, { width: contentWidth - nameWidth - 32 });
         }
         y += 18;
@@ -1665,36 +1504,12 @@ class PdfService {
 
     // Hinweis
     y += 20;
-    doc.roundedRect(marginLeft, y, contentWidth, 40, 6).fill(this.colors.goldLight);
-    doc.rect(marginLeft, y, 4, 40).fill(this.colors.gold);
-    doc.font('Helvetica').fontSize(9).fillColor(this.colors.text);
+    doc.roundedRect(marginLeft, y, contentWidth, 40, 6).fill(layout.colors.goldLight);
+    doc.rect(marginLeft, y, 4, 40).fill(layout.colors.gold);
+    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
     doc.text('Durch unsere freie Raumplanung können wir all Ihre Wünsche umsetzen. Bei Lehner Haus haben Sie 100 % freie Grundrissgestaltung.', marginLeft + 15, y + 12, { width: contentWidth - 30 });
   }
 
-  drawImagePlaceholder(doc, x, y, width, height, category) {
-    const placeholderColors = {
-      'Außenwandsystem': '#2ecc71',      // Grün
-      'Innenwandsystem': '#3498db',      // Blau
-      'Fenstersystem': '#3498db',        // Blau
-      'Dacheindeckung': '#95a5a6',       // Grau
-      'Ihr Haustyp': '#9b59b6',          // Lila
-      'Heizungssystem': '#e74c3c',       // Rot
-      'Lüftungssystem': '#9b59b6'        // Lila
-    };
-
-    const color = placeholderColors[category] || '#95a5a6';
-
-    // Farbiges Rechteck
-    doc.rect(x, y, width, height).fill(color);
-
-    // Weißer Rahmen
-    doc.rect(x, y, width, height).strokeColor('#ffffff').lineWidth(2).stroke();
-
-    // Text
-    doc.font('Helvetica-Bold').fontSize(10).fillColor('#ffffff');
-    doc.text('Bild', x, y + height/2 - 10, { width: width, align: 'center' });
-    doc.text('folgt', x, y + height/2 + 5, { width: width, align: 'center' });
-  }
 }
 
 module.exports = new PdfService();
