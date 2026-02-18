@@ -15,10 +15,10 @@ Requirements für die Überarbeitung. Jedes Requirement mappt auf Roadmap-Phasen
 
 ### PDF Inhalte
 
-- [ ] **INH-01**: Eigenleistungen-Seite wird korrekt in der PDF gerendert (Daten werden bereits erfasst, aber nicht dargestellt — Bug fix)
-- [ ] **INH-02**: Raumplanung-Seite produziert konsistente, vollständige Ausgabe für alle Geschosse
-- [ ] **INH-03**: Marketing-orientierte Texte pro Komponente: emotionale Beschreibungen, Kundenvorteile und Verkaufsargumente
-- [ ] **INH-04**: PDF-Dateigröße unter 5MB durch Bildkomprimierung (aktuell bis 23MB)
+- [x] **INH-01**: Eigenleistungen-Seite wird korrekt in der PDF gerendert (Daten werden bereits erfasst, aber nicht dargestellt — Bug fix)
+- [x] **INH-02**: Raumplanung-Seite produziert konsistente, vollständige Ausgabe für alle Geschosse
+- [x] **INH-03**: Marketing-orientierte Texte pro Komponente: emotionale Beschreibungen, Kundenvorteile und Verkaufsargumente
+- [x] **INH-04**: PDF-Dateigröße unter 5MB durch Bildkomprimierung (aktuell bis 23MB)
 
 ### Wizard UI
 
