@@ -12,46 +12,54 @@ module.exports = {
     let y = 100;
     const { marginLeft, contentWidth } = layout.layout;
 
-    // Key Facts Table
-    doc.font(layout.typography.h2.font).fontSize(layout.typography.h2.size).fillColor(layout.colors.primary);
-    doc.text('Ihre Hausdaten', marginLeft, y);
-    y += 30;
+    // ─── BAUHERR SECTION (full-width card) ────────────────────────────
+    const cardHeight = 55;
+    const cardPadding = 14;
 
-    const haustyp = catalogService.getVariantById('haustypen', submission.haustyp);
-    const kfw = submission.kfw_standard === 'KFW55' ? 'KfW 55' : 'KfW 40';
+    // Background card
+    doc.roundedRect(marginLeft, y, contentWidth, cardHeight, 4)
+      .fill(layout.colors.grayLight);
 
-    const keyFacts = [
-      ['Bauherr', `${submission.bauherr_vorname} ${submission.bauherr_nachname}`],
-      ['Haustyp', haustyp?.name || '-'],
-      ['Energiestandard', kfw],
-      ['Personenzahl', `${submission.personenanzahl} Personen`],
-      ['Grundstück', layout.getGrundstueckText(submission.grundstueck)]
+    // Gold left accent bar
+    doc.rect(marginLeft, y, 3, cardHeight)
+      .fill(layout.colors.gold);
+
+    // Bauherr name
+    const nameText = `${submission.bauherr_vorname || ''} ${submission.bauherr_nachname || ''}`.trim() || '-';
+    doc.font('Heading').fontSize(14).fillColor(layout.colors.primary);
+    doc.text(nameText, marginLeft + cardPadding, y + 10, { lineBreak: false });
+
+    // Metadata chips row
+    const kfwText = submission.kfw_standard === 'KFW55' ? 'KfW 55' : 'KfW 40';
+    const grundstueckText = layout.getGrundstueckText(submission.grundstueck);
+
+    const chips = [
+      `${submission.personenanzahl || '-'} Personen`,
+      kfwText,
+      `Grundst.: ${grundstueckText}`
     ];
 
-    // Draw table
-    const rowHeight = 22;
-    keyFacts.forEach(([label, value]) => {
-      // Alternating background
-      if (keyFacts.indexOf([label, value]) % 2 === 0) {
-        doc.rect(marginLeft, y - 3, contentWidth, rowHeight).fill(layout.colors.grayLight);
-      }
+    // Add formatted date if timestamp exists
+    if (submission.timestamp) {
+      const date = new Date(submission.timestamp);
+      const formattedDate = date.toLocaleDateString('de-DE', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+      chips.push(formattedDate);
+    }
 
-      doc.font(layout.typography.body.font).fontSize(layout.typography.body.size).fillColor(layout.colors.text);
-      doc.text(label, marginLeft + 10, y, { width: 150, lineBreak: false });
-      doc.font(layout.typography.body.font).fillColor(layout.colors.textLight);
-      doc.text(value, marginLeft + 170, y, { width: contentWidth - 180, lineBreak: false });
-      y += rowHeight;
-    });
+    const chipsText = chips.join('  |  ');
+    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textMuted);
+    doc.text(chipsText, marginLeft + cardPadding, y + 32, { lineBreak: false });
 
-    // Components Summary
-    y += layout.layout.sectionGap;
-    doc.font(layout.typography.h2.font).fontSize(layout.typography.h2.size).fillColor(layout.colors.primary);
-    doc.text('Gewählte Komponenten', marginLeft, y);
-    y += 25;
+    y += cardHeight + 20;
 
+    // ─── COMPONENT GRID (3x3) ─────────────────────────────────────────
+    const haustyp = catalogService.getVariantById('haustypen', submission.haustyp);
     const wall = catalogService.getVariantById('walls', submission.wall);
     const innerwall = catalogService.getVariantById('innerwalls', submission.innerwall);
-    const decke = catalogService.getVariantById('decken', submission.decke);
     const windowData = catalogService.getVariantById('windows', submission.window);
     const tiles = catalogService.getVariantById('tiles', submission.tiles);
     const dach = catalogService.getVariantById('daecher', submission.dach);
@@ -59,38 +67,107 @@ module.exports = {
     const lueftung = catalogService.getVariantById('lueftung', submission.lueftung);
     const treppe = catalogService.getVariantById('treppen', submission.treppe);
 
-    const components = [
-      ['Außenwand', wall?.name, wall?.technicalDetails?.uValue ? 'U-Wert: ' + wall.technicalDetails.uValue : ''],
-      ['Innenwand', innerwall?.name, innerwall?.technicalDetails?.soundInsulation],
-      ['Decke', decke?.name, ''],
-      ['Fenster', windowData?.name, windowData?.technicalDetails?.ugValue ? 'U-Wert: ' + windowData.technicalDetails.ugValue : ''],
-      ['Dach', tiles?.name, ''],
-      ['Dachform', dach?.name, ''],
-      ['Heizung', heizung?.name, heizung?.technicalDetails?.jaz ? 'JAZ ' + heizung.technicalDetails.jaz : '']
+    const keyFacts = [
+      { label: 'Haustyp', value: haustyp?.name || '-' },
+      { label: 'Aussenwand', value: wall?.name || '-' },
+      { label: 'Innenwand', value: innerwall?.name || '-' },
+      { label: 'Fenster', value: windowData?.name || '-' },
+      { label: 'Dacheindeckung', value: tiles?.name || '-' },
+      { label: 'Dachform', value: dach?.name || '-' },
+      { label: 'Heizung', value: heizung?.name || '-' },
+      { label: 'Lueftung', value: lueftung?.name || 'Keine' },
+      { label: 'Treppe', value: treppe?.name || 'Keine' }
     ];
 
-    if (treppe && treppe.id !== 'keine') {
-      components.push(['Treppe', treppe?.name, '']);
+    const cols = 3;
+    const gap = 12;
+    const cellWidth = Math.floor((contentWidth - (cols - 1) * gap) / cols);
+    const cellHeight = 70;
+    const rowGap = 10;
+
+    for (let i = 0; i < keyFacts.length; i++) {
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const cx = marginLeft + col * (cellWidth + gap);
+      const cy = y + row * (cellHeight + rowGap);
+
+      // Cell background
+      doc.roundedRect(cx, cy, cellWidth, cellHeight, 4)
+        .fill(layout.colors.grayLight);
+
+      // Gold left accent bar
+      doc.rect(cx, cy, 3, cellHeight)
+        .fill(layout.colors.gold);
+
+      // Label (category name)
+      doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
+      doc.text(keyFacts[i].label, cx + 12, cy + 10, {
+        width: cellWidth - 20,
+        lineBreak: false
+      });
+
+      // Value (component name)
+      doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
+      doc.text(keyFacts[i].value, cx + 12, cy + 26, {
+        width: cellWidth - 20
+      });
     }
 
-    if (lueftung && lueftung.id !== 'keine') {
-      components.push(['Lüftung', lueftung.name, lueftung.technicalDetails?.heatRecovery]);
-    }
+    // Advance y past the 3x3 grid
+    y += 3 * (cellHeight + rowGap) + 15;
 
-    components.forEach(([label, name, spec]) => {
-      if (components.indexOf([label, name, spec]) % 2 === 1) {
-        doc.rect(marginLeft, y - 3, contentWidth, rowHeight).fill(layout.colors.grayLight);
+    // ─── TECHNICAL HIGHLIGHTS (optional) ──────────────────────────────
+    if (y < 700) {
+      const techSpecs = [];
+
+      if (wall?.technicalDetails?.uValue) {
+        techSpecs.push({ label: 'U-Wert Wand', value: wall.technicalDetails.uValue });
+      }
+      if (windowData?.technicalDetails?.ugValue) {
+        techSpecs.push({ label: 'U-Wert Fenster', value: windowData.technicalDetails.ugValue });
+      }
+      if (heizung?.technicalDetails?.jaz) {
+        techSpecs.push({ label: 'JAZ Heizung', value: heizung.technicalDetails.jaz });
+      }
+      if (lueftung?.technicalDetails?.heatRecovery) {
+        techSpecs.push({ label: 'WRG', value: lueftung.technicalDetails.heatRecovery });
       }
 
-      doc.font(layout.typography.body.font).fontSize(layout.typography.body.size).fillColor(layout.colors.textMuted);
-      doc.text(label, marginLeft + 10, y, { width: 100, lineBreak: false });
-      doc.fillColor(layout.colors.text);
-      doc.text(name || '-', marginLeft + 120, y, { width: 220, lineBreak: false });
-      doc.font(layout.typography.small.font).fontSize(layout.typography.small.size).fillColor(layout.colors.gold);
-      doc.text(spec || '', marginLeft + 350, y, { width: contentWidth - 360, align: 'right' });
-      y += rowHeight;
-    });
+      if (techSpecs.length > 0) {
+        const barHeight = 30;
 
-    // CTA-Box entfernt (Dokument wird als Zwischenschritt nach Bedarfsanalyse genutzt)
+        // Background bar
+        doc.roundedRect(marginLeft, y, contentWidth, barHeight, 4)
+          .fill(layout.colors.grayLight);
+
+        // Build spec text with alternating label/value styling
+        let textX = marginLeft + 12;
+        const textY = y + 10;
+
+        for (let i = 0; i < techSpecs.length; i++) {
+          const spec = techSpecs[i];
+
+          // Label
+          doc.font('Helvetica').fontSize(8).fillColor(layout.colors.textMuted);
+          const labelWidth = doc.widthOfString(`${spec.label}: `);
+          doc.text(`${spec.label}: `, textX, textY, { lineBreak: false });
+          textX += labelWidth;
+
+          // Value in gold
+          doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.gold);
+          const valueWidth = doc.widthOfString(spec.value);
+          doc.text(spec.value, textX, textY, { lineBreak: false });
+          textX += valueWidth;
+
+          // Separator
+          if (i < techSpecs.length - 1) {
+            doc.font('Helvetica').fontSize(8).fillColor(layout.colors.textMuted);
+            const sepWidth = doc.widthOfString('  |  ');
+            doc.text('  |  ', textX, textY, { lineBreak: false });
+            textX += sepWidth;
+          }
+        }
+      }
+    }
   }
 };
