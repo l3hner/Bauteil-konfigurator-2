@@ -7,16 +7,16 @@ const cache = new Map();
 /**
  * Compress and resize an image for PDF embedding.
  * - Skips tiny images (< 10 KB) — likely placeholders
- * - Keeps PNG for images with alpha channel (technical drawings)
- * - Converts to JPEG for photographic images (no transparency)
+ * - Flattens alpha channel to white background, then converts to JPEG
+ * - Converts non-alpha images to JPEG directly
  * - Resizes to maxWidth while preserving aspect ratio
  * - Caches results in memory (cleared per PDF generation)
  *
  * @param {string} imagePath - Absolute path to image file
- * @param {number} maxWidth - Maximum width in pixels (default 800)
+ * @param {number} maxWidth - Maximum width in pixels (default 600)
  * @returns {Promise<Buffer|null>} Compressed image buffer, or null if file missing
  */
-async function getCompressedImage(imagePath, maxWidth = 800) {
+async function getCompressedImage(imagePath, maxWidth = 600) {
   if (!imagePath || !fs.existsSync(imagePath)) return null;
 
   const cacheKey = `${imagePath}:${maxWidth}`;
@@ -38,8 +38,10 @@ async function getCompressedImage(imagePath, maxWidth = 800) {
       .resize(maxWidth, null, { fit: 'inside', withoutEnlargement: true });
 
     if (metadata.hasAlpha) {
-      // Keep PNG for images with transparency (technical drawings)
-      pipeline = pipeline.png({ compressionLevel: 8 });
+      // Flatten transparency to white (PDF renders on white pages anyway)
+      // then compress as JPEG for much smaller file size
+      pipeline = pipeline.flatten({ background: '#ffffff' })
+        .jpeg({ quality: 75, mozjpeg: true });
     } else {
       // Convert to JPEG for photos (much smaller)
       pipeline = pipeline.jpeg({ quality: 75, mozjpeg: true });
@@ -48,8 +50,9 @@ async function getCompressedImage(imagePath, maxWidth = 800) {
     const buffer = await pipeline.toBuffer();
     cache.set(cacheKey, buffer);
 
+    const wasFlattened = metadata.hasAlpha ? ' (alpha flattened)' : '';
     const reduction = ((stats.size - buffer.length) / stats.size * 100).toFixed(0);
-    console.log(`[Image] Compressed ${path.basename(imagePath)}: ${(stats.size / 1024).toFixed(0)} KB -> ${(buffer.length / 1024).toFixed(0)} KB (${reduction}% reduction)`);
+    console.log(`[Image] Compressed ${path.basename(imagePath)}: ${(stats.size / 1024).toFixed(0)} KB -> ${(buffer.length / 1024).toFixed(0)} KB (${reduction}% reduction${wasFlattened})`);
 
     return buffer;
   } catch (err) {
