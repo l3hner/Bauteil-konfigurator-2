@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: PDF Architektur** - pdfService.js in modulare Einzelseiten-Module zerlegen + Image-Pipeline mit sharp einrichten ✓ (2026-02-18)
 - [x] **Phase 3: PDF Design** - Emotionale Titelseite, visuell überzeugende Komponentenseiten und Executive Summary One-Pager ✓ (2026-02-18)
 - [x] **Phase 4: PDF Inhalte und Bugs** - Eigenleistungen-Bug schließen, Raumplanung reparieren, Marketing-Texte einpflegen, Dateigröße unter 5 MB bringen ✓ (2026-02-18)
-- [ ] **Phase 5: Wizard UI** - Schritt-für-Schritt Wizard mit Tablet-Optimierung, Produktbildern und verbesserter Validierung
+- [x] **Phase 5: Wizard UI** - Schritt-für-Schritt Wizard mit Tablet-Optimierung, Produktbildern und verbesserter Validierung ✓ (2026-02-18)
 
 ## Phase Details
 
@@ -112,4 +112,4 @@ Phases 1 → 2 → 3 → 4 execute sequentially (each depends on prior). Phase 5
 | 2. PDF Architektur | 3/3 | ✓ Complete | 2026-02-18 |
 | 3. PDF Design | 3/3 | ✓ Complete | 2026-02-18 |
 | 4. PDF Inhalte und Bugs | 3/3 | ✓ Complete | 2026-02-18 |
-| 5. Wizard UI | 0/3 | Not started | - |
+| 5. Wizard UI | 3/3 | Complete | 2026-02-18 |
