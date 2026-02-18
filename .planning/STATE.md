@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-17)
 
 **Core value:** Fachberater erstellen in wenigen Minuten eine personalisierte, visuell überzeugende Leistungsbeschreibung, die den Kunden begeistert und zum Vertragsabschluss führt.
-**Current focus:** Phase 4 complete — ready for Phase 5 (Wizard)
+**Current focus:** Phase 5 in progress — Wizard UI
 
 ## Current Position
 
-Phase: 4 of 5 (PDF Inhalte und Bugs)
-Plan: 3 of 3 completed in current phase
-Status: Phase 4 complete
-Last activity: 2026-02-18 — Completed 04-02 emotional hook catalog enrichment
+Phase: 5 of 5 (Wizard UI)
+Plan: 1 of 3 completed in current phase
+Status: Executing phase 5
+Last activity: 2026-02-18 — Completed 05-01 wizard step controller and state persistence
 
-Progress: [████████████████░] 87%
+Progress: [█████████████████] 87%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
+- Total plans completed: 13
 - Average duration: 3.3 min
-- Total execution time: 0.68 hours
+- Total execution time: 0.75 hours
 
 **By Phase:**
 
@@ -31,10 +31,11 @@ Progress: [████████████████░] 87%
 | 02-pdf-architektur | 3 | 14 min | 4.7 min |
 | 03-pdf-design | 3 | 8 min | 2.7 min |
 | 04-pdf-inhalte-und-bugs | 3 | 9 min | 3.0 min |
+| 05-wizard-ui | 1 | 4 min | 4.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-02 (5 min), 04-03 (2 min), 04-01 (2 min), 03-03 (2 min), 03-02 (2 min)
-- Trend: Accelerating
+- Last 5 plans: 05-01 (4 min), 04-02 (5 min), 04-03 (2 min), 04-01 (2 min), 03-03 (2 min)
+- Trend: Consistent
 
 *Updated after each plan completion*
 
@@ -45,6 +46,10 @@ Progress: [████████████████░] 87%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
+- [05-01]: WizardState uses IIFE module pattern -- encapsulated state with clean global API (save/load/restore/clear)
+- [05-01]: KfW-dependent restore uses setTimeout(0) -- lets updateWallOptions/updateLueftungOptions rebuild DOM before re-selecting saved radios
+- [05-01]: initSmoothScroll/initScrollSpy kept as dead code in script.js -- not deleted, for potential non-wizard use
+- [05-01]: Script load order: wizardState.js -> wizard.js -> script.js (dependency chain for globals)
 - [Roadmap]: Phase 5 (Wizard) depends only on Phase 1, not Phase 4 — can be parallelized after Phase 1 ships
 - [Roadmap]: sessionStorage (not localStorage) for wizard state — GDPR concern for customer PII (name, email, phone)
 - [Roadmap]: PDF decomposition (Phase 2) is a strict prerequisite before any visual quality work — coordinate drift risk
@@ -103,5 +108,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 04-02-PLAN.md (emotional hook catalog enrichment). Phase 4 fully complete. Ready for Phase 5.
+Stopped at: Completed 05-01-PLAN.md (wizard step controller and state persistence). Phase 5 plan 1 of 3 done.
 Resume file: None
