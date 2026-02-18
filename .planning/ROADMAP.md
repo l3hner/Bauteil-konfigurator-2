@@ -45,12 +45,12 @@ Plans:
   2. Jede PDF-Seite hat ein eigenes Modul unter `src/services/pdf/pages/` mit den Exports `condition` und `render`
   3. `pdfService.js` ist ein Orchestrator unter 50 Zeilen, der nur die Seitenmodule aufruft
   4. Produktbilder werden vor dem PDF-Einbetten durch sharp auf unter 400 KB komprimiert — die generierten PDFs sind messbar kleiner
-**Plans**: TBD
+**Plans**: 3 plans (3 waves)
 
 Plans:
-- [ ] 02-01: `src/services/pdf/layout.js` als shared Brand-Konstanten und Draw-Helper extrahieren
-- [ ] 02-02: Alle bestehenden Seiten in Einzelmodule extrahieren (titlePage, overview, services, component pages, roomPlan, eigenleistungen, finalPage)
-- [ ] 02-03: sharp-Image-Pipeline als Produktionsdependency einrichten (`src/services/imageService.js` mit resize+compress-Funktion)
+- [ ] 02-01-PLAN.md — layout.js extrahieren: shared Brand-Konstanten (colors, typography, layout) und Draw-Helper (drawHeader, drawFooter, drawImagePlaceholder, extractAufbauItems, extractQualityItems, getGrundstueckText)
+- [ ] 02-02-PLAN.md — Alle 13 Seiten in Einzelmodule unter src/services/pdf/pages/ extrahieren + pdfService.js zum Orchestrator (<50 Zeilen) refactoren + Dead Code entfernen
+- [ ] 02-03-PLAN.md — sharp-Image-Pipeline: imageService.js mit resize+compress+cache, sharp als Produktionsdependency, Einbindung in componentPage/haustypPage/titlePage
 
 ### Phase 3: PDF Design
 **Goal**: Die PDF wirkt wie eine Hochglanz-Broschüre — emotionale Titelseite mit Hero-Bild, klare visuelle Hierarchie auf jeder Komponentenseite, und ein prägnanter Überblick auf einer Seite
