@@ -25,6 +25,18 @@ class PdfService {
     const stream = fs.createWriteStream(outputPath);
     doc.pipe(stream);
 
+    // Register custom fonts with Helvetica fallback
+    const fontsDir = path.resolve(__dirname, '../../assets/fonts');
+    try {
+      doc.registerFont('Heading', path.join(fontsDir, 'Montserrat-Bold.ttf'));
+      doc.registerFont('Heading-SemiBold', path.join(fontsDir, 'Montserrat-SemiBold.ttf'));
+      console.log('[PDF] Custom fonts registered: Montserrat');
+    } catch (e) {
+      console.warn('[PDF] Font fallback to Helvetica:', e.message);
+      doc.registerFont('Heading', 'Helvetica-Bold');
+      doc.registerFont('Heading-SemiBold', 'Helvetica-Bold');
+    }
+
     const pages = buildPageList(submission);
     let pageNum = 0;
     const ctx = { pageNum: 0, catalogService, imageService };
