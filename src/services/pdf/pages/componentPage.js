@@ -6,149 +6,79 @@ const assetsDir = path.resolve(__dirname, '..', '..', '..', '..', 'assets');
 
 module.exports = {
   async renderComponent(doc, component, categoryTitle, chapterNumber, ctx) {
-    // ELK-Style Layout: Technisches Schnittbild + Aufbau-Liste + Qualitätsmerkmale
+    // Visual-First Layout: Large product image -> headline -> advantages -> specs -> tip
     const marginLeft = 50;
     const contentWidth = 495;
     let y = 95;
 
-    // === KAPITEL-HEADER mit Nummerierung ===
-    const chapterNum = chapterNumber || '5.1';
-    doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
-    doc.text(`${chapterNum} ${categoryTitle.toUpperCase()}`, marginLeft, y);
-    y += 18;
+    // === LARGE PRODUCT IMAGE (full content width, first element after header) ===
+    const imgHeight = 200;
 
-    // Komponenten-Name und kurze Beschreibung (keine Wiederholung des Systemnamens)
-    doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
-    let shortDesc = component.description ? component.description.split('.')[0] + '.' : '';
-    // Systemname aus Beschreibung entfernen falls bereits als Titel angezeigt
-    if (shortDesc && component.name) {
-      shortDesc = shortDesc.replace(new RegExp('^' + component.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'i'), '');
-    }
-    doc.text(`${component.name}${shortDesc ? ' – ' + shortDesc : ''}`, marginLeft, y, { width: contentWidth });
-    y += 25;
+    // Prefer product image for visual impact, fall back to technical drawing, then placeholder
+    const productImgPath = component.filePath
+      ? path.resolve(assetsDir, '..', component.filePath)
+      : null;
+    const techDrawingPath = component.technicalDrawing
+      ? path.resolve(assetsDir, '..', component.technicalDrawing)
+      : null;
 
-    // === 2-SPALTEN LAYOUT: Bild links, Aufbau rechts ===
-    const imgWidth = 180;
-    const imgHeight = 140;
-    const rightColX = marginLeft + imgWidth + 25;
-    const rightColWidth = contentWidth - imgWidth - 25;
+    const imgPath =
+      (productImgPath && fs.existsSync(productImgPath))
+        ? productImgPath
+        : (techDrawingPath && fs.existsSync(techDrawingPath))
+          ? techDrawingPath
+          : null;
 
-    // Technische Zeichnung/Schnittbild (bevorzugt) oder Produktbild
-    const techDrawingPath = component.technicalDrawing ?
-      path.resolve(assetsDir, '..', component.technicalDrawing) : null;
-    const productImgPath = component.filePath ?
-      path.resolve(assetsDir, '..', component.filePath) : null;
-
-    const imgPath = (techDrawingPath && fs.existsSync(techDrawingPath)) ? techDrawingPath : productImgPath;
-
-    if (imgPath && fs.existsSync(imgPath)) {
+    if (imgPath) {
       try {
         const buffer = await ctx.imageService.getCompressedImage(imgPath);
         if (buffer) {
-          doc.image(buffer, marginLeft, y, { fit: [imgWidth, imgHeight] });
+          doc.image(buffer, marginLeft, y, {
+            fit: [contentWidth, imgHeight],
+            align: 'center',
+            valign: 'center'
+          });
         } else {
-          layout.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
+          layout.drawImagePlaceholder(doc, marginLeft, y, contentWidth, imgHeight, categoryTitle);
         }
       } catch (e) {
-        layout.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
+        layout.drawImagePlaceholder(doc, marginLeft, y, contentWidth, imgHeight, categoryTitle);
       }
     } else {
-      layout.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
+      layout.drawImagePlaceholder(doc, marginLeft, y, contentWidth, imgHeight, categoryTitle);
     }
 
-    // === AUFBAU-LISTE (rechte Spalte) - ELK Style ===
-    let rightY = y;
+    y += imgHeight + 15;
 
-    // Aufbau-Header (dynamisch je nach Kategorie)
-    const aufbauHeader = categoryTitle.includes('Decke')
-      ? 'Aufbau von oben nach unten'
-      : 'Aufbau von außen nach innen';
-    doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
-    doc.text(aufbauHeader, rightColX, rightY);
-    rightY += 4;
-    doc.moveTo(rightColX, rightY + 8).lineTo(rightColX + 130, rightY + 8)
-       .strokeColor(layout.colors.secondary).lineWidth(0.5).stroke();
-    rightY += 16;
+    // === EMOTIONAL HEADLINE ===
+    // Component name in Heading font
+    doc.font('Heading').fontSize(18).fillColor(layout.colors.primary);
+    doc.text(component.name, marginLeft, y, { width: contentWidth });
+    y += 24;
 
-    // Aufbau-Schichten aus component.layers oder technicalDetails extrahieren
-    const aufbauItems = layout.extractAufbauItems(component, categoryTitle);
-
-    doc.font('Helvetica').fontSize(8);
-    aufbauItems.forEach(item => {
-      doc.font('Helvetica-Bold').fillColor(layout.colors.text).text('·', rightColX, rightY, { lineBreak: false });
-      doc.font('Helvetica').fillColor(layout.colors.text);
-      doc.text(item.name, rightColX + 8, rightY, { width: rightColWidth - 70, lineBreak: false });
-      if (item.value) {
-        doc.font('Helvetica-Bold').fillColor(layout.colors.primary);
-        doc.text(item.value, rightColX + rightColWidth - 65, rightY, {
-          width: 60, align: 'right', lineBreak: false
-        });
-      }
-      rightY += 15;
-      // Kleiner Absatz nach Massivholzrahmenkonstruktion (Layout-Entzerrung)
-      if (item.name && item.name.toLowerCase().includes('massivholz') && item.name.toLowerCase().includes('rahmenkonstruktion')) {
-        rightY += 8;
-      }
-    });
-
-    // Gesamtstärke als Summe berechnen (Dämmung nicht einrechnen)
-    const totalThickness = aufbauItems.reduce((sum, item) => {
-      const nameLower = (item.name || '').toLowerCase();
-      if (nameLower.includes('dämmung') || nameLower.includes('insulation') || nameLower.includes('glaswolle')) {
-        return sum;
-      }
-      const match = (item.value || '').match(/([\d,]+)\s*mm/);
-      if (match) {
-        return sum + parseFloat(match[1].replace(',', '.'));
-      }
-      return sum;
-    }, 0);
-
-    if (totalThickness > 0) {
-      rightY += 4;
-      doc.moveTo(rightColX, rightY).lineTo(rightColX + rightColWidth, rightY)
-         .strokeColor(layout.colors.gold).lineWidth(0.8).stroke();
-      rightY += 6;
-      doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.primary);
-      doc.text('Gesamtstärke', rightColX + 8, rightY, { width: rightColWidth - 70, lineBreak: false });
-      doc.text(`${totalThickness.toFixed(1).replace('.', ',')} mm`, rightColX + rightColWidth - 65, rightY, {
-        width: 60, align: 'right', lineBreak: false
-      });
-      rightY += 15;
+    // Short description (first sentence, strip component name to avoid repetition)
+    let shortDesc = component.description ? component.description.split('.')[0] + '.' : '';
+    if (shortDesc && component.name) {
+      shortDesc = shortDesc.replace(
+        new RegExp('^' + component.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'i'),
+        ''
+      );
+    }
+    if (shortDesc && shortDesc.length > 1) {
+      doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textLight);
+      doc.text(shortDesc, marginLeft, y, { width: contentWidth });
+      y += 18;
     }
 
-    // === QUALITÄTSMERKMALE TABELLE ===
-    rightY += 12;
-    doc.moveTo(rightColX, rightY).lineTo(rightColX + rightColWidth, rightY)
-       .strokeColor(layout.colors.secondary).lineWidth(0.5).stroke();
-    rightY += 10;
-
-    const qualityItems = layout.extractQualityItems(component, categoryTitle);
-
-    doc.font('Helvetica').fontSize(8);
-    qualityItems.forEach(item => {
-      doc.fillColor(layout.colors.text).text(item.label, rightColX, rightY, { lineBreak: false });
-      if (item.highlight) {
-        doc.font('Helvetica-Bold').fillColor(layout.colors.gold);
-      } else {
-        doc.font('Helvetica').fillColor(layout.colors.primary);
-      }
-      doc.text(item.value, rightColX + rightColWidth - 100, rightY, { width: 100, align: 'right', lineBreak: false });
-      doc.font('Helvetica');
-      rightY += 14;
-    });
-
-    // === PREMIUM-FEATURES BOX (volle Breite) ===
-    y = Math.max(y + imgHeight + 20, rightY + 20);
-
+    // === PREMIUM FEATURES BOX (gold-left-border) ===
     if (component.premiumFeatures && component.premiumFeatures.length > 0) {
       const featColWidth = (contentWidth - 24) / 2;
       const features = component.premiumFeatures.slice(0, 4);
       const featRows = Math.ceil(features.length / 2);
 
-      // Höhe pro Zeile berechnen (inkl. möglichem Umbruch)
+      // Calculate height per row (including possible line wrapping)
       doc.font('Helvetica').fontSize(7.5);
-      let maxRowHeights = [];
+      const maxRowHeights = [];
       for (let r = 0; r < featRows; r++) {
         const leftFeat = features[r * 2] || '';
         const rightFeat = features[r * 2 + 1] || '';
@@ -162,7 +92,7 @@ module.exports = {
       doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 4).fill(layout.colors.goldLight);
       doc.rect(marginLeft, y, 3, boxHeight).fill(layout.colors.gold);
 
-      doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
+      doc.font('Heading-SemiBold').fontSize(9).fillColor(layout.colors.primary);
       doc.text('Ihre Vorteile bei Lehner Haus:', marginLeft + 12, y + 8);
 
       let featY = y + 26;
@@ -172,7 +102,7 @@ module.exports = {
         const rowY = featY + maxRowHeights.slice(0, row).reduce((a, b) => a + b, 0);
 
         doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.gold);
-        doc.text('✓', colX, rowY, { lineBreak: false });
+        doc.text('\u2713', colX, rowY, { lineBreak: false });
         doc.fillColor(layout.colors.text);
         doc.text(feature, colX + 10, rowY, { width: featColWidth - 25 });
       });
@@ -180,44 +110,148 @@ module.exports = {
       y += boxHeight + 12;
     }
 
-    // === VORTEILE-LISTE (kompakt) ===
-    if (component.advantages && component.advantages.length > 0 && y < 610) {
-      doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
+    // === ADVANTAGES LIST (2-column bullets) ===
+    if (component.advantages && component.advantages.length > 0 && y < 620) {
+      doc.font('Heading-SemiBold').fontSize(9).fillColor(layout.colors.primary);
       doc.text('Weitere Vorteile:', marginLeft, y);
       y += 16;
 
       const advColWidth = contentWidth / 2;
       const advGap = 6;
-      component.advantages.slice(0, 6).forEach((adv, idx) => {
+      const advItems = component.advantages.slice(0, 6);
+      advItems.forEach((adv, idx) => {
         const colX = idx % 2 === 0 ? marginLeft : marginLeft + advColWidth;
         const rowY = y + Math.floor(idx / 2) * (14 + advGap);
 
         doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.gold);
-        doc.text('•', colX, rowY, { lineBreak: false });
+        doc.text('\u2022', colX, rowY, { lineBreak: false });
         doc.fillColor(layout.colors.textLight);
         doc.text(adv, colX + 8, rowY, { width: advColWidth - 15 });
       });
 
-      y += Math.ceil(Math.min(6, component.advantages.length) / 2) * (14 + advGap) + 8;
+      y += Math.ceil(advItems.length / 2) * (14 + advGap) + 8;
     }
 
-    // === VERGLEICHS-HINWEIS BOX (wenn Platz) ===
-    if (component.comparisonNotes && y < 690) {
+    // === TECHNICAL DETAILS (compact 2-column block at bottom) ===
+    if (y < 660) {
+      const aufbauItems = layout.extractAufbauItems(component, categoryTitle);
+      const qualityItems = layout.extractQualityItems(component, categoryTitle);
+
+      if (aufbauItems.length > 0 || qualityItems.length > 0) {
+        // Calculate section height
+        const techRowHeight = 12;
+        const leftRows = aufbauItems.length + 1; // +1 for header
+        const rightRows = qualityItems.length + 1; // +1 for header
+        const maxRows = Math.max(leftRows, rightRows);
+
+        // Gesamtstaerke line
+        const totalThickness = aufbauItems.reduce((sum, item) => {
+          const nameLower = (item.name || '').toLowerCase();
+          if (nameLower.includes('d\u00e4mmung') || nameLower.includes('insulation') || nameLower.includes('glaswolle')) {
+            return sum;
+          }
+          const match = (item.value || '').match(/([\d,]+)\s*mm/);
+          if (match) {
+            return sum + parseFloat(match[1].replace(',', '.'));
+          }
+          return sum;
+        }, 0);
+        const hasThickness = totalThickness > 0;
+        const extraRows = hasThickness ? 1 : 0;
+
+        const sectionHeight = (maxRows + extraRows) * techRowHeight + 20;
+        const remainingSpace = 775 - y;
+        if (sectionHeight > remainingSpace) {
+          // Not enough space, skip technical details
+        } else {
+          // Gray background box
+          doc.roundedRect(marginLeft, y, contentWidth, sectionHeight, 3).fill(layout.colors.grayLight);
+
+          const techY = y + 8;
+          const leftColX = marginLeft + 10;
+          const leftColWidth = (contentWidth - 30) / 2;
+          const rightColX = marginLeft + 10 + leftColWidth + 10;
+          const rightColWidth = leftColWidth;
+
+          // Left column: Technische Daten
+          doc.font('Heading-SemiBold').fontSize(8).fillColor(layout.colors.primary);
+          doc.text('Technische Daten', leftColX, techY);
+          let leftY = techY + techRowHeight + 2;
+
+          doc.font('Helvetica').fontSize(7);
+          aufbauItems.forEach(item => {
+            if (leftY > y + sectionHeight - 14) return;
+            doc.fillColor(layout.colors.text);
+            doc.text(item.name, leftColX, leftY, { width: leftColWidth - 55, lineBreak: false });
+            if (item.value) {
+              doc.font('Helvetica-Bold').fillColor(layout.colors.primary);
+              doc.text(item.value, leftColX + leftColWidth - 55, leftY, {
+                width: 55, align: 'right', lineBreak: false
+              });
+              doc.font('Helvetica');
+            }
+            leftY += techRowHeight;
+          });
+
+          // Gesamtstaerke
+          if (hasThickness && leftY <= y + sectionHeight - 14) {
+            leftY += 2;
+            doc.moveTo(leftColX, leftY).lineTo(leftColX + leftColWidth - 5, leftY)
+              .strokeColor(layout.colors.gold).lineWidth(0.5).stroke();
+            leftY += 4;
+            doc.font('Helvetica-Bold').fontSize(7).fillColor(layout.colors.primary);
+            doc.text('Gesamtst\u00e4rke', leftColX, leftY, { width: leftColWidth - 55, lineBreak: false });
+            doc.text(`${totalThickness.toFixed(1).replace('.', ',')} mm`, leftColX + leftColWidth - 55, leftY, {
+              width: 55, align: 'right', lineBreak: false
+            });
+          }
+
+          // Right column: Quality items
+          if (qualityItems.length > 0) {
+            doc.font('Heading-SemiBold').fontSize(8).fillColor(layout.colors.primary);
+            doc.text('Qualit\u00e4tsmerkmale', rightColX, techY);
+            let rightY = techY + techRowHeight + 2;
+
+            doc.font('Helvetica').fontSize(7);
+            qualityItems.forEach(item => {
+              if (rightY > y + sectionHeight - 14) return;
+              doc.fillColor(layout.colors.text);
+              doc.text(item.label, rightColX, rightY, { width: rightColWidth - 80, lineBreak: false });
+              if (item.highlight) {
+                doc.font('Helvetica-Bold').fillColor(layout.colors.gold);
+              } else {
+                doc.font('Helvetica').fillColor(layout.colors.primary);
+              }
+              doc.text(item.value, rightColX + rightColWidth - 80, rightY, {
+                width: 80, align: 'right', lineBreak: false
+              });
+              doc.font('Helvetica');
+              rightY += techRowHeight;
+            });
+          }
+
+          y += sectionHeight + 10;
+        }
+      }
+    }
+
+    // === COMPARISON TIP BOX (if space remains) ===
+    if (component.comparisonNotes && y < 700) {
       const remainingHeight = 775 - y;
       const boxHeight = Math.min(remainingHeight, 130);
 
       doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 4)
-         .strokeColor(layout.colors.gold).lineWidth(1.5).stroke();
+        .strokeColor(layout.colors.gold).lineWidth(1.5).stroke();
       doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 4).fill('#fffef5');
 
       doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.gold);
-      doc.text('Tipp für den Anbietervergleich:', marginLeft + 10, y + 10);
+      doc.text('Tipp f\u00fcr den Anbietervergleich:', marginLeft + 10, y + 10);
 
-      // Relevante Tipps extrahieren
+      // Extract relevant tips
       const tips = component.comparisonNotes
         .split('\n')
         .filter(line => line.trim())
-        .map(line => line.replace(/❗|KRITISCHE FRAGEN.*:/g, '').trim())
+        .map(line => line.replace(/\u2757|KRITISCHE FRAGEN.*:/g, '').trim())
         .filter(line => line.length > 0);
 
       doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.text);
