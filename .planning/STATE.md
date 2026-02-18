@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-17)
 ## Current Position
 
 Phase: 5 of 5 (Wizard UI)
-Plan: 1 of 3 completed in current phase
+Plan: 2 of 3 completed in current phase
 Status: Executing phase 5
-Last activity: 2026-02-18 — Completed 05-01 wizard step controller and state persistence
+Last activity: 2026-02-18 — Completed 05-02 product image cards and server-side validation
 
-Progress: [█████████████████] 87%
+Progress: [██████████████████] 93%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
-- Average duration: 3.3 min
-- Total execution time: 0.75 hours
+- Total plans completed: 14
+- Average duration: 3.4 min
+- Total execution time: 0.82 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [█████████████████] 87%
 | 02-pdf-architektur | 3 | 14 min | 4.7 min |
 | 03-pdf-design | 3 | 8 min | 2.7 min |
 | 04-pdf-inhalte-und-bugs | 3 | 9 min | 3.0 min |
-| 05-wizard-ui | 1 | 4 min | 4.0 min |
+| 05-wizard-ui | 2 | 8 min | 4.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (4 min), 04-02 (5 min), 04-03 (2 min), 04-01 (2 min), 03-03 (2 min)
+- Last 5 plans: 05-02 (4 min), 05-01 (4 min), 04-02 (5 min), 04-03 (2 min), 04-01 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -46,6 +46,10 @@ Progress: [█████████████████] 87%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
+- [05-02]: Haustypen image src uses filePath + '1.png' (directory-based filePath from catalog)
+- [05-02]: radio-card--with-image class conditionally applied -- cards without filePath are text-only (no broken images)
+- [05-02]: Server-side validation returns 400 JSON (not redirect) -- wizard client-side validation is UX guard, server is security boundary
+- [05-02]: 16 required fields validated server-side matching wizard client-side required fields
 - [05-01]: WizardState uses IIFE module pattern -- encapsulated state with clean global API (save/load/restore/clear)
 - [05-01]: KfW-dependent restore uses setTimeout(0) -- lets updateWallOptions/updateLueftungOptions rebuild DOM before re-selecting saved radios
 - [05-01]: initSmoothScroll/initScrollSpy kept as dead code in script.js -- not deleted, for potential non-wizard use
@@ -108,5 +112,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 05-01-PLAN.md (wizard step controller and state persistence). Phase 5 plan 1 of 3 done.
+Stopped at: Completed 05-02-PLAN.md (product image cards and server-side validation). Phase 5 plan 2 of 3 done.
 Resume file: None
