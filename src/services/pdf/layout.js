@@ -1,13 +1,13 @@
 const path = require('path');
 const fs = require('fs');
 
-// Premium Color Palette
+// Premium Color Palette (Lehner Haus Corporate: Navy + Red)
 const colors = {
-  primary: '#06402b',
-  primaryDark: '#042e1f',
-  primaryLight: '#267e61',
-  secondary: '#b1a699',
-  secondaryLight: '#f5f3ef',
+  primary: '#003366',
+  primaryDark: '#002244',
+  primaryLight: '#336699',
+  secondary: '#C8102E',
+  secondaryLight: '#fef5f5',
   gold: '#D4AF37',
   goldDark: '#b8922e',
   goldLight: '#faf8f0',
@@ -23,9 +23,9 @@ const colors = {
 
 // Design System: Typography & Layout
 const typography = {
-  hero: { font: 'Helvetica-Bold', size: 48, lineHeight: 1.1 },
-  h1: { font: 'Helvetica-Bold', size: 20, lineHeight: 1.2 },
-  h2: { font: 'Helvetica-Bold', size: 14, lineHeight: 1.3 },
+  hero: { font: 'Heading', size: 48, lineHeight: 1.1 },
+  h1: { font: 'Heading', size: 20, lineHeight: 1.2 },
+  h2: { font: 'Heading-SemiBold', size: 14, lineHeight: 1.3 },
   h3: { font: 'Helvetica-Bold', size: 12, lineHeight: 1.4 },
   body: { font: 'Helvetica', size: 10, lineHeight: 1.5 },
   small: { font: 'Helvetica', size: 8, lineHeight: 1.4 },
@@ -48,7 +48,7 @@ function drawHeader(doc, title) {
   // Gold accent line
   doc.rect(50, 35, 4, 30).fill(colors.gold);
 
-  doc.font('Helvetica-Bold').fontSize(20).fillColor(colors.primary);
+  doc.font(typography.h1.font).fontSize(typography.h1.size).fillColor(colors.primary);
   doc.text(title, 62, 40, { lineBreak: false });
 
   doc.moveTo(50, 75).lineTo(545, 75).strokeColor(colors.secondary).lineWidth(1).stroke();
