@@ -284,17 +284,19 @@ function updateProgress() {
         5: () => document.querySelector('input[name="innerwall"]:checked'),
         6: () => document.querySelector('input[name="decke"]:checked'),
         7: () => document.querySelector('input[name="window"]:checked'),
-        8: () => document.querySelector('input[name="tiles"]:checked'),
-        9: () => document.querySelector('input[name="heizung"]:checked'),
-        10: () => document.querySelector('input[name="lueftung"]:checked'),
-        11: () => document.getElementById('personenanzahl')?.value,
-        12: () => document.querySelector('input[name="grundstueck"]:checked'),
-        13: () => true, // Optional - always complete
-        14: () => true  // Optional - always complete
+        8: () => document.querySelector('input[name="dach"]:checked'),
+        9: () => document.querySelector('input[name="tiles"]:checked'),
+        10: () => document.querySelector('input[name="treppe"]:checked'),
+        11: () => document.querySelector('input[name="heizung"]:checked'),
+        12: () => document.querySelector('input[name="lueftung"]:checked'),
+        13: () => document.getElementById('personenanzahl')?.value,
+        14: () => document.querySelector('input[name="grundstueck"]:checked'),
+        15: () => true, // Optional - always complete
+        16: () => true  // Optional - always complete
     };
 
     let completedSteps = 0;
-    const totalSteps = 14;
+    const totalSteps = 16;
 
     // Update step indicators
     Object.entries(sections).forEach(([step, check]) => {
@@ -311,7 +313,7 @@ function updateProgress() {
     });
 
     // Find first incomplete step and mark as active
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 14; i++) {
         if (!sections[i]()) {
             const stepEl = document.querySelector(`.progress-step[data-step="${i}"]`);
             if (stepEl) {

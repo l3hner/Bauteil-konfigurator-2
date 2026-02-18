@@ -35,8 +35,10 @@ router.post('/', async (req, res) => {
       decke: formData.decke,
       window: formData.window,
       tiles: formData.tiles,
+      dach: formData.dach || null,
       heizung: formData.heizung,
       lueftung: formData.lueftung,
+      treppe: formData.treppe || null,
 
       // Rooms and eigenleistungen
       rooms: rooms,

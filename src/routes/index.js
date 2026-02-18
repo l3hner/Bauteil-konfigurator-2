@@ -12,6 +12,8 @@ router.get('/', (req, res) => {
   const tiles = catalogService.getTiles();
   const haustypen = catalogService.getHaustypen();
   const heizung = catalogService.getHeizung();
+  const daecher = catalogService.getDaecher();
+  const treppen = catalogService.getTreppen();
 
   console.log('[Route /] Catalog loaded:');
   console.log('  - walls:', walls.length);
@@ -21,6 +23,8 @@ router.get('/', (req, res) => {
   console.log('  - tiles:', tiles.length);
   console.log('  - haustypen:', haustypen.length);
   console.log('  - heizung:', heizung.length);
+  console.log('  - daecher:', daecher.length);
+  console.log('  - treppen:', treppen.length);
 
   const catalog = {
     walls,
@@ -29,7 +33,9 @@ router.get('/', (req, res) => {
     windows,
     tiles,
     haustypen,
-    heizung
+    heizung,
+    daecher,
+    treppen
   };
 
   console.log('[Route /] catalog object keys:', Object.keys(catalog));
