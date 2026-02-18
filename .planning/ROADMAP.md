@@ -77,12 +77,12 @@ Plans:
   2. Raumplanung-Seite zeigt alle Räume aus allen konfigurierten Geschossen konsistent und vollständig an
   3. Jede Komponentenseite enthält emotionale Beschreibungen und Verkaufsargumente — kein generischer Platzhaltertext ist mehr vorhanden
   4. Ein generiertes PDF mit allen Komponenten und Produktbildern ist unter 5 MB groß (gemessen nach der Generierung)
-**Plans**: TBD
+**Plans**: 3 plans (1 wave)
 
 Plans:
-- [ ] 04-01: Eigenleistungen-Bug fixen — Seitenmodul korrekt rendern wenn Eigenleistungen-Daten vorhanden sind
-- [ ] 04-02: Raumplanung-Seitenmodul reparieren für konsistente, vollständige Ausgabe aller Geschoss-Daten
-- [ ] 04-03: Marketing-Texte pro Katalogkategorie pflegen (emotionalHook, Verkaufsargumente, Vorteils-Bullets für alle 9 Kategorien)
+- [ ] 04-01-PLAN.md — Eigenleistungen-Seitenmodul erstellen und registrieren + Raumplanung y-Overflow-Schutz
+- [ ] 04-02-PLAN.md — emotionalHook-Feld fuer alle 32 Katalogeintraege + componentPage-Renderer anpassen
+- [ ] 04-03-PLAN.md — Image-Komprimierung tunen: Alpha-Flatten + maxWidth 600 fuer PDF unter 5 MB
 
 ### Phase 5: Wizard UI
 **Goal**: Fachberater können die Konfiguration mit wenigen Touch-Gesten auf einem Tablet durchführen — eine Sektion sichtbar, klare Navigation, Produktbilder bei jeder Auswahl
