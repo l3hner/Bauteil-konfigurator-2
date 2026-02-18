@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-17)
 ## Current Position
 
 Phase: 4 of 5 (PDF Inhalte und Bugs)
-Plan: 1 of 3 completed in current phase
+Plan: 2 of 3 completed in current phase
 Status: Executing Phase 4
-Last activity: 2026-02-18 — Completed 04-01 eigenleistungen page + floorPlan overflow
+Last activity: 2026-02-18 — Completed 04-03 image compression tuning (alpha flattening)
 
-Progress: [█████████████░] 73%
+Progress: [██████████████░] 80%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
-- Average duration: 3.4 min
-- Total execution time: 0.57 hours
+- Total plans completed: 11
+- Average duration: 3.3 min
+- Total execution time: 0.60 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [█████████████░] 73%
 | 01-catalog-expansion | 3 | 10 min | 3.3 min |
 | 02-pdf-architektur | 3 | 14 min | 4.7 min |
 | 03-pdf-design | 3 | 8 min | 2.7 min |
-| 04-pdf-inhalte-und-bugs | 1 | 2 min | 2.0 min |
+| 04-pdf-inhalte-und-bugs | 2 | 4 min | 2.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (2 min), 03-03 (2 min), 03-02 (2 min), 03-01 (4 min), 02-03 (3 min)
+- Last 5 plans: 04-03 (2 min), 04-01 (2 min), 03-03 (2 min), 03-02 (2 min), 03-01 (4 min)
 - Trend: Accelerating
 
 *Updated after each plan completion*
@@ -83,6 +83,9 @@ Recent decisions affecting current work:
 - [03-03]: Catalog 'keine' entries show their actual name (e.g. 'Keine Treppe') rather than generic 'Keine'
 - [04-01]: Double-bang (!!) on eigenleistungen condition return for explicit boolean — avoids undefined leaking as falsy
 - [04-01]: Graduated y-overflow thresholds: floor headers y>720, room items y>740, hint box y+60<780
+- [04-03]: Flatten all alpha channels to white -- no image needs transparency in the PDF (all on white pages)
+- [04-03]: maxWidth=600 (was 800) provides 1.26x oversampling at 72 DPI -- sufficient for A4 print quality
+- [04-03]: JPEG quality stays at 75 -- measured full PDF at 0.27 MB, far under 5 MB target
 
 ### Pending Todos
 
@@ -97,5 +100,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 04-01-PLAN.md (eigenleistungen page + floorPlan overflow). Phase 4 plan 1 of 3 done.
+Stopped at: Completed 04-03-PLAN.md (image compression tuning). Phase 4 plan 2 of 3 done.
 Resume file: None
