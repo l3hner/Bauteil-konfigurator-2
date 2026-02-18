@@ -5,33 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-17)
 
 **Core value:** Fachberater erstellen in wenigen Minuten eine personalisierte, visuell überzeugende Leistungsbeschreibung, die den Kunden begeistert und zum Vertragsabschluss führt.
-**Current focus:** Phase 2 — PDF Architektur
+**Current focus:** Phase 2 complete — ready for Phase 3 (PDF Visual Quality)
 
 ## Current Position
 
-Phase: 2 of 5 (PDF Architektur)
-Plan: 2 of 3 completed in current phase
-Status: In progress
-Last activity: 2026-02-18 — Completed 02-02 page module extraction plan
+Phase: 2 of 5 (PDF Architektur) — COMPLETE
+Plan: 3 of 3 completed in current phase
+Status: Phase complete
+Last activity: 2026-02-18 — Completed 02-03 image compression pipeline
 
-Progress: [███████░░░] 40%
+Progress: [████████░░] 47%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 4.2 min
-- Total execution time: 0.35 hours
+- Total plans completed: 6
+- Average duration: 3.8 min
+- Total execution time: 0.38 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-catalog-expansion | 3 | 10 min | 3.3 min |
-| 02-pdf-architektur | 2 | 11 min | 5.5 min |
+| 02-pdf-architektur | 3 | 14 min | 4.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (6 min), 02-01 (5 min), 01-02 (5 min), 01-03 (2 min), 01-01 (3 min)
+- Last 5 plans: 02-03 (3 min), 02-02 (6 min), 02-01 (5 min), 01-02 (5 min), 01-03 (2 min)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -52,6 +52,11 @@ Recent decisions affecting current work:
 - [01-02]: Dachform before Dacheindeckung, Treppen after — logical roof grouping in form
 - [01-02]: Treppensystem PDF page uses same conditional skip as Lueftung — consistent behavior for 'keine'
 - [01-02]: All dach/treppe lookups use optional chaining — safe for old submissions without these fields
+- [02-03]: sharp in production dependencies — needed at runtime for PDF image compression
+- [02-03]: maxWidth=800 default (4x oversampling at 72 DPI), JPEG quality 75 mozjpeg, PNG compressionLevel 8
+- [02-03]: Images < 10 KB skip sharp processing — avoids overhead on generated placeholders
+- [02-03]: Error fallback reads raw file — single bad image does not break PDF generation
+- [02-03]: ctx.imageService pattern — compression service passed through render context to page modules
 - [02-02]: Page module contract: { title, condition, render } for standard pages; { renderComponent } and { renderHaustyp } for shared renderers
 - [02-02]: Component pages generated dynamically in buildPageList, not as separate static modules
 - [02-02]: contactPage.render is async (QR code); orchestrator uses await for all renders
@@ -75,5 +80,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 02-02-PLAN.md (page module extraction). Phase 2 plan 2 of 3 complete.
+Stopped at: Completed 02-03-PLAN.md (image compression pipeline). Phase 2 (PDF Architektur) fully complete. Ready for Phase 3.
 Resume file: None
