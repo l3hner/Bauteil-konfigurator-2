@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-17)
 
 **Core value:** Fachberater erstellen in wenigen Minuten eine personalisierte, visuell überzeugende Leistungsbeschreibung, die den Kunden begeistert und zum Vertragsabschluss führt.
-**Current focus:** Phase 3 in progress — PDF Visual Quality (corporate branding + hero title page done)
+**Current focus:** Phase 3 in progress — PDF Visual Quality (corporate branding, component pages, executive summary done)
 
 ## Current Position
 
 Phase: 3 of 5 (PDF Design)
-Plan: 1 of 3 completed in current phase
-Status: In progress
-Last activity: 2026-02-18 — Completed 03-01 corporate branding & hero title page
+Plan: 3 of 3 completed in current phase
+Status: Phase 3 complete
+Last activity: 2026-02-18 — Completed 03-03 executive summary grid one-pager
 
-Progress: [█████████░] 53%
+Progress: [████████████░] 67%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 3.9 min
-- Total execution time: 0.45 hours
+- Total plans completed: 9
+- Average duration: 3.6 min
+- Total execution time: 0.53 hours
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [█████████░] 53%
 |-------|-------|-------|----------|
 | 01-catalog-expansion | 3 | 10 min | 3.3 min |
 | 02-pdf-architektur | 3 | 14 min | 4.7 min |
-| 03-pdf-design | 1 | 4 min | 4.0 min |
+| 03-pdf-design | 3 | 8 min | 2.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (4 min), 02-03 (3 min), 02-02 (6 min), 02-01 (5 min), 01-02 (5 min)
-- Trend: Stable
+- Last 5 plans: 03-03 (2 min), 03-02 (2 min), 03-01 (4 min), 02-03 (3 min), 02-02 (6 min)
+- Trend: Accelerating
 
 *Updated after each plan completion*
 
@@ -72,6 +72,10 @@ Recent decisions affecting current work:
 - [03-01]: Typography references use registered name 'Heading' — enables graceful degradation if fonts missing
 - [03-01]: drawHeader uses typography.h1.font reference — all page headers get Montserrat automatically
 - [03-01]: drawFooter and drawImagePlaceholder keep Helvetica intentionally — body text stays built-in
+- [03-03]: All 9 categories always shown in executive summary grid — no conditional exclusion for Lueftung/Treppe
+- [03-03]: Gold left accent bar (3px) on every grid card matches drawHeader accent pattern
+- [03-03]: Technical highlights bar optional — only renders when specs exist and space remains (y < 700)
+- [03-03]: Catalog 'keine' entries show their actual name (e.g. 'Keine Treppe') rather than generic 'Keine'
 
 ### Pending Todos
 
@@ -86,5 +90,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 03-01-PLAN.md (corporate branding & hero title page). Navy/red palette and Montserrat fonts active. Ready for 03-02.
+Stopped at: Completed 03-03-PLAN.md (executive summary grid one-pager). Phase 3 fully complete. Ready for Phase 4.
 Resume file: None
