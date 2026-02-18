@@ -20,7 +20,8 @@ class SubmissionService {
     
     const id = uuidv4();
     const timestamp = new Date().toISOString();
-    
+    data.schemaVersion = 2;
+
     const submission = {
       id,
       timestamp,
