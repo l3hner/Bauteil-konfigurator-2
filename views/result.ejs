@@ -57,6 +57,18 @@
                         <strong>Personenanzahl</strong>
                         <span><%= submission.personenanzahl %> Person<%= submission.personenanzahl > 1 ? 'en' : '' %></span>
                     </div>
+                    <% if (submission.dach) { %>
+                    <div class="summary-item">
+                        <strong>Dachform</strong>
+                        <span><%= submission.dach %></span>
+                    </div>
+                    <% } %>
+                    <% if (submission.treppe && submission.treppe !== 'keine') { %>
+                    <div class="summary-item">
+                        <strong>Treppe</strong>
+                        <span><%= submission.treppe %></span>
+                    </div>
+                    <% } %>
                 </div>
             </div>
 

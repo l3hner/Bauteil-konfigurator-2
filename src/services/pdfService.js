@@ -132,8 +132,17 @@ class PdfService {
       { title: 'Deckensystem', data: catalogService.getVariantById('decken', submission.decke), chapter: '5.4' },
       { title: 'Fenstersystem', data: catalogService.getVariantById('windows', submission.window), chapter: '5.5' },
       { title: 'Dacheindeckung', data: catalogService.getVariantById('tiles', submission.tiles), chapter: '5.6' },
+      { title: 'Dachform', data: catalogService.getVariantById('daecher', submission.dach), chapter: '5.7' },
       { title: 'Heizungssystem', data: catalogService.getVariantById('heizung', submission.heizung), chapter: '6.1' }
     ];
+
+    // Treppe hinzufügen wenn gewählt (nicht 'keine')
+    if (submission.treppe && submission.treppe !== 'keine') {
+      const treppe = catalogService.getVariantById('treppen', submission.treppe);
+      if (treppe && treppe.id !== 'keine') {
+        components.push({ title: 'Treppensystem', data: treppe, chapter: '5.8' });
+      }
+    }
 
     // Lüftung hinzufügen wenn gewählt
     if (submission.lueftung && submission.lueftung !== 'keine') {
@@ -475,8 +484,10 @@ class PdfService {
     const decke = catalogService.getVariantById('decken', submission.decke);
     const windowData = catalogService.getVariantById('windows', submission.window);
     const tiles = catalogService.getVariantById('tiles', submission.tiles);
+    const dach = catalogService.getVariantById('daecher', submission.dach);
     const heizung = catalogService.getVariantById('heizung', submission.heizung);
     const lueftung = catalogService.getVariantById('lueftung', submission.lueftung);
+    const treppe = catalogService.getVariantById('treppen', submission.treppe);
 
     const components = [
       ['Außenwand', wall?.name, wall?.technicalDetails?.uValue ? 'U-Wert: ' + wall.technicalDetails.uValue : ''],
@@ -484,8 +495,13 @@ class PdfService {
       ['Decke', decke?.name, ''],
       ['Fenster', windowData?.name, windowData?.technicalDetails?.ugValue ? 'U-Wert: ' + windowData.technicalDetails.ugValue : ''],
       ['Dach', tiles?.name, ''],
+      ['Dachform', dach?.name, ''],
       ['Heizung', heizung?.name, heizung?.technicalDetails?.jaz ? 'JAZ ' + heizung.technicalDetails.jaz : '']
     ];
+
+    if (treppe && treppe.id !== 'keine') {
+      components.push(['Treppe', treppe?.name, '']);
+    }
 
     if (lueftung && lueftung.id !== 'keine') {
       components.push(['Lüftung', lueftung.name, lueftung.technicalDetails?.heatRecovery]);
@@ -622,8 +638,8 @@ class PdfService {
     const maxY = Math.max(y1, y2, y3) + 15;
 
     // === HIGHLIGHT BOX: Gewählte Komponenten ===
-    doc.roundedRect(marginLeft, maxY, contentWidth, 85, 8).fill(this.colors.goldLight);
-    doc.rect(marginLeft, maxY, 4, 85).fill(this.colors.gold);
+    doc.roundedRect(marginLeft, maxY, contentWidth, 100, 8).fill(this.colors.goldLight);
+    doc.rect(marginLeft, maxY, 4, 100).fill(this.colors.gold);
 
     doc.font('Helvetica-Bold').fontSize(10).fillColor(this.colors.primary);
     doc.text('Ihre zusätzlich gewählten Ausstattungsmerkmale:', marginLeft + 15, maxY + 10);
@@ -632,14 +648,18 @@ class PdfService {
     const innerwall = catalogService.getVariantById('innerwalls', submission.innerwall);
     const decke = catalogService.getVariantById('decken', submission.decke);
     const tiles = catalogService.getVariantById('tiles', submission.tiles);
+    const dach = catalogService.getVariantById('daecher', submission.dach);
+    const treppe = catalogService.getVariantById('treppen', submission.treppe);
 
     const highlights = [
       wall ? `Außenwand: ${wall.name}` : null,
       innerwall ? `Innenwand: ${innerwall.name}` : null,
       decke ? `Decke: ${decke.name}` : null,
       windowData ? `Fenster: ${windowData.name}` : null,
-      tiles ? `Dach: ${tiles.name}` : null,
+      tiles ? `Dacheindeckung: ${tiles.name}` : null,
+      dach ? `Dachform: ${dach.name}` : null,
       heizung ? `Heizung: ${heizung.name}` : null,
+      (treppe && treppe.id !== 'keine') ? `Treppe: ${treppe.name}` : null,
       hasLueftung ? `Lüftung: ${lueftungText}` : null
     ].filter(Boolean);
 
@@ -658,7 +678,7 @@ class PdfService {
     });
 
     // === FOOTER BOX ===
-    const footerY = maxY + 100;
+    const footerY = maxY + 115;
     doc.roundedRect(marginLeft, footerY, contentWidth, 40, 6).fill(this.colors.primary);
 
     doc.font('Helvetica-Bold').fontSize(9).fillColor(this.colors.white);
@@ -704,17 +724,25 @@ class PdfService {
     const decke = catalogService.getVariantById('decken', submission.decke);
     const windowData = catalogService.getVariantById('windows', submission.window);
     const tiles = catalogService.getVariantById('tiles', submission.tiles);
+    const dach = catalogService.getVariantById('daecher', submission.dach);
     const heizung = catalogService.getVariantById('heizung', submission.heizung);
     const lueftung = catalogService.getVariantById('lueftung', submission.lueftung);
+    const treppe = catalogService.getVariantById('treppen', submission.treppe);
 
     const componentsList = [
       { label: 'Außenwand', data: wall },
       { label: 'Innenwand', data: innerwall },
       { label: 'Decke', data: decke },
       { label: 'Fenster', data: windowData },
-      { label: 'Dach', data: tiles },
+      { label: 'Dacheindeckung', data: tiles },
+      { label: 'Dachform', data: dach },
       { label: 'Heizung', data: heizung }
     ];
+
+    // Treppe nur hinzufügen wenn nicht "keine"
+    if (treppe && treppe.id !== 'keine') {
+      componentsList.push({ label: 'Treppe', data: treppe });
+    }
 
     // Lüftung nur hinzufügen wenn nicht "keine"
     if (lueftung && lueftung.id !== 'keine') {
