@@ -8,6 +8,7 @@ const serviceContent = require('./serviceContent');
 const { renderComponent } = require('./componentPage');
 const { renderHaustyp } = require('./haustypPage');
 const floorPlan = require('./floorPlan');
+const eigenleistungen = require('./eigenleistungen');
 const comparisonChecklist = require('./comparisonChecklist');
 const glossary = require('./glossary');
 const beraterPage = require('./beraterPage');
@@ -79,6 +80,7 @@ function buildPageList(submission) {
 
   // Post-component pages
   pages.push(floorPlan);
+  pages.push(eigenleistungen);
   pages.push(comparisonChecklist);
   pages.push(glossary);
   pages.push(beraterPage);
