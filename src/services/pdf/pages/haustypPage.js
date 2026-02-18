@@ -47,7 +47,7 @@ module.exports = {
     y += 30;
 
     // === DESCRIPTION (measured dynamically) ===
-    const desc = component.details || component.description || '';
+    const desc = component.emotionalHook || component.details || component.description || '';
     if (desc) {
       doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
       const descHeight = doc.heightOfString(desc, { width: contentWidth, lineGap: 2 });

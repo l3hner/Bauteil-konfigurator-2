@@ -56,9 +56,10 @@ module.exports = {
     doc.text(component.name, marginLeft, y, { width: contentWidth });
     y += 24;
 
-    // Short description (first sentence, strip component name to avoid repetition)
-    let shortDesc = component.description ? component.description.split('.')[0] + '.' : '';
-    if (shortDesc && component.name) {
+    // Emotional hook as subtitle (fallback to first sentence of description)
+    const emotionalText = component.emotionalHook || '';
+    let shortDesc = emotionalText || (component.description ? component.description.split('.')[0] + '.' : '');
+    if (!emotionalText && shortDesc && component.name) {
       shortDesc = shortDesc.replace(
         new RegExp('^' + component.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'i'),
         ''
