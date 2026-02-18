@@ -29,12 +29,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Fachberater kann eine Treppenoption aus der Katalogliste auswählen und das Formular lässt sich erfolgreich abschicken
   3. Bestehende Submissions (ohne Dach/Treppen-Felder) werden ohne 500-Fehler geladen und als PDF generiert
   4. Die neuen Kategorien sind in der Whitelist-Validierung enthalten — ungültige Auswahlen werden mit deutschem Fehlertext abgelehnt
-**Plans**: TBD
+**Plans**: 3 plans (2 waves)
 
 Plans:
-- [ ] 01-01: Katalogdaten für Dächer und Treppen in catalog.json erstellen (Einträge, Bilder-Platzhalter, Vorteile, kfwCompatible)
-- [ ] 01-02: catalogService, submissionService und pdfService um neue Kategorien erweitern (Validierung, Parsing, defensive null-Checks)
-- [ ] 01-03: Migrationsscript für bestehende Submissions schreiben + schemaVersion-Feld einführen
+- [ ] 01-01-PLAN.md — Katalogdaten (catalog.json) + catalogService Getter/Validierung/Fallback + Platzhalterbilder
+- [ ] 01-02-PLAN.md — UI-Integration: Routes, Formular, pdfService (alle 4 Methoden), Result-Seite
+- [ ] 01-03-PLAN.md — Migrationsscript für bestehende Submissions + schemaVersion-Feld
 
 ### Phase 2: PDF Architektur
 **Goal**: pdfService.js ist in isolierte Seitenmodule zerlegt, sodass visuelle Änderungen an einer Seite keine anderen Seiten beschädigen, und alle Produktbilder werden vor dem Einbetten komprimiert
