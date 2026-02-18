@@ -582,6 +582,188 @@
       "technicalDrawing": "assets/variants/lueftung/zentral-technical.png"
     }
   ],
+  "daecher": [
+    {
+      "id": "satteldach",
+      "name": "Satteldach",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Klassisches Giebeldach mit zwei geneigten Dachflächen, die am First zusammentreffen. Die beliebteste Dachform in Deutschland – bewährt, vielseitig und zeitlos.",
+      "premiumFeatures": [
+        "Optimale Dachgeschoss-Nutzung durch großzügige Raumhöhen",
+        "Bewährte Konstruktion mit höchster Langlebigkeit",
+        "Ideal für Photovoltaik-Anlagen durch gleichmäßige Dachneigung"
+      ],
+      "advantages": [
+        "Optimale Nutzung des Dachgeschosses als Wohnraum",
+        "Bewährte und langlebige Konstruktion",
+        "Ideal für Photovoltaik durch gleichmäßige Dachflächen",
+        "Große Gestaltungsfreiheit mit Gauben, Erkern und Dachfenstern"
+      ],
+      "comparisonNotes": "Das Satteldach ist der Klassiker unter den Dachformen und bietet die beste Balance aus Wohnraumgewinn und Wirtschaftlichkeit. Fragen Sie beim Vergleich: Wie viel nutzbare Wohnfläche entsteht im Dachgeschoss? Bei Lehner Haus: maximale Ausnutzung durch optimierte Kniestockhöhen. Ist die Dachkonstruktion für nachträgliche PV-Anlagen vorbereitet? Bei Lehner Haus: statisch eingeplant.",
+      "filePath": "assets/variants/daecher/satteldach.png",
+      "technicalDrawing": "assets/variants/daecher/satteldach-technical.png"
+    },
+    {
+      "id": "walmdach",
+      "name": "Walmdach",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Dach mit vier geneigten Dachflächen. Elegante Erscheinung und hervorragende Windbeständigkeit – besonders geeignet für exponierte Lagen.",
+      "premiumFeatures": [
+        "Überlegene Windbeständigkeit durch aerodynamische Form",
+        "Elegante, repräsentative Optik",
+        "Witterungsschutz an allen vier Seiten"
+      ],
+      "advantages": [
+        "Überlegene Windbeständigkeit durch aerodynamische Form",
+        "Elegante und repräsentative Optik",
+        "Hohe Strukturstabilität durch gleichmäßige Lastverteilung",
+        "Witterungsschutz auf allen Gebäudeseiten"
+      ],
+      "comparisonNotes": "Das Walmdach ist die Premium-Wahl für repräsentative Architektur. Besonders wichtig: Wie ist die Windlastberechnung dokumentiert? Bei Lehner Haus: statisch geprüft und zertifiziert. Wird die Dachkonstruktion aus Vollholz oder BSH gefertigt? Bei Lehner Haus: hochwertige Materialien für maximale Langlebigkeit.",
+      "filePath": "assets/variants/daecher/walmdach.png",
+      "technicalDrawing": "assets/variants/daecher/walmdach-technical.png"
+    },
+    {
+      "id": "pultdach",
+      "name": "Pultdach",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Dach mit nur einer geneigten Fläche. Moderne Architektur mit maximaler Wandfläche für Fenster und natürliches Licht.",
+      "premiumFeatures": [
+        "Modernes, architektonisch anspruchsvolles Design",
+        "Optimale Ausrichtung für Photovoltaik",
+        "Maximaler Lichteinfall durch hohe Fensterflächen"
+      ],
+      "advantages": [
+        "Modernes, zeitgemäßes Design",
+        "Optimaler natürlicher Lichteinfall durch große Fensterflächen",
+        "Ideale PV-Ausrichtung durch einheitliche Dachneigung",
+        "Kosteneffiziente Konstruktion"
+      ],
+      "comparisonNotes": "Das Pultdach steht für moderne Architektur und maximale Energieeffizienz. Entscheidend: Welche Dachneigung wird gewählt? Bei Lehner Haus: individuell optimiert für PV-Ertrag und Ästhetik. Wie wird die erhöhte Wandfläche gedämmt? Bei Lehner Haus: gleicher Premium-Wandaufbau CLIMA-tiv an allen Fassadenseiten.",
+      "filePath": "assets/variants/daecher/pultdach.png",
+      "technicalDrawing": "assets/variants/daecher/pultdach-technical.png"
+    },
+    {
+      "id": "flachdach",
+      "name": "Flachdach",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Flaches oder nahezu flaches Dach. Bauhaus-Ästhetik mit der Möglichkeit einer Dachterrasse oder extensiven Begrünung.",
+      "premiumFeatures": [
+        "Zusätzliche nutzbare Fläche als Dachterrasse",
+        "Moderne Bauhaus-Ästhetik",
+        "Einfache Installation von Photovoltaik-Anlagen"
+      ],
+      "advantages": [
+        "Zusätzliche nutzbare Fläche als Dachterrasse oder Gründach",
+        "Moderne Bauhaus-Ästhetik",
+        "Einfache PV-Installation mit optimaler Aufständerung",
+        "Flexible Grundrissgestaltung ohne Dachschrägen"
+      ],
+      "comparisonNotes": "Das Flachdach bietet maximale Flexibilität in der Gestaltung. Wichtige Fragen: Welche Abdichtung wird verwendet? Bei Lehner Haus: hochwertige Abdichtungssysteme mit langer Garantie. Ist das Dach für eine Terrassen-Nutzung vorbereitet? Bei Lehner Haus: statisch für Dachterrasse oder extensive Begrünung ausgelegt.",
+      "filePath": "assets/variants/daecher/flachdach.png",
+      "technicalDrawing": "assets/variants/daecher/flachdach-technical.png"
+    }
+  ],
+  "treppen": [
+    {
+      "id": "keine",
+      "name": "Keine Treppe",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Für eingeschossige Gebäude (Bungalow) ohne Treppenbedarf. Barrierefreies Wohnen auf einer Ebene.",
+      "premiumFeatures": [
+        "Barrierefreies Wohnen ohne Stufen",
+        "Mehr nutzbare Wohnfläche im Erdgeschoss"
+      ],
+      "advantages": [
+        "Barrierefreies Wohnen auf einer Ebene",
+        "Mehr nutzbare Wohnfläche im Erdgeschoss",
+        "Kosteneinsparung durch Wegfall der Treppenkonstruktion"
+      ],
+      "comparisonNotes": "Ohne Treppe gewinnen Sie wertvolle Quadratmeter im Erdgeschoss. Bei einem Bungalow ist dies die logische Wahl – alle Räume befinden sich auf einer Ebene. Perfekt für barrierefreies Wohnen nach DIN 18040.",
+      "filePath": null,
+      "technicalDrawing": null
+    },
+    {
+      "id": "holzwangentreppe",
+      "name": "Holzwangentreppe",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Klassische Treppe mit Holzwangen als tragende Seitenteile. Warmes, natürliches Material mit vielfältigen Gestaltungsmöglichkeiten.",
+      "premiumFeatures": [
+        "Warme Holzästhetik mit individueller Holzartwahl",
+        "Bewährte Konstruktion mit hoher Stabilität",
+        "Vielfältige Oberflächen- und Farboptionen"
+      ],
+      "advantages": [
+        "Warme Holzästhetik für natürliches Wohnambiente",
+        "Große Auswahl an Holzarten und Oberflächenbehandlungen",
+        "Bewährte und stabile Konstruktion",
+        "Gutes Preis-Leistungs-Verhältnis"
+      ],
+      "comparisonNotes": "Die Holzwangentreppe ist der bewährte Klassiker im Treppenbau. Achten Sie auf: Welche Holzart wird verwendet? Bei Lehner Haus: hochwertige Hölzer aus nachhaltiger Forstwirtschaft. Ist die Treppe nach DIN 18065 geprüft? Bei Lehner Haus: selbstverständlich normgerecht gefertigt.",
+      "filePath": "assets/variants/treppen/holzwangentreppe.png",
+      "technicalDrawing": "assets/variants/treppen/holzwangentreppe-technical.png"
+    },
+    {
+      "id": "betontreppe",
+      "name": "Betontreppe",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Massive Stahlbetontreppe mit höchster Stabilität und bestem Schallschutz. Unbegrenzte Möglichkeiten bei der Oberflächengestaltung.",
+      "premiumFeatures": [
+        "Bester Schallschutz aller Treppenarten",
+        "Brandschutzklasse A1 – nicht brennbar",
+        "Unbegrenzte Oberflächengestaltung (Fliesen, Holz, Naturstein)"
+      ],
+      "advantages": [
+        "Bester Schallschutz aller Treppenarten",
+        "Brandschutzklasse A1 – nicht brennbar",
+        "Unbegrenzte Möglichkeiten bei der Oberflächengestaltung",
+        "Längste Lebensdauer aller Treppentypen"
+      ],
+      "comparisonNotes": "Die Betontreppe ist die massivste und langlebigste Lösung. Entscheidend: Welcher Trittschallschutz wird erreicht? Bei Lehner Haus: entkoppelte Betontreppe für minimale Schallübertragung. Welche Belagsmaterialien sind möglich? Bei Lehner Haus: Fliesen, Holz, Naturstein – alle Optionen offen.",
+      "filePath": "assets/variants/treppen/betontreppe.png",
+      "technicalDrawing": "assets/variants/treppen/betontreppe-technical.png"
+    },
+    {
+      "id": "stahlholztreppe",
+      "name": "Stahl-Holz-Treppe",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Kombination aus Stahl und Holz für ein offenes, luftiges Design mit industriellem Charme. Schlanke Konstruktion für moderne Architektur.",
+      "premiumFeatures": [
+        "Offenes, luftiges Design mit Loft-Charakter",
+        "Schlanke Konstruktion für maximale Raumwirkung",
+        "Kombination zweier hochwertiger Materialien"
+      ],
+      "advantages": [
+        "Leichtes und luftiges Erscheinungsbild",
+        "Schlanke Konstruktion mit minimaler Grundfläche",
+        "Attraktive Material-Kombination aus Stahl und Holz",
+        "Moderne Ästhetik für zeitgemäße Architektur"
+      ],
+      "comparisonNotes": "Die Stahl-Holz-Treppe ist die Wahl für moderne, offene Architektur. Wichtig zu wissen: Wie werden die Trittstufen befestigt? Bei Lehner Haus: präzise Verbindungstechnik für absolute Stabilität. Ist der Stahl pulverbeschichtet? Bei Lehner Haus: langlebige Oberfläche in Wunschfarbe.",
+      "filePath": "assets/variants/treppen/stahlholztreppe.png",
+      "technicalDrawing": "assets/variants/treppen/stahlholztreppe-technical.png"
+    },
+    {
+      "id": "aussentreppe",
+      "name": "Außentreppe",
+      "kfwCompatible": ["KFW55", "KFW40"],
+      "description": "Externe Treppe für separaten Zugang zum Obergeschoss oder als Gartenverbindung. Ideal für Einliegerwohnungen oder Mehrgenerationenhäuser.",
+      "premiumFeatures": [
+        "Separater Zugang zum Obergeschoss",
+        "Gartenanbindung und zusätzlicher Fluchtweg",
+        "Ideal für Einliegerwohnungen"
+      ],
+      "advantages": [
+        "Separater Zugang zum Obergeschoss",
+        "Direkte Gartenanbindung",
+        "Zusätzlicher Rettungsweg im Brandfall",
+        "Ideal für Einliegerwohnungen oder Mehrgenerationenhäuser"
+      ],
+      "comparisonNotes": "Die Außentreppe ermöglicht unabhängige Zugänge zu verschiedenen Wohneinheiten. Achten Sie auf: Welches Material wird für den Außenbereich verwendet? Bei Lehner Haus: witterungsbeständige Materialien mit langer Lebensdauer. Ist ein Regenschutz vorgesehen? Bei Lehner Haus: optional mit Vordach oder Überdachung planbar.",
+      "filePath": "assets/variants/treppen/aussentreppe.png",
+      "technicalDrawing": "assets/variants/treppen/aussentreppe-technical.png"
+    }
+  ],
   "decken": [
     {
       "id": "holzbalkendecke",
