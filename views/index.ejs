@@ -97,6 +97,10 @@
                         <div class="progress-step-indicator">16</div>
                         <span class="progress-step-label">Eigen</span>
                     </div>
+                    <div class="progress-step" data-step="17">
+                        <div class="progress-step-indicator">17</div>
+                        <span class="progress-step-label">Berater</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,7 +112,7 @@
             <form id="konfigurator-form" action="/submit" method="POST">
 
                 <!-- Bauherren-Daten -->
-                <section class="form-section" id="section-1">
+                <section class="form-section" id="section-1" data-wizard-step="1">
                     <h3 class="section-title">1. Ihre Kontaktdaten</h3>
 
                     <div class="form-row">
@@ -157,7 +161,7 @@
                 </section>
 
                 <!-- Haustyp -->
-                <section class="form-section" id="section-2">
+                <section class="form-section" id="section-2" data-wizard-step="2">
                     <h3 class="section-title">2. Haustyp</h3>
 
                     <div class="radio-group">
@@ -178,7 +182,7 @@
                 </section>
 
                 <!-- Energiestandard -->
-                <section class="form-section" id="section-3">
+                <section class="form-section" id="section-3" data-wizard-step="3">
                     <h3 class="section-title">3. Energiestandard</h3>
 
                     <div class="radio-group">
@@ -207,7 +211,7 @@
                 </section>
 
                 <!-- Aussenwand -->
-                <section class="form-section" id="section-4">
+                <section class="form-section" id="section-4" data-wizard-step="4">
                     <h3 class="section-title">4. Aussenwandsystem</h3>
                     <p class="section-description">Wahlen Sie Ihr Wandsystem basierend auf dem Energiestandard</p>
 
@@ -217,7 +221,7 @@
                 </section>
 
                 <!-- Innenwand -->
-                <section class="form-section" id="section-5">
+                <section class="form-section" id="section-5" data-wizard-step="5">
                     <h3 class="section-title">5. Innenwandsystem</h3>
 
                     <div class="radio-group">
@@ -237,7 +241,7 @@
                 </section>
 
                 <!-- Decke -->
-                <section class="form-section" id="section-6">
+                <section class="form-section" id="section-6" data-wizard-step="6">
                     <h3 class="section-title">6. Deckensystem</h3>
 
                     <div class="radio-group">
@@ -257,7 +261,7 @@
                 </section>
 
                 <!-- Fenster -->
-                <section class="form-section" id="section-7">
+                <section class="form-section" id="section-7" data-wizard-step="7">
                     <h3 class="section-title">7. Fenstersystem</h3>
 
                     <div class="radio-group">
@@ -277,7 +281,7 @@
                 </section>
 
                 <!-- Dachform -->
-                <section class="form-section" id="section-8">
+                <section class="form-section" id="section-8" data-wizard-step="8">
                     <h3 class="section-title">8. Dachform</h3>
 
                     <div class="radio-group">
@@ -297,7 +301,7 @@
                 </section>
 
                 <!-- Dachziegel -->
-                <section class="form-section" id="section-9">
+                <section class="form-section" id="section-9" data-wizard-step="9">
                     <h3 class="section-title">9. Dacheindeckung</h3>
 
                     <div class="radio-group">
@@ -317,7 +321,7 @@
                 </section>
 
                 <!-- Treppensystem -->
-                <section class="form-section" id="section-10">
+                <section class="form-section" id="section-10" data-wizard-step="10">
                     <h3 class="section-title">10. Treppensystem</h3>
 
                     <div class="radio-group">
@@ -337,7 +341,7 @@
                 </section>
 
                 <!-- Heizung -->
-                <section class="form-section" id="section-11">
+                <section class="form-section" id="section-11" data-wizard-step="11">
                     <h3 class="section-title">11. Heizungssystem</h3>
 
                     <div class="radio-group">
@@ -357,7 +361,7 @@
                 </section>
 
                 <!-- Luftung -->
-                <section class="form-section" id="section-12">
+                <section class="form-section" id="section-12" data-wizard-step="12">
                     <h3 class="section-title">12. Luftungssystem</h3>
                     <p class="section-description">Die Luftungsoptionen richten sich nach Ihrem gewahlten Energiestandard</p>
 
@@ -367,7 +371,7 @@
                 </section>
 
                 <!-- Personenanzahl -->
-                <section class="form-section" id="section-13">
+                <section class="form-section" id="section-13" data-wizard-step="13">
                     <h3 class="section-title">13. Personenanzahl</h3>
 
                     <div class="form-group">
@@ -389,7 +393,7 @@
                 </section>
 
                 <!-- Grundstuck -->
-                <section class="form-section" id="section-14">
+                <section class="form-section" id="section-14" data-wizard-step="14">
                     <h3 class="section-title">14. Grundstucksstatus</h3>
 
                     <div class="radio-group">
@@ -429,7 +433,7 @@
                 </section>
 
                 <!-- Raumplanung -->
-                <section class="form-section" id="section-15">
+                <section class="form-section" id="section-15" data-wizard-step="15">
                     <h3 class="section-title">15. Raumplanung</h3>
                     <p class="section-description">Welche Raume wunschen Sie sich in Ihrem Haus?</p>
 
@@ -470,7 +474,7 @@
                 </section>
 
                 <!-- Eigenleistungen -->
-                <section class="form-section" id="section-16">
+                <section class="form-section" id="section-16" data-wizard-step="16">
                     <h3 class="section-title">16. Geplante Eigenleistungen</h3>
                     <p class="section-description">Welche Arbeiten mochten Sie selbst durchfuhren?</p>
 
@@ -482,7 +486,7 @@
                     <button type="button" onclick="addEigenleistung()" class="btn-add">+ Eigenleistung hinzufugen</button>
                 </section>
 
-                <section class="form-section" id="section-17">
+                <section class="form-section" id="section-17" data-wizard-step="17">
                     <h3 class="section-title">17. Fachberater (optional)</h3>
                     <p class="section-description">Personalisieren Sie die Leistungsbeschreibung mit Ihren Kontaktdaten als Fachberater.</p>
 
@@ -509,7 +513,7 @@
                 </section>
 
                 <!-- Submit Button -->
-                <div class="submit-section">
+                <div class="submit-section" id="wizard-submit-section">
                     <button type="submit" class="btn-submit">Leistungsbeschreibung erstellen</button>
                 </div>
             </form>
@@ -523,6 +527,8 @@
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container"></div>
 
+    <script src="/js/wizardState.js"></script>
+    <script src="/js/wizard.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>

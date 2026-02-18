@@ -175,7 +175,7 @@ function updateWallOptions() {
     walls.forEach(wall => {
         html += `
             <label class="radio-card">
-                <input type="radio" name="wall" value="${wall.id}" onchange="handleRadioSelect(this); updateProgress();">
+                <input type="radio" name="wall" value="${wall.id}" onchange="handleRadioSelect(this); updateProgress(); if(typeof WizardState !== 'undefined') WizardState.save();">
                 <div class="radio-content">
                     <h4>${wall.name}</h4>
                     <p>${wall.description}</p>
@@ -217,7 +217,7 @@ function updateLueftungOptions() {
     lueftungen.forEach(lueftung => {
         html += `
             <label class="radio-card">
-                <input type="radio" name="lueftung" value="${lueftung.id}" onchange="handleRadioSelect(this); updateProgress();">
+                <input type="radio" name="lueftung" value="${lueftung.id}" onchange="handleRadioSelect(this); updateProgress(); if(typeof WizardState !== 'undefined') WizardState.save();">
                 <div class="radio-content">
                     <h4>${lueftung.name}</h4>
                     <p>${lueftung.description}</p>
@@ -584,13 +584,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initRadioCards();
     initInlineValidation();
     initFormValidation();
-    initSmoothScroll();
-    initScrollSpy();
     updateProgress();
 
-    // Listen for input changes to update progress
-    document.querySelectorAll('input, select').forEach(el => {
-        el.addEventListener('change', updateProgress);
-        el.addEventListener('input', updateProgress);
-    });
+    // Initialize wizard (defined in wizard.js)
+    if (typeof initWizard === 'function') {
+        initWizard();
+    }
 });
