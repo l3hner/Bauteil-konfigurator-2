@@ -5,7 +5,7 @@ const layout = require('../layout');
 const assetsDir = path.resolve(__dirname, '..', '..', '..', '..', 'assets');
 
 module.exports = {
-  renderComponent(doc, component, categoryTitle, chapterNumber, ctx) {
+  async renderComponent(doc, component, categoryTitle, chapterNumber, ctx) {
     // ELK-Style Layout: Technisches Schnittbild + Aufbau-Liste + Qualitätsmerkmale
     const marginLeft = 50;
     const contentWidth = 495;
@@ -43,7 +43,12 @@ module.exports = {
 
     if (imgPath && fs.existsSync(imgPath)) {
       try {
-        doc.image(imgPath, marginLeft, y, { fit: [imgWidth, imgHeight] });
+        const buffer = await ctx.imageService.getCompressedImage(imgPath);
+        if (buffer) {
+          doc.image(buffer, marginLeft, y, { fit: [imgWidth, imgHeight] });
+        } else {
+          layout.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
+        }
       } catch (e) {
         layout.drawImagePlaceholder(doc, marginLeft, y, imgWidth, imgHeight, categoryTitle);
       }

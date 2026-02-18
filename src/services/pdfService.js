@@ -4,6 +4,7 @@ const path = require('path');
 const layout = require('./pdf/layout');
 const { buildPageList } = require('./pdf/pages');
 const catalogService = require('./catalogService');
+const imageService = require('./imageService');
 
 class PdfService {
   constructor() {
@@ -26,7 +27,7 @@ class PdfService {
 
     const pages = buildPageList(submission);
     let pageNum = 0;
-    const ctx = { pageNum: 0, catalogService };
+    const ctx = { pageNum: 0, catalogService, imageService };
 
     for (const page of pages) {
       if (!page.condition(submission)) continue;
@@ -39,6 +40,7 @@ class PdfService {
     }
 
     doc.end();
+    imageService.clearCache();
     return new Promise((resolve, reject) => {
       stream.on('finish', () => resolve(outputPath));
       stream.on('error', reject);

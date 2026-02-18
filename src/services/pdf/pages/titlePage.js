@@ -9,7 +9,7 @@ module.exports = {
     return true;
   },
 
-  render(doc, submission, ctx) {
+  async render(doc, submission, ctx) {
     // Ruhiges, hochwertiges Deckblatt: viel Weißraum oben, dezenter grüner Bereich unten
     const splitY = 420;
     doc.rect(0, splitY, 595, 842 - splitY).fill(layout.colors.primary);
@@ -19,7 +19,15 @@ module.exports = {
     console.log('[PDF] Logo-Pfad:', logoPath, '| Existiert:', fs.existsSync(logoPath));
     if (fs.existsSync(logoPath)) {
       try {
-        doc.image(logoPath, 172.5, 100, { width: 250 });
+        const buffer = await ctx.imageService.getCompressedImage(logoPath, 500);
+        if (buffer) {
+          doc.image(buffer, 172.5, 100, { width: 250 });
+        } else {
+          doc.font(layout.typography.hero.font).fontSize(layout.typography.hero.size).fillColor(layout.colors.primary);
+          doc.text('LEHNER HAUS', 0, 140, { width: 595, align: 'center' });
+          doc.font('Helvetica').fontSize(18).fillColor(layout.colors.textMuted);
+          doc.text('schwäbisch gut', 0, 195, { width: 595, align: 'center' });
+        }
       } catch (e) {
         console.error('[PDF] Logo konnte nicht geladen werden:', e.message);
         doc.font(layout.typography.hero.font).fontSize(layout.typography.hero.size).fillColor(layout.colors.primary);

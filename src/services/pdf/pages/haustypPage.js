@@ -5,7 +5,7 @@ const layout = require('../layout');
 const assetsDir = path.resolve(__dirname, '..', '..', '..', '..', 'assets');
 
 module.exports = {
-  renderHaustyp(doc, component, ctx) {
+  async renderHaustyp(doc, component, ctx) {
     const marginLeft = 50;
     const contentWidth = 495;
 
@@ -22,11 +22,16 @@ module.exports = {
 
       if (imgFile && fs.existsSync(imgFile)) {
         try {
-          // Clipping für gleiche Höhe bei allen Bildern
-          doc.save();
-          doc.rect(imgX, 95, imgWidth, imgHeight).clip();
-          doc.image(imgFile, imgX, 95, { fit: [imgWidth, imgHeight], align: 'center', valign: 'center' });
-          doc.restore();
+          const buffer = await ctx.imageService.getCompressedImage(imgFile);
+          if (buffer) {
+            // Clipping für gleiche Höhe bei allen Bildern
+            doc.save();
+            doc.rect(imgX, 95, imgWidth, imgHeight).clip();
+            doc.image(buffer, imgX, 95, { fit: [imgWidth, imgHeight], align: 'center', valign: 'center' });
+            doc.restore();
+          } else {
+            layout.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
+          }
         } catch (e) {
           doc.restore();
           layout.drawImagePlaceholder(doc, imgX, 95, imgWidth, imgHeight, 'Haustyp');
