@@ -8,6 +8,40 @@ router.post('/', async (req, res) => {
   try {
     const formData = req.body;
 
+    // Server-side required field validation
+    const requiredFields = {
+      bauherr_anrede: 'Anrede ist ein Pflichtfeld.',
+      bauherr_vorname: 'Vorname ist ein Pflichtfeld.',
+      bauherr_nachname: 'Nachname ist ein Pflichtfeld.',
+      kfw_standard: 'Bitte wahlen Sie einen Energiestandard.',
+      haustyp: 'Bitte wahlen Sie einen Haustyp.',
+      wall: 'Bitte wahlen Sie ein Aussenwandsystem.',
+      innerwall: 'Bitte wahlen Sie ein Innenwandsystem.',
+      decke: 'Bitte wahlen Sie ein Deckensystem.',
+      window: 'Bitte wahlen Sie ein Fenstersystem.',
+      tiles: 'Bitte wahlen Sie eine Dacheindeckung.',
+      dach: 'Bitte wahlen Sie eine Dachform.',
+      treppe: 'Bitte wahlen Sie eine Treppenoption.',
+      heizung: 'Bitte wahlen Sie ein Heizungssystem.',
+      lueftung: 'Bitte wahlen Sie ein Luftungssystem.',
+      personenanzahl: 'Bitte geben Sie die Personenanzahl an.',
+      grundstueck: 'Bitte geben Sie den Grundstucksstatus an.'
+    };
+
+    const missingFields = [];
+    for (const [field, message] of Object.entries(requiredFields)) {
+      if (!formData[field] || !formData[field].toString().trim()) {
+        missingFields.push({ field, message });
+      }
+    }
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        error: 'Pflichtfelder fehlen',
+        details: missingFields
+      });
+    }
+
     // Parse room data
     const rooms = submissionService.parseRoomData(formData);
     
