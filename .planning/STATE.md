@@ -72,6 +72,10 @@ Recent decisions affecting current work:
 - [03-01]: Typography references use registered name 'Heading' — enables graceful degradation if fonts missing
 - [03-01]: drawHeader uses typography.h1.font reference — all page headers get Montserrat automatically
 - [03-01]: drawFooter and drawImagePlaceholder keep Helvetica intentionally — body text stays built-in
+- [03-02]: Product image (filePath) preferred over technical drawing for visual impact; technical drawing is fallback
+- [03-02]: Component images use fit mode (no crop) while haustyp hero uses cover mode (full-bleed)
+- [03-02]: Technical details moved to compact 2-column gray box at page bottom instead of right column
+- [03-02]: Heading-SemiBold for section headers (features, advantages) within pages
 - [03-03]: All 9 categories always shown in executive summary grid — no conditional exclusion for Lueftung/Treppe
 - [03-03]: Gold left accent bar (3px) on every grid card matches drawHeader accent pattern
 - [03-03]: Technical highlights bar optional — only renders when specs exist and space remains (y < 700)
