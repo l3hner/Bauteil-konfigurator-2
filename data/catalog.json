@@ -3,6 +3,7 @@
     {
       "id": "climativ",
       "name": "CLIMA-tiv",
+      "emotionalHook": "Ihr Zuhause atmet \u2013 diffusionsoffener Wandaufbau mit F90 Brandschutz und wohngesunder ESB-Beplankung als Standard.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "CLIMA-tiv Außenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion aus KVH (Vollholz 80/160) mit diffusionsoffenem Außenputz. Wandstärke: 265 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
@@ -45,6 +46,7 @@
     {
       "id": "climativ-gf",
       "name": "CLIMA-tiv (GF)",
+      "emotionalHook": "Maximale Robustheit trifft Wohngesundheit \u2013 Gipsfaser f\u00fcr h\u00f6chste Belastbarkeit im Alltag.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "CLIMA-tiv Außenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion aus KVH (Vollholz 80/160) mit diffusionsoffenem Außenputz. Wandstärke: 265 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
@@ -87,6 +89,7 @@
     {
       "id": "climativ-plus",
       "name": "CLIMA-tiv plus",
+      "emotionalHook": "Die st\u00e4rkste Wand f\u00fcr Ihr KfW-40-Haus \u2013 mehr D\u00e4mmung, mehr Komfort, mehr Energieersparnis.",
       "kfwCompatible": ["KFW40"],
       "description": "CLIMA-tiv plus Außenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 345 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
@@ -129,6 +132,7 @@
     {
       "id": "climativ-plus-gf",
       "name": "CLIMA-tiv plus (GF)",
+      "emotionalHook": "KfW-40 Spitzenleistung mit der Robustheit von Gipsfaser \u2013 f\u00fcr Familien, die das Beste wollen.",
       "kfwCompatible": ["KFW40"],
       "description": "CLIMA-tiv plus Außenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 345 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
@@ -173,6 +177,7 @@
     {
       "id": "iw80-gf",
       "name": "IW 80 (GF)",
+      "emotionalHook": "H\u00e4ngen Sie auf, was Sie wollen \u2013 60 kg Tragkraft pro Befestigung und feuchtraumgeeignet ohne Zusatzbehandlung.",
       "description": "Innenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion (Vollholz 80/80) mit beidseitiger Beplankung. Wandstärke: 130 mm.",
       "constructionType": "beidseitig beplankt",
       "bathroomSuitable": true,
@@ -213,6 +218,7 @@
     {
       "id": "iw80",
       "name": "IW 80",
+      "emotionalHook": "Nat\u00fcrlich wohngesund von innen \u2013 ESB-Platten aus frischem Fichtenholz f\u00fcr ein gutes Raumklima.",
       "description": "Innenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion (Vollholz 80/80) mit beidseitiger Beplankung. Wandstärke: 130 mm.",
       "constructionType": "beidseitig beplankt",
       "bathroomSuitable": false,
@@ -256,6 +262,7 @@
     {
       "id": "kunststoff",
       "name": "Kunststofffenster",
+      "emotionalHook": "Dreifach verglast, sechsfach gesch\u00fctzt \u2013 modernste Fenstertechnik f\u00fcr W\u00e4rme, Stille und Sicherheit.",
       "description": "Hochwertige Kunststofffenster mit 3-fach Verglasung und 6-Kammer-Profil. Ug-Wert 0,5 W/(m²K) für beste Wärmedämmung. RC2-Beschlagstechnik serienmäßig.",
       "securityClass": "RC2",
       "premiumFeatures": [
@@ -286,6 +293,7 @@
     {
       "id": "holz-alu",
       "name": "Holz-Aluminium-Fenster",
+      "emotionalHook": "Echtes Holz innen, wartungsfreies Aluminium au\u00dfen \u2013 das Fenster, das Sie nie wieder streichen m\u00fcssen.",
       "description": "Premium-Fenster mit Echtholz-Innenseite und witterungsbeständiger Aluminium-Außenschale. Ug-Wert 0,5 W/(m²K). RC2-Beschlagstechnik serienmäßig.",
       "securityClass": "RC2",
       "premiumFeatures": [
@@ -322,6 +330,7 @@
     {
       "id": "beton",
       "name": "Betondachsteine",
+      "emotionalHook": "Bew\u00e4hrter Schutz in Ihrer Wunschfarbe \u2013 millionenfach verbaute Qualit\u00e4t f\u00fcr Ihr Dach.",
       "description": "Wirtschaftliche Betondachsteine mit guter Haltbarkeit. Vielfältige Farbauswahl für individuelle Dachgestaltung.",
       "premiumSurface": false,
       "brandProtection": "B",
@@ -347,6 +356,7 @@
     {
       "id": "ton",
       "name": "Tondachziegel",
+      "emotionalHook": "Durchgef\u00e4rbte Eleganz aus gebranntem Ton \u2013 nat\u00fcrliche Sch\u00f6nheit, die Jahrzehnte h\u00e4lt.",
       "description": "Tondachziegel mit Durchfärbung. Teurere Lösung, nur in seltenen Fällen notwendig. A² Brandschutz.",
       "premiumSurface": false,
       "brandProtection": "A²",
@@ -375,6 +385,7 @@
     {
       "id": "bungalow",
       "name": "Bungalow",
+      "emotionalHook": "Alles auf einer Ebene \u2013 barrierefreier Komfort f\u00fcr heute und Sicherheit f\u00fcr morgen.",
       "description": "Eingeschossiges, barrierefreies Wohnen auf einer Ebene – ideal für alle Lebensphasen.",
       "details": "Alle Wohnräume auf einer Ebene – ideal für barrierefreies Wohnen und alle Lebensphasen. Keine Treppen, kurze Wege, großzügige Raumaufteilung möglich. Bei Lehner Haus mit 100% freier Grundrissgestaltung.",
       "advantages": [
@@ -389,6 +400,7 @@
     {
       "id": "stadtvilla",
       "name": "Stadtvilla",
+      "emotionalHook": "Repr\u00e4sentativ wohnen auf kompaktem Grundst\u00fcck \u2013 zwei Vollgeschosse f\u00fcr gro\u00dfz\u00fcgigen Lebensraum.",
       "description": "Zwei Vollgeschosse für maximalen Wohnraum auf kompaktem Grundstück.",
       "details": "Zwei voll nutzbare Geschosse bieten optimale Raumausnutzung. Klare Trennung von Wohn- und Schlafbereich. Ideal für Familien mit hohem Platzbedarf. Repräsentative Architektur.",
       "advantages": [
@@ -403,6 +415,7 @@
     {
       "id": "familienhaus",
       "name": "Familienhaus",
+      "emotionalHook": "Der Klassiker f\u00fcr Familien \u2013 bew\u00e4hrte Bauform mit charmantem Dachgeschoss und Platz f\u00fcr alle.",
       "description": "1,5 Geschosse mit Kniestock – der beliebte Klassiker für Familien.",
       "details": "Erdgeschoss voll nutzbar, Dachgeschoss mit Kniestock bietet zusätzlichen Wohnraum. Perfekte Balance aus Raumangebot und Wirtschaftlichkeit. Der meistgebaute Haustyp in Deutschland.",
       "advantages": [
@@ -416,7 +429,8 @@
     },
     {
       "id": "doppelhaus",
-      "name": "Doppelhaushälfte",
+      "name": "Doppelhaush\u00e4lfte",
+      "emotionalHook": "Gemeinsam bauen, individuell leben \u2013 geteilte Kosten bei voller Gestaltungsfreiheit.",
       "description": "Zwei Wohneinheiten unter einem Dach – wirtschaftlich und gemeinschaftlich.",
       "details": "Ideal für Mehrgenerationenwohnen oder als Kapitalanlage. Jede Haushälfte eigenständig nutzbar. Geteilte Baukosten bei individueller Gestaltung.",
       "advantages": [
@@ -431,6 +445,7 @@
     {
       "id": "reihenhaus",
       "name": "Reihenhaus",
+      "emotionalHook": "Eigenes Zuhause mit Garten mitten in der Stadt \u2013 urbanes Wohnen ohne Kompromisse.",
       "description": "Optimale Grundstücksausnutzung für urbane Lagen.",
       "details": "Effiziente Bauweise für schmale Grundstücke in urbanen Lagen. Optimale Kostenstruktur durch gemeinsame Wände. Perfekt für Baugemeinschaften.",
       "advantages": [
@@ -445,6 +460,7 @@
     {
       "id": "mehrfamilienhaus",
       "name": "Mehrfamilienhaus",
+      "emotionalHook": "Wohnraum schaffen, der Rendite bringt \u2013 flexible Einheiten f\u00fcr Familie oder Vermietung.",
       "description": "Mehrere Wohneinheiten für Vermietung oder Mehrgenerationenwohnen.",
       "details": "Flexible Gestaltung mit mehreren eigenständigen Wohneinheiten. Ideal für Vermietung oder Großfamilien. Auch als Bauträgerprojekt realisierbar.",
       "advantages": [
@@ -460,7 +476,8 @@
   "heizung": [
     {
       "id": "vaillant",
-      "name": "Vaillant aroTHERM plus Wärmepumpe",
+      "name": "Vaillant aroTHERM plus W\u00e4rmepumpe",
+      "emotionalHook": "Aus einer Kilowattstunde Strom werden f\u00fcnf Kilowattstunden W\u00e4rme \u2013 Spitzeneffizienz vom deutschen Marktf\u00fchrer.",
       "description": "Premium-Luft-Wasser-Wärmepumpe vom deutschen Marktführer. SCOP bis 5,0 – höchste Effizienz auf dem Markt. Mit natürlichem Kältemittel R290 (Propan).",
       "layers": [
         { "name": "Luft-Wasser-Wärmepumpe Außeneinheit", "value": "" },
@@ -486,7 +503,8 @@
     },
     {
       "id": "viessmann",
-      "name": "Viessmann Vitocal 250-A Wärmepumpe",
+      "name": "Viessmann Vitocal 250-A W\u00e4rmepumpe",
+      "emotionalHook": "Deutsche Ingenieursqualit\u00e4t mit intelligenter Steuerung \u2013 zuverl\u00e4ssige W\u00e4rme f\u00fcr die n\u00e4chsten 20 Jahre.",
       "description": "Deutsche Premium-Wärmepumpe mit intelligenter Regelung. SCOP bis 4,7 und höchste Zuverlässigkeit. Made in Germany.",
       "layers": [
         { "name": "Luft-Wasser-Wärmepumpe Außeneinheit", "value": "" },
@@ -516,7 +534,8 @@
   "lueftung": [
     {
       "id": "keine",
-      "name": "Natürliche Fensterlüftung",
+      "name": "Nat\u00fcrliche Fensterl\u00fcftung",
+      "emotionalHook": "Bew\u00e4hrte Einfachheit \u2013 frische Luft durch bewusstes L\u00fcften, ohne Technik und ohne Folgekosten.",
       "description": "Manuelle Lüftung über Fenster. Bei KfW 55 Standard ausreichend, wenn ein Lüftungskonzept erstellt wird.",
       "note": "Bei KfW 55 ist mechanische Lüftung nicht zwingend erforderlich – ein Lüftungskonzept nach DIN 1946-6 ist aber Pflicht.",
       "advantages": [
@@ -530,7 +549,8 @@
     },
     {
       "id": "dezentral",
-      "name": "Dezentrale Lüftung mit WRG",
+      "name": "Dezentrale L\u00fcftung mit WRG",
+      "emotionalHook": "Frische Luft in jedem Raum, individuell steuerbar \u2013 bis zu 91 % W\u00e4rmer\u00fcckgewinnung f\u00fcr sp\u00fcrbar niedrigere Heizkosten.",
       "description": "Einzelraumlüftungsgeräte mit bis zu 91% Wärmerückgewinnung. Raumweise steuerbar und einfach nachrüstbar.",
       "layers": [
         { "name": "Dezentrale Lüftungsgeräte", "value": "je Raum" },
@@ -556,7 +576,8 @@
     },
     {
       "id": "zentral",
-      "name": "Zentrale Komfortlüftung mit WRG",
+      "name": "Zentrale Komfortl\u00fcftung mit WRG",
+      "emotionalHook": "Pollenfreie Raumluft in jedem Winkel Ihres Hauses \u2013 die Premium-L\u00f6sung f\u00fcr Allergiker und Komfortbewusste.",
       "description": "Vollwertiges Lüftungssystem mit zentralem Gerät und Kanalnetz. Bis zu 95% Wärmerückgewinnung. Die Premium-Lösung für höchsten Wohnkomfort.",
       "layers": [
         { "name": "Zentrales Lüftungsgerät", "value": "im Technikraum" },
@@ -586,6 +607,7 @@
     {
       "id": "satteldach",
       "name": "Satteldach",
+      "emotionalHook": "Der zeitlose Klassiker \u2013 bew\u00e4hrter Witterungsschutz mit gro\u00dfz\u00fcgigem Raumgewinn unterm Dach.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Klassisches Giebeldach mit zwei geneigten Dachflächen, die am First zusammentreffen. Die beliebteste Dachform in Deutschland – bewährt, vielseitig und zeitlos.",
       "premiumFeatures": [
@@ -606,6 +628,7 @@
     {
       "id": "walmdach",
       "name": "Walmdach",
+      "emotionalHook": "Elegante Formensprache mit \u00fcberlegener Windbest\u00e4ndigkeit \u2013 das Dach, das Ihr Haus von allen Seiten sch\u00fctzt.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Dach mit vier geneigten Dachflächen. Elegante Erscheinung und hervorragende Windbeständigkeit – besonders geeignet für exponierte Lagen.",
       "premiumFeatures": [
@@ -626,6 +649,7 @@
     {
       "id": "pultdach",
       "name": "Pultdach",
+      "emotionalHook": "Modernes Design trifft maximalen Lichteinfall \u2013 die perfekte Dachform f\u00fcr architektonische Freiheit.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Dach mit nur einer geneigten Fläche. Moderne Architektur mit maximaler Wandfläche für Fenster und natürliches Licht.",
       "premiumFeatures": [
@@ -646,6 +670,7 @@
     {
       "id": "flachdach",
       "name": "Flachdach",
+      "emotionalHook": "Bauhaus-\u00c4sthetik mit Dachterrassen-Option \u2013 zus\u00e4tzlicher Lebensraum \u00fcber den Wolken.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Flaches oder nahezu flaches Dach. Bauhaus-Ästhetik mit der Möglichkeit einer Dachterrasse oder extensiven Begrünung.",
       "premiumFeatures": [
@@ -668,6 +693,7 @@
     {
       "id": "keine",
       "name": "Keine Treppe",
+      "emotionalHook": "Alles auf einer Ebene \u2013 barrierefreies Wohnen ohne Kompromisse.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Für eingeschossige Gebäude (Bungalow) ohne Treppenbedarf. Barrierefreies Wohnen auf einer Ebene.",
       "premiumFeatures": [
@@ -686,6 +712,7 @@
     {
       "id": "holzwangentreppe",
       "name": "Holzwangentreppe",
+      "emotionalHook": "Warmes Holz unter den F\u00fc\u00dfen \u2013 der Treppenklassiker mit individueller Holzartwahl.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Klassische Treppe mit Holzwangen als tragende Seitenteile. Warmes, natürliches Material mit vielfältigen Gestaltungsmöglichkeiten.",
       "premiumFeatures": [
@@ -706,6 +733,7 @@
     {
       "id": "betontreppe",
       "name": "Betontreppe",
+      "emotionalHook": "Massiv, leise, unverw\u00fcstlich \u2013 die Treppe, die ein Hausleben lang h\u00e4lt und jeden Belag tr\u00e4gt.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Massive Stahlbetontreppe mit höchster Stabilität und bestem Schallschutz. Unbegrenzte Möglichkeiten bei der Oberflächengestaltung.",
       "premiumFeatures": [
@@ -726,6 +754,7 @@
     {
       "id": "stahlholztreppe",
       "name": "Stahl-Holz-Treppe",
+      "emotionalHook": "Luftig-leichtes Design mit Loft-Charakter \u2013 die Treppe f\u00fcr moderne Architektur.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Kombination aus Stahl und Holz für ein offenes, luftiges Design mit industriellem Charme. Schlanke Konstruktion für moderne Architektur.",
       "premiumFeatures": [
@@ -745,7 +774,8 @@
     },
     {
       "id": "aussentreppe",
-      "name": "Außentreppe",
+      "name": "Au\u00dfentreppe",
+      "emotionalHook": "Unabh\u00e4ngige Zug\u00e4nge f\u00fcr unabh\u00e4ngiges Leben \u2013 ideal f\u00fcr Einliegerwohnungen und Mehrgenerationen.",
       "kfwCompatible": ["KFW55", "KFW40"],
       "description": "Externe Treppe für separaten Zugang zum Obergeschoss oder als Gartenverbindung. Ideal für Einliegerwohnungen oder Mehrgenerationenhäuser.",
       "premiumFeatures": [
@@ -768,6 +798,7 @@
     {
       "id": "holzbalkendecke",
       "name": "Lehner Decke",
+      "emotionalHook": "Solide Lehner Konstruktion seit Jahrzehnten \u2013 nat\u00fcrlicher Holzbau mit optimaler Schalld\u00e4mmung.",
       "description": "Lehner Decke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
       "constructionType": "Lehner Decke",
       "premiumFeatures": [
@@ -806,6 +837,7 @@
     {
       "id": "massivholzdecke",
       "name": "Massivholzdecke",
+      "emotionalHook": "Sichtbares Massivholz von unten \u2013 echtes Wohngef\u00fchl, das man sehen und f\u00fchlen kann.",
       "description": "Massivholzdecke mit sichtbarer Holzoberfläche. Massivholzplatte (60 cm breit mit 6 mm Fugen) für natürliches Wohnambiente. Gesamtstärke: 155 mm.",
       "constructionType": "Massivholzdecke",
       "premiumFeatures": [
