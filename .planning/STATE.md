@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-17)
 ## Current Position
 
 Phase: 2 of 5 (PDF Architektur)
-Plan: 1 of 3 completed in current phase
+Plan: 2 of 3 completed in current phase
 Status: In progress
-Last activity: 2026-02-18 — Completed 02-01 layout extraction plan
+Last activity: 2026-02-18 — Completed 02-02 page module extraction plan
 
-Progress: [██████░░░░] 27%
+Progress: [███████░░░] 40%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 3.8 min
-- Total execution time: 0.25 hours
+- Total plans completed: 5
+- Average duration: 4.2 min
+- Total execution time: 0.35 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-catalog-expansion | 3 | 10 min | 3.3 min |
-| 02-pdf-architektur | 1 | 5 min | 5.0 min |
+| 02-pdf-architektur | 2 | 11 min | 5.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (5 min), 01-02 (5 min), 01-03 (2 min), 01-01 (3 min)
+- Last 5 plans: 02-02 (6 min), 02-01 (5 min), 01-02 (5 min), 01-03 (2 min), 01-01 (3 min)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -52,6 +52,10 @@ Recent decisions affecting current work:
 - [01-02]: Dachform before Dacheindeckung, Treppen after — logical roof grouping in form
 - [01-02]: Treppensystem PDF page uses same conditional skip as Lueftung — consistent behavior for 'keine'
 - [01-02]: All dach/treppe lookups use optional chaining — safe for old submissions without these fields
+- [02-02]: Page module contract: { title, condition, render } for standard pages; { renderComponent } and { renderHaustyp } for shared renderers
+- [02-02]: Component pages generated dynamically in buildPageList, not as separate static modules
+- [02-02]: contactPage.render is async (QR code); orchestrator uses await for all renders
+- [02-02]: Dead code removed: drawOverviewContent, drawFinalContent, drawUValueBarChart, drawSCOPGauge
 - [02-01]: layout.js exports flat module (not class) — simpler consumption for page modules
 - [02-01]: hasCustomFonts remains on PdfService instance — mutable state, not a design constant
 - [01-01]: Roof forms are KfW-neutral — all 4 entries compatible with KFW55 and KFW40
@@ -71,5 +75,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 02-01-PLAN.md (layout extraction). Phase 2 plan 1 of 3 complete.
+Stopped at: Completed 02-02-PLAN.md (page module extraction). Phase 2 plan 2 of 3 complete.
 Resume file: None
