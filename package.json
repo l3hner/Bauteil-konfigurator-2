@@ -14,13 +14,13 @@
     "open": "^9.1.0",
     "pdfkit": "^0.14.0",
     "qrcode": "^1.5.4",
+    "sharp": "^0.34.5",
     "uuid": "^9.0.1"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "jimp": "^1.6.0",
-    "sharp": "^0.34.5"
+    "jimp": "^1.6.0"
   }
 }
