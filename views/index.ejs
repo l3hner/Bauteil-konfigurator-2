@@ -166,8 +166,13 @@
 
                     <div class="radio-group">
                         <% catalog.haustypen.forEach(haustyp => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= haustyp.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="haustyp" value="<%= haustyp.id %>" onchange="updateProgress();">
+                            <% if (haustyp.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= haustyp.filePath %>1.png" alt="<%= haustyp.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= haustyp.name %></h4>
                                 <p><%= haustyp.description %></p>
@@ -226,8 +231,13 @@
 
                     <div class="radio-group">
                         <% if (catalog && catalog.innerwalls) { catalog.innerwalls.forEach(innerwall => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= innerwall.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="innerwall" value="<%= innerwall.id %>" onchange="updateProgress();">
+                            <% if (innerwall.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= innerwall.filePath %>" alt="<%= innerwall.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= innerwall.name %></h4>
                                 <p><%= innerwall.description %></p>
@@ -246,8 +256,13 @@
 
                     <div class="radio-group">
                         <% if (catalog && catalog.decken) { catalog.decken.forEach(decke => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= decke.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="decke" value="<%= decke.id %>" onchange="updateProgress();">
+                            <% if (decke.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= decke.filePath %>" alt="<%= decke.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= decke.name %></h4>
                                 <p><%= decke.description %></p>
@@ -266,8 +281,13 @@
 
                     <div class="radio-group">
                         <% catalog.windows.forEach(window => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= window.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="window" value="<%= window.id %>" onchange="updateProgress();">
+                            <% if (window.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= window.filePath %>" alt="<%= window.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= window.name %></h4>
                                 <p><%= window.description %></p>
@@ -286,8 +306,13 @@
 
                     <div class="radio-group">
                         <% catalog.daecher.forEach(dach => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= dach.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="dach" value="<%= dach.id %>" onchange="updateProgress();">
+                            <% if (dach.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= dach.filePath %>" alt="<%= dach.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= dach.name %></h4>
                                 <p><%= dach.description %></p>
@@ -306,8 +331,13 @@
 
                     <div class="radio-group">
                         <% catalog.tiles.forEach(tile => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= tile.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="tiles" value="<%= tile.id %>" onchange="updateProgress();">
+                            <% if (tile.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= tile.filePath %>" alt="<%= tile.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= tile.name %></h4>
                                 <p><%= tile.description %></p>
@@ -326,8 +356,13 @@
 
                     <div class="radio-group">
                         <% catalog.treppen.forEach(treppe => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= treppe.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="treppe" value="<%= treppe.id %>" onchange="updateProgress();">
+                            <% if (treppe.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= treppe.filePath %>" alt="<%= treppe.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= treppe.name %></h4>
                                 <p><%= treppe.description %></p>
@@ -346,8 +381,13 @@
 
                     <div class="radio-group">
                         <% catalog.heizung.forEach(heiz => { %>
-                        <label class="radio-card">
+                        <label class="radio-card<%= heiz.filePath ? ' radio-card--with-image' : '' %>">
                             <input type="radio" name="heizung" value="<%= heiz.id %>" onchange="updateProgress();">
+                            <% if (heiz.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= heiz.filePath %>" alt="<%= heiz.name %>" loading="lazy">
+                            </div>
+                            <% } %>
                             <div class="radio-content">
                                 <h4><%= heiz.name %></h4>
                                 <p><%= heiz.description %></p>

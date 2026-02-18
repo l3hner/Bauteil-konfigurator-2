@@ -101,24 +101,28 @@ const wallOptions = {
         {
             id: 'climativ',
             name: 'CLIMA-tiv',
-            description: 'Mit Holzwerkstoffplatte - 270 mm Wandstärke'
+            description: 'Mit Holzwerkstoffplatte - 270 mm Wandstärke',
+            filePath: 'assets/variants/walls/climativ-esb.png'
         },
         {
             id: 'climativ-gf',
             name: 'CLIMA-tiv (GF)',
-            description: 'Mit Gipsfaserplatte - 270 mm Wandstärke'
+            description: 'Mit Gipsfaserplatte - 270 mm Wandstärke',
+            filePath: 'assets/variants/walls/climativ-fermacell.png'
         }
     ],
     KFW40: [
         {
             id: 'climativ-plus',
             name: 'CLIMA-tiv plus',
-            description: 'Mit Holzwerkstoffplatte - 350 mm Wandstärke'
+            description: 'Mit Holzwerkstoffplatte - 350 mm Wandstärke',
+            filePath: 'assets/variants/walls/climativ-plus-esb.png'
         },
         {
             id: 'climativ-plus-gf',
             name: 'CLIMA-tiv plus (GF)',
-            description: 'Mit Gipsfaserplatte - 350 mm Wandstärke'
+            description: 'Mit Gipsfaserplatte - 350 mm Wandstärke',
+            filePath: 'assets/variants/walls/climativ-plus-fermacell.png'
         }
     ]
 };
@@ -131,19 +135,22 @@ const lueftungOptions = {
         {
             id: 'keine',
             name: 'Keine Luftungsanlage',
-            description: 'Naturliche Luftung uber Fenster (bei KfW 55 ausreichend)'
+            description: 'Naturliche Luftung uber Fenster (bei KfW 55 ausreichend)',
+            filePath: null
         }
     ],
     KFW40: [
         {
             id: 'dezentral',
             name: 'Dezentrale Luftung',
-            description: 'Einzelraumluftung mit Warmeruckgewinnung'
+            description: 'Einzelraumluftung mit Warmeruckgewinnung',
+            filePath: 'assets/variants/lueftung/dezentral.png'
         },
         {
             id: 'zentral',
             name: 'Zentrale Luftungsanlage',
-            description: 'Komfort-Luftung mit zentraler Steuerung'
+            description: 'Komfort-Luftung mit zentraler Steuerung',
+            filePath: 'assets/variants/lueftung/zentral.png'
         }
     ]
 };
@@ -174,8 +181,9 @@ function updateWallOptions() {
     let html = '';
     walls.forEach(wall => {
         html += `
-            <label class="radio-card">
+            <label class="radio-card${wall.filePath ? ' radio-card--with-image' : ''}">
                 <input type="radio" name="wall" value="${wall.id}" onchange="handleRadioSelect(this); updateProgress(); if(typeof WizardState !== 'undefined') WizardState.save();">
+                ${wall.filePath ? `<div class="radio-card-image"><img src="/${wall.filePath}" alt="${wall.name}" loading="lazy"></div>` : ''}
                 <div class="radio-content">
                     <h4>${wall.name}</h4>
                     <p>${wall.description}</p>
@@ -216,8 +224,9 @@ function updateLueftungOptions() {
     let html = '';
     lueftungen.forEach(lueftung => {
         html += `
-            <label class="radio-card">
+            <label class="radio-card${lueftung.filePath ? ' radio-card--with-image' : ''}">
                 <input type="radio" name="lueftung" value="${lueftung.id}" onchange="handleRadioSelect(this); updateProgress(); if(typeof WizardState !== 'undefined') WizardState.save();">
+                ${lueftung.filePath ? `<div class="radio-card-image"><img src="/${lueftung.filePath}" alt="${lueftung.name}" loading="lazy"></div>` : ''}
                 <div class="radio-content">
                     <h4>${lueftung.name}</h4>
                     <p>${lueftung.description}</p>
