@@ -94,12 +94,12 @@ Plans:
   3. Wenn Pflichtfelder fehlen, zeigt der Wizard eine verständliche deutsche Fehlermeldung direkt beim betreffenden Feld — das Formular sendet nicht ab bis alle Pflichtfelder gültig sind
   4. Bei jeder Komponentenauswahl (Wand, Fenster, Heizung, etc.) sind Produktbilder als Teil der Auswahloptionen sichtbar — nicht nur Texte
   5. Wenn der Browser-Tab aktualisiert wird oder die Zurück-Taste gedrückt wird, bleiben alle bereits eingegebenen Daten erhalten
-**Plans**: TBD
+**Plans**: 3 plans (3 waves)
 
 Plans:
-- [ ] 05-01: Wizard-Architektur aufbauen (WIZARD_STEPS Config, sessionStorage State, URL-Hash für Back-Button, EJS-Partials pro Schritt)
-- [ ] 05-02: Alle Konfigurationsschritte als Wizard-Steps implementieren inkl. neuer Dach/Treppen-Schritte und KfW-abhängigem dynamischem Filtering
-- [ ] 05-03: Tablet-Optimierung — Touch-Targets auf 44px, responsive Layout, Swipe-Gesten, Produktbilder in Auswahloptionen
+- [ ] 05-01-PLAN.md — Wizard-Architektur: wizard.js (Step-Controller mit 17 Steps), wizardState.js (sessionStorage-Persistenz), script.js-Refactoring, index.ejs-Verdrahtung
+- [ ] 05-02-PLAN.md — Produktbilder in allen Katalog-Radio-Cards (8 Sektionen) + Server-seitige Pflichtfeld-Validierung in submit.js
+- [ ] 05-03-PLAN.md — Tablet-Optimierung: 44px+ Touch-Targets, responsive Radio-Card-Grids, Wizard-Navigation-Styling, Validierungsfehler-CSS
 
 ## Progress
 
