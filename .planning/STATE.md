@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-02-17)
 ## Current Position
 
 Phase: 1 of 5 (Catalog Expansion)
-Plan: 1 of 3 completed in current phase
+Plan: 2 of 3 completed in current phase
 Status: Executing phase 1
-Last activity: 2026-02-18 — Completed 01-03 submission migration plan
+Last activity: 2026-02-18 — Completed 01-01 catalog data foundation plan
 
-Progress: [██░░░░░░░░] 7%
+Progress: [████░░░░░░] 13%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 2 min
-- Total execution time: 0.03 hours
+- Total plans completed: 2
+- Average duration: 2.5 min
+- Total execution time: 0.08 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-catalog-expansion | 1 | 2 min | 2 min |
+| 01-catalog-expansion | 2 | 5 min | 2.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-03 (2 min)
+- Last 5 plans: 01-03 (2 min), 01-01 (3 min)
 - Trend: Starting
 
 *Updated after each plan completion*
@@ -48,6 +48,9 @@ Recent decisions affecting current work:
 - [01-03]: Schema version stamped on data object before spread — ensures schemaVersion persists through write
 - [01-03]: Migration script uses per-file error handling — one bad file does not abort migration
 - [01-03]: Submission data files are gitignored — only migration script is committed, not user data
+- [01-01]: Roof forms are KfW-neutral — all 4 entries compatible with KFW55 and KFW40
+- [01-01]: Treppen 'keine' entry valid for all KfW standards — bungalow choice
+- [01-01]: Dach/treppe validation uses optional pattern — null/undefined allowed for backward compat
 
 ### Pending Todos
 
@@ -62,5 +65,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 01-03-PLAN.md (submission migration). Plans 01-01 and 01-02 still pending.
+Stopped at: Completed 01-01-PLAN.md (catalog data foundation). Plan 01-02 still pending.
 Resume file: None
