@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-17)
 
 **Core value:** Fachberater erstellen in wenigen Minuten eine personalisierte, visuell überzeugende Leistungsbeschreibung, die den Kunden begeistert und zum Vertragsabschluss führt.
-**Current focus:** Phase 2 complete — ready for Phase 3 (PDF Visual Quality)
+**Current focus:** Phase 3 in progress — PDF Visual Quality (corporate branding + hero title page done)
 
 ## Current Position
 
-Phase: 2 of 5 (PDF Architektur) — COMPLETE
-Plan: 3 of 3 completed in current phase
-Status: Phase complete
-Last activity: 2026-02-18 — Completed 02-03 image compression pipeline
+Phase: 3 of 5 (PDF Design)
+Plan: 1 of 3 completed in current phase
+Status: In progress
+Last activity: 2026-02-18 — Completed 03-01 corporate branding & hero title page
 
-Progress: [████████░░] 47%
+Progress: [█████████░] 53%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 3.8 min
-- Total execution time: 0.38 hours
+- Total plans completed: 7
+- Average duration: 3.9 min
+- Total execution time: 0.45 hours
 
 **By Phase:**
 
@@ -29,9 +29,10 @@ Progress: [████████░░] 47%
 |-------|-------|-------|----------|
 | 01-catalog-expansion | 3 | 10 min | 3.3 min |
 | 02-pdf-architektur | 3 | 14 min | 4.7 min |
+| 03-pdf-design | 1 | 4 min | 4.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (3 min), 02-02 (6 min), 02-01 (5 min), 01-02 (5 min), 01-03 (2 min)
+- Last 5 plans: 03-01 (4 min), 02-03 (3 min), 02-02 (6 min), 02-01 (5 min), 01-02 (5 min)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -66,6 +67,11 @@ Recent decisions affecting current work:
 - [01-01]: Roof forms are KfW-neutral — all 4 entries compatible with KFW55 and KFW40
 - [01-01]: Treppen 'keine' entry valid for all KfW standards — bungalow choice
 - [01-01]: Dach/treppe validation uses optional pattern — null/undefined allowed for backward compat
+- [03-01]: Montserrat as heading font with Helvetica-Bold fallback via try/catch — premium feel without hard dependency
+- [03-01]: Hero image uses selected haustyp 1.png with fallback chain: stadtvilla -> first available -> solid navy
+- [03-01]: Typography references use registered name 'Heading' — enables graceful degradation if fonts missing
+- [03-01]: drawHeader uses typography.h1.font reference — all page headers get Montserrat automatically
+- [03-01]: drawFooter and drawImagePlaceholder keep Helvetica intentionally — body text stays built-in
 
 ### Pending Todos
 
@@ -74,11 +80,11 @@ None yet.
 ### Blockers/Concerns
 
 - [Phase 2]: Render.com memory tier unknown — if free tier (512 MB), image compression is critical before adding large assets. Verify actual tier before Phase 3.
-- [Phase 3]: Lehner Haus brand font unknown — research recommends Montserrat as fallback. Confirm with client before implementing custom font.
+- [Phase 3]: Montserrat implemented as heading font — can be swapped for brand font if client provides one.
 - [Phase 5]: sessionStorage vs. URL params decision needed at plan time — ARCHITECTURE.md and PITFALLS.md conflict on this.
 
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 02-03-PLAN.md (image compression pipeline). Phase 2 (PDF Architektur) fully complete. Ready for Phase 3.
+Stopped at: Completed 03-01-PLAN.md (corporate branding & hero title page). Navy/red palette and Montserrat fonts active. Ready for 03-02.
 Resume file: None
