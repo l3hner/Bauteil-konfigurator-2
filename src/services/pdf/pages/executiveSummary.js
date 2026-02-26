@@ -10,56 +10,41 @@ module.exports = {
   render(doc, submission, ctx) {
     const catalogService = ctx.catalogService;
     let y = 100;
-    const { marginLeft, contentWidth } = layout.layout;
+    const marginLeft = 50;
+    const contentWidth = 495;
 
-    // ─── BAUHERR SECTION (full-width card) ────────────────────────────
-    const cardHeight = 55;
-    const cardPadding = 14;
-
-    // Background card
-    doc.roundedRect(marginLeft, y, contentWidth, cardHeight, 4)
-      .fill(layout.colors.grayLight);
-
-    // Gold left accent bar
-    doc.rect(marginLeft, y, 3, cardHeight)
-      .fill(layout.colors.gold);
-
-    // Bauherr name
+    // ─── BAUHERR HEADER ─────────────────────────────────────────────
     const nameText = `${submission.bauherr_vorname || ''} ${submission.bauherr_nachname || ''}`.trim() || '-';
-    doc.font('Heading').fontSize(14).fillColor(layout.colors.primary);
-    doc.text(nameText, marginLeft + cardPadding, y + 10, { lineBreak: false });
+    doc.font('Heading').fontSize(16).fillColor(layout.colors.primary);
+    doc.text(nameText, marginLeft, y);
+    y += 22;
 
-    // Metadata chips row
+    // Metadata line
     const kfwText = submission.kfw_standard === 'KFW55' ? 'KfW 55' : 'KfW 40';
     const grundstueckText = layout.getGrundstueckText(submission.grundstueck);
-
     const chips = [
       `${submission.personenanzahl || '-'} Personen`,
       kfwText,
-      `Grundst.: ${grundstueckText}`
+      `Grundstück: ${grundstueckText}`
     ];
-
-    // Add formatted date if timestamp exists
     if (submission.timestamp) {
       const date = new Date(submission.timestamp);
-      const formattedDate = date.toLocaleDateString('de-DE', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-      });
-      chips.push(formattedDate);
+      chips.push(date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }));
     }
-
-    const chipsText = chips.join('  |  ');
     doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textMuted);
-    doc.text(chipsText, marginLeft + cardPadding, y + 32, { lineBreak: false });
+    doc.text(chips.join('   |   '), marginLeft, y);
+    y += 18;
 
-    y += cardHeight + 20;
+    // Separator line
+    doc.moveTo(marginLeft, y).lineTo(marginLeft + contentWidth, y)
+      .strokeColor('#cccccc').lineWidth(0.5).stroke();
+    y += 20;
 
-    // ─── COMPONENT GRID (3x3) ─────────────────────────────────────────
+    // ─── COMPONENT TABLE ─────────────────────────────────────────────
     const haustyp = catalogService.getVariantById('haustypen', submission.haustyp);
     const wall = catalogService.getVariantById('walls', submission.wall);
     const innerwall = catalogService.getVariantById('innerwalls', submission.innerwall);
+    const decke = catalogService.getVariantById('decken', submission.decke);
     const windowData = catalogService.getVariantById('windows', submission.window);
     const tiles = catalogService.getVariantById('tiles', submission.tiles);
     const dach = catalogService.getVariantById('daecher', submission.dach);
@@ -67,56 +52,60 @@ module.exports = {
     const lueftung = catalogService.getVariantById('lueftung', submission.lueftung);
     const treppe = catalogService.getVariantById('treppen', submission.treppe);
 
-    const keyFacts = [
+    const rows = [
       { label: 'Haustyp', value: haustyp?.name || '-' },
-      { label: 'Aussenwand', value: wall?.name || '-' },
+      { label: 'Außenwand', value: wall?.name || '-' },
       { label: 'Innenwand', value: innerwall?.name || '-' },
+      { label: 'Geschossdecke', value: decke?.name || '-' },
       { label: 'Fenster', value: windowData?.name || '-' },
       { label: 'Dacheindeckung', value: tiles?.name || '-' },
-      { label: 'Dachform', value: dach?.name || '-' },
+      { label: 'Dachaufbau', value: dach?.name || '-' },
       { label: 'Heizung', value: heizung?.name || '-' },
-      { label: 'Lueftung', value: lueftung?.name || 'Keine' },
+      { label: 'Lüftung', value: lueftung?.name || 'Keine' },
       { label: 'Treppe', value: treppe?.name || 'Keine' }
     ];
 
-    const cols = 3;
-    const gap = 12;
-    const cellWidth = Math.floor((contentWidth - (cols - 1) * gap) / cols);
-    const cellHeight = 70;
-    const rowGap = 10;
+    // Table header
+    doc.font('Heading-SemiBold').fontSize(8).fillColor(layout.colors.textMuted);
+    doc.text('Kategorie', marginLeft + 12, y, { width: 140, lineBreak: false });
+    doc.text('Ihre Auswahl', marginLeft + 160, y, { width: contentWidth - 160 });
+    y += 14;
 
-    for (let i = 0; i < keyFacts.length; i++) {
-      const col = i % cols;
-      const row = Math.floor(i / cols);
-      const cx = marginLeft + col * (cellWidth + gap);
-      const cy = y + row * (cellHeight + rowGap);
+    // Header underline
+    doc.moveTo(marginLeft, y).lineTo(marginLeft + contentWidth, y)
+      .strokeColor(layout.colors.primary).lineWidth(0.5).stroke();
+    y += 6;
 
-      // Cell background
-      doc.roundedRect(cx, cy, cellWidth, cellHeight, 4)
-        .fill(layout.colors.grayLight);
+    // Table rows with alternating background
+    const rowHeight = 28;
+    const labelWidth = 140;
+    const valueX = marginLeft + 160;
 
-      // Gold left accent bar
-      doc.rect(cx, cy, 3, cellHeight)
-        .fill(layout.colors.gold);
+    rows.forEach((row, idx) => {
+      // Alternating row background
+      if (idx % 2 === 0) {
+        doc.rect(marginLeft, y, contentWidth, rowHeight).fill(layout.colors.grayLight);
+      }
 
-      // Label (category name)
-      doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
-      doc.text(keyFacts[i].label, cx + 12, cy + 10, {
-        width: cellWidth - 20,
-        lineBreak: false
-      });
+      const textY = y + 8;
 
-      // Value (component name)
+      // Category label
+      doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textMuted);
+      doc.text(row.label, marginLeft + 12, textY, { width: labelWidth, lineBreak: false });
+
+      // Component value
       doc.font('Helvetica-Bold').fontSize(9).fillColor(layout.colors.primary);
-      doc.text(keyFacts[i].value, cx + 12, cy + 26, {
-        width: cellWidth - 20
-      });
-    }
+      doc.text(row.value, valueX, textY, { width: contentWidth - 170 });
 
-    // Advance y past the 3x3 grid
-    y += 3 * (cellHeight + rowGap) + 15;
+      y += rowHeight;
+    });
 
-    // ─── TECHNICAL HIGHLIGHTS (optional) ──────────────────────────────
+    // Bottom table line
+    doc.moveTo(marginLeft, y).lineTo(marginLeft + contentWidth, y)
+      .strokeColor(layout.colors.primary).lineWidth(0.5).stroke();
+    y += 20;
+
+    // ─── TECHNICAL HIGHLIGHTS ────────────────────────────────────────
     if (y < 700) {
       const techSpecs = [];
 
@@ -126,45 +115,38 @@ module.exports = {
       if (windowData?.technicalDetails?.ugValue) {
         techSpecs.push({ label: 'U-Wert Fenster', value: windowData.technicalDetails.ugValue });
       }
-      if (heizung?.technicalDetails?.jaz) {
-        techSpecs.push({ label: 'JAZ Heizung', value: heizung.technicalDetails.jaz });
-      }
       if (lueftung?.technicalDetails?.heatRecovery) {
         techSpecs.push({ label: 'WRG', value: lueftung.technicalDetails.heatRecovery });
       }
 
       if (techSpecs.length > 0) {
-        const barHeight = 30;
+        doc.font('Heading-SemiBold').fontSize(9).fillColor(layout.colors.primary);
+        doc.text('Technische Kennwerte', marginLeft, y);
+        y += 16;
 
-        // Background bar
-        doc.roundedRect(marginLeft, y, contentWidth, barHeight, 4)
-          .fill(layout.colors.grayLight);
-
-        // Build spec text with alternating label/value styling
-        let textX = marginLeft + 12;
-        const textY = y + 10;
+        let textX = marginLeft;
 
         for (let i = 0; i < techSpecs.length; i++) {
           const spec = techSpecs[i];
 
           // Label
-          doc.font('Helvetica').fontSize(8).fillColor(layout.colors.textMuted);
-          const labelWidth = doc.widthOfString(`${spec.label}: `);
-          doc.text(`${spec.label}: `, textX, textY, { lineBreak: false });
-          textX += labelWidth;
+          doc.font('Helvetica').fontSize(8.5).fillColor(layout.colors.textMuted);
+          const labelW = doc.widthOfString(`${spec.label}: `);
+          doc.text(`${spec.label}: `, textX, y, { lineBreak: false });
+          textX += labelW;
 
-          // Value in gold
-          doc.font('Helvetica-Bold').fontSize(8).fillColor(layout.colors.gold);
-          const valueWidth = doc.widthOfString(spec.value);
-          doc.text(spec.value, textX, textY, { lineBreak: false });
-          textX += valueWidth;
+          // Value
+          doc.font('Helvetica-Bold').fontSize(8.5).fillColor(layout.colors.primary);
+          const valueW = doc.widthOfString(spec.value);
+          doc.text(spec.value, textX, y, { lineBreak: false });
+          textX += valueW;
 
           // Separator
           if (i < techSpecs.length - 1) {
-            doc.font('Helvetica').fontSize(8).fillColor(layout.colors.textMuted);
-            const sepWidth = doc.widthOfString('  |  ');
-            doc.text('  |  ', textX, textY, { lineBreak: false });
-            textX += sepWidth;
+            doc.font('Helvetica').fontSize(8.5).fillColor(layout.colors.gray);
+            const sepW = doc.widthOfString('    |    ');
+            doc.text('    |    ', textX, y, { lineBreak: false });
+            textX += sepW;
           }
         }
       }

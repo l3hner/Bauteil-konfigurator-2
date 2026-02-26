@@ -182,7 +182,7 @@ function updateWallOptions() {
     walls.forEach(wall => {
         html += `
             <label class="radio-card${wall.filePath ? ' radio-card--with-image' : ''}">
-                <input type="radio" name="wall" value="${wall.id}" onchange="handleRadioSelect(this); updateProgress(); ">
+                <input type="radio" name="wall" value="${wall.id}">
                 ${wall.filePath ? `<div class="radio-card-image"><img src="/${wall.filePath}" alt="${wall.name}" loading="lazy"></div>` : ''}
                 <div class="radio-content">
                     <h4>${wall.name}</h4>
@@ -196,6 +196,11 @@ function updateWallOptions() {
     });
 
     wallOptionsContainer.innerHTML = html;
+
+    // Attach toggle handlers to dynamically created radios
+    wallOptionsContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
+        _attachRadioToggle(radio);
+    });
 }
 
 // ============================================
@@ -225,7 +230,7 @@ function updateLueftungOptions() {
     lueftungen.forEach(lueftung => {
         html += `
             <label class="radio-card${lueftung.filePath ? ' radio-card--with-image' : ''}">
-                <input type="radio" name="lueftung" value="${lueftung.id}" onchange="handleRadioSelect(this); updateProgress(); ">
+                <input type="radio" name="lueftung" value="${lueftung.id}">
                 ${lueftung.filePath ? `<div class="radio-card-image"><img src="/${lueftung.filePath}" alt="${lueftung.name}" loading="lazy"></div>` : ''}
                 <div class="radio-content">
                     <h4>${lueftung.name}</h4>
@@ -239,6 +244,11 @@ function updateLueftungOptions() {
     });
 
     lueftungOptionsContainer.innerHTML = html;
+
+    // Attach toggle handlers to dynamically created radios
+    lueftungOptionsContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
+        _attachRadioToggle(radio);
+    });
 }
 
 // ============================================
@@ -253,28 +263,51 @@ function handleRadioSelect(radio) {
         c.classList.remove('selected', 'pulse');
     });
 
-    // Add selected and pulse classes
-    card.classList.add('selected', 'pulse');
+    // Only add selected if radio is still checked (not deselected)
+    if (radio.checked) {
+        card.classList.add('selected', 'pulse');
 
-    // Remove pulse after animation
-    setTimeout(() => {
-        card.classList.remove('pulse');
-    }, 600);
+        // Remove pulse after animation
+        setTimeout(() => {
+            card.classList.remove('pulse');
+        }, 600);
+    }
 }
 
 // Initialize radio card event listeners
 function initRadioCards() {
     document.querySelectorAll('.radio-card input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            handleRadioSelect(this);
-            updateProgress();
-        });
+        _attachRadioToggle(radio);
 
         // Also set initial selected state
         if (radio.checked) {
             radio.closest('.radio-card').classList.add('selected');
         }
     });
+}
+
+// Attach click-based toggle to a radio button (allows deselection)
+function _attachRadioToggle(radio) {
+    radio.addEventListener('click', function(e) {
+        if (this._wasChecked) {
+            this.checked = false;
+            this._wasChecked = false;
+            // Remove selected class
+            const card = this.closest('.radio-card');
+            if (card) card.classList.remove('selected', 'pulse');
+        } else {
+            // Deselect siblings
+            const group = this.closest('.radio-group');
+            if (group) {
+                group.querySelectorAll('input[type="radio"]').forEach(r => { r._wasChecked = false; });
+            }
+            this._wasChecked = true;
+            handleRadioSelect(this);
+        }
+        updateProgress();
+    });
+    // Track initial state
+    radio._wasChecked = radio.checked;
 }
 
 // ============================================
@@ -287,21 +320,21 @@ function updateProgress() {
             const nachname = document.getElementById('bauherr_nachname')?.value?.trim();
             return vorname && nachname;
         },
-        2: () => document.querySelector('input[name="haustyp"]:checked'),
+        2: () => true,  // Haustyp - optional
         3: () => document.querySelector('input[name="kfw_standard"]:checked'),
-        4: () => document.querySelector('input[name="wall"]:checked'),
-        5: () => document.querySelector('input[name="innerwall"]:checked'),
-        6: () => document.querySelector('input[name="decke"]:checked'),
-        7: () => document.querySelector('input[name="window"]:checked'),
-        8: () => document.querySelector('input[name="dach"]:checked'),
-        9: () => document.querySelector('input[name="tiles"]:checked'),
-        10: () => document.querySelector('input[name="treppe"]:checked'),
-        11: () => document.querySelector('input[name="heizung"]:checked'),
-        12: () => document.querySelector('input[name="lueftung"]:checked'),
+        4: () => true,  // Wand - optional
+        5: () => true,  // Innenwand - optional
+        6: () => true,  // Decke - optional
+        7: () => true,  // Fenster - optional
+        8: () => true,  // Dachaufbau - optional
+        9: () => true,  // Dacheindeckung - optional
+        10: () => true, // Treppe - optional
+        11: () => true, // Heizung - optional
+        12: () => true, // Lüftung - optional
         13: () => document.getElementById('personenanzahl')?.value,
         14: () => document.querySelector('input[name="grundstueck"]:checked'),
-        15: () => true, // Optional - always complete
-        16: () => true  // Optional - always complete
+        15: () => true, // Räume - optional
+        16: () => true  // Eigenleistungen - optional
     };
 
     let completedSteps = 0;

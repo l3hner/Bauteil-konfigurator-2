@@ -37,7 +37,7 @@ module.exports = {
 
     // Kontakt-Box
     doc.roundedRect(60, y, 475, 90, 8).fill(layout.colors.primary);
-    doc.rect(530, y + 10, 4, 70).fill(layout.colors.gold);
+    doc.rect(530, y + 10, 4, 70).fill(layout.colors.gray);
 
     if (submission.berater_name) {
       doc.font('Helvetica-Bold').fontSize(13).fillColor(layout.colors.white);

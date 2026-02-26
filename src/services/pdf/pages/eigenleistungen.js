@@ -26,7 +26,7 @@ module.exports = {
       if (y > 720) break; // Leave room for hint box + footer
 
       // Gold bullet
-      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.gold);
+      doc.font('Helvetica').fontSize(10).fillColor(layout.colors.gray);
       doc.text('\u2022', marginLeft + 10, y, { lineBreak: false });
 
       // Item text
@@ -41,8 +41,8 @@ module.exports = {
       y += 20;
       const boxHeight = 45;
 
-      doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 6).fill(layout.colors.goldLight);
-      doc.rect(marginLeft, y, 4, boxHeight).fill(layout.colors.gold);
+      doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 6).fill(layout.colors.grayLight);
+      doc.rect(marginLeft, y, 4, boxHeight).fill(layout.colors.gray);
 
       doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
       doc.text(

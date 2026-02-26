@@ -49,9 +49,10 @@ module.exports = {
 
     doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.text);
     planungItems.forEach(item => {
-      doc.fillColor(layout.colors.gold).text('•', col1X + 3, y1, { lineBreak: false });
+      doc.fillColor(layout.colors.primary).text('•', col1X + 3, y1, { lineBreak: false });
       doc.fillColor(layout.colors.text).text(item, col1X + 12, y1, { width: colWidth - 15 });
-      y1 += 11;
+      const itemHeight = doc.heightOfString(item, { width: colWidth - 15, fontSize: 7.5 });
+      y1 += Math.max(11, itemHeight + 3);
     });
 
     // === SPALTE 2: ROHBAU ===
@@ -78,9 +79,10 @@ module.exports = {
 
     doc.font('Helvetica').fontSize(7.5);
     rohbauItems.forEach(item => {
-      doc.fillColor(layout.colors.gold).text('•', col2X + 3, y2, { lineBreak: false });
+      doc.fillColor(layout.colors.primary).text('•', col2X + 3, y2, { lineBreak: false });
       doc.fillColor(layout.colors.text).text(item, col2X + 12, y2, { width: colWidth - 15 });
-      y2 += 11;
+      const itemHeight = doc.heightOfString(item, { width: colWidth - 15, fontSize: 7.5 });
+      y2 += Math.max(11, itemHeight + 3);
     });
 
     // === SPALTE 3: AUSBAU ===
@@ -112,17 +114,19 @@ module.exports = {
 
     doc.font('Helvetica').fontSize(7.5);
     ausbauItems.forEach(item => {
-      doc.fillColor(layout.colors.gold).text('•', col3X + 3, y3, { lineBreak: false });
+      doc.fillColor(layout.colors.primary).text('•', col3X + 3, y3, { lineBreak: false });
       doc.fillColor(layout.colors.text).text(item, col3X + 12, y3, { width: colWidth - 15 });
-      y3 += 11;
+      const itemHeight = doc.heightOfString(item, { width: colWidth - 15, fontSize: 7.5 });
+      y3 += Math.max(11, itemHeight + 3);
     });
 
     // Maximale Y-Position für Box unten
     const maxY = Math.max(y1, y2, y3) + 15;
 
     // === HIGHLIGHT BOX: Gewählte Komponenten ===
-    doc.roundedRect(marginLeft, maxY, contentWidth, 100, 8).fill(layout.colors.goldLight);
-    doc.rect(marginLeft, maxY, 4, 100).fill(layout.colors.gold);
+    doc.moveTo(marginLeft, maxY).lineTo(marginLeft + contentWidth, maxY)
+      .strokeColor('#cccccc').lineWidth(0.5).stroke();
+    doc.roundedRect(marginLeft, maxY + 2, contentWidth, 98, 8).fill(layout.colors.grayLight);
 
     doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);
     doc.text('Ihre zusätzlich gewählten Ausstattungsmerkmale:', marginLeft + 15, maxY + 10);
@@ -140,7 +144,7 @@ module.exports = {
       decke ? `Decke: ${decke.name}` : null,
       windowData ? `Fenster: ${windowData.name}` : null,
       tiles ? `Dacheindeckung: ${tiles.name}` : null,
-      dach ? `Dachform: ${dach.name}` : null,
+      dach ? `Dachaufbau: ${dach.name}` : null,
       heizung ? `Heizung: ${heizung.name}` : null,
       (treppe && treppe.id !== 'keine') ? `Treppe: ${treppe.name}` : null,
       hasLueftung ? `Lüftung: ${lueftungText}` : null
@@ -156,7 +160,7 @@ module.exports = {
       const xPos = isRightCol ? marginLeft + contentWidth / 2 : marginLeft + 15;
       const yPos = isRightCol ? maxY + 28 + (i - Math.ceil(highlights.length / 2)) * 13 : maxY + 28 + i * 13;
 
-      doc.fillColor(layout.colors.gold).text('✓', xPos, yPos, { lineBreak: false });
+      doc.fillColor(layout.colors.primary).text('✓', xPos, yPos, { lineBreak: false });
       doc.fillColor(layout.colors.text).text(h, xPos + 12, yPos, { width: colHalfWidth });
     });
 

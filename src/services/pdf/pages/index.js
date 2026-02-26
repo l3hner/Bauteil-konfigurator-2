@@ -12,7 +12,6 @@ const eigenleistungen = require('./eigenleistungen');
 const comparisonChecklist = require('./comparisonChecklist');
 const glossary = require('./glossary');
 const beraterPage = require('./beraterPage');
-const contactPage = require('./contactPage');
 
 function buildPageList(submission) {
   const pages = [
@@ -38,7 +37,7 @@ function buildPageList(submission) {
     { title: 'Deckensystem', data: catalogService.getVariantById('decken', submission.decke), chapter: '5.4' },
     { title: 'Fenstersystem', data: catalogService.getVariantById('windows', submission.window), chapter: '5.5' },
     { title: 'Dacheindeckung', data: catalogService.getVariantById('tiles', submission.tiles), chapter: '5.6' },
-    { title: 'Dachform', data: catalogService.getVariantById('daecher', submission.dach), chapter: '5.7' },
+    { title: 'Dachaufbau', data: catalogService.getVariantById('daecher', submission.dach), chapter: '5.7' },
     { title: 'Heizungssystem', data: catalogService.getVariantById('heizung', submission.heizung), chapter: '6.1' }
   ];
 
@@ -84,7 +83,6 @@ function buildPageList(submission) {
   pages.push(comparisonChecklist);
   pages.push(glossary);
   pages.push(beraterPage);
-  pages.push(contactPage);
 
   return pages;
 }

@@ -40,7 +40,7 @@
         "Ausgezeichnete Wärmedämmung mit U-Wert 0,17"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB plus – Blauer Engel zertifiziert, empfohlen von der DGNB)\n\n2. Ist die Holzwerkstoffplatte emissionsgeprüft? (Lehner Haus: ESB mit niedrigen VOC-Emissionen und 25 % geringerer Quellung)\n\n3. Wie ist der exakte U-Wert der Außenwand? (Lehner Haus: 0,17 W/(m²K))\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)\n\n5. Wieviel Wohnraum verschenken Sie bei dickeren Bauteilen? Schlechtere Werte im Wärmedurchlass und Schallschutz führen automatisch zu stärker dimensionierten Bauteilen. Das kostet Sie wertvollen Wohnraum.",
-      "filePath": "assets/variants/walls/climativ-esb.png",
+      "filePath": "assets/variants/walls/climativ-esb-technical.png",
       "technicalDrawing": "assets/variants/walls/climativ-esb-technical.png"
     },
     {
@@ -83,7 +83,7 @@
         "QDF-zertifizierte Qualität mit RAL-Gütezeichen"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen exakten U-Wert hat die Außenwand? (Lehner Haus: 0,17 W/(m²K))\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte mit F90 Brandschutz und 60 kg Tragkraft)\n\n3. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – baubiologisch optimale Feuchteregulierung)\n\n4. Wird F90 Brandschutz als Standard erreicht? (Lehner Haus: 90 Min. Feuerwiderstand serienmäßig)\n\n5. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)",
-      "filePath": "assets/variants/walls/climativ-fermacell.png",
+      "filePath": "assets/variants/walls/climativ-fermacell-technical.png",
       "technicalDrawing": "assets/variants/walls/climativ-fermacell-technical.png"
     },
     {
@@ -126,7 +126,7 @@
         "Diffusionsoffen für natürliche Feuchteregulierung"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Wie dick ist die Dämmung? (Lehner Haus: 240 mm Mineralwolle plus 80 mm Holzfaserdämmplatte = 320 mm gesamt)\n\n2. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)\n\n3. Welche Holzwerkstoffplatte wird verwendet? (Lehner Haus: ESB – wohngesund zertifiziert, aus regionalem Fichtenholz)\n\n4. Wird der U-Wert schriftlich garantiert? (Lehner Haus: 0,129 W/(m²K) – nachweislich geprüft)\n\n5. Ist die Konstruktion diffusionsoffen? (Lehner Haus: ja – natürliche Feuchteregulierung ohne Dampfsperre)",
-      "filePath": "assets/variants/walls/climativ-plus-esb.png",
+      "filePath": "assets/variants/walls/climativ-plus-esb-technical.png",
       "technicalDrawing": "assets/variants/walls/climativ-plus-esb-technical.png"
     },
     {
@@ -169,52 +169,11 @@
         "Höchste Förderfähigkeit durch übererfüllte Standards"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen exakten U-Wert hat die Außenwand? (Lehner Haus: 0,129 W/(m²K) – deutlich besser als KfW-Anforderung)\n\n2. Wird die Dämmung vollflächig eingebracht? (Lehner Haus: 240 mm Mineralwolle plus 80 mm Holzfaserdämmplatte = 320 mm gesamt)\n\n3. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte mit F90 Brandschutz und 60 kg Tragkraft)\n\n4. Ist der Wandaufbau diffusionsoffen? (Lehner Haus: ja – optimale Feuchteregulierung ohne Dampfsperre)\n\n5. Welcher Dämmstoff wird eingesetzt? (Lehner Haus: Mineralwolle, brandsicher Klasse A1)",
-      "filePath": "assets/variants/walls/climativ-plus-fermacell.png",
+      "filePath": "assets/variants/walls/climativ-plus-fermacell-technical.png",
       "technicalDrawing": "assets/variants/walls/climativ-plus-fermacell-technical.png"
     }
   ],
   "innerwalls": [
-    {
-      "id": "iw80-gf",
-      "name": "IW 80 (GF)",
-      "emotionalHook": "H\u00e4ngen Sie auf, was Sie wollen \u2013 60 kg Tragkraft pro Befestigung und feuchtraumgeeignet ohne Zusatzbehandlung.",
-      "description": "Innenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion (Vollholz 80/80) mit beidseitiger Beplankung. Wandstärke: 130 mm.",
-      "constructionType": "beidseitig beplankt",
-      "bathroomSuitable": true,
-      "premiumFeatures": [
-        "Gipsfaserplatte für höchste Stabilität und Feuchtraumeignung",
-        "Beidseitige Beplankung für optimale Stabilität",
-        "Massivholz-Rahmenkonstruktion (Vollholz 80/80)"
-      ],
-      "layers": [
-        { "name": "Gipsbauplatte", "value": "12,5 mm" },
-        { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion", "value": "80,0 mm" },
-        { "name": "Dämmung WLG 040", "value": "40,0 mm" },
-        { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
-        { "name": "Gipsbauplatte", "value": "12,5 mm" }
-      ],
-      "technicalDetails": {
-        "soundInsulation": "beidseitig doppelt beplankt",
-        "wallThickness": "130 mm",
-        "position": "Pos. 15.030",
-        "rawHeight": "2,60 m / 2,68 m / 2,76 m"
-      },
-      "options": [
-        { "position": "Pos. 15.190", "description": "40 mm Holzfaserdämmung WLG 039" },
-        { "position": "Pos. 15.330", "description": "IW 80 (GF) Ausbau (ohne Gipsbauplatte)" },
-        { "position": "Pos. 15.390", "description": "Material nur liefern und mit Kran heben (Einbau bauseits)" }
-      ],
-      "advantages": [
-        "Fermacell bietet 60 kg Auszugslast pro Befestigung",
-        "Feuchtraumgeeignet ohne zusätzliche Behandlung",
-        "Optimale Kombination aus Robustheit und Verarbeitungsfreundlichkeit",
-        "A2-Brandschutzklasse (nicht brennbar)"
-      ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Sind die Innenwände doppelt beplankt? (Lehner Haus: ja – für optimale Stabilität)\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte – robust, feuchtraumgeeignet, A2 Brandschutz)\n\n3. Welche Tragkraft bieten die Wände? (Lehner Haus: 60 kg Auszugslast pro Befestigung)\n\n4. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk und vollständige Beplankung)",
-      "filePath": "assets/variants/innenwalls/fermacell-gipskarton.png",
-      "technicalDrawing": "assets/variants/innenwalls/fermacell-gipskarton-technical.png"
-    },
     {
       "id": "iw80",
       "name": "IW 80",
@@ -254,8 +213,48 @@
         "Schnelle Verarbeitung auf der Baustelle"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Holzwerkstoffplatte wird bei den Innenwänden verwendet? (Lehner Haus: ESB – wohngesund zertifiziert, geruchsneutral)\n\n2. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk und vollständige Beplankung)\n\n3. Ist die ESB-Platte emissionsgeprüft? (Lehner Haus: niedrige VOC-Emissionen, 25 % geringere Quellung)\n\n4. Wird die Innenwand doppelt beplankt? (Lehner Haus: ja – ESB plus Gipsbauplatte für optimale Stabilität)",
-      "filePath": "assets/variants/innenwalls/esb-gipskarton.png",
+      "filePath": "assets/variants/innenwalls/esb-gipskarton-technical.png",
       "technicalDrawing": "assets/variants/innenwalls/esb-gipskarton-technical.png"
+    },
+    {
+      "id": "iw80-gf",
+      "name": "IW 80 (GF)",
+      "emotionalHook": "Feuchtraumgeeignet ohne Zusatzbehandlung \u2013 die robuste Innenwand f\u00fcr Bad, K\u00fcche und mehr.",
+      "description": "Innenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion (Vollholz 80/80) mit beidseitiger Beplankung. Wandstärke: 130 mm.",
+      "constructionType": "beidseitig beplankt",
+      "bathroomSuitable": true,
+      "premiumFeatures": [
+        "Gipsfaserplatte für höchste Stabilität und Feuchtraumeignung",
+        "Beidseitige Beplankung für optimale Stabilität",
+        "Massivholz-Rahmenkonstruktion (Vollholz 80/80)"
+      ],
+      "layers": [
+        { "name": "Gipsbauplatte", "value": "12,5 mm" },
+        { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion", "value": "80,0 mm" },
+        { "name": "Dämmung WLG 040", "value": "40,0 mm" },
+        { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
+        { "name": "Gipsbauplatte", "value": "12,5 mm" }
+      ],
+      "technicalDetails": {
+        "soundInsulation": "beidseitig doppelt beplankt",
+        "wallThickness": "130 mm",
+        "position": "Pos. 15.030",
+        "rawHeight": "2,60 m / 2,68 m / 2,76 m"
+      },
+      "options": [
+        { "position": "Pos. 15.190", "description": "40 mm Holzfaserdämmung WLG 039" },
+        { "position": "Pos. 15.330", "description": "IW 80 (GF) Ausbau (ohne Gipsbauplatte)" },
+        { "position": "Pos. 15.390", "description": "Material nur liefern und mit Kran heben (Einbau bauseits)" }
+      ],
+      "advantages": [
+        "Feuchtraumgeeignet ohne zusätzliche Behandlung",
+        "Optimale Kombination aus Robustheit und Verarbeitungsfreundlichkeit",
+        "A2-Brandschutzklasse (nicht brennbar)"
+      ],
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Sind die Innenwände doppelt beplankt? (Lehner Haus: ja – für optimale Stabilität)\n\n2. Welche Innenbeplankung wird verwendet? (Lehner Haus: Gipsfaserplatte – robust, feuchtraumgeeignet, A2 Brandschutz)\n\n3. Sind alle Materialien im Preis enthalten? (Lehner Haus: ja – inkl. Ständerwerk und vollständige Beplankung)",
+      "filePath": "assets/variants/innenwalls/fermacell-gipskarton-technical.png",
+      "technicalDrawing": "assets/variants/innenwalls/fermacell-gipskarton-technical.png"
     }
   ],
   "windows": [
@@ -263,15 +262,15 @@
       "id": "kunststoff",
       "name": "Kunststofffenster",
       "emotionalHook": "Dreifach verglast, sechsfach gesch\u00fctzt \u2013 modernste Fenstertechnik f\u00fcr W\u00e4rme, Stille und Sicherheit.",
-      "description": "Hochwertige Kunststofffenster mit 3-fach Verglasung und 6-Kammer-Profil. Ug-Wert 0,5 W/(m²K) für beste Wärmedämmung. RC2-Beschlagstechnik serienmäßig.",
+      "description": "Hochwertige Kunststofffenster mit 3-fach Verglasung und 6-Kammer-Profil. Ug-Wert 0,77 W/(m²K) für beste Wärmedämmung. RC2-Beschlagstechnik serienmäßig.",
       "securityClass": "RC2",
       "premiumFeatures": [
-        "Ug-Wert 0,5 W/(m²K)",
-        "Ug-Wert 0,5 W/(m²K) mit 3-fach Verglasung serienmäßig"
+        "Ug-Wert 0,77 W/(m²K)",
+        "Ug-Wert 0,77 W/(m²K) mit 3-fach Verglasung serienmäßig"
       ],
       "layers": [
         { "name": "6-Kammer-Kunststoffprofil", "value": "80 mm Bautiefe" },
-        { "name": "3-fach Wärmeschutzverglasung", "value": "Ug 0,5" },
+        { "name": "3-fach Wärmeschutzverglasung", "value": "Ug 0,77" },
         { "name": "Pilzkopfverriegelung für Einbruchschutz", "value": "" }
       ],
       "technicalDetails": {
@@ -281,13 +280,13 @@
         "securityFeatures": "RC2-Beschlagstechnik, Pilzkopfverriegelung an allen Fenstern"
       },
       "advantages": [
-        "3-fach Verglasung mit Ug-Wert 0,5",
+        "3-fach Verglasung mit Ug-Wert 0,77",
         "6-Kammer-Profil für maximale Dämmung",
         "Tipps zur Verriegelung für Einbruchschutz in Anlehnung an RC2",
         "Pflegeleicht und langlebig"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert haben die Fenster? (Lehner Haus: 0,5 W/(m²K) serienmäßig)\n\n2. 3-fach oder 2-fach Verglasung? (Lehner Haus: 3-fach Verglasung als Standard)\n\n3. Wie viele Kammern hat das Profil? (Lehner Haus: 6-Kammer-Profil mit 80 mm Bautiefe)",
-      "filePath": "assets/variants/windows/kunststoff.png",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert haben die Fenster? (Lehner Haus: 0,77 W/(m²K) serienmäßig)\n\n2. 3-fach oder 2-fach Verglasung? (Lehner Haus: 3-fach Verglasung als Standard)\n\n3. Wie viele Kammern hat das Profil? (Lehner Haus: 6-Kammer-Profil mit 80 mm Bautiefe)",
+      "filePath": "assets/variants/windows/kunststoff-technical.png",
       "technicalDrawing": "assets/variants/windows/kunststoff-technical.png"
     },
     {
@@ -322,7 +321,7 @@
         "Optimale Dichtigkeit auch ab Fensterbreiten von 2 Metern"
       ],
       "comparisonNotes": "❗ Holz-Alu ist die PREMIUM-Wahl! Aber Vorsicht vor Billig-Angeboten:\n\n1. 'Ist es Dreischicht-Leimholz oder nur Furnier?' (Furnier = günstig aber kann sich ablösen; Massivholz = langlebig)\n\n2. 'Wie dick ist die Aluminium-Außenschale?' (Minimum 1,5mm; dünnere Schalen verziehen sich)\n\n3. 'Deutsche Markenqualität oder Import?' (Fernost-Fenster haben oft nach 5-10 Jahren Verzug und Undichtigkeit)\n\n4. 'Wie viele Jahre Garantie?' (Bei uns 10 Jahre auf deutsche Markenqualität)\n\n5. 'Welcher Ug-Wert?' (Manche Holz-Alu haben nur 0,7-0,9; wir bieten 0,5 W/(m²K))",
-      "filePath": "assets/variants/windows/holz-alu.png",
+      "filePath": "assets/variants/windows/holz-alu-technical.png",
       "technicalDrawing": "assets/variants/windows/holz-alu-technical.png"
     }
   ],
@@ -350,7 +349,7 @@
         "Bewährtes Material millionenfach verbaut"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Welche Farbauswahl ist verfügbar?'\n\n2. 'Welche Oberflächenbeschichtung wird verwendet?'",
-      "filePath": "assets/variants/tiles/beton.png",
+      "filePath": "assets/variants/tiles/beton-technical.png",
       "technicalDrawing": "assets/variants/tiles/beton-technical.png"
     },
     {
@@ -377,7 +376,7 @@
         "A² Brandschutzklasse"
       ],
       "comparisonNotes": "Hinweis: Tondachziegel sind die teurere Variante und nur in seltenen Fällen notwendig. Betondachsteine bieten in der Regel ein besseres Preis-Leistungs-Verhältnis.",
-      "filePath": "assets/variants/tiles/ton.png",
+      "filePath": "assets/variants/tiles/ton-technical.png",
       "technicalDrawing": "assets/variants/tiles/ton-technical.png"
     }
   ],
@@ -498,7 +497,7 @@
         "Service-Netzwerk mit über 3.000 Partnerbetrieben"
       ],
       "comparisonNotes": "Bei Wärmepumpen entscheidet die EFFIZIENZ über Ihre Stromkosten für die nächsten 20 Jahre!\n\n1. 'Welchen SCOP hat die Wärmepumpe?' (SCOP = Seasonal Coefficient of Performance; 5,0 = aus 1 kWh Strom werden 5 kWh Wärme; Billige: nur 3,5 = 40% MEHR Stromkosten!)\n\n2. 'Welches Kältemittel wird verwendet?' (R290 = natürlich, zukunftssicher; R410A/R32 = werden langfristig verboten und teurer)\n\n3. 'Wie laut ist die Wärmepumpe?' (35 dB(A) = flüsterleise; billige >45 dB = deutlich hörbar)\n\n4. 'Wer plant und installiert die Anlage?' (Zertifizierte Fachbetriebe = richtige Auslegung)\n\n5. Kühlfunktion anderer Hersteller: Viele Wettbewerber werben mit aktiver Kühlung. Die Nachteile: höherer Stromverbrauch, Kondensationsgefahr an kalten Flächen, zusätzlicher Wartungsaufwand. Bei Lehner Haus haben wir an weniger als 20 Tagen im Jahr Übertemperatur – und das nur stundenweise. Unsere Holzfaser-Dämmung bietet eine ausgezeichnete Phasenverschiebung und damit optimalen sommerlichen Wärmeschutz.",
-      "filePath": "assets/variants/heizung/vaillant.png",
+      "filePath": "assets/variants/heizung/vaillant-technical.png",
       "technicalDrawing": "assets/variants/heizung/vaillant-technical.png"
     },
     {
@@ -527,7 +526,7 @@
         "Optimal für Hybrid-Kombinationen geeignet"
       ],
       "comparisonNotes": "Viessmann ist der INBEGRIFF deutscher Qualität.\n\n1. 'Welchen SCOP bietet die Wärmepumpe?' (Vitocal 250-A: bis 4,7 - Spitzenklasse!)\n\n2. 'Wer plant die Anlage?' (Installation ist SO wichtig wie das Gerät! Bei Lehner Haus: zertifizierte Fachbetriebe mit Viessmann-Schulung)\n\n3. 'Made in Germany oder Import?' (Viessmann = Deutschland; viele andere importieren aus Fernost)\n\n4. 'Wie viele Jahre Garantie?' (Viessmann: 5 Jahre; billige oft nur 2 Jahre)\n\n5. Kühlfunktion anderer Hersteller: Viele Wettbewerber werben mit aktiver Kühlung. Die Nachteile: höherer Stromverbrauch, Kondensationsgefahr an kalten Flächen, zusätzlicher Wartungsaufwand und eingeschränkte Effizienz. Bei Lehner Haus haben wir an weniger als 20 Tagen im Jahr Übertemperatur – und das nur stundenweise. Unsere Holzfaser-Dämmung bietet eine ausgezeichnete Phasenverschiebung und damit optimalen sommerlichen Wärmeschutz. Wir empfehlen, sich nicht auf die Nachteile aktiver Kühlung einzulassen.",
-      "filePath": "assets/variants/heizung/viessmann.png",
+      "filePath": "assets/variants/heizung/viessmann-technical.png",
       "technicalDrawing": "assets/variants/heizung/viessmann-technical.png"
     }
   ],
@@ -571,7 +570,7 @@
         "Auch nachträglich einfach erweiterbar"
       ],
       "comparisonNotes": "❗ Dezentrale Lüftung ist der Kompromiss aus Kosten und Komfort. WICHTIG:\n\n1. 'Welchen Schallpegel haben die Geräte?' (Billige: >35 dB = deutlich hörbar beim Schlafen; Markengeräte: <19 dB = praktisch unhörbar)\n\n2. 'Welche Geräte werden verbaut?' (Meltem, inVENTer = deutsche Marken mit nachgewiesener Leistung; No-Name aus Fernost = oft Probleme)\n\n3. 'Wie viel Wärme wird zurückgewonnen?' (Qualität: bis 91%; billige: oft nur 70-80%)\n\n4. 'Wie oft müssen Filter gewechselt werden?' (Bei Markengeräten: 2x jährlich selbst wechselbar)\n\n5. 'Sind die Geräte einzeln steuerbar?' (Ja = Komfort; Nein = alle laufen gleich)",
-      "filePath": "assets/variants/lueftung/dezentral.png",
+      "filePath": "assets/variants/lueftung/dezentral-technical.png",
       "technicalDrawing": "assets/variants/lueftung/dezentral-technical.png"
     },
     {
@@ -599,94 +598,59 @@
         "Automatische Feuchteregulierung gegen Schimmel"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Wärmerückgewinnung wird erreicht? (Lehner Haus: bis 95 %)\n\n2. Welcher Filter ist verbaut? (Lehner Haus: F7 Pollenfilter – ideal für Allergiker)\n\n3. Wo steht das Lüftungsgerät? (Lehner Haus: im Technikraum – Wohnräume völlig geräuschfrei)\n\n4. Wie viel Energie wird eingespart? (Lehner Haus: ca. 2.500 kWh pro Jahr)\n\n5. Ist automatische Feuchteregulierung enthalten? (Lehner Haus: ja – Schimmelprävention serienmäßig)",
-      "filePath": "assets/variants/lueftung/zentral.png",
+      "filePath": "assets/variants/lueftung/zentral-technical.png",
       "technicalDrawing": "assets/variants/lueftung/zentral-technical.png"
     }
   ],
   "daecher": [
     {
-      "id": "satteldach",
-      "name": "Satteldach",
-      "emotionalHook": "Der zeitlose Klassiker \u2013 bew\u00e4hrter Witterungsschutz mit gro\u00dfz\u00fcgigem Raumgewinn unterm Dach.",
+      "id": "dachelemente",
+      "name": "Dachelemente",
+      "emotionalHook": "Vorgefertigte Präzision vom Werk auf Ihr Dach \u2013 schnelle Montage, perfekte Dämmung, sofort regendicht.",
       "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "Klassisches Giebeldach mit zwei geneigten Dachflächen, die am First zusammentreffen. Die beliebteste Dachform in Deutschland – bewährt, vielseitig und zeitlos.",
+      "description": "Werkseitig vorgefertigte Dachelemente mit integrierter Dämmung. Schnelle Montage und sofortige Regensicherheit am Aufstelltag.",
       "premiumFeatures": [
-        "Optimale Dachgeschoss-Nutzung durch großzügige Raumhöhen",
-        "Bewährte Konstruktion mit höchster Langlebigkeit",
-        "Ideal für Photovoltaik-Anlagen durch gleichmäßige Dachneigung"
+        "Werkseitig vorgefertigt für höchste Präzision",
+        "Integrierte Dämmung \u2013 sofort regendicht",
+        "Schnelle Montage am Aufstelltag"
       ],
+      "layers": [
+        { "name": "Technische Daten", "value": "Inhalt folgt" }
+      ],
+      "technicalDetails": {
+        "construction": "Werkseitig vorgefertigte Dachelemente",
+        "insulation": "Integrierte Dämmung nach KfW-Standard"
+      },
       "advantages": [
-        "Optimale Nutzung des Dachgeschosses als Wohnraum",
-        "Bewährte und langlebige Konstruktion",
-        "Ideal für Photovoltaik durch gleichmäßige Dachflächen",
-        "Große Gestaltungsfreiheit mit Gauben, Erkern und Dachfenstern"
+        "Werkseitige Vorfertigung für gleichbleibend hohe Qualität",
+        "Sofortige Regensicherheit am Aufstelltag",
+        "Integrierte Wärmedämmung nach KfW-Standard",
+        "Reduzierte Bauzeit durch effiziente Montage"
       ],
-      "comparisonNotes": "Das Satteldach ist der Klassiker unter den Dachformen und bietet die beste Balance aus Wohnraumgewinn und Wirtschaftlichkeit. Fragen Sie beim Vergleich: Wie viel nutzbare Wohnfläche entsteht im Dachgeschoss? Bei Lehner Haus: maximale Ausnutzung durch optimierte Kniestockhöhen. Ist die Dachkonstruktion für nachträgliche PV-Anlagen vorbereitet? Bei Lehner Haus: statisch eingeplant.",
-      "filePath": "assets/variants/daecher/satteldach.png",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Werden die Dachelemente werkseitig vorgefertigt? (Lehner Haus: ja \u2013 Präzisionsfertigung im Werk)\n\n2. Ist das Dach am Aufstelltag regendicht? (Lehner Haus: ja \u2013 integrierte Dämmung und Abdichtung)\n\n3. Welche Dämmstärke ist enthalten? (Lehner Haus: nach aktuellem KfW-Standard)",
+      "filePath": "assets/variants/daecher/satteldach-technical.png",
       "technicalDrawing": "assets/variants/daecher/satteldach-technical.png"
     },
     {
-      "id": "walmdach",
-      "name": "Walmdach",
-      "emotionalHook": "Elegante Formensprache mit \u00fcberlegener Windbest\u00e4ndigkeit \u2013 das Dach, das Ihr Haus von allen Seiten sch\u00fctzt.",
+      "id": "nagelplattenbinder",
+      "name": "Nagelplattenbinder Dachstuhl",
+      "emotionalHook": "Statisch optimiert für große Spannweiten \u2013 der ingenieurgeprüfte Dachstuhl für maximale Gestaltungsfreiheit.",
       "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "Dach mit vier geneigten Dachflächen. Elegante Erscheinung und hervorragende Windbeständigkeit – besonders geeignet für exponierte Lagen.",
+      "description": "Ingenieurmäßig berechneter Nagelplattenbinder-Dachstuhl. Optimale Lösung für große Spannweiten und individuelle Dachformen.",
       "premiumFeatures": [
-        "Überlegene Windbeständigkeit durch aerodynamische Form",
-        "Elegante, repräsentative Optik",
-        "Witterungsschutz an allen vier Seiten"
+        "Ingenieurmäßig berechnet für optimale Statik",
+        "Große Spannweiten ohne tragende Innenwände möglich",
+        "Individuelle Dachformen realisierbar"
       ],
       "advantages": [
-        "Überlegene Windbeständigkeit durch aerodynamische Form",
-        "Elegante und repräsentative Optik",
-        "Hohe Strukturstabilität durch gleichmäßige Lastverteilung",
-        "Witterungsschutz auf allen Gebäudeseiten"
+        "Statisch optimiert durch ingenieurmäßige Berechnung",
+        "Große Spannweiten ohne tragende Innenwände",
+        "Flexible Grundrissgestaltung im Dachgeschoss",
+        "Bewährte Konstruktion mit höchster Tragfähigkeit"
       ],
-      "comparisonNotes": "Das Walmdach ist die Premium-Wahl für repräsentative Architektur. Besonders wichtig: Wie ist die Windlastberechnung dokumentiert? Bei Lehner Haus: statisch geprüft und zertifiziert. Wird die Dachkonstruktion aus Vollholz oder BSH gefertigt? Bei Lehner Haus: hochwertige Materialien für maximale Langlebigkeit.",
-      "filePath": "assets/variants/daecher/walmdach.png",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Wird der Dachstuhl individuell berechnet? (Lehner Haus: ja \u2013 ingenieurmäßige Berechnung für jedes Projekt)\n\n2. Welche Spannweiten sind möglich? (Lehner Haus: große Spannweiten ohne tragende Innenwände)\n\n3. Ist die Dämmung des Dachgeschosses im Preis enthalten? (Lehner Haus: Dämmung nach KfW-Standard inklusive)",
+      "filePath": "assets/variants/daecher/walmdach-technical.png",
       "technicalDrawing": "assets/variants/daecher/walmdach-technical.png"
-    },
-    {
-      "id": "pultdach",
-      "name": "Pultdach",
-      "emotionalHook": "Modernes Design trifft maximalen Lichteinfall \u2013 die perfekte Dachform f\u00fcr architektonische Freiheit.",
-      "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "Dach mit nur einer geneigten Fläche. Moderne Architektur mit maximaler Wandfläche für Fenster und natürliches Licht.",
-      "premiumFeatures": [
-        "Modernes, architektonisch anspruchsvolles Design",
-        "Optimale Ausrichtung für Photovoltaik",
-        "Maximaler Lichteinfall durch hohe Fensterflächen"
-      ],
-      "advantages": [
-        "Modernes, zeitgemäßes Design",
-        "Optimaler natürlicher Lichteinfall durch große Fensterflächen",
-        "Ideale PV-Ausrichtung durch einheitliche Dachneigung",
-        "Kosteneffiziente Konstruktion"
-      ],
-      "comparisonNotes": "Das Pultdach steht für moderne Architektur und maximale Energieeffizienz. Entscheidend: Welche Dachneigung wird gewählt? Bei Lehner Haus: individuell optimiert für PV-Ertrag und Ästhetik. Wie wird die erhöhte Wandfläche gedämmt? Bei Lehner Haus: gleicher Premium-Wandaufbau CLIMA-tiv an allen Fassadenseiten.",
-      "filePath": "assets/variants/daecher/pultdach.png",
-      "technicalDrawing": "assets/variants/daecher/pultdach-technical.png"
-    },
-    {
-      "id": "flachdach",
-      "name": "Flachdach",
-      "emotionalHook": "Bauhaus-\u00c4sthetik mit Dachterrassen-Option \u2013 zus\u00e4tzlicher Lebensraum \u00fcber den Wolken.",
-      "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "Flaches oder nahezu flaches Dach. Bauhaus-Ästhetik mit der Möglichkeit einer Dachterrasse oder extensiven Begrünung.",
-      "premiumFeatures": [
-        "Zusätzliche nutzbare Fläche als Dachterrasse",
-        "Moderne Bauhaus-Ästhetik",
-        "Einfache Installation von Photovoltaik-Anlagen"
-      ],
-      "advantages": [
-        "Zusätzliche nutzbare Fläche als Dachterrasse oder Gründach",
-        "Moderne Bauhaus-Ästhetik",
-        "Einfache PV-Installation mit optimaler Aufständerung",
-        "Flexible Grundrissgestaltung ohne Dachschrägen"
-      ],
-      "comparisonNotes": "Das Flachdach bietet maximale Flexibilität in der Gestaltung. Wichtige Fragen: Welche Abdichtung wird verwendet? Bei Lehner Haus: hochwertige Abdichtungssysteme mit langer Garantie. Ist das Dach für eine Terrassen-Nutzung vorbereitet? Bei Lehner Haus: statisch für Dachterrasse oder extensive Begrünung ausgelegt.",
-      "filePath": "assets/variants/daecher/flachdach.png",
-      "technicalDrawing": "assets/variants/daecher/flachdach-technical.png"
     }
   ],
   "treppen": [
@@ -710,11 +674,11 @@
       "technicalDrawing": null
     },
     {
-      "id": "holzwangentreppe",
-      "name": "Holzwangentreppe",
+      "id": "holztreppe",
+      "name": "Holztreppe",
       "emotionalHook": "Warmes Holz unter den F\u00fc\u00dfen \u2013 der Treppenklassiker mit individueller Holzartwahl.",
       "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "Klassische Treppe mit Holzwangen als tragende Seitenteile. Warmes, natürliches Material mit vielfältigen Gestaltungsmöglichkeiten.",
+      "description": "Klassische Holztreppe mit warmer, natürlicher Ausstrahlung. Vielfältige Gestaltungsmöglichkeiten bei Holzart und Oberfläche.",
       "premiumFeatures": [
         "Warme Holzästhetik mit individueller Holzartwahl",
         "Bewährte Konstruktion mit hoher Stabilität",
@@ -726,8 +690,8 @@
         "Bewährte und stabile Konstruktion",
         "Gutes Preis-Leistungs-Verhältnis"
       ],
-      "comparisonNotes": "Die Holzwangentreppe ist der bewährte Klassiker im Treppenbau. Achten Sie auf: Welche Holzart wird verwendet? Bei Lehner Haus: hochwertige Hölzer aus nachhaltiger Forstwirtschaft. Ist die Treppe nach DIN 18065 geprüft? Bei Lehner Haus: selbstverständlich normgerecht gefertigt.",
-      "filePath": "assets/variants/treppen/holzwangentreppe.png",
+      "comparisonNotes": "Die Holztreppe ist der bewährte Klassiker im Treppenbau. Achten Sie auf: Welche Holzart wird verwendet? Bei Lehner Haus: hochwertige Hölzer aus nachhaltiger Forstwirtschaft. Ist die Treppe nach DIN 18065 geprüft? Bei Lehner Haus: selbstverständlich normgerecht gefertigt.",
+      "filePath": "assets/variants/treppen/holzwangentreppe-technical.png",
       "technicalDrawing": "assets/variants/treppen/holzwangentreppe-technical.png"
     },
     {
@@ -748,57 +712,15 @@
         "Längste Lebensdauer aller Treppentypen"
       ],
       "comparisonNotes": "Die Betontreppe ist die massivste und langlebigste Lösung. Entscheidend: Welcher Trittschallschutz wird erreicht? Bei Lehner Haus: entkoppelte Betontreppe für minimale Schallübertragung. Welche Belagsmaterialien sind möglich? Bei Lehner Haus: Fliesen, Holz, Naturstein – alle Optionen offen.",
-      "filePath": "assets/variants/treppen/betontreppe.png",
+      "filePath": "assets/variants/treppen/betontreppe-technical.png",
       "technicalDrawing": "assets/variants/treppen/betontreppe-technical.png"
-    },
-    {
-      "id": "stahlholztreppe",
-      "name": "Stahl-Holz-Treppe",
-      "emotionalHook": "Luftig-leichtes Design mit Loft-Charakter \u2013 die Treppe f\u00fcr moderne Architektur.",
-      "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "Kombination aus Stahl und Holz für ein offenes, luftiges Design mit industriellem Charme. Schlanke Konstruktion für moderne Architektur.",
-      "premiumFeatures": [
-        "Offenes, luftiges Design mit Loft-Charakter",
-        "Schlanke Konstruktion für maximale Raumwirkung",
-        "Kombination zweier hochwertiger Materialien"
-      ],
-      "advantages": [
-        "Leichtes und luftiges Erscheinungsbild",
-        "Schlanke Konstruktion mit minimaler Grundfläche",
-        "Attraktive Material-Kombination aus Stahl und Holz",
-        "Moderne Ästhetik für zeitgemäße Architektur"
-      ],
-      "comparisonNotes": "Die Stahl-Holz-Treppe ist die Wahl für moderne, offene Architektur. Wichtig zu wissen: Wie werden die Trittstufen befestigt? Bei Lehner Haus: präzise Verbindungstechnik für absolute Stabilität. Ist der Stahl pulverbeschichtet? Bei Lehner Haus: langlebige Oberfläche in Wunschfarbe.",
-      "filePath": "assets/variants/treppen/stahlholztreppe.png",
-      "technicalDrawing": "assets/variants/treppen/stahlholztreppe-technical.png"
-    },
-    {
-      "id": "aussentreppe",
-      "name": "Au\u00dfentreppe",
-      "emotionalHook": "Unabh\u00e4ngige Zug\u00e4nge f\u00fcr unabh\u00e4ngiges Leben \u2013 ideal f\u00fcr Einliegerwohnungen und Mehrgenerationen.",
-      "kfwCompatible": ["KFW55", "KFW40"],
-      "description": "Externe Treppe für separaten Zugang zum Obergeschoss oder als Gartenverbindung. Ideal für Einliegerwohnungen oder Mehrgenerationenhäuser.",
-      "premiumFeatures": [
-        "Separater Zugang zum Obergeschoss",
-        "Gartenanbindung und zusätzlicher Fluchtweg",
-        "Ideal für Einliegerwohnungen"
-      ],
-      "advantages": [
-        "Separater Zugang zum Obergeschoss",
-        "Direkte Gartenanbindung",
-        "Zusätzlicher Rettungsweg im Brandfall",
-        "Ideal für Einliegerwohnungen oder Mehrgenerationenhäuser"
-      ],
-      "comparisonNotes": "Die Außentreppe ermöglicht unabhängige Zugänge zu verschiedenen Wohneinheiten. Achten Sie auf: Welches Material wird für den Außenbereich verwendet? Bei Lehner Haus: witterungsbeständige Materialien mit langer Lebensdauer. Ist ein Regenschutz vorgesehen? Bei Lehner Haus: optional mit Vordach oder Überdachung planbar.",
-      "filePath": "assets/variants/treppen/aussentreppe.png",
-      "technicalDrawing": "assets/variants/treppen/aussentreppe-technical.png"
     }
   ],
   "decken": [
     {
       "id": "holzbalkendecke",
       "name": "Lehner Decke",
-      "emotionalHook": "Solide Lehner Konstruktion seit Jahrzehnten \u2013 nat\u00fcrlicher Holzbau mit optimaler Schalld\u00e4mmung.",
+      "emotionalHook": "Solide Lehner Konstruktion seit Jahrzehnten \u2013 nat\u00fcrlicher Holzbau mit bew\u00e4hrter Qualit\u00e4t.",
       "description": "Lehner Decke mit Verkleidung aus Gipsbauplatten. Deckenbalken nach statischer Berechnung (Vollholz h = 240 mm) mit Mineralwolledämmung.",
       "constructionType": "Lehner Decke",
       "premiumFeatures": [
@@ -831,7 +753,7 @@
         "Flexible Installationsführung möglich"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Wie dick ist die Dämmung in der Decke?'\n\n2. 'Ist die Decke diffusionsoffen?' (Wichtig für Feuchteregulierung und Vermeidung von Schimmel)\n\n3. 'Wo werden Installationen geführt?' (Gute Planung = keine nachträglichen Probleme)",
-      "filePath": "assets/variants/decken/lehner-decke.png",
+      "filePath": "assets/variants/decken/lehner-decke-technical.png",
       "technicalDrawing": "assets/variants/decken/lehner-decke-technical.png"
     },
     {
@@ -864,7 +786,7 @@
         "Reguliert Raumfeuchte und Raumklima positiv"
       ],
       "comparisonNotes": "❗ Die PREMIUM-Wahl für anspruchsvolle Bauherren! BEACHTEN:\n\n1. 'Ist die Holzoberfläche wirklich sichtbar oder verkleidet?' (Sichtholz = echtes Wohngefühl; verkleidet = verschenktes Potenzial)\n\n2. 'Woher stammt das Holz?' (Bei uns: nachhaltige Forstwirtschaft, kurze Transportwege)\n\n3. 'Welche Oberflächenbehandlung?' (Natürliche Öle/Wachse = wohngesund; Lacke = können ausdünsten)\n\n4. 'Welchen Schallschutz erreicht die massive Decke?' (Masse = Schallschutz; Vollholz ist hier überlegen)\n\n5. 'Ist die Decke für alle Räume geeignet?' (Ja, auch für Feuchträume bei richtiger Behandlung)",
-      "filePath": "assets/variants/decken/vollholzdecke.png",
+      "filePath": "assets/variants/decken/vollholzdecke-technical.png",
       "technicalDrawing": "assets/variants/decken/vollholzdecke-technical.png"
     }
   ]

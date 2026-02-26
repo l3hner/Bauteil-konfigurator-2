@@ -9,8 +9,12 @@ module.exports = {
     const marginLeft = 50;
     const contentWidth = 495;
 
-    // === LARGE HERO IMAGE (full width, cover mode) ===
-    const heroHeight = 220;
+    // === SIDE-BY-SIDE: HERO IMAGE LEFT + TEXT RIGHT ===
+    const imgSize = 200;
+    const textX = marginLeft + imgSize + 15;
+    const textWidth = contentWidth - imgSize - 15;
+    let y = 95;
+
     const imgDir = component.filePath
       ? path.resolve(assetsDir, '..', component.filePath)
       : null;
@@ -20,40 +24,43 @@ module.exports = {
       try {
         const buffer = await ctx.imageService.getCompressedImage(heroFile);
         if (buffer) {
-          doc.save();
-          doc.rect(marginLeft, 95, contentWidth, heroHeight).clip();
-          doc.image(buffer, marginLeft, 95, {
-            cover: [contentWidth, heroHeight],
+          doc.image(buffer, marginLeft, y, {
+            fit: [imgSize, imgSize],
             align: 'center',
             valign: 'center'
           });
-          doc.restore();
         } else {
-          layout.drawImagePlaceholder(doc, marginLeft, 95, contentWidth, heroHeight, 'Ihr Haustyp');
+          layout.drawImagePlaceholder(doc, marginLeft, y, imgSize, imgSize, 'Ihr Haustyp');
         }
       } catch (e) {
-        try { doc.restore(); } catch (_) { /* no save pending */ }
-        layout.drawImagePlaceholder(doc, marginLeft, 95, contentWidth, heroHeight, 'Ihr Haustyp');
+        layout.drawImagePlaceholder(doc, marginLeft, y, imgSize, imgSize, 'Ihr Haustyp');
       }
     } else {
-      layout.drawImagePlaceholder(doc, marginLeft, 95, contentWidth, heroHeight, 'Ihr Haustyp');
+      layout.drawImagePlaceholder(doc, marginLeft, y, imgSize, imgSize, 'Ihr Haustyp');
     }
 
-    let y = 95 + heroHeight + 15; // 330
+    // Caption under hero image
+    doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
+    doc.text('Beispielbild', marginLeft, y + imgSize + 2);
 
-    // === HAUSTYP NAME (large heading) ===
+    // === TEXT RIGHT OF IMAGE ===
+    let textY = y;
+
+    // Haustyp name
     doc.font('Heading').fontSize(22).fillColor(layout.colors.primary);
-    doc.text(component.name, marginLeft, y, { width: contentWidth });
-    y += 30;
+    doc.text(component.name, textX, textY, { width: textWidth });
+    textY += doc.heightOfString(component.name, { width: textWidth, font: 'Heading', fontSize: 22 }) + 8;
 
-    // === DESCRIPTION (measured dynamically) ===
+    // Description
     const desc = component.emotionalHook || component.details || component.description || '';
     if (desc) {
       doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
-      const descHeight = doc.heightOfString(desc, { width: contentWidth, lineGap: 2 });
-      doc.text(desc, marginLeft, y, { width: contentWidth, lineGap: 2 });
-      y += descHeight + 15;
+      doc.text(desc, textX, textY, { width: textWidth, lineGap: 2 });
+      textY += doc.heightOfString(desc, { width: textWidth, lineGap: 2, fontSize: 10 }) + 10;
     }
+
+    // Move y past the image area
+    y = Math.max(y + imgSize + 15, textY + 10);
 
     // === TWO SMALLER IMAGES SIDE BY SIDE (2.png and 3.png) ===
     if (y < 550 && imgDir) {
@@ -90,12 +97,10 @@ module.exports = {
       }
 
       if (imagesDrawn) {
-        // Caption below images
+        // Caption below each small image (left-aligned under each)
         doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
-        doc.text('Beispielbilder', marginLeft, y + smallImgHeight + 2, {
-          width: contentWidth,
-          align: 'center'
-        });
+        doc.text('Beispielbild', marginLeft, y + smallImgHeight + 2);
+        doc.text('Beispielbild', marginLeft + smallImgWidth + 15, y + smallImgHeight + 2);
         y += smallImgHeight + 18;
       }
     }
@@ -111,7 +116,7 @@ module.exports = {
         const colX = idx % 2 === 0 ? marginLeft : marginLeft + colWidth;
         const rowY = y + Math.floor(idx / 2) * 18;
 
-        doc.font('Helvetica').fontSize(9).fillColor(layout.colors.gold);
+        doc.font('Helvetica').fontSize(9).fillColor(layout.colors.gray);
         doc.text('\u2713', colX, rowY, { lineBreak: false });
         doc.fillColor(layout.colors.text);
         doc.text(adv, colX + 12, rowY, { width: colWidth - 20 });
@@ -125,8 +130,8 @@ module.exports = {
       const badgeHeight = 80;
       const remainingSpace = 775 - y;
       if (remainingSpace >= badgeHeight) {
-        doc.roundedRect(marginLeft, y, contentWidth, badgeHeight, 6).fill(layout.colors.goldLight);
-        doc.rect(marginLeft, y, 4, badgeHeight).fill(layout.colors.gold);
+        doc.roundedRect(marginLeft, y, contentWidth, badgeHeight, 6).fill(layout.colors.grayLight);
+        doc.rect(marginLeft, y, 4, badgeHeight).fill(layout.colors.gray);
 
         doc.font('Heading-SemiBold').fontSize(10).fillColor(layout.colors.primary);
         doc.text('100% individuelle Grundrissgestaltung', marginLeft + 15, y + 10);

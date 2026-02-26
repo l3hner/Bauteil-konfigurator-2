@@ -11,8 +11,8 @@ module.exports = {
     let y = 95;
 
     // Gold highlight box
-    doc.roundedRect(60, y, 475, 70, 8).fill(layout.colors.goldLight);
-    doc.roundedRect(60, y, 475, 70, 8).stroke(layout.colors.gold);
+    doc.roundedRect(60, y, 475, 70, 8).fill(layout.colors.grayLight);
+    doc.roundedRect(60, y, 475, 70, 8).strokeColor('#cccccc').lineWidth(1).stroke();
 
     doc.font('Helvetica-Bold').fontSize(14).fillColor(layout.colors.primary);
     doc.text('QDF-Qualitätszertifikat 2026', 80, y + 15, { lineBreak: false });
@@ -44,16 +44,12 @@ module.exports = {
     ];
 
     qdfVorteile.forEach(([title, desc]) => {
-      // Gold checkmark circle
-      doc.circle(90, y + 7, 8).fill(layout.colors.gold);
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
-      doc.text('✓', 86, y + 3, { lineBreak: false });
-
       doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);
-      doc.text(title, 108, y, { lineBreak: false });
+      doc.text('•', 80, y, { lineBreak: false });
+      doc.text(title, 92, y, { lineBreak: false });
 
       doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textLight);
-      doc.text(desc, 108, y + 13, { width: 420, lineGap: 1 });
+      doc.text(desc, 92, y + 13, { width: 436, lineGap: 1 });
 
       y += 42;
     });
@@ -69,7 +65,7 @@ module.exports = {
     doc.font('Helvetica').fontSize(10).fillColor(layout.colors.white);
     doc.text('Die QDF-Zertifizierung ist Ihr Qualitätsversprechen: Jedes Lehner Haus wird nach höchsten Standards geplant, produziert und errichtet. Das RAL-Gütezeichen bestätigt diese Qualität unabhängig.', 80, y + 38, { width: 415, lineGap: 2 });
 
-    y += 85;
+    y += 95;
 
     // Zertifikatsnummer
     doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textMuted);

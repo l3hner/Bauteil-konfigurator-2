@@ -1,11 +1,11 @@
 const path = require('path');
 const fs = require('fs');
 
-// Premium Color Palette (Lehner Haus Corporate: Navy + Red)
+// Premium Color Palette (Lehner Haus Corporate: Green)
 const colors = {
-  primary: '#003366',
-  primaryDark: '#002244',
-  primaryLight: '#336699',
+  primary: '#06402b',
+  primaryDark: '#042e1f',
+  primaryLight: '#267e61',
   secondary: '#C8102E',
   secondaryLight: '#fef5f5',
   gold: '#D4AF37',
@@ -45,18 +45,15 @@ const layout = {
 };
 
 function drawHeader(doc, title) {
-  // Gold accent line
-  doc.rect(50, 35, 4, 30).fill(colors.gold);
-
   doc.font(typography.h1.font).fontSize(typography.h1.size).fillColor(colors.primary);
-  doc.text(title, 62, 40, { lineBreak: false });
+  doc.text(title, 50, 40, { lineBreak: false });
 
-  doc.moveTo(50, 75).lineTo(545, 75).strokeColor(colors.secondary).lineWidth(1).stroke();
+  doc.moveTo(50, 75).lineTo(545, 75).strokeColor('#cccccc').lineWidth(1).stroke();
 }
 
 function drawFooter(doc, pageNum) {
   // Goldene Trennlinie
-  doc.moveTo(50, 800).lineTo(545, 800).lineWidth(0.5).strokeColor(colors.gold).stroke();
+  doc.moveTo(50, 800).lineTo(545, 800).lineWidth(0.5).strokeColor(colors.gray).stroke();
 
   // Links: Website
   doc.font('Helvetica').fontSize(7).fillColor(colors.textMuted);

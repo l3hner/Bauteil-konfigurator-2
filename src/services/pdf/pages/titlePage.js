@@ -88,7 +88,7 @@ module.exports = {
     doc.font('Heading').fontSize(26).fillColor(layout.colors.white);
     doc.text('Ihre persönliche', 0, heroHeight - 130, { width: 595, align: 'center' });
 
-    doc.font('Heading').fontSize(32).fillColor(layout.colors.gold);
+    doc.font('Heading').fontSize(32).fillColor(layout.colors.white);
     doc.text('Leistungsbeschreibung', 0, heroHeight - 90, { width: 595, align: 'center' });
 
     // === BELOW HERO AREA (navy background) ===
@@ -106,12 +106,8 @@ module.exports = {
     doc.font('Helvetica').fontSize(10).fillColor('#cccccc');
     doc.text(dateStr, 0, heroHeight + 90, { width: 595, align: 'center' });
 
-    // Decorative gold line
-    doc.moveTo(200, heroHeight + 130).lineTo(395, heroHeight + 130)
-       .lineWidth(1.5).strokeColor(layout.colors.gold).stroke();
-
     // === FOOTER BAR ===
-    doc.rect(0, 790, 595, 1.5).fill(layout.colors.gold);
+    doc.rect(0, 790, 595, 1.5).fill(layout.colors.gray);
 
     doc.font('Helvetica').fontSize(8).fillColor('#999999');
     doc.text('Lehner Haus GmbH \u00B7 Ihr Partner für individuelles Bauen seit über 60 Jahren', 0, 802, { width: 595, align: 'center' });

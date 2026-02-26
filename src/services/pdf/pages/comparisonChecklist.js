@@ -36,11 +36,12 @@ module.exports = {
 
     doc.font('Helvetica').fontSize(9);
     checklistItems.forEach(([topic, question], i) => {
-      // Checkbox with gold border
-      doc.rect(80, y, 10, 10).strokeColor(layout.colors.gold).lineWidth(1.5).stroke();
+      // Bullet point
+      doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
+      doc.text('•', 80, y, { lineBreak: false });
 
       doc.font('Helvetica-Bold').fillColor(layout.colors.primary);
-      doc.text(topic + ':', 95, y, { lineBreak: false });
+      doc.text(topic + ':', 92, y, { lineBreak: false });
 
       doc.font('Helvetica').fillColor(layout.colors.text);
       doc.text(question, 200, y, { width: 340, lineGap: 1 });
@@ -50,8 +51,7 @@ module.exports = {
 
     // Warnhinweis-Box
     y += 10;
-    doc.roundedRect(60, y, 475, 80, 8).fill(layout.colors.errorLight);
-    doc.rect(60, y, 4, 80).fill(layout.colors.error);
+    doc.roundedRect(60, y, 475, 80, 8).fill(layout.colors.grayLight);
 
     doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.error);
     doc.text('Vorsicht bei diesen Warnsignalen:', 80, y + 10, { lineBreak: false });
@@ -70,7 +70,6 @@ module.exports = {
     // Lehner Haus Box
     y += 85;
     doc.roundedRect(60, y, 475, 45, 8).fill(layout.colors.primary);
-    doc.rect(530, y, 4, 45).fill(layout.colors.gold);
 
     doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
     doc.text('Bei Lehner Haus können Sie jeden dieser Punkte mit "Ja" beantworten.', 80, y + 12, { lineBreak: false });

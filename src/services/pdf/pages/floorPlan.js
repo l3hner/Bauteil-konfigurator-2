@@ -42,7 +42,7 @@ module.exports = {
         if (y > 740) return; // Overflow guard: stop before footer zone
         const roomName = room.name || `Raum ${idx + 1}`;
 
-        doc.font('Helvetica').fontSize(10).fillColor(layout.colors.gold);
+        doc.font('Helvetica').fontSize(10).fillColor(layout.colors.gray);
         doc.text('•', marginLeft + 10, y, { lineBreak: false });
         doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.text);
         doc.text(roomName, marginLeft + 22, y, { lineBreak: false });
@@ -58,8 +58,8 @@ module.exports = {
     // Hinweis (only if enough space before footer)
     y += 20;
     if (y + 60 < 780) {
-    doc.roundedRect(marginLeft, y, contentWidth, 40, 6).fill(layout.colors.goldLight);
-    doc.rect(marginLeft, y, 4, 40).fill(layout.colors.gold);
+    doc.roundedRect(marginLeft, y, contentWidth, 40, 6).fill(layout.colors.grayLight);
+    doc.rect(marginLeft, y, 4, 40).fill(layout.colors.gray);
     doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
     doc.text('Durch unsere freie Raumplanung können wir all Ihre Wünsche umsetzen. Bei Lehner Haus haben Sie 100 % freie Grundrissgestaltung.', marginLeft + 15, y + 12, { width: contentWidth - 30 });
     }

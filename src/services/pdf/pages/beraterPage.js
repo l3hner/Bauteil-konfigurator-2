@@ -15,7 +15,6 @@ module.exports = {
     // Berater-Kontaktbox
     if (submission.berater_name) {
       doc.roundedRect(marginLeft, y, contentWidth, 80, 8).fill(layout.colors.primary);
-      doc.rect(marginLeft + contentWidth - 4, y, 4, 80).fill(layout.colors.gold);
 
       doc.font('Helvetica-Bold').fontSize(14).fillColor(layout.colors.white);
       doc.text(submission.berater_name, marginLeft + 20, y + 15);
@@ -37,16 +36,11 @@ module.exports = {
     // Freitext
     if (submission.berater_freitext) {
       const cleanFreitext = submission.berater_freitext.replace(/\r/g, '');
-      doc.roundedRect(marginLeft, y, contentWidth, 0, 6).fill(layout.colors.goldLight);
-      doc.rect(marginLeft, y, 4, 0).fill(layout.colors.gold);
 
       // Höhe dynamisch berechnen
       doc.font('Helvetica').fontSize(10);
       const textHeight = doc.heightOfString(cleanFreitext, { width: contentWidth - 40 });
       const boxHeight = textHeight + 40;
-
-      doc.roundedRect(marginLeft, y, contentWidth, boxHeight, 6).fill(layout.colors.goldLight);
-      doc.rect(marginLeft, y, 4, boxHeight).fill(layout.colors.gold);
 
       doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.primary);
       doc.text('Persönliche Nachricht:', marginLeft + 15, y + 12);

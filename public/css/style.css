@@ -316,7 +316,7 @@ body {
     display: inline-block;
     width: 4px;
     height: 24px;
-    background: linear-gradient(180deg, var(--primary-color) 0%, var(--gold-500) 100%);
+    background: var(--gray-300);
     margin-right: 16px;
     border-radius: 2px;
 }
@@ -705,6 +705,8 @@ body {
     padding: 32px 0;
     color: var(--gray-600);
     font-size: var(--text-sm);
+    border-top: 1px solid var(--gray-200);
+    margin-top: 16px;
 }
 
 /* ============================================
@@ -1073,6 +1075,7 @@ body {
 .radio-card--with-image {
     padding: 0;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .radio-card--with-image .radio-card-image {
@@ -1113,6 +1116,12 @@ body {
 .radio-card--with-image.selected,
 .radio-card--with-image:has(input[type="radio"]:checked) {
     padding: 0;
+}
+
+/* Ensure images stay visible after selection */
+.radio-card--with-image.selected .radio-card-image {
+    display: flex !important;
+    visibility: visible !important;
 }
 
 

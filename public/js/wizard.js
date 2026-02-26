@@ -5,20 +5,20 @@
 // Step configuration: 17 wizard steps
 const WIZARD_STEPS = [
     { step: 1,  id: 'section-1',  label: 'Kontakt',  required: ['bauherr_anrede', 'bauherr_vorname', 'bauherr_nachname'] },
-    { step: 2,  id: 'section-2',  label: 'Haustyp',   required: ['haustyp'] },
+    { step: 2,  id: 'section-2',  label: 'Haustyp',   required: [] },
     { step: 3,  id: 'section-3',  label: 'Energie',   required: ['kfw_standard'] },
-    { step: 4,  id: 'section-4',  label: 'Wand',      required: ['wall'] },
-    { step: 5,  id: 'section-5',  label: 'Innen',     required: ['innerwall'] },
-    { step: 6,  id: 'section-6',  label: 'Decke',     required: ['decke'] },
-    { step: 7,  id: 'section-7',  label: 'Fenster',   required: ['window'] },
-    { step: 8,  id: 'section-8',  label: 'Dachform',  required: ['dach'] },
-    { step: 9,  id: 'section-9',  label: 'Dach',      required: ['tiles'] },
-    { step: 10, id: 'section-10', label: 'Treppe',    required: ['treppe'] },
-    { step: 11, id: 'section-11', label: 'Heizung',   required: ['heizung'] },
-    { step: 12, id: 'section-12', label: 'Luft',      required: ['lueftung'] },
+    { step: 4,  id: 'section-4',  label: 'Wand',      required: [] },
+    { step: 5,  id: 'section-5',  label: 'Innen',     required: [] },
+    { step: 6,  id: 'section-6',  label: 'Decke',     required: [] },
+    { step: 7,  id: 'section-7',  label: 'Fenster',   required: [] },
+    { step: 8,  id: 'section-8',  label: 'Dachaufbau', required: [] },
+    { step: 9,  id: 'section-9',  label: 'Dach',      required: [] },
+    { step: 10, id: 'section-10', label: 'Treppe',    required: [] },
+    { step: 11, id: 'section-11', label: 'Heizung',   required: [] },
+    { step: 12, id: 'section-12', label: 'Luft',      required: [] },
     { step: 13, id: 'section-13', label: 'Personen',  required: ['personenanzahl'] },
     { step: 14, id: 'section-14', label: 'Grundst.',  required: ['grundstueck'] },
-    { step: 15, id: 'section-15', label: 'Raume',     required: [] },
+    { step: 15, id: 'section-15', label: 'Räume',     required: [] },
     { step: 16, id: 'section-16', label: 'Eigen',     required: [] },
     { step: 17, id: 'section-17', label: 'Berater',   required: [] }
 ];
@@ -169,7 +169,7 @@ function validateCurrentStep(stepNumber) {
             targetEl = el.closest('.radio-group') || el.closest('.form-section');
         } else if (el.tagName === 'SELECT') {
             isValid = el.value !== '';
-            errorMessage = 'Bitte wahlen Sie eine Option.';
+            errorMessage = 'Bitte wählen Sie eine Option.';
             targetEl = el.closest('.form-group') || el;
         } else {
             // text, email, tel

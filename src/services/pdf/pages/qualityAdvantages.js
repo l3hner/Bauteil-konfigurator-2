@@ -40,10 +40,10 @@ module.exports = {
       // Card Background
       doc.roundedRect(cx, cy, cardWidth, cardHeight, 8).fill('#f9f9f9');
       doc.roundedRect(cx, cy, cardWidth, cardHeight, 8)
-         .strokeColor(layout.colors.gold).lineWidth(1).stroke();
+         .strokeColor('#e0e0e0').lineWidth(1).stroke();
 
       // Nummer-Badge (links oben)
-      doc.circle(cx + 15, cy + 15, 12).fill(layout.colors.gold);
+      doc.circle(cx + 15, cy + 15, 12).fill(layout.colors.gray);
       doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
       doc.text(vorteil.nr, cx + 10, cy + 9, { width: 10, align: 'center' });
 
@@ -61,7 +61,7 @@ module.exports = {
     // Callout Box
     doc.roundedRect(60, y, 475, 50, 8).fill(layout.colors.primaryDark);
 
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.gold);
+    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
     doc.text('Fragen Sie bei anderen Anbietern gezielt nach diesen Punkten!', 80, y + 12, { lineBreak: false });
 
     doc.font('Helvetica').fontSize(8).fillColor(layout.colors.white);

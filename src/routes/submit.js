@@ -8,24 +8,14 @@ router.post('/', async (req, res) => {
   try {
     const formData = req.body;
 
-    // Server-side required field validation
+    // Server-side required field validation (only contact data, KfW, persons, land)
     const requiredFields = {
       bauherr_anrede: 'Anrede ist ein Pflichtfeld.',
       bauherr_vorname: 'Vorname ist ein Pflichtfeld.',
       bauherr_nachname: 'Nachname ist ein Pflichtfeld.',
-      kfw_standard: 'Bitte wahlen Sie einen Energiestandard.',
-      haustyp: 'Bitte wahlen Sie einen Haustyp.',
-      wall: 'Bitte wahlen Sie ein Aussenwandsystem.',
-      innerwall: 'Bitte wahlen Sie ein Innenwandsystem.',
-      decke: 'Bitte wahlen Sie ein Deckensystem.',
-      window: 'Bitte wahlen Sie ein Fenstersystem.',
-      tiles: 'Bitte wahlen Sie eine Dacheindeckung.',
-      dach: 'Bitte wahlen Sie eine Dachform.',
-      treppe: 'Bitte wahlen Sie eine Treppenoption.',
-      heizung: 'Bitte wahlen Sie ein Heizungssystem.',
-      lueftung: 'Bitte wahlen Sie ein Luftungssystem.',
+      kfw_standard: 'Bitte wählen Sie einen Energiestandard.',
       personenanzahl: 'Bitte geben Sie die Personenanzahl an.',
-      grundstueck: 'Bitte geben Sie den Grundstucksstatus an.'
+      grundstueck: 'Bitte geben Sie den Grundstücksstatus an.'
     };
 
     const missingFields = [];
@@ -59,19 +49,19 @@ router.post('/', async (req, res) => {
 
       // House configuration
       kfw_standard: formData.kfw_standard,
-      haustyp: formData.haustyp,
+      haustyp: formData.haustyp || null,
       personenanzahl: parseInt(formData.personenanzahl) || 1,
       grundstueck: formData.grundstueck,
 
-      // Building components
-      wall: formData.wall,
-      innerwall: formData.innerwall,
-      decke: formData.decke,
-      window: formData.window,
-      tiles: formData.tiles,
+      // Building components (all optional)
+      wall: formData.wall || null,
+      innerwall: formData.innerwall || null,
+      decke: formData.decke || null,
+      window: formData.window || null,
+      tiles: formData.tiles || null,
       dach: formData.dach || null,
-      heizung: formData.heizung,
-      lueftung: formData.lueftung,
+      heizung: formData.heizung || null,
+      lueftung: formData.lueftung || null,
       treppe: formData.treppe || null,
 
       // Rooms and eigenleistungen
