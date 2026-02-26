@@ -39,10 +39,6 @@ module.exports = {
       layout.drawImagePlaceholder(doc, marginLeft, y, imgSize, imgSize, 'Ihr Haustyp');
     }
 
-    // Caption under hero image
-    doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
-    doc.text('Beispielbild', marginLeft, y + imgSize + 2);
-
     // === TEXT RIGHT OF IMAGE ===
     let textY = y;
 
@@ -59,8 +55,11 @@ module.exports = {
       textY += doc.heightOfString(desc, { width: textWidth, lineGap: 2, fontSize: 10 }) + 10;
     }
 
-    // Move y past the image area
-    y = Math.max(y + imgSize + 15, textY + 10);
+    // Move y past the image area: "Beispielbild" caption + one blank line
+    y = Math.max(y + imgSize + 4, textY + 4);
+    doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
+    doc.text('Beispielbild', marginLeft, y);
+    y += 20;
 
     // === TWO SMALLER IMAGES SIDE BY SIDE (2.png and 3.png) ===
     if (y < 550 && imgDir) {
@@ -101,7 +100,7 @@ module.exports = {
         doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
         doc.text('Beispielbild', marginLeft, y + smallImgHeight + 2);
         doc.text('Beispielbild', marginLeft + smallImgWidth + 15, y + smallImgHeight + 2);
-        y += smallImgHeight + 18;
+        y += smallImgHeight + 14;
       }
     }
 

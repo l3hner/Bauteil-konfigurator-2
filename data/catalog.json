@@ -620,8 +620,8 @@
         "Reduzierte Bauzeit durch effiziente Montage"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Werden die Dachelemente werkseitig vorgefertigt? (Lehner Haus: ja \u2013 Präzisionsfertigung im Werk)\n\n2. Ist das Dach am Aufstelltag regendicht? (Lehner Haus: ja \u2013 integrierte Dämmung und Abdichtung)\n\n3. Welche Dämmstärke ist enthalten? (Lehner Haus: nach aktuellem KfW-Standard)",
-      "filePath": "assets/variants/daecher/satteldach-technical.png",
-      "technicalDrawing": "assets/variants/daecher/satteldach-technical.png"
+      "filePath": "assets/variants/daecher/dachelemente-technical.png",
+      "technicalDrawing": "assets/variants/daecher/dachelemente-technical.png"
     },
     {
       "id": "nagelplattenbinder",
@@ -641,8 +641,8 @@
         "Bewährte Konstruktion mit höchster Tragfähigkeit"
       ],
       "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Wird der Dachstuhl individuell berechnet? (Lehner Haus: ja \u2013 ingenieurmäßige Berechnung für jedes Projekt)\n\n2. Welche Spannweiten sind möglich? (Lehner Haus: große Spannweiten ohne tragende Innenwände)\n\n3. Ist die Dämmung des Dachgeschosses im Preis enthalten? (Lehner Haus: Dämmung nach KfW-Standard inklusive)",
-      "filePath": "assets/variants/daecher/walmdach-technical.png",
-      "technicalDrawing": "assets/variants/daecher/walmdach-technical.png"
+      "filePath": "assets/variants/daecher/nagelplattenbinder-technical.png",
+      "technicalDrawing": "assets/variants/daecher/nagelplattenbinder-technical.png"
     }
   ],
   "treppen": [
