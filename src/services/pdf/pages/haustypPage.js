@@ -55,10 +55,10 @@ module.exports = {
       textY += doc.heightOfString(desc, { width: textWidth, lineGap: 2, fontSize: 10 }) + 10;
     }
 
-    // Move y past the image area: "Beispielbild" caption + one blank line
-    y = Math.max(y + imgSize + 4, textY + 4);
+    // "Beispielbild" directly under hero image, then one blank line before small images
+    y = Math.max(y + imgSize, textY);
     doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
-    doc.text('Beispielbild', marginLeft, y);
+    doc.text('Beispielbild', marginLeft, y + 2);
     y += 20;
 
     // === TWO SMALLER IMAGES SIDE BY SIDE (2.png and 3.png) ===
