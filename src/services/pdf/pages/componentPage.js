@@ -152,7 +152,7 @@ module.exports = {
     }
 
     // Move y past image area
-    y = Math.max(sideStartY + imgSize + 12, rightY + 10);
+    y = Math.max(sideStartY + imgSize + 5, rightY + 5);
 
     // === PREMIUM FEATURES (full width, compact) ===
     if (component.premiumFeatures && component.premiumFeatures.length > 0 && y < 620) {

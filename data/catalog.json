@@ -334,10 +334,7 @@
       "premiumSurface": false,
       "brandProtection": "B",
       "layers": [
-        { "name": "Betondachsteine, in Standardfarben", "value": "" },
-        { "name": "Dachlattung", "value": "" },
-        { "name": "Konterlattung", "value": "" },
-        { "name": "Diffusionsoffene Schalungsbahn", "value": "" }
+        { "name": "Betondachsteine, in Standardfarben", "value": "" }
       ],
       "technicalDetails": {
         "material": "Hochdruckbeton, oberflächenbeschichtet",
@@ -360,10 +357,7 @@
       "premiumSurface": false,
       "brandProtection": "A²",
       "layers": [
-        { "name": "Tondachziegel, in Standardfarben", "value": "" },
-        { "name": "Dachlattung", "value": "" },
-        { "name": "Konterlattung", "value": "" },
-        { "name": "Diffusionsoffene Schalungsbahn", "value": "" }
+        { "name": "Tondachziegel, in Standardfarben", "value": "" }
       ],
       "technicalDetails": {
         "material": "Gebrannter Ton, durchgefärbt",
@@ -614,9 +608,7 @@
         "Integrierte Dämmung \u2013 sofort regendicht",
         "Schnelle Montage am Aufstelltag"
       ],
-      "layers": [
-        { "name": "Technische Daten", "value": "Inhalt folgt" }
-      ],
+      "layers": [],
       "technicalDetails": {
         "construction": "Werkseitig vorgefertigte Dachelemente",
         "insulation": "Integrierte Dämmung nach KfW-Standard"
@@ -730,7 +722,7 @@
       "layers": [
         { "name": "Holzwerkstoffplatte", "value": "22,0 mm" },
         { "name": "Deckenbalken (Vollholz h = 240 mm)", "value": "240,0 mm" },
-        { "name": "Knauf Insulation (ECOSE, formaldehydfrei)", "value": "160,0 mm im Gefach" },
+        { "name": "Knauf Insulation (ECOSE, formaldehydfrei)", "value": "160,0 mm" },
         { "name": "Unterkonstruktion", "value": "21,0 mm" },
         { "name": "Sperrbahn / Rieselschutz", "value": "" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }

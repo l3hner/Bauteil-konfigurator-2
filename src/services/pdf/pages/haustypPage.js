@@ -26,8 +26,8 @@ module.exports = {
         if (buffer) {
           doc.image(buffer, marginLeft, y, {
             fit: [imgSize, imgSize],
-            align: 'center',
-            valign: 'center'
+            align: 'left',
+            valign: 'top'
           });
         } else {
           layout.drawImagePlaceholder(doc, marginLeft, y, imgSize, imgSize, 'Ihr Haustyp');
@@ -78,8 +78,8 @@ module.exports = {
             if (buffer) {
               doc.image(buffer, imgX, y, {
                 fit: [smallImgWidth, smallImgHeight],
-                align: 'center',
-                valign: 'center'
+                align: 'left',
+                valign: 'top'
               });
               imagesDrawn = true;
             } else {
