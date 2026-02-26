@@ -12,15 +12,32 @@ router.get('/:id', async (req, res) => {
       return res.status(404).send('Anfrage nicht gefunden');
     }
 
-    // Look up display names from catalog
-    const haustypData = submission.haustyp ? catalogService.getVariantById('haustypen', submission.haustyp) : null;
-    const dachData = submission.dach ? catalogService.getVariantById('daecher', submission.dach) : null;
+    // Look up all selected components from catalog
+    const components = [];
 
-    res.render('result', {
-      submission,
-      haustypName: haustypData ? haustypData.name : submission.haustyp,
-      dachName: dachData ? dachData.name : submission.dach
-    });
+    const lookups = [
+      { key: 'haustyp', category: 'haustypen', label: 'Haustyp' },
+      { key: 'wall', category: 'walls', label: 'Außenwandsystem' },
+      { key: 'innerwall', category: 'innerwalls', label: 'Innenwandsystem' },
+      { key: 'decke', category: 'decken', label: 'Deckensystem' },
+      { key: 'window', category: 'windows', label: 'Fenstersystem' },
+      { key: 'dach', category: 'daecher', label: 'Dachaufbau' },
+      { key: 'tiles', category: 'tiles', label: 'Dacheindeckung' },
+      { key: 'heizung', category: 'heizung', label: 'Heizungssystem' },
+      { key: 'treppe', category: 'treppen', label: 'Treppensystem' },
+      { key: 'lueftung', category: 'lueftung', label: 'Lüftungssystem' },
+    ];
+
+    for (const { key, category, label } of lookups) {
+      const value = submission[key];
+      if (!value || value === 'keine') continue;
+      const data = catalogService.getVariantById(category, value);
+      if (data) {
+        components.push({ label, ...data });
+      }
+    }
+
+    res.render('result', { submission, components });
 
   } catch (error) {
     console.error('Fehler beim Laden der Ergebnisseite:', error);
