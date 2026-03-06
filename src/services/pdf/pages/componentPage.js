@@ -51,10 +51,14 @@ module.exports = {
           ? techDrawingPath
           : null;
 
+    let actualImgHeight = imgSize;
     if (imgPath) {
       try {
         const buffer = await ctx.imageService.getCompressedImage(imgPath);
         if (buffer) {
+          const img = doc.openImage(buffer);
+          const scale = Math.min(imgSize / img.width, imgSize / img.height);
+          actualImgHeight = img.height * scale;
           doc.image(buffer, marginLeft, y, {
             fit: [imgSize, imgSize],
             align: 'center',
@@ -151,14 +155,14 @@ module.exports = {
       });
     }
 
-    // Move y past image area
-    y = Math.max(sideStartY + imgSize + 5, rightY + 5);
+    // Move y past image area (use actual image height, not full imgSize)
+    y = Math.max(sideStartY + actualImgHeight + 5, rightY + 5);
 
     // === PREMIUM FEATURES (full width, compact) ===
     if (component.premiumFeatures && component.premiumFeatures.length > 0 && y < 620) {
       doc.font('Heading-SemiBold').fontSize(9).fillColor(layout.colors.primary);
       doc.text('Ihre Vorteile bei Lehner Haus:', marginLeft, y);
-      y += 14;
+      y += 20;
 
       const featColWidth = contentWidth / 2;
       const features = component.premiumFeatures.slice(0, 4);
@@ -172,28 +176,47 @@ module.exports = {
         doc.text(feature, colX + 10, rowY, { width: featColWidth - 15 });
       });
 
-      y += Math.ceil(features.length / 2) * 16 + 10;
+      y += Math.ceil(features.length / 2) * 16 + 18;
     }
 
     // === ADVANTAGES LIST (2-column bullets) ===
     if (component.advantages && component.advantages.length > 0 && y < 640) {
       doc.font('Heading-SemiBold').fontSize(9).fillColor(layout.colors.primary);
       doc.text('Weitere Vorteile:', marginLeft, y);
-      y += 14;
+      y += 20;
 
       const advColWidth = contentWidth / 2;
       const advItems = component.advantages.slice(0, 6);
-      advItems.forEach((adv, idx) => {
-        const colX = idx % 2 === 0 ? marginLeft : marginLeft + advColWidth;
-        const rowY = y + Math.floor(idx / 2) * 16;
+      // Split into left/right columns
+      const leftItems = advItems.filter((_, i) => i % 2 === 0);
+      const rightItems = advItems.filter((_, i) => i % 2 !== 0);
 
-        doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.gray);
-        doc.text('\u2022', colX, rowY, { lineBreak: false });
+      let advY = y;
+      for (let row = 0; row < leftItems.length; row++) {
+        const leftAdv = leftItems[row];
+        const rightAdv = rightItems[row];
+
+        doc.font('Helvetica').fontSize(7.5);
+        const leftH = doc.heightOfString(leftAdv, { width: advColWidth - 15, fontSize: 7.5 });
+        const rightH = rightAdv ? doc.heightOfString(rightAdv, { width: advColWidth - 15, fontSize: 7.5 }) : 0;
+        const rowHeight = Math.max(leftH, rightH) + 5;
+
+        doc.fillColor(layout.colors.gray);
+        doc.text('\u2022', marginLeft, advY, { lineBreak: false });
         doc.fillColor(layout.colors.textLight);
-        doc.text(adv, colX + 8, rowY, { width: advColWidth - 15 });
-      });
+        doc.text(leftAdv, marginLeft + 8, advY, { width: advColWidth - 15 });
 
-      y += Math.ceil(advItems.length / 2) * 16 + 8;
+        if (rightAdv) {
+          doc.fillColor(layout.colors.gray);
+          doc.text('\u2022', marginLeft + advColWidth, advY, { lineBreak: false });
+          doc.fillColor(layout.colors.textLight);
+          doc.text(rightAdv, marginLeft + advColWidth + 8, advY, { width: advColWidth - 15 });
+        }
+
+        advY += rowHeight;
+      }
+
+      y = advY + 8;
     }
 
     // === COMPARISON TIP (horizontal line separator, no box) ===

@@ -42,10 +42,11 @@ module.exports = {
       doc.roundedRect(cx, cy, cardWidth, cardHeight, 8)
          .strokeColor('#e0e0e0').lineWidth(1).stroke();
 
-      // Nummer-Badge (links oben)
-      doc.circle(cx + 15, cy + 15, 12).fill(layout.colors.gray);
+      // Nummer-Badge (mittig oben)
+      const badgeCenterX = cx + cardWidth / 2;
+      doc.circle(badgeCenterX, cy + 15, 12).fill(layout.colors.gray);
       doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
-      doc.text(vorteil.nr, cx + 10, cy + 9, { width: 10, align: 'center' });
+      doc.text(vorteil.nr, badgeCenterX - 12, cy + 11, { width: 24, align: 'center' });
 
       // Titel (keine Icons mehr)
       doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);

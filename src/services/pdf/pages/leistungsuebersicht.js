@@ -65,16 +65,16 @@ module.exports = {
       'Gerüst & Kran',
       'Transport',
       'Geschlossene Gebäudehülle',
-      'Außenputz',
       'Decke',
       'Innenwände geschlossen',
       'Dach mit Eindeckung',
       'Dachüberstände gestrichen',
+      'Dachrinnen & Fallrohre (Titanzink)',
+      'Außenputz',
       '3-fach verglaste Fenster nach Wahl',
       'Haustür (Dreifachverriegelung)',
       'Alu-Rollläden',
-      'Alu-Außenfensterbänke',
-      'Dachrinnen & Fallrohre (Titanzink)'
+      'Alu-Außenfensterbänke'
     ];
 
     doc.font('Helvetica').fontSize(7.5);
@@ -92,24 +92,24 @@ module.exports = {
 
     let y3 = y + 30;
     const ausbauItems = [
-      'Estrich mit Fußbodenheizung',
-      'Blower-Door-Test',
+      'Sanitärinstallation',
       'Komplette Elektroinstallation inkl. Zählerschrank'
     ];
 
-    // Lüftung nur wenn gewählt
+    // Lüftung nur wenn gewählt (wird vor Estrich installiert)
     if (lueftungText) {
       ausbauItems.push(lueftungText);
     }
 
-    // Innenausbau
+    // Ausbau in logischer Reihenfolge
     ausbauItems.push(
+      'Estrich mit Fußbodenheizung',
+      'Blower-Door-Test',
       'Fliesen',
       'Sanitärobjekte von Markenherstellern',
-      'Laminat oder Parkett',
-      'Malerarbeiten (weiß streichen)',
       'Innentüren',
-      'Sanitärinstallation'
+      'Malerarbeiten (weiß streichen)',
+      'Laminat oder Parkett'
     );
 
     doc.font('Helvetica').fontSize(7.5);

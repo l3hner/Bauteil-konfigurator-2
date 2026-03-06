@@ -15,11 +15,11 @@
         "Diffusionsoffener Wandaufbau – feuchteregulierend, schimmelfrei"
       ],
       "layers": [
-        { "name": "3-lagiger Außenputz", "value": "" },
+        { "name": "2-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung WLG 035)", "value": "160,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung Mineralwolle (Knauf Insulation WLG 035), alternativ Holzweichfaserdämmung)", "value": "160,0 mm" },
         { "name": "ESB plus Holzwerkstoffplatte", "value": "12,5 mm" },
-        { "name": "Dampfbremse", "value": "" },
+        { "name": "Dampfbremse", "value": "sd 18 m" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
@@ -58,11 +58,11 @@
         "Gipsfaser-Innenbeplankung – höchste Stabilität und Tragfähigkeit"
       ],
       "layers": [
-        { "name": "3-lagiger Außenputz", "value": "" },
+        { "name": "2-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung WLG 035)", "value": "160,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion KVH (inkl. Wärmedämmung Mineralwolle (Knauf Insulation WLG 035), alternativ Holzweichfaserdämmung)", "value": "160,0 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
-        { "name": "Dampfbremse", "value": "" },
+        { "name": "Dampfbremse", "value": "sd 18 m" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
@@ -89,7 +89,7 @@
     {
       "id": "climativ-plus",
       "name": "CLIMA-tiv plus",
-      "emotionalHook": "Die st\u00e4rkste Wand f\u00fcr Ihr KfW-40-Haus \u2013 mehr D\u00e4mmung, mehr Komfort, mehr Energieersparnis.",
+      "emotionalHook": "Die st\u00e4rkste Wand f\u00fcr Ihr Haus \u2013 mehr D\u00e4mmung, mehr Komfort, mehr Energieersparnis.",
       "kfwCompatible": ["KFW40"],
       "description": "CLIMA-tiv plus Außenwand mit Holzwerkstoffplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 345 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
@@ -101,11 +101,11 @@
         "Diffusionsoffener Wandaufbau – feuchteregulierend, schimmelfrei"
       ],
       "layers": [
-        { "name": "3-lagiger Außenputz", "value": "" },
+        { "name": "2-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung WLG 035)", "value": "240,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung Mineralwolle (Knauf Insulation WLG 035), alternativ Holzweichfaserdämmung)", "value": "240,0 mm" },
         { "name": "ESB plus Holzwerkstoffplatte", "value": "12,5 mm" },
-        { "name": "Dampfbremse", "value": "" },
+        { "name": "Dampfbremse", "value": "sd 18 m" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
@@ -132,7 +132,7 @@
     {
       "id": "climativ-plus-gf",
       "name": "CLIMA-tiv plus (GF)",
-      "emotionalHook": "KfW-40 Spitzenleistung mit der Robustheit von Gipsfaser \u2013 f\u00fcr Familien, die das Beste wollen.",
+      "emotionalHook": "Spitzenleistung mit der Robustheit von Gipsfaser \u2013 f\u00fcr Familien, die das Beste wollen.",
       "kfwCompatible": ["KFW40"],
       "description": "CLIMA-tiv plus Außenwand mit Gipsfaserplatte. Massivholz-Rahmenkonstruktion aus LSH (verleimtes Holz 80/240) mit diffusionsoffenem Außenputz. Wandstärke: 345 mm. Massivholzrahmenkonstruktion und Wärmedämmung liegen in einer Ebene.",
       "fireRating": "F90",
@@ -144,11 +144,11 @@
         "Gipsfaser-Innenbeplankung – höchste Stabilität und Tragfähigkeit"
       ],
       "layers": [
-        { "name": "3-lagiger Außenputz", "value": "" },
+        { "name": "2-lagiger Außenputz", "value": "" },
         { "name": "Holzfaser-Wärme-Dämmplatten", "value": "80,0 mm" },
-        { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung WLG 035)", "value": "240,0 mm" },
+        { "name": "Massivholz-Rahmenkonstruktion LSH (inkl. Wärmedämmung Mineralwolle (Knauf Insulation WLG 035), alternativ Holzweichfaserdämmung)", "value": "240,0 mm" },
         { "name": "Holzwerkstoffplatte / Gipsfaserplatte", "value": "12,5 mm" },
-        { "name": "Dampfbremse", "value": "" },
+        { "name": "Dampfbremse", "value": "sd 18 m" },
         { "name": "Gipsbauplatte", "value": "12,5 mm" }
       ],
       "technicalDetails": {
@@ -265,27 +265,32 @@
       "description": "Hochwertige Kunststofffenster mit 3-fach Verglasung und 6-Kammer-Profil. Ug-Wert 0,77 W/(m²K) für beste Wärmedämmung. RC2-Beschlagstechnik serienmäßig.",
       "securityClass": "RC2",
       "premiumFeatures": [
-        "Ug-Wert 0,77 W/(m²K)",
-        "Ug-Wert 0,77 W/(m²K) mit 3-fach Verglasung serienmäßig"
+        "Klasse-A-Profile nach DIN EN 12608 – höhere Materialstärke, längere Lebensdauer",
+        "3-fach Verglasung mit Ug-Wert 0,77 W/(m²K) serienmäßig",
+        "Pilzkopfverriegelung für erhöhten Einbruchschutz",
+        "Nahezu vollständig recycelbar – schadstofffreies Raumklima"
       ],
       "layers": [
-        { "name": "6-Kammer-Kunststoffprofil", "value": "80 mm Bautiefe" },
+        { "name": "6-Kammer-Kunststoffprofil (Klasse A)", "value": "80 mm Bautiefe" },
         { "name": "3-fach Wärmeschutzverglasung", "value": "Ug 0,77" },
         { "name": "Pilzkopfverriegelung für Einbruchschutz", "value": "" }
       ],
       "technicalDetails": {
         "ugValue": "0,77 W/(m²K)",
-        "profile": "6-Kammer-System, 80mm Bautiefe",
+        "profile": "6-Kammer-System Klasse A (DIN EN 12608), 80mm Bautiefe",
         "glazing": "3-fach Verglasung",
-        "securityFeatures": "RC2-Beschlagstechnik, Pilzkopfverriegelung an allen Fenstern"
+        "securityFeatures": "RC2-Beschlagstechnik, Pilzkopfverriegelung an allen Fenstern",
+        "soundInsulation": "Schallschutz bis Klasse 4 (ca. 40–44 dB)"
       },
       "advantages": [
-        "3-fach Verglasung mit Ug-Wert 0,77",
-        "6-Kammer-Profil für maximale Dämmung",
-        "Tipps zur Verriegelung für Einbruchschutz in Anlehnung an RC2",
-        "Pflegeleicht und langlebig"
+        "Klasse-A-Profile – höhere Stabilität und Formbeständigkeit",
+        "Schallschutz bis Klasse 4 (ca. 40–44 dB)",
+        "Uw-Wert bis 0,77 W/(m²K) – geringere Heizkosten ab Tag 1",
+        "Nahezu vollständig recycelbar – gesundes Raumklima",
+        "Große Design- und Farbvielfalt (Dekorfolien, RAL, Holzoptik)",
+        "Pflegeleicht und langlebig – witterungsbeständige Oberflächen"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert haben die Fenster? (Lehner Haus: 0,77 W/(m²K) serienmäßig)\n\n2. 3-fach oder 2-fach Verglasung? (Lehner Haus: 3-fach Verglasung als Standard)\n\n3. Wie viele Kammern hat das Profil? (Lehner Haus: 6-Kammer-Profil mit 80 mm Bautiefe)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert haben die Fenster? (Lehner Haus: 0,77 W/(m²K) serienmäßig)\n\n2. 3-fach oder 2-fach Verglasung? (Lehner Haus: 3-fach Verglasung als Standard)\n\n3. Wie viele Kammern hat das Profil? (Lehner Haus: 6-Kammer-Profil mit 80 mm Bautiefe)\n\n4. Welche Profilklasse? (Lehner Haus: Klasse A nach DIN EN 12608 – höhere Materialstärke)\n\n5. Welchen Schallschutz erreichen die Fenster? (Lehner Haus: bis Klasse 4, ca. 40–44 dB)",
       "filePath": "assets/variants/windows/kunststoff-technical.png",
       "technicalDrawing": "assets/variants/windows/kunststoff-technical.png"
     },
@@ -330,9 +335,15 @@
       "id": "beton",
       "name": "Betondachsteine",
       "emotionalHook": "Bew\u00e4hrter Schutz in Ihrer Wunschfarbe \u2013 millionenfach verbaute Qualit\u00e4t f\u00fcr Ihr Dach.",
-      "description": "Wirtschaftliche Betondachsteine mit guter Haltbarkeit. Vielfältige Farbauswahl für individuelle Dachgestaltung.",
+      "description": "Wirtschaftliche Betondachsteine mit hoher Lebensdauer und Witterungsbeständigkeit. Vielfältige Farbauswahl für individuelle Dachgestaltung.",
       "premiumSurface": false,
       "brandProtection": "B",
+      "premiumFeatures": [
+        "Extrem witterungsbeständig – langfristige Werterhaltung ohne häufige Dachsanierung",
+        "Frost- und hagelbeständig – stabil auch bei extremen Klimabedingungen",
+        "Gute Schalldämmung – ruhigeres Wohnen im Dachgeschoss",
+        "Wartungsarm – robuste Oberfläche, wenig Pflege notwendig"
+      ],
       "layers": [
         { "name": "Betondachsteine, in Standardfarben", "value": "" }
       ],
@@ -341,11 +352,14 @@
         "weight": "ca. 43 kg/m²"
       },
       "advantages": [
-        "Attraktives Preis-Leistungs-Verhältnis",
-        "Große Farbauswahl möglich",
-        "Bewährtes Material millionenfach verbaut"
+        "Sehr hohe Lebensdauer – zuverlässiger Schutz bei Sturm und Extremwetter",
+        "Frost-Tau-beständig und UV-resistent",
+        "Moderne Beschichtungen für dauerhafte Farbstabilität",
+        "Nachhaltiger Baustoff aus natürlichen Materialien",
+        "Große Farb- und Oberflächenauswahl",
+        "Attraktives Preis-Leistungs-Verhältnis"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Welche Farbauswahl ist verfügbar?'\n\n2. 'Welche Oberflächenbeschichtung wird verwendet?'",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welche Farbauswahl ist verfügbar? (Lehner Haus: große Auswahl an Standardfarben)\n\n2. Welche Oberflächenbeschichtung wird verwendet? (Lehner Haus: moderne Beschichtung für dauerhafte Farbstabilität)\n\n3. Wie witterungsbeständig sind die Dachsteine? (Lehner Haus: frost-, hagel- und UV-beständig)\n\n4. Welche Schalldämmung bieten die Dachsteine? (Lehner Haus: massiver Baustoff reduziert Regen- und Außenschall)",
       "filePath": "assets/variants/tiles/beton-technical.png",
       "technicalDrawing": "assets/variants/tiles/beton-technical.png"
     },
@@ -356,6 +370,12 @@
       "description": "Tondachziegel mit Durchfärbung. Teurere Lösung, nur in seltenen Fällen notwendig. A² Brandschutz.",
       "premiumSurface": false,
       "brandProtection": "A²",
+      "premiumFeatures": [
+        "Durchgefärbter Ton – Farbe verblasst nicht, auch nach Jahrzehnten",
+        "A² Brandschutzklasse – höchster Brandschutz bei Dacheindeckungen",
+        "Natürlicher Baustoff – ökologisch und recycelbar",
+        "Frost- und witterungsbeständig – bewährt seit Jahrhunderten"
+      ],
       "layers": [
         { "name": "Tondachziegel, in Standardfarben", "value": "" }
       ],
@@ -365,11 +385,14 @@
         "surface": "Durchfärbung"
       },
       "advantages": [
-        "Durchfärbung – dauerhafte Farbgebung",
-        "Natürliches Material",
-        "A² Brandschutzklasse"
+        "Durchfärbung – dauerhafte Farbgebung ohne Nachstreichen",
+        "Natürlicher Baustoff aus gebranntem Ton",
+        "A² Brandschutzklasse",
+        "Hohe Frost- und Witterungsbeständigkeit",
+        "Sehr lange Lebensdauer",
+        "Wertsteigernd für die Immobilie"
       ],
-      "comparisonNotes": "Hinweis: Tondachziegel sind die teurere Variante und nur in seltenen Fällen notwendig. Betondachsteine bieten in der Regel ein besseres Preis-Leistungs-Verhältnis.",
+      "comparisonNotes": "Hinweis: Tondachziegel sind die teurere Variante und nur in seltenen Fällen notwendig. Betondachsteine bieten in der Regel ein besseres Preis-Leistungs-Verhältnis.\n\nFragen Sie gezielt:\n\n1. Sind die Ziegel durchgefärbt oder nur oberflächenbeschichtet?\n\n2. Welche Brandschutzklasse wird erreicht? (Lehner Haus: A²)",
       "filePath": "assets/variants/tiles/ton-technical.png",
       "technicalDrawing": "assets/variants/tiles/ton-technical.png"
     }

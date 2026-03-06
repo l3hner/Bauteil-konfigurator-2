@@ -19,11 +19,16 @@ module.exports = {
       ? path.resolve(assetsDir, '..', component.filePath)
       : null;
     const heroFile = imgDir ? path.join(imgDir, '1.png') : null;
+    let actualHeroHeight = imgSize;
 
     if (heroFile && fs.existsSync(heroFile)) {
       try {
         const buffer = await ctx.imageService.getCompressedImage(heroFile);
         if (buffer) {
+          // Calculate actual rendered height based on aspect ratio
+          const img = doc.openImage(buffer);
+          const scale = Math.min(imgSize / img.width, imgSize / img.height);
+          actualHeroHeight = img.height * scale;
           doc.image(buffer, marginLeft, y, {
             fit: [imgSize, imgSize],
             align: 'left',
@@ -55,8 +60,8 @@ module.exports = {
       textY += doc.heightOfString(desc, { width: textWidth, lineGap: 2, fontSize: 10 }) + 10;
     }
 
-    // "Beispielbild" directly under hero image, then one blank line before small images
-    y = Math.max(y + imgSize, textY);
+    // "Beispielbild" directly under hero image (use actual height, not full imgSize)
+    y = Math.max(y + actualHeroHeight, textY);
     doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
     doc.text('Beispielbild', marginLeft, y + 2);
     y += 20;

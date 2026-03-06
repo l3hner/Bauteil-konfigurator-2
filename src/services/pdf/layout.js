@@ -164,7 +164,7 @@ function extractQualityItems(component, categoryTitle) {
     items.push({ label: 'Feuerwiderstandsklasse', value: td.fireRating.includes('F90') ? 'min. (R)EI 90' : td.fireRating });
   }
   if (td.soundInsulation) {
-    items.push({ label: `Qualitätsmerkmal: ${td.soundInsulation}`, value: '' });
+    items.push({ label: 'Schallschutz', value: td.soundInsulation });
   }
   // SCOP wird nicht mehr angezeigt
   if (td.heatRecovery) {
