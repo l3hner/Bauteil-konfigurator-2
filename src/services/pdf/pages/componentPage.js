@@ -99,7 +99,7 @@ module.exports = {
           });
           doc.font('Helvetica');
         }
-        rightY += Math.max(14, nameHeight + 3);
+        rightY += Math.max(14, nameHeight + 6);
       });
 
       // Gesamtstärke (Hohlraumdämmung ausschließen, strukturelle Schichten mitzählen)
