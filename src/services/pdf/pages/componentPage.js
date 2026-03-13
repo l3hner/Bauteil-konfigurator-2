@@ -106,7 +106,7 @@ module.exports = {
       const totalThickness = aufbauItems.reduce((sum, item) => {
         const nameLower = (item.name || '').toLowerCase();
         // Nur Hohlraumdämmung ausschließen (Name beginnt mit "Dämmung"), nicht strukturelle Schichten
-        if (nameLower.startsWith('dämmung') || nameLower.includes('insulation') || nameLower.includes('glaswolle')) {
+        if (nameLower.startsWith('dämmung') || nameLower.includes('glaswolle')) {
           return sum;
         }
         const match = (item.value || '').match(/([\d,]+)\s*mm/);
