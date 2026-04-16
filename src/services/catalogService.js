@@ -1,79 +1,56 @@
 const fs = require('fs');
 const path = require('path');
 const logger = require('../utils/logger');
-const { KFW_STANDARDS } = require('../constants');
+const { KFW_STANDARDS, CATEGORIES, CATEGORY_LABELS, SUBMISSION_FIELD_TO_CATEGORY } = require('../constants');
+const { validateCatalog } = require('../utils/catalogSchema');
 
 class CatalogService {
   constructor() {
     this.catalogPath = path.join(__dirname, '../../data/catalog.json');
-    this.catalog = this.loadCatalog();
+    this.catalog = null;
+    this._loadAndValidate();
   }
 
-  loadCatalog() {
+  _loadAndValidate() {
     try {
       const data = fs.readFileSync(this.catalogPath, 'utf8');
-      return JSON.parse(data);
+      this.catalog = JSON.parse(data);
+
+      const result = validateCatalog(this.catalog);
+      if (result.valid) {
+        const total = Object.values(result.stats).reduce((s, n) => s + n, 0);
+        logger.info('Catalog', `Katalog geladen: ${total} Einträge in ${Object.keys(result.stats).length} Kategorien`);
+      } else {
+        logger.error('Catalog', 'Katalog hat Validierungsfehler — einige Funktionen könnten fehlschlagen');
+      }
     } catch (error) {
       logger.error('Catalog', `Fehler beim Laden des Katalogs: ${error.message}`);
-      return {
-        walls: [],
-        innerwalls: [],
-        daecher: [],
-        decken: [],
-        treppen: [],
-        windows: [],
-        tiles: [],
-        haustypen: [],
-        heizung: [],
-        lueftung: []
-      };
+      this.catalog = Object.values(CATEGORIES).reduce((acc, cat) => { acc[cat] = []; return acc; }, {});
     }
   }
 
-  getWalls() {
-    return this.catalog.walls || [];
+  getCategory(category) {
+    return this.catalog[category] || [];
   }
 
+  getWalls() { return this.getCategory(CATEGORIES.WALLS); }
+  getInnerwalls() { return this.getCategory(CATEGORIES.INNERWALLS); }
+  getDaecher() { return this.getCategory(CATEGORIES.DAECHER); }
+  getDecken() { return this.getCategory(CATEGORIES.DECKEN); }
+  getTreppen() { return this.getCategory(CATEGORIES.TREPPEN); }
+  getWindows() { return this.getCategory(CATEGORIES.WINDOWS); }
+  getTiles() { return this.getCategory(CATEGORIES.TILES); }
+  getHaustypen() { return this.getCategory(CATEGORIES.HAUSTYPEN); }
+  getHeizung() { return this.getCategory(CATEGORIES.HEIZUNG); }
+
   getWallsByKfw(kfwStandard) {
-    return this.catalog.walls.filter(wall =>
+    return this.getWalls().filter(wall =>
       wall.kfwCompatible && wall.kfwCompatible.includes(kfwStandard)
     );
   }
 
-  getInnerwalls() {
-    return this.catalog.innerwalls || [];
-  }
-
-  getDaecher() {
-    return this.catalog.daecher || [];
-  }
-
-  getDecken() {
-    return this.catalog.decken || [];
-  }
-
-  getTreppen() {
-    return this.catalog.treppen || [];
-  }
-
-  getWindows() {
-    return this.catalog.windows || [];
-  }
-
-  getTiles() {
-    return this.catalog.tiles || [];
-  }
-
-  getHaustypen() {
-    return this.catalog.haustypen || [];
-  }
-
-  getHeizung() {
-    return this.catalog.heizung || [];
-  }
-
   getLueftung(kfwStandard) {
-    const allLueftung = this.catalog.lueftung || [];
+    const allLueftung = this.getCategory(CATEGORIES.LUEFTUNG);
 
     if (kfwStandard === KFW_STANDARDS.KFW55) {
       return allLueftung.filter(l => l.id === 'keine');
@@ -85,8 +62,7 @@ class CatalogService {
   }
 
   getVariantById(category, id) {
-    const variants = this.catalog[category] || [];
-    return variants.find(v => v.id === id);
+    return this.getCategory(category).find(v => v.id === id);
   }
 
   getAllCategories() {
@@ -96,60 +72,14 @@ class CatalogService {
   validateSelection(selection) {
     const errors = [];
 
-    // Validate wall selection
-    if (selection.wall && !this.getVariantById('walls', selection.wall)) {
-      errors.push('Ungültige Wandauswahl');
+    for (const [field, category] of Object.entries(SUBMISSION_FIELD_TO_CATEGORY)) {
+      const value = selection[field];
+      if (value && value !== 'keine' && !this.getVariantById(category, value)) {
+        errors.push(`Ungültige ${CATEGORY_LABELS[category] || category}-Auswahl: "${value}"`);
+      }
     }
 
-    // Validate innerwall selection
-    if (selection.innerwall && !this.getVariantById('innerwalls', selection.innerwall)) {
-      errors.push('Ungültige Innenwandauswahl');
-    }
-
-    // Validate decke selection
-    if (selection.decke && !this.getVariantById('decken', selection.decke)) {
-      errors.push('Ungültige Deckenauswahl');
-    }
-
-    // Validate window selection
-    if (selection.window && !this.getVariantById('windows', selection.window)) {
-      errors.push('Ungültige Fensterauswahl');
-    }
-
-    // Validate tiles selection
-    if (selection.tiles && !this.getVariantById('tiles', selection.tiles)) {
-      errors.push('Ungültige Dachziegelauswahl');
-    }
-
-    // Validate haustyp
-    if (selection.haustyp && !this.getVariantById('haustypen', selection.haustyp)) {
-      errors.push('Ungültiger Haustyp');
-    }
-
-    // Validate heizung
-    if (selection.heizung && !this.getVariantById('heizung', selection.heizung)) {
-      errors.push('Ungültige Heizungsauswahl');
-    }
-
-    // Validate lueftung
-    if (selection.lueftung && !this.getVariantById('lueftung', selection.lueftung)) {
-      errors.push('Ungültige Lüftungsauswahl');
-    }
-
-    // Validate dach selection
-    if (selection.dach && !this.getVariantById('daecher', selection.dach)) {
-      errors.push('Ungültige Dachauswahl');
-    }
-
-    // Validate treppe selection
-    if (selection.treppe && !this.getVariantById('treppen', selection.treppe)) {
-      errors.push('Ungültige Treppenauswahl');
-    }
-
-    return {
-      valid: errors.length === 0,
-      errors
-    };
+    return { valid: errors.length === 0, errors };
   }
 }
 
