@@ -22,8 +22,30 @@
 
                 <%- include('partials/_kontaktdaten') %>
 
-                <%# Haustyp — hat spezielle Image-Pfade, nutzt aber trotzdem das generische Partial %>
-                <%- include('partials/_radio-group', { sectionId: 2, stepNum: 2, title: 'Haustyp', fieldName: 'haustyp', items: catalog.haustypen }) %>
+                <!-- Haustyp (spezielle Bildpfade: Verzeichnis + 1.png) -->
+                <section class="form-section" id="section-2" data-wizard-step="2">
+                    <h3 class="section-title">2. Haustyp</h3>
+                    <div class="radio-group">
+                        <% catalog.haustypen.forEach(haustyp => { %>
+                        <label class="radio-card<%= haustyp.filePath ? ' radio-card--with-image' : '' %>">
+                            <input type="radio" name="haustyp" value="<%= haustyp.id %>" onchange="updateProgress();">
+                            <% if (haustyp.filePath) { %>
+                            <div class="radio-card-image">
+                                <img src="/<%= haustyp.filePath %>1.png" alt="<%= haustyp.name %>" loading="lazy">
+                            </div>
+                            <% } %>
+                            <div class="radio-content">
+                                <h4><%= haustyp.name %></h4>
+                                <p><%= haustyp.description %></p>
+                                <% if (haustyp.details) { %><small><%= haustyp.details %></small><% } %>
+                            </div>
+                            <span class="checkmark">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </label>
+                        <% }); %>
+                    </div>
+                </section>
 
                 <!-- Energiestandard (statisch, da nur 2 feste Optionen mit speziellen onchange-Handlern) -->
                 <section class="form-section" id="section-3" data-wizard-step="3">
