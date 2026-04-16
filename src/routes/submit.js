@@ -3,10 +3,18 @@ const router = express.Router();
 const catalogService = require('../services/catalogService');
 const submissionService = require('../services/submissionService');
 const pdfService = require('../services/pdfService');
+const logger = require('../utils/logger');
 
 router.post('/', async (req, res) => {
   try {
     const formData = req.body;
+
+    // CSRF token validation (double-submit cookie pattern)
+    const cookieToken = req.cookies && req.cookies._csrf;
+    const formToken = formData._csrf;
+    if (!cookieToken || !formToken || cookieToken !== formToken) {
+      return res.status(403).json({ error: 'Ungültiges CSRF-Token. Bitte laden Sie die Seite neu.' });
+    }
 
     // Server-side required field validation (only contact data, KfW, persons, land)
     const requiredFields = {
@@ -30,6 +38,29 @@ router.post('/', async (req, res) => {
         error: 'Pflichtfelder fehlen',
         details: missingFields
       });
+    }
+
+    // E-Mail validation (optional field, but validate format if provided)
+    if (formData.bauherr_email && formData.bauherr_email.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.bauherr_email.trim())) {
+        return res.status(400).json({
+          error: 'Ungültige E-Mail-Adresse',
+          details: [{ field: 'bauherr_email', message: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.' }]
+        });
+      }
+    }
+
+    // Phone validation (optional field, but validate format if provided)
+    if (formData.bauherr_telefon && formData.bauherr_telefon.trim()) {
+      const phoneRegex = /^[\d\s\-+()\/]+$/;
+      const digitsOnly = formData.bauherr_telefon.replace(/\D/g, '');
+      if (!phoneRegex.test(formData.bauherr_telefon) || digitsOnly.length < 6) {
+        return res.status(400).json({
+          error: 'Ungültige Telefonnummer',
+          details: [{ field: 'bauherr_telefon', message: 'Bitte geben Sie eine gültige Telefonnummer ein.' }]
+        });
+      }
     }
 
     // Parse room data
@@ -88,14 +119,19 @@ router.post('/', async (req, res) => {
     // Save submission
     const { id, submission: savedSubmission } = await submissionService.saveSubmission(submission);
 
-    // Generate PDF
-    await pdfService.generatePDF(savedSubmission);
+    // Generate PDF (separate error handling — submission is saved even if PDF fails)
+    try {
+      await pdfService.generatePDF(savedSubmission);
+    } catch (pdfError) {
+      logger.error('Submit', `PDF-Generierung fehlgeschlagen für ${id}: ${pdfError.message}`);
+      // Redirect anyway — result page can show submission without PDF
+    }
 
     // Redirect to result page
     res.redirect(`/result/${id}`);
 
   } catch (error) {
-    console.error('Fehler beim Verarbeiten der Anfrage:', error);
+    logger.error('Submit', `POST /submit — ${error.message}`);
     res.status(500).send('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
   }
 });

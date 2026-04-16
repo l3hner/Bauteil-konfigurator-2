@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const logger = require('../utils/logger');
 
 class SubmissionService {
   constructor() {
@@ -11,7 +12,7 @@ class SubmissionService {
     try {
       await fs.mkdir(this.submissionsDir, { recursive: true });
     } catch (error) {
-      console.error('Fehler beim Erstellen des Submissions-Ordners:', error);
+      logger.error('Submission', `Fehler beim Erstellen des Submissions-Ordners: ${error.message}`);
     }
   }
 
@@ -43,7 +44,7 @@ class SubmissionService {
       const data = await fs.readFile(filePath, 'utf8');
       return JSON.parse(data);
     } catch (error) {
-      console.error('Fehler beim Laden der Submission:', error);
+      logger.error('Submission', `Fehler beim Laden der Submission: ${error.message}`);
       return null;
     }
   }
@@ -67,7 +68,7 @@ class SubmissionService {
         new Date(b.timestamp) - new Date(a.timestamp)
       );
     } catch (error) {
-      console.error('Fehler beim Laden aller Submissions:', error);
+      logger.error('Submission', `Fehler beim Laden aller Submissions: ${error.message}`);
       return [];
     }
   }

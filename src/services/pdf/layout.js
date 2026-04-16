@@ -1,6 +1,3 @@
-const path = require('path');
-const fs = require('fs');
-
 // Premium Color Palette (Lehner Haus Corporate: Green)
 const colors = {
   primary: '#06402b',

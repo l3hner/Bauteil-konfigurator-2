@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const fs = require('fs');
+const logger = require('../utils/logger');
 
 router.get('/:id', (req, res) => {
   try {
@@ -24,7 +25,7 @@ router.get('/:id', (req, res) => {
     }
 
   } catch (error) {
-    console.error('Fehler beim Laden des PDFs:', error);
+    logger.error('PDF', `GET /pdf/${req.params.id} — ${error.message}`);
     res.status(500).send('Ein Fehler ist aufgetreten');
   }
 });

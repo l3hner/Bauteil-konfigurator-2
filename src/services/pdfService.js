@@ -5,6 +5,7 @@ const layout = require('./pdf/layout');
 const { buildPageList } = require('./pdf/pages');
 const catalogService = require('./catalogService');
 const imageService = require('./imageService');
+const logger = require('../utils/logger');
 
 class PdfService {
   constructor() {
@@ -30,9 +31,9 @@ class PdfService {
     try {
       doc.registerFont('Heading', path.join(fontsDir, 'Montserrat-Bold.ttf'));
       doc.registerFont('Heading-SemiBold', path.join(fontsDir, 'Montserrat-SemiBold.ttf'));
-      console.log('[PDF] Custom fonts registered: Montserrat');
+      logger.debug('PDF', 'Custom fonts registered: Montserrat');
     } catch (e) {
-      console.warn('[PDF] Font fallback to Helvetica:', e.message);
+      logger.warn('PDF', `Font fallback to Helvetica: ${e.message}`);
       doc.registerFont('Heading', 'Helvetica-Bold');
       doc.registerFont('Heading-SemiBold', 'Helvetica-Bold');
     }

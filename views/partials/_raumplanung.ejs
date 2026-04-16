@@ -1,0 +1,39 @@
+<section class="form-section" id="section-15" data-wizard-step="15">
+    <h3 class="section-title">15. Raumplanung</h3>
+    <p class="section-description">Welche Räume wünschen Sie sich in Ihrem Haus?</p>
+
+    <div class="rooms-container">
+        <div class="room-section">
+            <h4>Erdgeschoss</h4>
+            <div id="eg-rooms">
+                <div class="room-item">
+                    <input type="text" name="eg_rooms" placeholder="z.B. Wohnzimmer" class="room-name">
+                    <input type="text" name="eg_details" placeholder="Besondere Wünsche" class="room-details">
+                </div>
+            </div>
+            <button type="button" onclick="addRoom('eg')" class="btn-add">+ Raum hinzufügen</button>
+        </div>
+
+        <div class="room-section">
+            <h4>Obergeschoss</h4>
+            <div id="og-rooms">
+                <div class="room-item">
+                    <input type="text" name="og_rooms" placeholder="z.B. Schlafzimmer" class="room-name">
+                    <input type="text" name="og_details" placeholder="Besondere Wünsche" class="room-details">
+                </div>
+            </div>
+            <button type="button" onclick="addRoom('og')" class="btn-add">+ Raum hinzufügen</button>
+        </div>
+
+        <div class="room-section">
+            <h4>Untergeschoss</h4>
+            <div id="ug-rooms">
+                <div class="room-item">
+                    <input type="text" name="ug_rooms" placeholder="z.B. Keller" class="room-name">
+                    <input type="text" name="ug_details" placeholder="Besondere Wünsche" class="room-details">
+                </div>
+            </div>
+            <button type="button" onclick="addRoom('ug')" class="btn-add">+ Raum hinzufügen</button>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,7 @@
 const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../utils/logger');
 
 const cache = new Map();
 
@@ -52,11 +53,11 @@ async function getCompressedImage(imagePath, maxWidth = 600) {
 
     const wasFlattened = metadata.hasAlpha ? ' (alpha flattened)' : '';
     const reduction = ((stats.size - buffer.length) / stats.size * 100).toFixed(0);
-    console.log(`[Image] Compressed ${path.basename(imagePath)}: ${(stats.size / 1024).toFixed(0)} KB -> ${(buffer.length / 1024).toFixed(0)} KB (${reduction}% reduction${wasFlattened})`);
+    logger.debug('Image', `Compressed ${path.basename(imagePath)}: ${(stats.size / 1024).toFixed(0)} KB -> ${(buffer.length / 1024).toFixed(0)} KB (${reduction}% reduction${wasFlattened})`);
 
     return buffer;
   } catch (err) {
-    console.error(`[Image] Compression failed for ${imagePath}:`, err.message);
+    logger.error('Image', `Compression failed for ${imagePath}: ${err.message}`);
     // Fallback: return raw file
     const buf = fs.readFileSync(imagePath);
     cache.set(cacheKey, buf);

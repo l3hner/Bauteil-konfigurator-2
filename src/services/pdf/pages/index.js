@@ -1,4 +1,5 @@
 const catalogService = require('../../catalogService');
+const logger = require('../../../utils/logger');
 const titlePage = require('./titlePage');
 const qdfCertification = require('./qdfCertification');
 const executiveSummary = require('./executiveSummary');
@@ -26,8 +27,7 @@ function buildPageList(submission) {
   // Dynamic component pages (same order as current generatePDF)
   const innerwallData = catalogService.getVariantById('innerwalls', submission.innerwall);
   if (!innerwallData && submission.innerwall) {
-    console.error('[PDF] ERROR: Innenwand not found:', submission.innerwall);
-    console.error('[PDF] Available:', catalogService.getInnerwalls().map(iw => iw.id));
+    logger.warn('PDF', `Innenwand not found: ${submission.innerwall} (verfügbar: ${catalogService.getInnerwalls().map(iw => iw.id).join(', ')})`);
   }
 
   const components = [
@@ -64,7 +64,7 @@ function buildPageList(submission) {
         title: comp.title,
         condition: () => true,
         render: (doc, submission, ctx) => {
-          console.log(`[PDF] Adding page ${ctx.pageNum}: ${comp.title} (${comp.chapter})`);
+          logger.debug('PDF', `Adding page ${ctx.pageNum}: ${comp.title} (${comp.chapter})`);
           if (comp.isHaustyp) {
             return renderHaustyp(doc, comp.data, ctx);
           } else {
@@ -73,7 +73,7 @@ function buildPageList(submission) {
         }
       });
     } else {
-      console.log(`[PDF] SKIPPED: ${comp.title} - no data`);
+      logger.debug('PDF', `SKIPPED: ${comp.title} - no data`);
     }
   }
 

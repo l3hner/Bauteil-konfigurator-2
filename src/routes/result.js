@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const submissionService = require('../services/submissionService');
 const catalogService = require('../services/catalogService');
+const logger = require('../utils/logger');
+const { SUBMISSION_FIELD_TO_CATEGORY, CATEGORY_LABELS } = require('../constants');
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const submission = await submissionService.getSubmission(id);
@@ -15,33 +17,20 @@ router.get('/:id', async (req, res) => {
     // Look up all selected components from catalog
     const components = [];
 
-    const lookups = [
-      { key: 'haustyp', category: 'haustypen', label: 'Haustyp' },
-      { key: 'wall', category: 'walls', label: 'Außenwandsystem' },
-      { key: 'innerwall', category: 'innerwalls', label: 'Innenwandsystem' },
-      { key: 'decke', category: 'decken', label: 'Deckensystem' },
-      { key: 'window', category: 'windows', label: 'Fenstersystem' },
-      { key: 'dach', category: 'daecher', label: 'Dachaufbau' },
-      { key: 'tiles', category: 'tiles', label: 'Dacheindeckung' },
-      { key: 'heizung', category: 'heizung', label: 'Heizungssystem' },
-      { key: 'treppe', category: 'treppen', label: 'Treppensystem' },
-      { key: 'lueftung', category: 'lueftung', label: 'Lüftungssystem' },
-    ];
-
-    for (const { key, category, label } of lookups) {
-      const value = submission[key];
+    for (const [field, category] of Object.entries(SUBMISSION_FIELD_TO_CATEGORY)) {
+      const value = submission[field];
       if (!value || value === 'keine') continue;
       const data = catalogService.getVariantById(category, value);
       if (data) {
-        components.push({ label, ...data });
+        components.push({ label: CATEGORY_LABELS[category], ...data });
       }
     }
 
     res.render('result', { submission, components });
 
   } catch (error) {
-    console.error('Fehler beim Laden der Ergebnisseite:', error);
-    res.status(500).send('Ein Fehler ist aufgetreten');
+    logger.error('Route', `GET /result/${req.params.id} — ${error.message}`);
+    next(error);
   }
 });
 

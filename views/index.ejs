@@ -11,106 +11,23 @@
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <div class="header-inner">
-                <div class="logo">
-                    <h1>LEHNER HAUS</h1>
-                    <p class="tagline">schwäbisch gut</p>
-                </div>
-                <div class="qdf-badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-                    </svg>
-                    QDF Zertifiziert 2026
-                </div>
-            </div>
-        </header>
+        <%- include('partials/_header') %>
 
         <main class="main-content">
             <h2 class="page-title">Ihre persönliche Leistungsbeschreibung</h2>
             <p class="intro-text">Gestalten Sie Ihr Traumhaus - wir erstellen Ihnen eine maßgeschneiderte Leistungsbeschreibung</p>
 
             <form id="konfigurator-form" action="/submit" method="POST">
+                <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
 
-                <!-- Bauherren-Daten -->
-                <section class="form-section" id="section-1" data-wizard-step="1">
-                    <h3 class="section-title">1. Ihre Kontaktdaten</h3>
+                <%- include('partials/_kontaktdaten') %>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bauherr_anrede">Anrede *</label>
-                            <select id="bauherr_anrede" name="bauherr_anrede" required>
-                                <option value="">Bitte wählen</option>
-                                <option value="Herr">Herr</option>
-                                <option value="Frau">Frau</option>
-                                <option value="Familie">Familie</option>
-                            </select>
-                        </div>
-                    </div>
+                <%# Haustyp — hat spezielle Image-Pfade, nutzt aber trotzdem das generische Partial %>
+                <%- include('partials/_radio-group', { sectionId: 2, stepNum: 2, title: 'Haustyp', fieldName: 'haustyp', items: catalog.haustypen }) %>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bauherr_vorname">Vorname *</label>
-                            <input type="text" id="bauherr_vorname" name="bauherr_vorname" required>
-                            <span class="valid-indicator">&#10003;</span>
-                            <span class="error-message"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="bauherr_nachname">Nachname *</label>
-                            <input type="text" id="bauherr_nachname" name="bauherr_nachname" required>
-                            <span class="valid-indicator">&#10003;</span>
-                            <span class="error-message"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bauherr_email">E-Mail</label>
-                            <input type="email" id="bauherr_email" name="bauherr_email">
-                            <span class="valid-indicator">&#10003;</span>
-                            <span class="error-message"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="bauherr_telefon">Telefon</label>
-                            <input type="tel" id="bauherr_telefon" name="bauherr_telefon">
-                            <span class="valid-indicator">&#10003;</span>
-                            <span class="error-message"></span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Haustyp -->
-                <section class="form-section" id="section-2" data-wizard-step="2">
-                    <h3 class="section-title">2. Haustyp</h3>
-
-                    <div class="radio-group">
-                        <% catalog.haustypen.forEach(haustyp => { %>
-                        <label class="radio-card<%= haustyp.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="haustyp" value="<%= haustyp.id %>" onchange="updateProgress();">
-                            <% if (haustyp.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= haustyp.filePath %>1.png" alt="<%= haustyp.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= haustyp.name %></h4>
-                                <p><%= haustyp.description %></p>
-                                <small><%= haustyp.details %></small>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); %>
-                    </div>
-                </section>
-
-                <!-- Energiestandard -->
+                <!-- Energiestandard (statisch, da nur 2 feste Optionen mit speziellen onchange-Handlern) -->
                 <section class="form-section" id="section-3" data-wizard-step="3">
                     <h3 class="section-title">3. Energiestandard</h3>
-
                     <div class="radio-group">
                         <label class="radio-card">
                             <input type="radio" name="kfw_standard" value="KFW55" required onchange="updateWallOptions(); updateLueftungOptions(); updateProgress();">
@@ -118,214 +35,40 @@
                                 <h4>KfW 55</h4>
                                 <p>Effizienzhaus 55 - Attraktive Förderung mit bewährter Technik</p>
                             </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
+                            <span class="checkmark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                         </label>
-
                         <label class="radio-card">
                             <input type="radio" name="kfw_standard" value="KFW40" onchange="updateWallOptions(); updateLueftungOptions(); updateProgress();">
                             <div class="radio-content">
                                 <h4>KfW 40</h4>
                                 <p>Effizienzhaus 40 - Höchste Energieeffizienz für maximale Förderung</p>
                             </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
+                            <span class="checkmark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                         </label>
                     </div>
                 </section>
 
-                <!-- Aussenwand -->
+                <!-- Aussenwand (dynamisch via JS basierend auf KfW) -->
                 <section class="form-section" id="section-4" data-wizard-step="4">
                     <h3 class="section-title">4. Aussenwandsystem</h3>
                     <p class="section-description">Wählen Sie Ihr Wandsystem basierend auf dem Energiestandard</p>
-
                     <div id="wall-options" class="radio-group">
                         <p class="info-message">Bitte wählen Sie zuerst einen Energiestandard aus.</p>
                     </div>
                 </section>
 
-                <!-- Innenwand -->
-                <section class="form-section" id="section-5" data-wizard-step="5">
-                    <h3 class="section-title">5. Innenwandsystem</h3>
+                <%- include('partials/_radio-group', { sectionId: 5, stepNum: 5, title: 'Innenwandsystem', fieldName: 'innerwall', items: catalog.innerwalls || [] }) %>
+                <%- include('partials/_radio-group', { sectionId: 6, stepNum: 6, title: 'Deckensystem', fieldName: 'decke', items: catalog.decken || [] }) %>
+                <%- include('partials/_radio-group', { sectionId: 7, stepNum: 7, title: 'Fenstersystem', fieldName: 'window', items: catalog.windows }) %>
+                <%- include('partials/_radio-group', { sectionId: 8, stepNum: 8, title: 'Dachaufbau', fieldName: 'dach', items: catalog.daecher }) %>
+                <%- include('partials/_radio-group', { sectionId: 9, stepNum: 9, title: 'Dacheindeckung', fieldName: 'tiles', items: catalog.tiles }) %>
+                <%- include('partials/_radio-group', { sectionId: 10, stepNum: 10, title: 'Treppensystem', fieldName: 'treppe', items: catalog.treppen }) %>
+                <%- include('partials/_radio-group', { sectionId: 11, stepNum: 11, title: 'Heizungssystem', fieldName: 'heizung', items: catalog.heizung }) %>
 
-                    <div class="radio-group">
-                        <% if (catalog && catalog.innerwalls) { catalog.innerwalls.forEach(innerwall => { %>
-                        <label class="radio-card<%= innerwall.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="innerwall" value="<%= innerwall.id %>" onchange="updateProgress();">
-                            <% if (innerwall.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= innerwall.filePath %>" alt="<%= innerwall.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= innerwall.name %></h4>
-                                <p><%= innerwall.description %></p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); } %>
-                    </div>
-                </section>
-
-                <!-- Decke -->
-                <section class="form-section" id="section-6" data-wizard-step="6">
-                    <h3 class="section-title">6. Deckensystem</h3>
-
-                    <div class="radio-group">
-                        <% if (catalog && catalog.decken) { catalog.decken.forEach(decke => { %>
-                        <label class="radio-card<%= decke.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="decke" value="<%= decke.id %>" onchange="updateProgress();">
-                            <% if (decke.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= decke.filePath %>" alt="<%= decke.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= decke.name %></h4>
-                                <p><%= decke.description %></p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); } %>
-                    </div>
-                </section>
-
-                <!-- Fenster -->
-                <section class="form-section" id="section-7" data-wizard-step="7">
-                    <h3 class="section-title">7. Fenstersystem</h3>
-
-                    <div class="radio-group">
-                        <% catalog.windows.forEach(window => { %>
-                        <label class="radio-card<%= window.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="window" value="<%= window.id %>" onchange="updateProgress();">
-                            <% if (window.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= window.filePath %>" alt="<%= window.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= window.name %></h4>
-                                <p><%= window.description %></p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); %>
-                    </div>
-                </section>
-
-                <!-- Dachaufbau -->
-                <section class="form-section" id="section-8" data-wizard-step="8">
-                    <h3 class="section-title">8. Dachaufbau</h3>
-
-                    <div class="radio-group">
-                        <% catalog.daecher.forEach(dach => { %>
-                        <label class="radio-card<%= dach.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="dach" value="<%= dach.id %>" onchange="updateProgress();">
-                            <% if (dach.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= dach.filePath %>" alt="<%= dach.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= dach.name %></h4>
-                                <p><%= dach.description %></p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); %>
-                    </div>
-                </section>
-
-                <!-- Dachziegel -->
-                <section class="form-section" id="section-9" data-wizard-step="9">
-                    <h3 class="section-title">9. Dacheindeckung</h3>
-
-                    <div class="radio-group">
-                        <% catalog.tiles.forEach(tile => { %>
-                        <label class="radio-card<%= tile.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="tiles" value="<%= tile.id %>" onchange="updateProgress();">
-                            <% if (tile.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= tile.filePath %>" alt="<%= tile.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= tile.name %></h4>
-                                <p><%= tile.description %></p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); %>
-                    </div>
-                </section>
-
-                <!-- Treppensystem -->
-                <section class="form-section" id="section-10" data-wizard-step="10">
-                    <h3 class="section-title">10. Treppensystem</h3>
-
-                    <div class="radio-group">
-                        <% catalog.treppen.forEach(treppe => { %>
-                        <label class="radio-card<%= treppe.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="treppe" value="<%= treppe.id %>" onchange="updateProgress();">
-                            <% if (treppe.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= treppe.filePath %>" alt="<%= treppe.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= treppe.name %></h4>
-                                <p><%= treppe.description %></p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); %>
-                    </div>
-                </section>
-
-                <!-- Heizung -->
-                <section class="form-section" id="section-11" data-wizard-step="11">
-                    <h3 class="section-title">11. Heizungssystem</h3>
-
-                    <div class="radio-group">
-                        <% catalog.heizung.forEach(heiz => { %>
-                        <label class="radio-card<%= heiz.filePath ? ' radio-card--with-image' : '' %>">
-                            <input type="radio" name="heizung" value="<%= heiz.id %>" onchange="updateProgress();">
-                            <% if (heiz.filePath) { %>
-                            <div class="radio-card-image">
-                                <img src="/<%= heiz.filePath %>" alt="<%= heiz.name %>" loading="lazy">
-                            </div>
-                            <% } %>
-                            <div class="radio-content">
-                                <h4><%= heiz.name %></h4>
-                                <p><%= heiz.description %></p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-                        <% }); %>
-                    </div>
-                </section>
-
-                <!-- Lüftung -->
+                <!-- Lüftung (dynamisch via JS basierend auf KfW) -->
                 <section class="form-section" id="section-12" data-wizard-step="12">
                     <h3 class="section-title">12. Lüftungssystem</h3>
                     <p class="section-description">Die Lüftungsoptionen richten sich nach Ihrem gewählten Energiestandard</p>
-
                     <div id="lueftung-options" class="radio-group">
                         <p class="info-message">Bitte wählen Sie zuerst einen Energiestandard aus.</p>
                     </div>
@@ -334,20 +77,13 @@
                 <!-- Personenanzahl -->
                 <section class="form-section" id="section-13" data-wizard-step="13">
                     <h3 class="section-title">13. Personenanzahl</h3>
-
                     <div class="form-group">
                         <label for="personenanzahl">Wie viele Personen ziehen ein? *</label>
                         <select id="personenanzahl" name="personenanzahl" required onchange="updateProgress();">
                             <option value="">Bitte wählen</option>
-                            <option value="1">1 Person</option>
-                            <option value="2">2 Personen</option>
-                            <option value="3">3 Personen</option>
-                            <option value="4">4 Personen</option>
-                            <option value="5">5 Personen</option>
-                            <option value="6">6 Personen</option>
-                            <option value="7">7 Personen</option>
-                            <option value="8">8 Personen</option>
-                            <option value="9">9 Personen</option>
+                            <% for (let i = 1; i <= 9; i++) { %>
+                            <option value="<%= i %>"><%= i %> Person<%= i > 1 ? 'en' : '' %></option>
+                            <% } %>
                             <option value="10">10+ Personen</option>
                         </select>
                     </div>
@@ -356,122 +92,26 @@
                 <!-- Grundstück -->
                 <section class="form-section" id="section-14" data-wizard-step="14">
                     <h3 class="section-title">14. Grundstücksstatus</h3>
-
                     <div class="radio-group">
+                        <% [{ val: 'vorhanden', title: 'Vorhanden', desc: 'Ich besitze bereits ein Grundstück' },
+                            { val: 'in_aussicht', title: 'In Aussicht', desc: 'Ein Grundstück ist in Aussicht' },
+                            { val: 'suche', title: 'Auf der Suche', desc: 'Ich suche noch nach einem Grundstück' }
+                        ].forEach(opt => { %>
                         <label class="radio-card">
-                            <input type="radio" name="grundstueck" value="vorhanden" onchange="updateProgress();">
+                            <input type="radio" name="grundstueck" value="<%= opt.val %>" onchange="updateProgress();">
                             <div class="radio-content">
-                                <h4>Vorhanden</h4>
-                                <p>Ich besitze bereits ein Grundstück</p>
+                                <h4><%= opt.title %></h4>
+                                <p><%= opt.desc %></p>
                             </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
+                            <span class="checkmark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                         </label>
-
-                        <label class="radio-card">
-                            <input type="radio" name="grundstueck" value="in_aussicht" onchange="updateProgress();">
-                            <div class="radio-content">
-                                <h4>In Aussicht</h4>
-                                <p>Ein Grundstück ist in Aussicht</p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
-
-                        <label class="radio-card">
-                            <input type="radio" name="grundstueck" value="suche" onchange="updateProgress();">
-                            <div class="radio-content">
-                                <h4>Auf der Suche</h4>
-                                <p>Ich suche noch nach einem Grundstück</p>
-                            </div>
-                            <span class="checkmark">
-                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </span>
-                        </label>
+                        <% }); %>
                     </div>
                 </section>
 
-                <!-- Raumplanung -->
-                <section class="form-section" id="section-15" data-wizard-step="15">
-                    <h3 class="section-title">15. Raumplanung</h3>
-                    <p class="section-description">Welche Räume wünschen Sie sich in Ihrem Haus?</p>
-
-                    <div class="rooms-container">
-                        <div class="room-section">
-                            <h4>Erdgeschoss</h4>
-                            <div id="eg-rooms">
-                                <div class="room-item">
-                                    <input type="text" name="eg_rooms" placeholder="z.B. Wohnzimmer" class="room-name">
-                                    <input type="text" name="eg_details" placeholder="Besondere Wünsche" class="room-details">
-                                </div>
-                            </div>
-                            <button type="button" onclick="addRoom('eg')" class="btn-add">+ Raum hinzufügen</button>
-                        </div>
-
-                        <div class="room-section">
-                            <h4>Obergeschoss</h4>
-                            <div id="og-rooms">
-                                <div class="room-item">
-                                    <input type="text" name="og_rooms" placeholder="z.B. Schlafzimmer" class="room-name">
-                                    <input type="text" name="og_details" placeholder="Besondere Wünsche" class="room-details">
-                                </div>
-                            </div>
-                            <button type="button" onclick="addRoom('og')" class="btn-add">+ Raum hinzufügen</button>
-                        </div>
-
-                        <div class="room-section">
-                            <h4>Untergeschoss</h4>
-                            <div id="ug-rooms">
-                                <div class="room-item">
-                                    <input type="text" name="ug_rooms" placeholder="z.B. Keller" class="room-name">
-                                    <input type="text" name="ug_details" placeholder="Besondere Wünsche" class="room-details">
-                                </div>
-                            </div>
-                            <button type="button" onclick="addRoom('ug')" class="btn-add">+ Raum hinzufügen</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Eigenleistungen -->
-                <section class="form-section" id="section-16" data-wizard-step="16">
-                    <h3 class="section-title">16. Geplante Eigenleistungen</h3>
-                    <p class="section-description">Welche Arbeiten möchten Sie selbst durchführen?</p>
-
-                    <div id="eigenleistungen-container">
-                        <div class="eigenleistung-item">
-                            <input type="text" name="eigenleistungen" placeholder="z.B. Malerarbeiten" class="eigenleistung-input">
-                        </div>
-                    </div>
-                    <button type="button" onclick="addEigenleistung()" class="btn-add">+ Eigenleistung hinzufügen</button>
-                </section>
-
-                <section class="form-section" id="section-17" data-wizard-step="17">
-                    <h3 class="section-title">17. Fachberater (optional)</h3>
-                    <p class="section-description">Personalisieren Sie die Leistungsbeschreibung mit Ihren Kontaktdaten als Fachberater.</p>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="berater_name">Name des Beraters</label>
-                            <input type="text" id="berater_name" name="berater_name" placeholder="z.B. Max Mustermann">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group half">
-                            <label for="berater_telefon">Telefon</label>
-                            <input type="tel" id="berater_telefon" name="berater_telefon" placeholder="z.B. 07321 96700">
-                        </div>
-                        <div class="form-group half">
-                            <label for="berater_email">E-Mail</label>
-                            <input type="email" id="berater_email" name="berater_email" placeholder="z.B. berater@lehner-haus.de">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="berater_freitext">Persönliche Nachricht an den Interessenten</label>
-                        <textarea id="berater_freitext" name="berater_freitext" rows="5" placeholder="Hier können Sie eine persönliche Nachricht verfassen, die auf einer eigenen Seite in der PDF erscheint..."></textarea>
-                    </div>
-                </section>
+                <%- include('partials/_raumplanung') %>
+                <%- include('partials/_eigenleistungen') %>
+                <%- include('partials/_berater') %>
 
                 <!-- Submit Button -->
                 <div class="submit-section" id="wizard-submit-section">
@@ -488,6 +128,9 @@
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="/js/script.js"></script>
+    <script src="/js/toast.js"></script>
+    <script src="/js/form-handlers.js"></script>
+    <script src="/js/kfw-options.js"></script>
+    <script src="/js/validation.js"></script>
 </body>
 </html>

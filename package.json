@@ -4,13 +4,24 @@
   "description": "Lokales Tool zur Bauteil-Varianten-Auswahl mit PDF-Generierung",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "lint": "eslint src/ public/js/",
+    "lint:fix": "eslint src/ public/js/ --fix",
+    "format": "prettier --write \"src/**/*.js\" \"public/js/**/*.js\"",
+    "format:check": "prettier --check \"src/**/*.js\" \"public/js/**/*.js\"",
+    "generate-images": "node scripts/generate-placeholder-images.js",
+    "migrate": "node scripts/migrate-submissions.js"
   },
   "dependencies": {
     "body-parser": "^1.20.4",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-rate-limit": "^8.3.2",
     "heic-convert": "^2.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1",
     "open": "^9.1.0",
     "pdfkit": "^0.14.0",
     "qrcode": "^1.5.4",
@@ -21,6 +32,9 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "jimp": "^1.6.0"
+    "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "jimp": "^1.6.0",
+    "prettier": "^3.8.3"
   }
 }

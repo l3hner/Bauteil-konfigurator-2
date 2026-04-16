@@ -1,0 +1,30 @@
+<%# Wiederverwendbares Radio-Card-Partial für Katalog-Komponenten
+     Erwartet: sectionId, stepNum, title, fieldName, items (Array aus catalog)
+     Optional: description %>
+<section class="form-section" id="section-<%= sectionId %>" data-wizard-step="<%= stepNum %>">
+    <h3 class="section-title"><%= stepNum %>. <%= title %></h3>
+    <% if (typeof description !== 'undefined' && description) { %>
+    <p class="section-description"><%= description %></p>
+    <% } %>
+
+    <div class="radio-group">
+        <% items.forEach(item => { %>
+        <label class="radio-card<%= item.filePath ? ' radio-card--with-image' : '' %>">
+            <input type="radio" name="<%= fieldName %>" value="<%= item.id %>" onchange="updateProgress();">
+            <% if (item.filePath) { %>
+            <div class="radio-card-image">
+                <img src="/<%= item.filePath %>" alt="<%= item.name %>" loading="lazy">
+            </div>
+            <% } %>
+            <div class="radio-content">
+                <h4><%= item.name %></h4>
+                <p><%= item.description %></p>
+                <% if (item.details) { %><small><%= item.details %></small><% } %>
+            </div>
+            <span class="checkmark">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+        </label>
+        <% }); %>
+    </div>
+</section>

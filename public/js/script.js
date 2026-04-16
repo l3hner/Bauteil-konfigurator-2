@@ -35,11 +35,12 @@ class ToastNotification {
             info: 'Information'
         };
 
+        // Build toast with safe text insertion to prevent XSS
         toast.innerHTML = `
-            <span class="toast-icon">${icons[type]}</span>
+            <span class="toast-icon">${icons[type] || icons.info}</span>
             <div class="toast-content">
-                <div class="toast-title">${titles[type]}</div>
-                <div class="toast-message">${message}</div>
+                <div class="toast-title">${titles[type] || 'Information'}</div>
+                <div class="toast-message"></div>
             </div>
             <button class="toast-close" aria-label="Schließen">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -47,6 +48,9 @@ class ToastNotification {
                 </svg>
             </button>
         `;
+
+        // Set message as textContent to prevent HTML injection
+        toast.querySelector('.toast-message').textContent = message;
 
         this.container.appendChild(toast);
 

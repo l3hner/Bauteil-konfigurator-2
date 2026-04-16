@@ -47,7 +47,7 @@ module.exports = {
         heroBuffer = await ctx.imageService.getCompressedImage(heroPath, 1200);
       }
     } catch (e) {
-      console.warn('[PDF] Hero image error:', e.message);
+      require('../../../utils/logger').warn('PDF', `Hero image error: ${e.message}`);
       heroBuffer = null;
     }
 
@@ -81,7 +81,7 @@ module.exports = {
       }
     } catch (e) {
       // Logo failure is non-critical — skip silently
-      console.warn('[PDF] Logo error on title page:', e.message);
+      require('../../../utils/logger').warn('PDF', `Logo error on title page: ${e.message}`);
     }
 
     // === TEXT ON GRADIENT OVERLAY ===

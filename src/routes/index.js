@@ -1,46 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const catalogService = require('../services/catalogService');
+const logger = require('../utils/logger');
 
 router.get('/', (req, res) => {
-  console.log('[Route /] Loading catalog...');
-
-  const walls = catalogService.getWalls();
-  const innerwalls = catalogService.getInnerwalls();
-  const decken = catalogService.getDecken();
-  const windows = catalogService.getWindows();
-  const tiles = catalogService.getTiles();
-  const haustypen = catalogService.getHaustypen();
-  const heizung = catalogService.getHeizung();
-  const daecher = catalogService.getDaecher();
-  const treppen = catalogService.getTreppen();
-
-  console.log('[Route /] Catalog loaded:');
-  console.log('  - walls:', walls.length);
-  console.log('  - innerwalls:', innerwalls.length);
-  console.log('  - decken:', decken.length);
-  console.log('  - windows:', windows.length);
-  console.log('  - tiles:', tiles.length);
-  console.log('  - haustypen:', haustypen.length);
-  console.log('  - heizung:', heizung.length);
-  console.log('  - daecher:', daecher.length);
-  console.log('  - treppen:', treppen.length);
-
   const catalog = {
-    walls,
-    innerwalls,
-    decken,
-    windows,
-    tiles,
-    haustypen,
-    heizung,
-    daecher,
-    treppen
+    walls: catalogService.getWalls(),
+    innerwalls: catalogService.getInnerwalls(),
+    decken: catalogService.getDecken(),
+    windows: catalogService.getWindows(),
+    tiles: catalogService.getTiles(),
+    haustypen: catalogService.getHaustypen(),
+    heizung: catalogService.getHeizung(),
+    daecher: catalogService.getDaecher(),
+    treppen: catalogService.getTreppen()
   };
 
-  console.log('[Route /] catalog object keys:', Object.keys(catalog));
+  logger.debug('Route', `GET / — Katalog geladen (${Object.values(catalog).reduce((s, a) => s + a.length, 0)} Einträge)`);
 
-  res.render('index', { catalog });
+  res.render('index', { catalog, csrfToken: res.locals.csrfToken });
 });
 
 module.exports = router;

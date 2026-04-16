@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const logger = require('../utils/logger');
+const { KFW_STANDARDS } = require('../constants');
 
 class CatalogService {
   constructor() {
@@ -12,7 +14,7 @@ class CatalogService {
       const data = fs.readFileSync(this.catalogPath, 'utf8');
       return JSON.parse(data);
     } catch (error) {
-      console.error('Fehler beim Laden des Katalogs:', error);
+      logger.error('Catalog', `Fehler beim Laden des Katalogs: ${error.message}`);
       return {
         walls: [],
         innerwalls: [],
@@ -73,11 +75,9 @@ class CatalogService {
   getLueftung(kfwStandard) {
     const allLueftung = this.catalog.lueftung || [];
 
-    if (kfwStandard === 'KFW55') {
-      // Bei KfW 55 nur "keine" Lüftung
+    if (kfwStandard === KFW_STANDARDS.KFW55) {
       return allLueftung.filter(l => l.id === 'keine');
-    } else if (kfwStandard === 'KFW40') {
-      // Bei KfW 40 dezentral oder zentral
+    } else if (kfwStandard === KFW_STANDARDS.KFW40) {
       return allLueftung.filter(l => l.id !== 'keine');
     }
 

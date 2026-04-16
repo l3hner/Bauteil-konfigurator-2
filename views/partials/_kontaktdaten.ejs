@@ -1,0 +1,47 @@
+<section class="form-section" id="section-1" data-wizard-step="1">
+    <h3 class="section-title">1. Ihre Kontaktdaten</h3>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bauherr_anrede">Anrede *</label>
+            <select id="bauherr_anrede" name="bauherr_anrede" required>
+                <option value="">Bitte wählen</option>
+                <option value="Herr">Herr</option>
+                <option value="Frau">Frau</option>
+                <option value="Familie">Familie</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bauherr_vorname">Vorname *</label>
+            <input type="text" id="bauherr_vorname" name="bauherr_vorname" required>
+            <span class="valid-indicator">&#10003;</span>
+            <span class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="bauherr_nachname">Nachname *</label>
+            <input type="text" id="bauherr_nachname" name="bauherr_nachname" required>
+            <span class="valid-indicator">&#10003;</span>
+            <span class="error-message"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bauherr_email">E-Mail</label>
+            <input type="email" id="bauherr_email" name="bauherr_email">
+            <span class="valid-indicator">&#10003;</span>
+            <span class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="bauherr_telefon">Telefon</label>
+            <input type="tel" id="bauherr_telefon" name="bauherr_telefon">
+            <span class="valid-indicator">&#10003;</span>
+            <span class="error-message"></span>
+        </div>
+    </div>
+</section>

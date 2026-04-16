@@ -18,7 +18,7 @@ async function drawQRCode(doc, x, y, url, label) {
     doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textMuted);
     doc.text(label, x, y + 85, { width: 80, align: 'center' });
   } catch (e) {
-    console.error('[PDF] QR-Code Fehler:', e);
+    require('../../../utils/logger').error('PDF', `QR-Code Fehler: ${e.message}`);
     // Fallback: Link als Text
     doc.font('Helvetica').fontSize(7).fillColor(layout.colors.textLight);
     doc.text(url, x, y, { width: 80 });

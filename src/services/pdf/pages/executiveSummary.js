@@ -1,4 +1,5 @@
 const layout = require('../layout');
+const { KFW_STANDARDS, KFW_LABELS } = require('../../../constants');
 
 module.exports = {
   title: 'Ihre Konfiguration auf einen Blick',
@@ -20,7 +21,7 @@ module.exports = {
     y += 22;
 
     // Metadata line
-    const kfwText = submission.kfw_standard === 'KFW55' ? 'KfW 55' : 'KfW 40';
+    const kfwText = KFW_LABELS[submission.kfw_standard] || submission.kfw_standard;
     const grundstueckText = layout.getGrundstueckText(submission.grundstueck);
     const chips = [
       `${submission.personenanzahl || '-'} Personen`,
