@@ -775,13 +775,13 @@
       "id": "massivholzdecke",
       "name": "Massivholzdecke",
       "emotionalHook": "Sichtbares Massivholz von unten \u2013 echtes Wohngef\u00fchl, das man sehen und f\u00fchlen kann.",
-      "description": "Massivholzdecke mit sichtbarer Holzoberfläche von unten. Massivholzplatte 60 cm breit mit 6 mm Fugen für natürliches Wohnambiente und hohe Masse für sehr guten Schallschutz.",
+      "description": "Massivholzdecke mit sichtbarer Holzoberfläche von unten. Massivholzplatte 60 cm breit mit 6 mm Fugen für natürliches Wohnambiente und gehobenes Wohngefühl.",
       "constructionType": "Massivholzdecke",
       "premiumFeatures": [
         "Sichtbare Massivholzoberfläche von unten",
         "Massivholzplatte 60 cm breit mit 6 mm Fugen",
-        "Hohe Masse für sehr guten Schallschutz",
-        "Natürlicher Baustoff aus nachhaltiger Forstwirtschaft"
+        "Natürlicher Baustoff aus nachhaltiger Forstwirtschaft",
+        "Reguliert Raumfeuchte und Raumklima positiv"
       ],
       "layers": [
         { "name": "Holzwerkstoffplatte", "value": "15,0 mm" },
@@ -790,7 +790,6 @@
       ],
       "technicalDetails": {
         "construction": "Massivholzplatte (60 cm breit mit 6 mm Fugen)",
-        "soundInsulation": "Hervorragender Schallschutz durch Masse",
         "deckenstärke": "155 mm",
         "position": "Pos. 20.520"
       },
@@ -800,12 +799,12 @@
       "advantages": [
         "Sichtbare Holzdecke für gehobenes Wohnambiente",
         "Massive Konstruktion – extrem langlebig und wertstabil",
-        "Hervorragender Schallschutz durch hohe Masse",
         "Natürlicher Baustoff Holz – nachhaltig und wohngesund",
         "Reguliert Raumfeuchte und Raumklima positiv",
-        "Geeignet für sichtbare Deckenuntersichten in Wohnräumen"
+        "Geeignet für sichtbare Deckenuntersichten in Wohnräumen",
+        "Wertstabile Premium-Optik durch echtes Massivholz"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Ist die Holzoberfläche tatsächlich sichtbar oder verkleidet?' (Sichtbares Massivholz prägt das Wohngefühl)\n\n2. 'Welche Holzart und Oberflächenbehandlung?' (Beeinflusst Optik, Wohngesundheit und Pflegeaufwand)\n\n3. 'Welcher Schallschutz wird erreicht?' (Massivholz wirkt durch Masse – wichtig bei Geschossdecken)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. 'Ist die Holzoberfläche tatsächlich sichtbar oder verkleidet?' (Sichtbares Massivholz prägt das Wohngefühl)\n\n2. 'Welche Holzart und Oberflächenbehandlung?' (Beeinflusst Optik, Wohngesundheit und Pflegeaufwand)\n\n3. 'Woher stammt das Holz?' (Wichtig für Nachhaltigkeit und Qualität)",
       "filePath": "assets/variants/decken/vollholzdecke-technical.png",
       "technicalDrawing": "assets/variants/decken/vollholzdecke-technical.png"
     }
