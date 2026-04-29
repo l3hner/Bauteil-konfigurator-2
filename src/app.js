@@ -38,6 +38,13 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Static assets must be served BEFORE the CSRF middleware. Otherwise parallel
+// asset requests on the very first visit each see "no cookie" and race to issue
+// their own Set-Cookie header — the last one wins and no longer matches the
+// token rendered into the HTML, causing a 403 on submit.
+app.use(express.static(path.join(__dirname, '../public')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
+
 // CSRF protection via double-submit token — only issue a token for HTML navigations,
 // reuse the existing token on subsequent GETs so asset requests don't rotate it.
 app.use((req, res, next) => {
@@ -45,15 +52,12 @@ app.use((req, res, next) => {
     let token = req.cookies && req.cookies._csrf;
     if (!token) {
       token = crypto.randomBytes(32).toString('hex');
-      res.cookie('_csrf', token, { httpOnly: true, sameSite: 'strict' });
+      res.cookie('_csrf', token, { httpOnly: true, sameSite: 'strict', path: '/' });
     }
     res.locals.csrfToken = token;
   }
   next();
 });
-
-app.use(express.static(path.join(__dirname, '../public')));
-app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 // View engine setup
 app.set('view engine', 'ejs');
