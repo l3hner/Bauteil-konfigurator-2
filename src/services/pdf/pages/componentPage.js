@@ -105,8 +105,16 @@ module.exports = {
       // Gesamtstärke (Hohlraumdämmung ausschließen, strukturelle Schichten mitzählen)
       const totalThickness = aufbauItems.reduce((sum, item) => {
         const nameLower = (item.name || '').toLowerCase();
-        // Nur Hohlraumdämmung ausschließen (Name beginnt mit "Dämmung"), nicht strukturelle Schichten
-        if (nameLower.startsWith('dämmung') || nameLower.includes('glaswolle')) {
+        // Hohlraumdämmung sitzt IM Gefach struktureller Schichten (Deckenbalken, Rahmenkonstruktion)
+        // und darf nicht zur Gesamtstärke addiert werden. Strukturelle Schichten mit "Dämmung" im
+        // Namen (z.B. "Holzfaser-Wärme-Dämmplatten") werden über startsWith ausgeschlossen.
+        if (
+          nameLower.startsWith('dämmung') ||
+          nameLower.startsWith('wärmedämmung') ||
+          nameLower.startsWith('knauf insulation') ||
+          nameLower.startsWith('mineralwolle') ||
+          nameLower.includes('glaswolle')
+        ) {
           return sum;
         }
         const match = (item.value || '').match(/([\d,]+)\s*mm/);
