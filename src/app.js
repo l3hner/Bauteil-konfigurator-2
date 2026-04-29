@@ -28,16 +28,6 @@ const pdfLimiter = rateLimit({
   message: 'Zu viele PDF-Anfragen. Bitte versuchen Sie es später erneut.'
 });
 
-// CSRF protection via double-submit token
-app.use((req, res, next) => {
-  if (req.method === 'GET') {
-    const token = crypto.randomBytes(32).toString('hex');
-    res.locals.csrfToken = token;
-    res.cookie('_csrf', token, { httpOnly: true, sameSite: 'strict' });
-  }
-  next();
-});
-
 // Request logging (skip in test)
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
@@ -47,6 +37,21 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// CSRF protection via double-submit token — only issue a token for HTML navigations,
+// reuse the existing token on subsequent GETs so asset requests don't rotate it.
+app.use((req, res, next) => {
+  if (req.method === 'GET') {
+    let token = req.cookies && req.cookies._csrf;
+    if (!token) {
+      token = crypto.randomBytes(32).toString('hex');
+      res.cookie('_csrf', token, { httpOnly: true, sameSite: 'strict' });
+    }
+    res.locals.csrfToken = token;
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
