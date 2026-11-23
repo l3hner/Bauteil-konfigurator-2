@@ -18,20 +18,32 @@ module.exports = {
 
     // Dynamischer U-Wert Text mit Wandtyp-Bezeichnung
     const wall = submission ? catalogService.getVariantById('walls', submission.wall) : null;
-    const uWertText = wall && wall.name
-      ? `Exakter U-Wert? Lehner Haus: ${wall.technicalDetails?.uValue || '0,149 W/(m²K)'} (${wall.name}). Je niedriger, desto besser.`
-      : 'Exakter U-Wert? Lehner Haus: 0,129 (Climativ-PLUS) bzw. 0,149 W/(m²K) (Climativ). Je niedriger, desto besser.';
+    // Werte wie in der Leistungsbeschreibung 09/2026 (Pos. 11.160 / 11.240)
+    const uWertText = wall && wall.name && wall.technicalDetails && wall.technicalDetails.uValue
+      ? `Welcher U-Wert steht in der Leistungsbeschreibung? Lehner Haus: ${wall.technicalDetails.uValue} (${wall.name}). Je niedriger, desto besser.`
+      : 'Welcher U-Wert steht in der Leistungsbeschreibung? Lehner Haus: 0,17 W/(m²K) (CLIMA-tiv) bzw. 0,138 bis 0,15 W/(m²K) (CLIMA-tiv PLUS).';
+    const daemmText = wall && wall.technicalDetails && wall.technicalDetails.insulation
+      ? `Wie viel Dämmung steckt in der Außenwand? Lehner Haus: ${wall.technicalDetails.insulation}.`
+      : 'Wie viel Dämmung steckt in der Außenwand? Lehner Haus: 160 bzw. 240 mm im Gefach plus 80 mm Holzfaser-Dämmplatte.';
+
+    // Fenster-Ug-Wert aus der tatsächlich gewählten Variante (Kunststoff 0,77 / Holz-Alu 0,5)
+    const fenster = submission ? catalogService.getVariantById('windows', submission.window) : null;
+    const ugWert = fenster && fenster.technicalDetails && fenster.technicalDetails.ugValue;
+    const fensterText = ugWert
+      ? `3-fach Verglasung serienmäßig? Lehner Haus: ja – Ug ${ugWert} (${fenster.name}).`
+      : '3-fach Verglasung serienmäßig? Lehner Haus: ja.';
 
     const checklistItems = [
       ['Doppelte Beplankung', 'Werden die Wände beidseitig doppelt beplankt? Lehner Haus: ja – für Stabilität und Schallschutz.'],
-      ['Holzwerkstoffe', 'Wird ESB verwendet? ESB plus ist Blauer Engel zertifiziert, emissionsarm und empfohlen von der DGNB.'],
+      ['Wandaufbau', 'Steht der Aufbau mit Maß je Schicht in der Leistungsbeschreibung? Lehner Haus: ja.'],
       ['U-Wert Außenwand', uWertText],
-      ['Dämmstärke', 'Lehner Haus: bis zu 240 mm Mineralwolldämmung zzgl. 80 mm Holzfaserdämmplatte in der Außenwandkonstruktion.'],
-      ['Fenster Ug-Wert', '3-fach Verglasung mit Ug 0,5 W/(m²K)? Lehner Haus: serienmäßig.'],
+      ['Dämmstärke', daemmText],
+      ['Fenster Ug-Wert', fensterText],
       ['Kältemittel', 'Natürliches Kältemittel R290? Lehner Haus: ja – zukunftssicher.'],
-      ['Diffusionsoffen', 'Ist der Wandaufbau diffusionsoffen? Lehner Haus: ja – baubiologisch optimal.'],
-      ['Qualitätszertifikat', 'QDF-Zertifizierung und RAL-Gütezeichen vorhanden? Lehner Haus: ja.'],
-      ['Festpreis', 'Echte Festpreis-Garantie oder nur ein Circa-Preis? Bei Lehner Haus: Festpreisgarantie.']
+      ['Diffusionsoffen', 'Ist der Wandaufbau diffusionsoffen? Lehner Haus: ja.'],
+      ['Gewährleistung', 'Wie lange haftet der Anbieter für die Konstruktion? Lehner Haus: 40 Jahre auf die statische Grundkonstruktion, 5 Jahre auf die Ausbaugewerke.'],
+      ['Gütezeichen', 'Tragen die Bauteile das RAL-Gütezeichen? Lehner Haus: ja.'],
+      ['Festpreis', 'Fester Preis oder Circa-Preis, und wie lange gilt er? Lehner Haus: Festpreis mit zwölf Monaten Garantie ab Vertragsbestätigung.']
     ];
 
     doc.font('Helvetica').fontSize(9);
@@ -44,9 +56,11 @@ module.exports = {
       doc.text(topic + ':', 92, y, { lineBreak: false });
 
       doc.font('Helvetica').fillColor(layout.colors.text);
+      // Zeilenhöhe nach tatsächlichem Umbruch, sonst überlappen zweizeilige Antworten
+      const textHeight = doc.heightOfString(question, { width: 340, lineGap: 1 });
       doc.text(question, 200, y, { width: 340, lineGap: 1 });
 
-      y += 22;
+      y += Math.max(22, textHeight + 10);
     });
 
     // Warnhinweis-Box

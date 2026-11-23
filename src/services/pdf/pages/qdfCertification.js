@@ -67,8 +67,9 @@ module.exports = {
 
     y += 95;
 
-    // Zertifikatsnummer
+    // Die frühere Zeile "QDF-Mitgliedsnummer: DE-QDF-2026-LH" war ein Platzhalter und ist entfernt.
+    // Eine echte Mitglieds- oder Urkundennummer hier erst eintragen, wenn sie vorliegt.
     doc.font('Helvetica').fontSize(9).fillColor(layout.colors.textMuted);
-    doc.text('QDF-Mitgliedsnummer: DE-QDF-2026-LH | RAL-Gütezeichen: RAL-GZ 422', 80, y, { lineBreak: false });
+    doc.text('RAL-Gütezeichen Holzhausbau (RAL-GZ 422)', 80, y, { lineBreak: false });
   }
 };

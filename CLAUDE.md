@@ -1,143 +1,65 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Lehner Haus Bauteilkonfigurator: Fachberater wählen Haustyp, Energiestandard und Bauteile und erhalten eine persönliche PDF-Leistungsbeschreibung. Alles auf Deutsch. Dieses Repo ist öffentlich: keine internen Namen, Pfade oder Kundendaten in Code, Kommentaren und dieser Datei. Interne Notizen (Ablage, Stand, Deployment) stehen in der `CLAUDE.md` eine Ebene über dem Repo.
 
-## Project Overview
+Der Arbeitsordner liegt in einem synchronisierten Cloud-Ordner; `node_modules` ist vom Sync ausgenommen.
 
-Lehner Haus Konfigurator - A web-based house configuration tool for Lehner Haus GmbH & Co. KG. Users configure their dream house by selecting building components (walls, windows, heating, etc.) and receive a personalized PDF "Leistungsbeschreibung" (service specification). The entire application is in German.
+## Befehle
 
-## Commands
+| Zweck | Befehl |
+|---|---|
+| Lokal starten (Port 3020) | `node scripts/dev-3020.cjs` bzw. Preview-Eintrag `bauteilkonfigurator` |
+| Start wie auf Render | `npm start` (Port aus `.env`, Standard 3000) |
+| Tests | `npm test` (Jest + supertest, 5 Suites) |
+| Lint / Format | `npm run lint`, `npm run format` |
+| Alte Submissions migrieren | `npm run migrate` |
+| Bauteilseiten prüfen | `node scripts/check-pdf-layout.js` rendert alle Katalogvarianten nach `output/_layout-check.pdf` und meldet Füllgrad und abgeschnittene Abschnitte. Nach jeder Änderung an `componentPage.js` oder an Katalogtexten laufen lassen. |
 
-```bash
-npm install          # Install dependencies
-npm start            # Start server on http://localhost:3000 (auto-opens browser)
-PORT=3001 npm start  # Start on custom port
-```
+Nach Änderungen an `src/` den Server neu starten (kein Hot Reload). EJS-Views werden lokal nicht gecacht.
 
-Development tools:
-```bash
-node scripts/generate-placeholder-images.js  # Generate placeholder images for catalog items
-```
+**Sync bremst:** Solange der Cloud-Sync den Ordner abgleicht (nach Umzug, großem Checkout, vielen neuen Bildern), dauert jeder Dateizugriff Sekunden. Eine PDF braucht dann rund 60 s statt 3 s, Jest läuft in den 5-s-Timeout und `git log -- <pfad>` hängt minutenlang. Das ist kein Codefehler: abwarten oder `npx jest --testTimeout=240000`.
 
-No test, lint, or build commands are configured.
+## Aufbau
 
-## Architecture
+Node (>=18), Express, EJS, PDFKit, sharp. Kein Build-Schritt, keine Datenbank.
 
-### Tech Stack
-- **Backend**: Node.js (>=18) + Express.js + body-parser
-- **Templating**: EJS server-side rendering
-- **PDF Generation**: PDFKit (professional multi-page PDF with Lehner Haus branding and product images)
-- **Image Processing**: Jimp (devDependency for generating placeholder images)
-- **Storage**: File system only (JSON files, no database)
+| Pfad | Zweck |
+|---|---|
+| `src/app.js`, `src/server.js` | Express-App (helmet, Rate-Limit, CSRF per Double-Submit-Cookie) und Start |
+| `src/routes/` | `/` Formular, `/submit` speichern + PDF, `/result/:id`, `/pdf/:id` (`?download=1`), `/health` |
+| `src/services/catalogService.js` | Katalog laden, KfW-Filter, Whitelist-Validierung |
+| `src/services/submissionService.js` | Konfigurationen als JSON in `data/submissions/` |
+| `src/services/pdf/layout.js` | Farben (Tannengrün `#06402b`), Typografie (Montserrat als `Heading`), Kopf/Fuß, `drawCheck`, `extractAufbauItems` |
+| `src/services/pdf/pages/` | Eine Datei je PDF-Seite; Reihenfolge in `index.js` |
+| `views/index.ejs` + `views/partials/` | Formular: eine lange Seite mit 17 Abschnitten |
+| `public/js/` | Geladen werden `toast.js`, `form-handlers.js`, `kfw-options.js`, `validation.js`. `wizard.js`, `wizardState.js` und `script.js` sind Altbestand: Der Schritt-für-Schritt-Wizard wurde am 18.02.2026 bewusst wieder ausgebaut (Commit `8fc2462`, „restore single-page scrollable form“). Nicht ohne Rückfrage wieder einbinden. |
+| `data/catalog.json` | Bauteilkatalog (siehe unten) |
+| `assets/variants/<kategorie>/` | Produktbilder; Haustypen haben ein Verzeichnis mit `1.png` bis `3.png` als `filePath` |
+| `output/` | Erzeugte PDFs (nicht in Git) |
+| `bauteilinformationen/`, `Styleguide/`, `Logo/`, `PDF VORGABEN/`, `Inspiration/` | Quell- und Vorlagenmaterial, teils nicht in Git |
+| `.planning/` | GSD-Planung des Ausbaus vom Februar 2026 (abgeschlossen) |
 
-### Request Flow
-```
-Browser → Express Routes → Services → File System
-                ↓
-         EJS Templates → HTML Response
-```
+## Katalog
 
-### Key Directories
+`data/catalog.json`, 10 Kategorien: `walls` (4, KfW-gefiltert über `kfwCompatible`), `innerwalls` (2), `decken` (2), `windows` (2), `daecher` (2), `tiles` (2), `treppen` (3), `heizung` (2), `lueftung` (3, KfW-abhängig), `haustypen` (6).
 
-| Path | Purpose |
-|------|---------|
-| `src/routes/` | Express route handlers (index, submit, result, pdf) |
-| `src/services/catalogService.js` | Catalog loading, KfW filtering, validation |
-| `src/services/submissionService.js` | Save/load submissions, parse room data & Eigenleistungen |
-| `src/services/pdfService.js` | Multi-page PDF generation with images and Lehner branding |
-| `views/` | EJS templates (index.ejs, result.ejs) |
-| `public/css/style.css` | Styling |
-| `public/js/script.js` | Dynamic form logic (KfW-dependent wall/ventilation options) |
-| `data/catalog.json` | Product catalog with 7 categories |
-| `data/submissions/` | Saved user configurations as JSON |
-| `assets/variants/` | Product images by category (walls, innenwalls, windows, tiles, haustypen, heizung, lueftung) |
-| `output/` | Generated PDF files |
-| `scripts/` | Utility scripts (placeholder image generation) |
+**Quelle der Werte ist die Kalkulation/Leistungsbeschreibung 09/2026** (`technicalDetails.position` nennt die Position). Umstellung vom 23.11.2026: `scripts/katalog-auf-kalkulation.js`, Bericht `../ABGLEICH_Katalog-Kalkulation_2026-11-23.md`. Keine Werte, Fabrikate oder Prüfklassen eintragen, die dort nicht stehen. Die Wand- und Lüftungskarten im Formular sind in `public/js/kfw-options.js` doppelt gepflegt und müssen mitgeändert werden.
 
-### Routes
+`totalThickness` steuert die Summenzeile der Technischen Daten: `{ label, value }` gibt sie vor (Wände: Stärke einschließlich Außenputz), `false` blendet sie aus, ohne Angabe wird aus den Schichten gerechnet.
 
-| Route | Method | Purpose |
-|-------|--------|---------|
-| `/` | GET | Configuration form with all options |
-| `/submit` | POST | Validate, save submission, generate PDF, redirect to result |
-| `/result/:id` | GET | Summary page with PDF links |
-| `/pdf/:id` | GET | Serve PDF (add `?download=1` for download) |
+Felder je Eintrag: `id`, `name`, `emotionalHook`, `description`, `kfwCompatible`, `premiumFeatures`, `layers` (Schichtaufbau mit `name`/`value`), `technicalDetails`, `advantages`, `comparisonNotes` (Fragen für den Anbietervergleich), `filePath`, `technicalDrawing`. Schema-Prüfung in `src/utils/catalogSchema.js`.
 
-### Catalog Categories
+## PDF
 
-The catalog (`data/catalog.json`) contains 7 categories:
-- **walls**: Exterior wall systems (CLIMATIV, CLIMATIV PLUS - KfW-filtered by `kfwCompatible` array)
-- **innenwalls**: Interior wall systems (fermacell, ESB variants)
-- **windows**: Window types (Kunststoff, Holz-Alu)
-- **tiles**: Roof tiles (Ton, Beton)
-- **haustypen**: House types (Bungalow, Stadtvilla, Einfamilienhaus, Doppelhaus)
-- **heizung**: Heating systems (Vaillant, Viessmann Wärmepumpen)
-- **lueftung**: Ventilation systems (KfW-dependent: "keine" for KfW55, dezentral/zentral for KfW40)
+Reihenfolge: Titel, QDF, Konfiguration auf einen Blick, Leistungsübersicht, Qualitätsvorteile, Service, Haustyp, je gewähltem Bauteil eine Seite, Raumplanung und Eigenleistungen (nur wenn ausgefüllt), Vergleichs-Checkliste, Glossar, Beraterseite.
 
-### Catalog Schema
+- Die festen Texte dieser Seiten stehen direkt in den Seitendateien, nicht im Katalog.
+- Bauteilseiten (`componentPage.js`): Schriftgrößen stehen oben in `SIZE` (Fließtext 9 bis 9,5 pt, Bild 225 pt). `renderComponent` gibt `{ endY, dropped }` zurück; `dropped` darf im Layout-Check nicht vorkommen.
+- PDFKit arbeitet mit festen Koordinaten. Bei mehrzeiligem Text die Höhe mit `heightOfString` rechnen, sonst überlappen Zeilen.
+- Die eingebaute Helvetica kennt keine Sonderzeichen wie ✓. Dafür `layout.drawCheck` verwenden.
 
-```json
-{
-  "id": "unique-id",
-  "name": "Display name",
-  "description": "Short description",
-  "advantages": ["Advantage 1", "Advantage 2"],
-  "comparisonNotes": "Sales-oriented comparison tips for customers",
-  "kfwCompatible": ["KFW55", "KFW40"],
-  "filePath": "assets/variants/category/image.png",
-  "technicalDrawing": "assets/variants/category/technical.png"
-}
-```
+## Regeln
 
-### Submission Data Structure
-
-User submissions include:
-- Bauherr data (vorname, nachname, email, telefon)
-- kfw_standard (KFW55 or KFW40)
-- Component selections (wall, innerwall, window, tiles, haustyp, heizung, lueftung)
-- personenanzahl, grundstueck status
-- rooms (erdgeschoss, obergeschoss, untergeschoss arrays)
-- eigenleistungen (planned self-performed work)
-
-### PDF Generation
-
-The pdfService generates a professional multi-page PDF with:
-
-**Pages (dynamically generated based on user selection):**
-1. Title page with Lehner Haus branding
-2. Overview page (Bauherr data + configuration summary)
-3. Service page (Lehner Haus services and benefits)
-4. Component pages with product images:
-   - Außenwandsystem (exterior walls)
-   - Innenwandsystem (interior walls)
-   - Fenstersystem (windows)
-   - Dacheindeckung (roof tiles)
-   - Haustyp (house type)
-   - Heizungssystem (heating)
-   - Lüftungssystem (ventilation - only if selected)
-5. Raumplanung (room planning - only if rooms defined)
-6. Eigenleistungen (self-performed work - only if any)
-7. Final page with next steps and contact info
-
-**Features:**
-- Product images embedded from `assets/variants/` directory
-- No empty pages (conditional page generation)
-- Dynamic page numbering
-- Lehner Haus corporate colors (#003366 blue, #C8102E red)
-- Advantages and comparison notes for each component
-
-## Security Model
-
-- **Whitelist validation**: User selections validated against catalog before processing
-- **ID sanitization**: Submission IDs stripped of non-alphanumeric characters (except hyphens)
-- **Path validation**: File paths checked against allowed directories
-
-## Lehner Haus Service Content
-
-The PDF includes marketing content about Lehner Haus services:
-- Individuelle Planung & Beratung (100% freie Grundrissgestaltung)
-- Nachhaltigkeit & Effizienz (KfW 55/40 Standards)
-- Premium-Ausstattung (Vaillant, Viessmann, Villeroy & Boch)
-- Kompletter Innenausbau
-- Baukoordination (ein Ansprechpartner)
-- Sicherheit (Festpreis-Garantie, 5 Jahre Gewährleistung)
+- Keine Preise in der PDF.
+- Werbeaussagen nur mit Beleg; die Liste der zu prüfenden Sätze steht im Konzept unter `../`.
+- Render baut aus GitHub `main`: Jeder Push geht live. Nicht ohne ausdrückliche Freigabe pushen.

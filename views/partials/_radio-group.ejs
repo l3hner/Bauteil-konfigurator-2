@@ -9,7 +9,8 @@
 
     <div class="radio-group">
         <% items.forEach(item => { %>
-        <label class="radio-card<%= item.filePath ? ' radio-card--with-image' : '' %>">
+        <%# data-dachform verknüpft Dachaufbau und Dacheindeckung (public/js/dach-options.js) %>
+        <label class="radio-card<%= item.filePath ? ' radio-card--with-image' : '' %>"<% if (item.dachform) { %> data-dachform="<%= item.dachform %>"<% } %>>
             <input type="radio" name="<%= fieldName %>" value="<%= item.id %>" onchange="updateProgress();">
             <% if (item.filePath) { %>
             <div class="radio-card-image">

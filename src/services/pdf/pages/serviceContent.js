@@ -42,7 +42,7 @@ module.exports = {
     y += 15;
     doc.roundedRect(60, y, 475, 55, 8).fill(layout.colors.primary);
     doc.font('Helvetica-Bold').fontSize(11).fillColor(layout.colors.white);
-    doc.text('Seit 3 Generationen vertrauen uns über 5.000 Baufamilien.', 80, y + 12, { lineBreak: false });
+    doc.text('Familienunternehmen in dritter Generation.', 80, y + 12, { lineBreak: false });
     doc.font('Helvetica').fontSize(9).fillColor(layout.colors.white);
     doc.text('QDF-zertifiziert | RAL-Gütezeichen | Mitglied im BDF', 80, y + 32, { lineBreak: false });
   }

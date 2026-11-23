@@ -64,11 +64,20 @@ describe('CatalogService', () => {
       });
     });
 
-    test('getLueftung(KFW55) gibt nur "keine"', () => {
-      const lueftung = catalogService.getLueftung(KFW_STANDARDS.KFW55);
-      lueftung.forEach(l => {
-        expect(l.id).toBe('keine');
-      });
+    test('getLueftung(KFW55) bietet Fensterlüftung und optional die Lüftungsanlagen', () => {
+      const ids = catalogService.getLueftung(KFW_STANDARDS.KFW55).map(l => l.id);
+      expect(ids).toContain('keine');
+      expect(ids).toContain('dezentral');
+      expect(ids).toContain('zentral');
+    });
+
+    test('Dachaufbau und Dacheindeckung sind über "dachform" verknüpft', () => {
+      const flachdach = catalogService.getVariantById('daecher', 'flachdach');
+      expect(flachdach).toBeDefined();
+      expect(flachdach.dachform).toBe('flachdach');
+      const passend = catalogService.getTiles().filter(t => t.dachform === 'flachdach').map(t => t.id);
+      expect(passend).toEqual(expect.arrayContaining(['flachdach-kies', 'flachdach-begruenung']));
+      catalogService.getTiles().forEach(t => expect(['geneigt', 'flachdach']).toContain(t.dachform));
     });
 
     test('getLueftung(KFW40) gibt keine "keine"-Option', () => {

@@ -52,8 +52,10 @@ class CatalogService {
   getLueftung(kfwStandard) {
     const allLueftung = this.getCategory(CATEGORIES.LUEFTUNG);
 
+    // KfW 55: Fensterlüftung ist möglich, eine Lüftungsanlage optional wählbar (Entscheidung 23.11.2026).
+    // KfW 40: immer mit Lüftungsanlage.
     if (kfwStandard === KFW_STANDARDS.KFW55) {
-      return allLueftung.filter(l => l.id === 'keine');
+      return allLueftung;
     } else if (kfwStandard === KFW_STANDARDS.KFW40) {
       return allLueftung.filter(l => l.id !== 'keine');
     }

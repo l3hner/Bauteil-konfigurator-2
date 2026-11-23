@@ -120,9 +120,8 @@ module.exports = {
         const colX = idx % 2 === 0 ? marginLeft : marginLeft + colWidth;
         const rowY = y + Math.floor(idx / 2) * 18;
 
-        doc.font('Helvetica').fontSize(9).fillColor(layout.colors.gray);
-        doc.text('\u2713', colX, rowY, { lineBreak: false });
-        doc.fillColor(layout.colors.text);
+        layout.drawCheck(doc, colX, rowY + 1, layout.colors.primary, 7);
+        doc.font('Helvetica').fontSize(9).fillColor(layout.colors.text);
         doc.text(adv, colX + 12, rowY, { width: colWidth - 20 });
       });
 

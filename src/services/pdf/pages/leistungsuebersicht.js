@@ -42,7 +42,7 @@ module.exports = {
       'Feste kompetente Ansprechpartner',
       'Vor-Ort Bemusterung',
       'Bauleitung',
-      'Energieberater (EnEV)',
+      'Statik und Wärmeschutzberechnung (GEG)',
       'Energieausweis',
       'KfW-Bestätigung'
     ];
@@ -160,7 +160,7 @@ module.exports = {
       const xPos = isRightCol ? marginLeft + contentWidth / 2 : marginLeft + 15;
       const yPos = isRightCol ? maxY + 28 + (i - Math.ceil(highlights.length / 2)) * 13 : maxY + 28 + i * 13;
 
-      doc.fillColor(layout.colors.primary).text('✓', xPos, yPos, { lineBreak: false });
+      layout.drawCheck(doc, xPos, yPos, layout.colors.primary);
       doc.fillColor(layout.colors.text).text(h, xPos + 12, yPos, { width: colHalfWidth });
     });
 

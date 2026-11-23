@@ -15,7 +15,7 @@
             <div class="header-inner">
                 <div class="logo">
                     <h1>LEHNER HAUS</h1>
-                    <p class="tagline">schwabisch gut</p>
+                    <p class="tagline">schwäbisch gut</p>
                 </div>
             </div>
         </header>
@@ -40,7 +40,8 @@
                 <div class="result-component">
                     <% if (comp.filePath) { %>
                     <div class="result-component-image">
-                        <img src="/<%= comp.filePath %>" alt="<%= comp.name %>">
+                        <%# Haustypen haben ein Bildverzeichnis als filePath (…/familienhaus/), dort liegt 1.png %>
+                        <img src="/<%= comp.filePath %><%= comp.filePath.endsWith('/') ? '1.png' : '' %>" alt="<%= comp.name %>">
                     </div>
                     <% } %>
                     <div class="result-component-info">

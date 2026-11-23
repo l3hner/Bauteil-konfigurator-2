@@ -13,6 +13,9 @@ const colors = {
   textMuted: '#666666',
   gray: '#999999',
   grayLight: '#f5f5f5',
+  // Sandtöne wie in der Angebotsmappe – Linien und Flächen
+  sand: '#B5A89C',
+  sandLight: '#EFEBE6',
   white: '#FFFFFF',
   error: '#cc0000',
   errorLight: '#fff5f5'
@@ -45,7 +48,8 @@ function drawHeader(doc, title) {
   doc.font(typography.h1.font).fontSize(typography.h1.size).fillColor(colors.primary);
   doc.text(title, 50, 40, { lineBreak: false });
 
-  doc.moveTo(50, 75).lineTo(545, 75).strokeColor('#cccccc').lineWidth(1).stroke();
+  // Sandlinie unter der Überschrift, wie der Sandbalken der Angebotsmappe
+  doc.rect(50, 73, 495, 2.5).fill(colors.sand);
 }
 
 function drawFooter(doc, pageNum) {
@@ -135,14 +139,28 @@ function extractAufbauItems(component, categoryTitle) {
     if (td.energySaving) items.push({ name: 'Energieeinsparung', value: td.energySaving });
   }
 
-  // Fallback: Alle technischen Details hinzufügen wenn Liste leer
+  // Fallback: Alle technischen Details hinzufügen wenn Liste leer.
+  // Die Schlüssel sind interne englische Feldnamen (construction, insulation …) und die Werte
+  // ganze Sätze — deshalb den Wert als eigene Zeile ausgeben statt Schlüssel links / Wert rechts.
   if (items.length === 0 && td) {
-    Object.entries(td).slice(0, 5).forEach(([key, value]) => {
-      items.push({ name: key, value: String(value).substring(0, 30) });
+    Object.values(td).slice(0, 5).forEach(value => {
+      items.push({ name: String(value), value: '' });
     });
   }
 
   return items;
+}
+
+// Häkchen als Vektor zeichnen: Die eingebaute Helvetica kennt das Zeichen U+2713 nicht
+// und druckt stattdessen einen Apostroph.
+function drawCheck(doc, x, y, color, size = 6) {
+  doc.save();
+  doc.lineWidth(1.1).lineCap('round').lineJoin('round').strokeColor(color || colors.primary);
+  doc.moveTo(x, y + size * 0.55)
+    .lineTo(x + size * 0.38, y + size * 0.9)
+    .lineTo(x + size, y + size * 0.1)
+    .stroke();
+  doc.restore();
 }
 
 // Hilfsmethode: Qualitätsmerkmale extrahieren
@@ -158,7 +176,8 @@ function extractQualityItems(component, categoryTitle) {
     items.push({ label: 'U-Wert Fenster', value: td.ugValue, highlight: true });
   }
   if (td.fireRating) {
-    items.push({ label: 'Feuerwiderstandsklasse', value: td.fireRating.includes('F90') ? 'min. (R)EI 90' : td.fireRating });
+    // Wert wie in der Leistungsbeschreibung (z. B. "F30B/F90B"), nicht umrechnen
+    items.push({ label: 'Brandschutzklasse', value: td.fireRating });
   }
   if (td.soundInsulation) {
     items.push({ label: 'Schallschutz', value: td.soundInsulation });
@@ -180,4 +199,4 @@ function getGrundstueckText(status) {
   return map[status] || status || '-';
 }
 
-module.exports = { colors, typography, layout, drawHeader, drawFooter, drawImagePlaceholder, extractAufbauItems, extractQualityItems, getGrundstueckText };
+module.exports = { colors, typography, layout, drawHeader, drawFooter, drawImagePlaceholder, drawCheck, extractAufbauItems, extractQualityItems, getGrundstueckText };

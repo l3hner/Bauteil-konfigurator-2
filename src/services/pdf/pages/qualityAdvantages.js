@@ -1,73 +1,68 @@
 const layout = require('../layout');
 
+// Dieselben sechs Gründe wie in der Angebotsmappe (eigener Generator außerhalb dieses Repos).
+// Jeder Grund ist durch die Leistungsbeschreibung 09/2026 oder den Vertrag gedeckt.
+// Wer hier etwas ändert, ändert es bitte auch dort – der Kunde bekommt beide Unterlagen.
 module.exports = {
-  title: 'Ihre 7 Qualitätsvorteile',
+  title: 'Warum Lehner Haus',
 
   condition(submission) {
     return true;
   },
 
   render(doc, submission, ctx) {
+    const marginLeft = 50;
+    const contentWidth = 495;
     let y = 95;
 
-    doc.font('Helvetica').fontSize(10).fillColor(layout.colors.text);
-    doc.text('Bei Lehner Haus erhalten Sie Premium-Qualität in jedem Detail:', 80, y, { width: 435 });
+    doc.font('Helvetica').fontSize(11).fillColor(layout.colors.textMuted);
+    doc.text('Sechs Gründe – jeder davon steht in der Leistungsbeschreibung oder im Vertrag.', marginLeft, y, {
+      width: contentWidth
+    });
+    y += 32;
 
-    y += 30;
+    const wall = submission ? ctx.catalogService.getVariantById('walls', submission.wall) : null;
+    const wandName = wall && wall.name ? `Die Außenwand ${wall.name}` : 'Die Lehner-Außenwand CLIMA-tiv';
 
-    const vorteile = [
-      { nr: '1', title: 'F90 Brandschutz', desc: 'Außenwände mit 90-minütigem Feuerwiderstand von außen' },
-      { nr: '2', title: 'Diffusionsoffen', desc: 'Kontrollierte Feuchteregulierung, kein Schimmelrisiko' },
-      { nr: '3', title: 'Kostensicherheit', desc: 'Klare Leistungen, definierte Qualitäten – keine „ab-Preise"' },
-      { nr: '4', title: 'Familienunternehmen', desc: 'In dritter Generation – über 60 Jahre Erfahrung im Holzbau' },
-      { nr: '5', title: 'QDF & RAL geprüft', desc: 'Zertifizierte Qualität, unabhängig überwacht' },
-      { nr: '6', title: 'Transparenz', desc: 'Definierte Materialien, keine anonymen Preisgruppen' },
-      { nr: '7', title: 'Festpreis-Garantie', desc: 'Echte Kostensicherheit ohne Interpretationsspielraum' }
+    const gruende = [
+      ['Festpreis mit Garantie',
+        'Ihr Preis steht fest, sobald der Vertrag bestätigt ist, und bleibt zwölf Monate garantiert. Transport, Montage, Kran und Bauleitung sind enthalten, die Lieferung erfolgt ohne Entfernungsbeschränkung.'],
+      ['40 Jahre Gewährleistung',
+        'Auf die statische Grundkonstruktion Ihres Lehner-Hauses geben wir 40 Jahre Gewährleistung, auf die Ausbaugewerke fünf Jahre nach BGB.'],
+      ['Diffusionsoffene Außenwand',
+        `${wandName} ist diffusionsoffen aufgebaut: Holzrahmen mit Dämmung, außen eine Holzfaserplatte, innen doppelt beplankt – für Stabilität, Schallschutz und ein angenehmes Raumklima.`],
+      ['Bauleitung inklusive',
+        'Ein Bauleiter betreut Sie über die gesamte Bauzeit. Unser eigenes, ständig geschultes Montageteam stellt Ihr Haus auf.'],
+      ['Markenfabrikate',
+        'Wärmepumpe von Vaillant oder Viessmann, Dachsteine von Nelskamp, Lüftung von Viessmann oder Vaillant – die Fabrikate stehen in der Leistungsbeschreibung.'],
+      ['Ausstattung zum Anfassen',
+        'Haustür, Innentüren, Böden, Fliesen und Sanitär wählen Sie in unserem Ausstattungsgespräch an Mustern aus – bevor produziert wird.']
     ];
 
-    const cardWidth = 145;
-    const cardHeight = 115;
-    const gap = 18;
-    const startX = 70;
-    const cardsPerRow = 3;
+    const gap = 20;
+    const boxWidth = (contentWidth - gap) / 2;
+    const boxHeight = 148;
 
-    vorteile.forEach((vorteil, idx) => {
-      const row = Math.floor(idx / cardsPerRow);
-      const col = idx % cardsPerRow;
-      const cx = startX + col * (cardWidth + gap);
-      const cy = y + row * (cardHeight + gap);
+    gruende.forEach(([titel, text], idx) => {
+      const x = marginLeft + (idx % 2) * (boxWidth + gap);
+      const boxY = y + Math.floor(idx / 2) * (boxHeight + gap);
 
-      // Card Background
-      doc.roundedRect(cx, cy, cardWidth, cardHeight, 8).fill('#f9f9f9');
-      doc.roundedRect(cx, cy, cardWidth, cardHeight, 8)
-         .strokeColor('#e0e0e0').lineWidth(1).stroke();
+      doc.rect(x, boxY, boxWidth, boxHeight).fill(layout.colors.sandLight);
+      doc.rect(x, boxY, 3.5, boxHeight).fill(layout.colors.primary);
 
-      // Nummer-Badge (links oben, Zahl mittig im Kreis)
-      const badgeX = cx + 20;
-      const badgeY = cy + 15;
-      const badgeR = 12;
-      doc.circle(badgeX, badgeY, badgeR).fill(layout.colors.gray);
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
-      doc.text(vorteil.nr, badgeX - badgeR, badgeY - 5, { width: badgeR * 2, align: 'center' });
+      doc.font('Heading').fontSize(20).fillColor(layout.colors.sand);
+      doc.text(String(idx + 1).padStart(2, '0'), x + 16, boxY + 16, { lineBreak: false });
 
-      // Titel (keine Icons mehr)
-      doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.primary);
-      doc.text(vorteil.title, cx + 8, cy + 45, { width: cardWidth - 16, align: 'center' });
+      doc.font('Heading-SemiBold').fontSize(11.5).fillColor(layout.colors.primary);
+      doc.text(titel, x + 50, boxY + 21, { width: boxWidth - 62, lineBreak: false });
 
-      // Beschreibung
-      doc.font('Helvetica').fontSize(7.5).fillColor(layout.colors.textLight);
-      doc.text(vorteil.desc, cx + 8, cy + 65, { width: cardWidth - 16, align: 'center', lineGap: 0.8 });
+      doc.font('Helvetica').fontSize(9.5).fillColor(layout.colors.text);
+      doc.text(text, x + 16, boxY + 52, { width: boxWidth - 30, lineGap: 2 });
     });
 
-    y += Math.ceil(vorteile.length / cardsPerRow) * (cardHeight + gap) + 15;
+    y += 3 * (boxHeight + gap) + 8;
 
-    // Callout Box
-    doc.roundedRect(60, y, 475, 50, 8).fill(layout.colors.primaryDark);
-
-    doc.font('Helvetica-Bold').fontSize(10).fillColor(layout.colors.white);
-    doc.text('Fragen Sie bei anderen Anbietern gezielt nach diesen Punkten!', 80, y + 12, { lineBreak: false });
-
-    doc.font('Helvetica').fontSize(8).fillColor(layout.colors.white);
-    doc.text('Nicht alle diese Leistungen sind branchenüblich. Bei Lehner Haus sind sie Standard.', 80, y + 30, { lineBreak: false });
+    doc.font('Heading-SemiBold').fontSize(12).fillColor(layout.colors.primary);
+    doc.text('Lehner Haus – schwäbisch gut.', marginLeft, y, { lineBreak: false });
   }
 };
