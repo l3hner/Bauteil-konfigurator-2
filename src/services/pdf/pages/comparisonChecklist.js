@@ -26,7 +26,7 @@ module.exports = {
       ? `Wie viel Dämmung steckt in der Außenwand? Lehner Haus: ${wall.technicalDetails.insulation}.`
       : 'Wie viel Dämmung steckt in der Außenwand? Lehner Haus: 160 bzw. 240 mm im Gefach plus 80 mm Holzfaser-Dämmplatte.';
 
-    // Fenster-Ug-Wert aus der tatsächlich gewählten Variante (Kunststoff 0,77 / Holz-Alu 0,5)
+    // Fenster-Ug-Wert aus der tatsächlich gewählten Variante (Katalog, technicalDetails.ugValue)
     const fenster = submission ? catalogService.getVariantById('windows', submission.window) : null;
     const ugWert = fenster && fenster.technicalDetails && fenster.technicalDetails.ugValue;
     const fensterText = ugWert

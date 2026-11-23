@@ -163,25 +163,27 @@ patch('decken', 'massivholzdecke', {
 get('decken', 'massivholzdecke').layers[2].name = 'Massivholzplatte aus mehrfach verleimter Fichte (60 cm breit mit 6 mm Fugen)';
 
 // ---------- Fenster (Gewerk 45, Text 45.000) ----------
+// Ug-Wert des Standardglases: 0,6 W/(m²K) laut Geschäftsführung (23.11.2026). Der Text der
+// Kalkulationsvorlage 09/2026 nennt noch 0,5 – dort nachziehen, damit beides übereinstimmt.
 patch('windows', 'kunststoff', {
   emotionalHook: 'Dreifach verglast, im Werk passgenau eingebaut – Fenster für Wärme, Ruhe und Sicherheit.',
-  description: 'Fenster und Terrassentüren aus weißem Mehrkammer-Kunststoffprofil mit Stahlkern und Mehrfachfalz, im Werk passgenau in die Wand eingebaut. 3-fach Wärmeschutzglas mit Ug-Wert 0,5 W/(m²K). Beschlagstechnik in Anlehnung an RC2.',
+  description: 'Fenster und Terrassentüren aus weißem Mehrkammer-Kunststoffprofil mit Stahlkern und Mehrfachfalz, im Werk passgenau in die Wand eingebaut. 3-fach Wärmeschutzglas mit Ug-Wert 0,6 W/(m²K). Beschlagstechnik in Anlehnung an RC2.',
   securityClass: 'in Anlehnung an RC2',
   premiumFeatures: [
-    '3-fach Wärmeschutzglas mit Ug-Wert 0,5 W/(m²K) im Standard',
+    '3-fach Wärmeschutzglas mit Ug-Wert 0,6 W/(m²K) im Standard',
     'Im Werk passgenau in die Wand eingebaut',
     'Beschlagstechnik in Anlehnung an RC2 im Standard',
     'Außensimse aus eloxiertem Aluminium, Innensimse aus Naturstein'
   ],
   layers: [
     { name: 'Mehrkammer-Kunststoffprofil mit Stahlkern und Mehrfachfalz', value: 'weiß' },
-    { name: '3-fach Wärmeschutzglas', value: 'Ug 0,5' },
+    { name: '3-fach Wärmeschutzglas', value: 'Ug 0,6' },
     { name: 'Einhebelbeschlag, Beschlagstechnik in Anlehnung an RC2', value: '' },
     { name: 'Rollläden mit Aluminiumprofilen', value: '' }
   ],
   totalThickness: false,
   technicalDetails: {
-    ugValue: '0,5 W/(m²K)',
+    ugValue: '0,6 W/(m²K)',
     profile: 'Mehrkammer-Kunststoffprofil mit Stahlkern und Mehrfachfalz',
     glazing: '3-fach Wärmeschutzglas; der Ug-Wert kann je nach Glasart (z. B. VSG, ESG, Schallschutz) abweichen',
     securityFeatures: 'Beschlagstechnik in Anlehnung an RC2',
@@ -195,25 +197,27 @@ patch('windows', 'kunststoff', {
   ],
   comparisonNotes: [
     'Fragen Sie gezielt nach diesen Punkten:',
-    '1. Welchen Ug-Wert hat das Glas im Standard? (Lehner Haus: 0,5 W/(m²K) bei 3-fach Wärmeschutzglas)',
+    '1. Welchen Ug-Wert hat das Glas im Standard? (Lehner Haus: 0,6 W/(m²K) bei 3-fach Wärmeschutzglas)',
     '2. Werden die Fenster im Werk oder auf der Baustelle eingebaut? (Lehner Haus: im Werk, passgenau in die Wand)',
     '3. Welche Sicherheitsbeschläge sind im Standard enthalten? (Lehner Haus: Beschlagstechnik in Anlehnung an RC2)',
     '4. Sind Rollläden, Außen- und Innensimse im Preis enthalten? (Lehner Haus: ja, laut Leistungsbeschreibung)'
   ].join('\n\n')
 });
 patch('windows', 'holz-alu', {
-  description: 'Fenster mit Echtholz-Innenseite und witterungsbeständiger Aluminium-Außenschale. 3-fach Wärmeschutzglas mit Ug-Wert 0,5 W/(m²K). Beschlagstechnik in Anlehnung an RC2.',
+  description: 'Fenster mit Echtholz-Innenseite und witterungsbeständiger Aluminium-Außenschale. 3-fach Wärmeschutzglas mit Ug-Wert 0,6 W/(m²K). Beschlagstechnik in Anlehnung an RC2.',
   securityClass: 'in Anlehnung an RC2',
   totalThickness: false,
   comparisonNotes: [
     'Fragen Sie gezielt nach diesen Punkten:',
     '1. Ist die Innenseite aus Leimholz oder nur furniert?',
     '2. Wie dick ist die Aluminium-Außenschale?',
-    '3. Welchen Ug-Wert hat das Glas? (Lehner Haus: 0,5 W/(m²K))',
+    '3. Welchen Ug-Wert hat das Glas? (Lehner Haus: 0,6 W/(m²K))',
     '4. Welche Sicherheitsbeschläge sind im Standard enthalten? (Lehner Haus: Beschlagstechnik in Anlehnung an RC2)'
   ].join('\n\n')
 });
 get('windows', 'holz-alu').technicalDetails.securityFeatures = 'Beschlagstechnik in Anlehnung an RC2';
+get('windows', 'holz-alu').technicalDetails.ugValue = '0,6 W/(m²K)';
+get('windows', 'holz-alu').layers[2].value = 'Ug 0,6';
 get('windows', 'holz-alu').layers[3].name = 'Einhebelbeschlag, Beschlagstechnik in Anlehnung an RC2';
 
 // ---------- Dacheindeckung (Pos. 35.000 / 35.010 / 35.035 / 35.040) ----------

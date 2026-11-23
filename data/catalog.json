@@ -429,10 +429,10 @@
       "id": "kunststoff",
       "name": "Kunststofffenster",
       "emotionalHook": "Dreifach verglast, im Werk passgenau eingebaut – Fenster für Wärme, Ruhe und Sicherheit.",
-      "description": "Fenster und Terrassentüren aus weißem Mehrkammer-Kunststoffprofil mit Stahlkern und Mehrfachfalz, im Werk passgenau in die Wand eingebaut. 3-fach Wärmeschutzglas mit Ug-Wert 0,5 W/(m²K). Beschlagstechnik in Anlehnung an RC2.",
+      "description": "Fenster und Terrassentüren aus weißem Mehrkammer-Kunststoffprofil mit Stahlkern und Mehrfachfalz, im Werk passgenau in die Wand eingebaut. 3-fach Wärmeschutzglas mit Ug-Wert 0,6 W/(m²K). Beschlagstechnik in Anlehnung an RC2.",
       "securityClass": "in Anlehnung an RC2",
       "premiumFeatures": [
-        "3-fach Wärmeschutzglas mit Ug-Wert 0,5 W/(m²K) im Standard",
+        "3-fach Wärmeschutzglas mit Ug-Wert 0,6 W/(m²K) im Standard",
         "Im Werk passgenau in die Wand eingebaut",
         "Beschlagstechnik in Anlehnung an RC2 im Standard",
         "Außensimse aus eloxiertem Aluminium, Innensimse aus Naturstein"
@@ -444,7 +444,7 @@
         },
         {
           "name": "3-fach Wärmeschutzglas",
-          "value": "Ug 0,5"
+          "value": "Ug 0,6"
         },
         {
           "name": "Einhebelbeschlag, Beschlagstechnik in Anlehnung an RC2",
@@ -456,7 +456,7 @@
         }
       ],
       "technicalDetails": {
-        "ugValue": "0,5 W/(m²K)",
+        "ugValue": "0,6 W/(m²K)",
         "profile": "Mehrkammer-Kunststoffprofil mit Stahlkern und Mehrfachfalz",
         "glazing": "3-fach Wärmeschutzglas; der Ug-Wert kann je nach Glasart (z. B. VSG, ESG, Schallschutz) abweichen",
         "securityFeatures": "Beschlagstechnik in Anlehnung an RC2",
@@ -468,7 +468,7 @@
         "Rollläden an Fenstern und Terrassentüren, wo konstruktiv möglich",
         "Farbe der Außensimse und Steinart der Innensimse wählen Sie im Bemusterungsgespräch"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert hat das Glas im Standard? (Lehner Haus: 0,5 W/(m²K) bei 3-fach Wärmeschutzglas)\n\n2. Werden die Fenster im Werk oder auf der Baustelle eingebaut? (Lehner Haus: im Werk, passgenau in die Wand)\n\n3. Welche Sicherheitsbeschläge sind im Standard enthalten? (Lehner Haus: Beschlagstechnik in Anlehnung an RC2)\n\n4. Sind Rollläden, Außen- und Innensimse im Preis enthalten? (Lehner Haus: ja, laut Leistungsbeschreibung)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Welchen Ug-Wert hat das Glas im Standard? (Lehner Haus: 0,6 W/(m²K) bei 3-fach Wärmeschutzglas)\n\n2. Werden die Fenster im Werk oder auf der Baustelle eingebaut? (Lehner Haus: im Werk, passgenau in die Wand)\n\n3. Welche Sicherheitsbeschläge sind im Standard enthalten? (Lehner Haus: Beschlagstechnik in Anlehnung an RC2)\n\n4. Sind Rollläden, Außen- und Innensimse im Preis enthalten? (Lehner Haus: ja, laut Leistungsbeschreibung)",
       "filePath": "assets/variants/windows/kunststoff-technical.png",
       "technicalDrawing": "assets/variants/windows/kunststoff-technical.png",
       "totalThickness": false
@@ -477,7 +477,7 @@
       "id": "holz-alu",
       "name": "Holz-Aluminium-Fenster",
       "emotionalHook": "Echtes Holz innen, wartungsfreies Aluminium außen – das Fenster, das Sie nie wieder streichen müssen.",
-      "description": "Fenster mit Echtholz-Innenseite und witterungsbeständiger Aluminium-Außenschale. 3-fach Wärmeschutzglas mit Ug-Wert 0,5 W/(m²K). Beschlagstechnik in Anlehnung an RC2.",
+      "description": "Fenster mit Echtholz-Innenseite und witterungsbeständiger Aluminium-Außenschale. 3-fach Wärmeschutzglas mit Ug-Wert 0,6 W/(m²K). Beschlagstechnik in Anlehnung an RC2.",
       "securityClass": "in Anlehnung an RC2",
       "premiumFeatures": [
         "Dreischicht-Leimholz innen - keine Furniere",
@@ -494,7 +494,7 @@
         },
         {
           "name": "3-fach Wärmeschutzverglasung",
-          "value": "Ug 0,5"
+          "value": "Ug 0,6"
         },
         {
           "name": "Einhebelbeschlag, Beschlagstechnik in Anlehnung an RC2",
@@ -502,7 +502,7 @@
         }
       ],
       "technicalDetails": {
-        "ugValue": "0,5 W/(m²K)",
+        "ugValue": "0,6 W/(m²K)",
         "profile": "Dreischicht-Leimholz innen, pulverbeschichtetes Aluminium außen (mind. 1,5mm)",
         "glazing": "3-fach Verglasung",
         "securityFeatures": "Beschlagstechnik in Anlehnung an RC2"
@@ -516,7 +516,7 @@
         "Höhere Maßhaltigkeit bei Schiebetüren – kein Klemmen durch thermische Ausdehnung",
         "Optimale Dichtigkeit auch ab Fensterbreiten von 2 Metern"
       ],
-      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Ist die Innenseite aus Leimholz oder nur furniert?\n\n2. Wie dick ist die Aluminium-Außenschale?\n\n3. Welchen Ug-Wert hat das Glas? (Lehner Haus: 0,5 W/(m²K))\n\n4. Welche Sicherheitsbeschläge sind im Standard enthalten? (Lehner Haus: Beschlagstechnik in Anlehnung an RC2)",
+      "comparisonNotes": "Fragen Sie gezielt nach diesen Punkten:\n\n1. Ist die Innenseite aus Leimholz oder nur furniert?\n\n2. Wie dick ist die Aluminium-Außenschale?\n\n3. Welchen Ug-Wert hat das Glas? (Lehner Haus: 0,6 W/(m²K))\n\n4. Welche Sicherheitsbeschläge sind im Standard enthalten? (Lehner Haus: Beschlagstechnik in Anlehnung an RC2)",
       "filePath": "assets/variants/windows/holz-alu-technical.png",
       "technicalDrawing": "assets/variants/windows/holz-alu-technical.png",
       "totalThickness": false
